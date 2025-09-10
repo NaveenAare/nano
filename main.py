@@ -15,6 +15,10 @@ async def privacy_policy():
 async def terms_and_conditions():
     return FileResponse("templates/terms.html")
 
+@app.get("/blog")
+async def blog():
+    return FileResponse("templates/nanoblog.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=443)
