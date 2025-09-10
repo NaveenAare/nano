@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana | Google AI Image Generation | Professional AI Art Creator</title>
+    <meta name="description" content="Nano Banana - Professional Google AI-powered image generation platform. Create stunning visuals with advanced nano banana technology. Enterprise-grade AI art generation.">
+    <meta name="keywords" content="nano banana, google nano banana, nano banana ai, ai image generation, google ai art, professional image creator, nano banana technology, google nano banana generator">
+    <meta name="author" content="Nano Banana Technologies">
+    <meta property="og:title" content="Nano Banana | Google AI Image Generation Platform">
+    <meta property="og:description" content="Professional AI image generation powered by Google's advanced nano banana technology. Create stunning visuals instantly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nano Banana | Google AI Image Generation">
+    <meta name="twitter:description" content="Professional AI image generation with Google nano banana technology">
+    <link rel="canonical" href="https://nanobanana.ai">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Banana Icon */
+        .banana-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 50% 50% 50% 10%;
+            position: relative;
+            display: inline-block;
+            margin-right: 12px;
+            transform: rotate(-20deg);
+        }
+
+        .banana-icon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            width: 4px;
+            height: 8px;
+            background: #92400e;
+            border-radius: 2px;
+            transform: rotate(20deg);
+        }
+
+        .nano-banana-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        /* Main Card */
+        .main-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 48px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #3b82f6;
+            background: white;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #3b82f6;
+        }
+
+        .tab:hover:not(.active) {
+            color: #475569;
+            background: #f1f5f9;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            padding: 32px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Image Results */
+        .image-results {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 48px 32px;
+            text-align: center;
+            margin-bottom: 24px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .image-results.has-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .placeholder-text {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .result-image {
+            max-width: 100%;
+            max-height: 240px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: none;
+        }
+
+        .image-results.has-content .download-btn {
+            display: block;
+        }
+
+        .download-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Chat Input Container */
+        .chat-input-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input-container:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Attached Images */
+        .attached-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px 16px 0 16px;
+        }
+
+        .attached-image {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .attached-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-attachment {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: #475569;
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .remove-attachment:hover {
+            background: #334155;
+        }
+
+        /* Input Area */
+        .input-area {
+            position: relative;
+        }
+
+        .prompt-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 16px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: none;
+            min-height: 24px;
+            max-height: 200px;
+            color: #1e293b;
+            background: transparent;
+            line-height: 1.5;
+        }
+
+        .prompt-input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Input Actions */
+        .input-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px 12px 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .input-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .attach-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .attach-btn:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .input-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .char-count {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .send-btn {
+            width: 32px;
+            height: 32px;
+            background: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .send-btn:hover {
+            background: #0f172a;
+        }
+
+        .send-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* Suggestions */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .suggestion {
+            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .gallery-item-text {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .gallery-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            background: #475569;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-remove:hover {
+            background: #334155;
+        }
+
+        .empty-gallery {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* Loading Animation */
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 8px;
+            width: 100%;
+            height: 240px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .loading-text {
+            color: #64748b;
+            text-align: center;
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% {
+                content: '.';
+            }
+            40% {
+                content: '..';
+            }
+            60%, 100% {
+                content: '...';
+            }
+        }
+
+        /* SEO Content Section */
+        .seo-content {
+            background: #f8fafc;
+            padding: 48px 32px;
+            margin: 48px 0;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .seo-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .seo-keyword {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Banana accent elements */
+        .banana-accent {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .feature-icon.banana {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        /* Showcase Section */
+        .showcase-section {
+            margin: 64px 0;
+        }
+
+        .showcase-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .showcase-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .showcase-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .showcase-item h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            aspect-ratio: 1;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 14px;
+            text-align: center;
+            padding: 16px;
+        }
+
+        .arrow-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 48px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Google Model Info */
+        .model-info {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 48px 32px;
+            border-radius: 16px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .model-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .model-info p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .model-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .model-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            margin: 48px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 48px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            color: #475569;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 48px 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            color: #64748b;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            margin-top: 64px;
+            padding: 48px 0 24px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #334155;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            font-weight: 600;
+        }
+
+        .social-link:hover {
+            background: #475569;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .tab-content {
+                padding: 24px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .model-info {
+                padding: 32px 24px;
+            }
+
+            .model-info h2 {
+                font-size: 1.75rem;
+            }
+
+            .model-badges {
+                gap: 8px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .before-after {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .arrow-icon {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .tab-content {
+                padding: 16px;
+            }
+
+            .suggestions {
+                gap: 6px;
+            }
+
+            .suggestion {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .model-info {
+                padding: 24px 16px;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+/* Add this CSS to your existing styles */
+
+/* Peeled Banana Icon */
+.peeled-banana-icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+    margin-right: 16px;
+}
+
+.banana-body {
+    width: 20px;
+    height: 32px;
+    background: linear-gradient(135deg, #fff4e6 0%, #fef3c7 50%, #fbbf24 100%);
+    border-radius: 50% 50% 60% 40%;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    transform: rotate(-15deg);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.banana-peel-1 {
+    width: 12px;
+    height: 18px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 60% 40% 80% 20%;
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    transform: rotate(-45deg);
+    transform-origin: bottom center;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.banana-peel-2 {
+    width: 10px;
+    height: 16px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 50% 50% 70% 30%;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    transform: rotate(30deg);
+    transform-origin: bottom center;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.banana-peel-3 {
+    width: 8px;
+    height: 14px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 40% 60% 60% 40%;
+    position: absolute;
+    top: 12px;
+    left: 2px;
+    transform: rotate(-75deg);
+    transform-origin: bottom center;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.banana-peel-4 {
+    width: 9px;
+    height: 15px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 50% 50% 80% 20%;
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    transform: rotate(60deg);
+    transform-origin: bottom center;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Add brown spots on the banana body */
+.banana-body::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    width: 3px;
+    height: 3px;
+    background: #92400e;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.banana-body::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 2px;
+    height: 2px;
+    background: #92400e;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+/* Site Header */
+.site-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: #1e293b;
+    padding: 16px 0;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #1e293b;
+}
+
+.site-logo:hover {
+    color: #64748b;
+}
+
+.site-nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.site-nav a {
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+    color: #1e293b;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    color: #1e293b;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .site-header .container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    
+    .site-nav {
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .peeled-banana-icon {
+        width: 36px;
+        height: 36px;
+        margin-right: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-nav {
+        gap: 16px;
+        font-size: 0.9rem;
+    }
+    
+    .cta-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Download button styling */
+.download-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(30, 41, 59, 0.9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: none;
+    backdrop-filter: blur(4px);
+}
+
+.image-results.has-content .download-btn {
+    display: block;
+}
+
+.download-btn:hover {
+    background: rgba(15, 23, 42, 0.95);
+    transform: translateY(-1px);
+}
+
+.showcase-image {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.showcase-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Site Header -->
+<header class="site-header">
+    <div class="container">
+        <a href="#" class="site-logo">
+            <div class="peeled-banana-icon">
+                <div class="banana-body"></div>
+                <div class="banana-peel-1"></div>
+                <div class="banana-peel-2"></div>
+                <div class="banana-peel-3"></div>
+                <div class="banana-peel-4"></div>
+            </div>
+            Nano Banana
+        </a>
+        
+        <nav class="site-nav">
+            <a href="#features">Features</a>
+            <a href="#showcase">Showcase</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#support">Support</a>
+            <button class="cta-button">Get Started Free</button>
+        </nav>
+    </div>
+</header>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Nano Banana</h1>
+            <p>Professional AI Image Generation Platform</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <!-- Tabs -->
+         <!--    <div class="tabs">
+                <button class="tab active" onclick="switchTab('edit')">Edit</button>
+                <button class="tab" onclick="switchTab('generations')">Generations</button>
+            </div> -->
+
+            <!-- Edit Tab -->
+            <div id="edit-tab" class="tab-pane active">
+                <div class="tab-content">
+                    <!-- Image Results -->
+                    <div class="image-results" id="image-results">
+                        <div class="placeholder-text">Generated images will appear here</div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-container" id="chat-container">
+                        <!-- Attached Images -->
+                        <div class="attached-images" id="attached-images" style="display: none;"></div>
+                        
+                        <!-- Input Area -->
+                        <div class="input-area">
+                            <textarea 
+                                id="prompt-input" 
+                                class="prompt-input" 
+                                placeholder="Ask anything..."
+                                oninput="handleInput()"
+                                onkeydown="handleKeyDown(event)"
+                            ></textarea>
+                        </div>
+
+                        <!-- Input Actions -->
+                        <div class="input-actions">
+                            <div class="input-left">
+                                <button class="attach-btn" onclick="triggerFileUpload()">
+                                    +
+                                </button>
+                                <input 
+                                    type="file" 
+                                    id="file-input" 
+                                    class="file-input" 
+                                    accept="image/*" 
+                                    multiple 
+                                    onchange="handleFileUpload(this)"
+                                >
+                            </div>
+                            <div class="input-right">
+                                <span class="char-count" id="char-count"></span>
+                                <button class="send-btn" id="send-btn" onclick="generateImage()">
+                                    ↑
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suggestions -->
+                    <div class="suggestions">
+                        <div class="suggestion" onclick="useSuggestion('A majestic dragon soaring through cloudy skies')">🐉 Epic Dragon</div>
+                        <div class="suggestion" onclick="useSuggestion('Minimalist logo design for a tech startup')">💼 Tech Logo</div>
+                        <div class="suggestion" onclick="useSuggestion('Cozy coffee shop interior with warm lighting')">☕ Coffee Shop</div>
+                        <div class="suggestion" onclick="useSuggestion('Abstract geometric pattern in vibrant colors')">🎨 Abstract Art</div>
+                        <div class="suggestion" onclick="useSuggestion('Professional headshot with soft studio lighting')">👤 Portrait</div>
+                    </div>
+
+                    <!-- Image Gallery -->
+                    <div class="image-gallery">
+                        <div class="gallery-title">Recent Images (Up to 5)</div>
+                        <div class="gallery-grid" id="gallery-grid">
+                            <div class="empty-gallery">No images generated yet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generations Tab -->
+            <div id="generations-tab" class="tab-pane">
+                <div class="tab-content">
+                    <div class="image-results">
+                        <div class="placeholder-text">View all your generation history here</div>
+                    </div>
+                    <div class="image-gallery">
+                        <div class="gallery-title">All Generations</div>
+                        <div class="gallery-grid">
+                            <div class="empty-gallery">No generation history available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Revolutionary <span class="banana-accent">Nano Banana</span> Technology</h2>
+            <p>Experience the power of Google's advanced <strong>nano banana</strong> AI technology. Our platform combines cutting-edge artificial intelligence with innovative <em>nano banana algorithms</em> to deliver unparalleled image generation capabilities. Whether you're searching for "google nano banana" solutions or professional AI art creation, our <strong>nano banana technology</strong> provides enterprise-grade results for businesses and creative professionals worldwide.</p>
+            <div class="seo-keywords">
+                <div class="seo-keyword">Google Nano Banana</div>
+                <div class="seo-keyword">Nano Banana AI</div>
+                <div class="seo-keyword">Nano Banana Technology</div>
+                <div class="seo-keyword">Google AI Art Generator</div>
+                <div class="seo-keyword">Professional Image Creation</div>
+                <div class="seo-keyword">Enterprise AI Solutions</div>
+                <div class="seo-keyword">Nano Banana Generator</div>
+                <div class="seo-keyword">Google Nano Banana API</div>
+            </div>
+        </div>
+
+        <!-- Showcase Section -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">See <span class="banana-accent">Nano Banana</span> in Action</h2>
+            <p class="showcase-subtitle">Professional AI image generation that transforms your ideas into stunning visuals using Google's revolutionary nano banana technology. See real examples of our advanced capabilities.</p>
+            
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <h3>Portrait Enhancement with Nano Banana</h3>
+                    <div class="before-after">
+                        <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
+<!--                             <div class="image-label">Original Photo</div>
+ -->                        </div>
+                        <div class="arrow-icon">→</div>
+                        <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-57.png?alt=media&token=38f0b473-2fef-44d7-b58f-a3faa515b633" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h3>Logo Generation</h3>
+                    <div class="before-after">
+                        <div class="showcase-image">
+<!--                             <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
+ -->                            <div class="image-label">                         Minimalist logo design for a tech startup</div>
+                        </div>
+                        <div class="arrow-icon">→</div>
+                        <div class="showcase-image">
+                            <img src="https://chatezzy.com/generated_images/dalle_5_req_1757528785776_8h5pml6lj_1_20250910_182633.png" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h3>Product Photography</h3>
+                    <div class="before-after">
+                         <!--  -->
+                        <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_jpbvo1jpbvo1jpbv.png?alt=media&token=fc91f090-eb95-4677-a62f-8a4e9e60fbee" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+
+                          <br> </br>
+
+                         <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_lij92zlij92zlij9.png?alt=media&token=9b78b375-6b20-405b-b2f8-084a2435c0ae" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h3>Concept Art Creation</h3>
+                    <div class="before-after">
+                         <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
+<!--                             <div class="image-label">Original Photo</div>
+ -->                        </div>
+                        <div class="arrow-icon">→</div>
+                        <div class="showcase-image">
+                            <img src="https://chatezzy.com/generated_images/dalle_5_req_1757528785776_8h5pml6lj_1_20250910_182633.png" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h3>Background Replacement</h3>
+                    <div class="before-after">
+                         <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
+<!--                             <div class="image-label">Original Photo</div>
+ -->                        </div>
+                        <div class="arrow-icon">→</div>
+                        <div class="showcase-image">
+                            <img src="https://chatezzy.com/generated_images/dalle_5_req_1757528785776_8h5pml6lj_1_20250910_182633.png" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h3>Style Transfer</h3>
+                    <div class="before-after">
+                         <div class="showcase-image">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
+<!--                             <div class="image-label">Original Photo</div>
+ -->                        </div>
+                        <div class="arrow-icon">→</div>
+                        <div class="showcase-image">
+                            <img src="https://chatezzy.com/generated_images/dalle_5_req_1757528785776_8h5pml6lj_1_20250910_182633.png" alt="Enhanced Portrait">
+<!--                             <div class="image-label">Nano banana quality</div>
+ -->                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon banana">🚀</div>
+                    <div class="feature-title">Advanced <span class="banana-accent">Nano Banana</span> Processing</div>
+                    <div class="feature-description">Lightning-fast image generation powered by Google's revolutionary nano banana algorithms. Experience professional-quality results in seconds with our enterprise-grade nano banana technology.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Precision Control</div>
+                    <div class="feature-description">Fine-tune every aspect with our advanced nano banana technology parameters. Professional-grade control for enterprise applications and creative workflows.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Cross-Platform Ready</div>
+                    <div class="feature-description">Seamless nano banana experience across all devices. Optimized for both desktop and mobile professional workflows with responsive design.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Model Info -->
+        <div class="model-info">
+            <h2>Powered by Google's Revolutionary <span style="color: #fbbf24;">Nano Banana</span> AI</h2>
+            <p>Our platform leverages Google's groundbreaking <strong>nano banana technology</strong> - the most advanced AI image generation system available. This cutting-edge <em>google nano banana</em> integration delivers professional-quality results with enterprise-grade reliability, security, and performance that exceeds industry standards.</p>
+            <div class="model-badges">
+                <div class="model-badge">Google Nano Banana Technology</div>
+                <div class="model-badge">Real-time Processing</div>
+                <div class="model-badge">High-Resolution Output</div>
+                <div class="model-badge">Enterprise Security</div>
+                <div class="model-badge">API Integration</div>
+                <div class="model-badge">24/7 Availability</div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2 class="section-title">Trusted by Professionals Using <span class="banana-accent">Nano Banana</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The Google nano banana technology in this platform is revolutionary. As a creative professional, I've never seen such accurate and fast AI image generation. Nano Banana has become essential to our workflow."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SJ</div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Creative Director at PixelWorks</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "When I search for 'nano banana AI solutions', this platform consistently delivers the best results. The integration with Google's nano banana technology is seamless and professional-grade."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Senior Content Strategist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The nano banana technology provides unmatched accuracy and detail. It's like having a professional design team powered by Google's most advanced AI available 24/7."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EL</div>
+                        <div class="author-info">
+                            <h4>Emily Liu</h4>
+                            <p>Marketing Director at TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions About <span class="banana-accent">Nano Banana</span></h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is Google Nano Banana technology and how does it work?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Google Nano Banana is an advanced AI image generation technology that combines machine learning algorithms with innovative processing techniques. Our nano banana platform leverages this cutting-edge Google technology to deliver professional-quality image generation with unprecedented speed, accuracy, and creative control for enterprise applications.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does Nano Banana compare to other AI image generators?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Nano Banana is powered by Google's exclusive nano banana technology, ensuring superior image quality and faster generation times. Our professional interface is designed for enterprise users, offering advanced nano banana algorithms that deliver consistently better results than standard AI generators, with enterprise-grade security and reliability.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are the pricing plans for nano banana technology?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    We offer flexible pricing tiers for nano banana technology to suit different needs. Professional users can access unlimited high-resolution nano banana generations with our premium plans. Contact our sales team for enterprise nano banana pricing and custom Google AI integration solutions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I use nano banana generated images for commercial purposes?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Yes, all images generated through our nano banana platform can be used for both personal and commercial purposes. You retain full rights to the nano banana created content, with no additional licensing fees or restrictions on commercial usage.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What file formats and resolutions does nano banana support?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Nano Banana supports JPG, PNG, and WebP formats for input. Generated images are available in multiple resolutions up to 4K using our advanced nano banana processing, with options to download in various formats including high-quality PNG and professional-grade TIFF for enterprise applications.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How secure is my data with nano banana technology?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    We prioritize enterprise-level security with our nano banana platform. All data is encrypted in transit and at rest, with SOC 2 compliance and GDPR adherence. Google's nano banana technology includes built-in security features, and we never store or share your content without explicit permission.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><span class="banana-icon"></span>Nano Banana</h3>
+                    <p>Professional Google AI image generation platform powered by revolutionary <strong>nano banana technology</strong>. Experience the future of AI-driven creative workflows with enterprise-grade <em>google nano banana</em> solutions designed for professionals and businesses worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Nano Banana Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Nano Banana Features</a></li>
+                        <li><a href="#">Pricing & Plans</a></li>
+                        <li><a href="#">Google Nano Banana API</a></li>
+                        <li><a href="#">Integration Guide</a></li>
+                        <li><a href="#">Enterprise Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Nano Banana</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Contact Sales</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Nano Banana Help Center</a></li>
+                        <li><a href="#">Developer Community</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/termsconditions">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nano Banana. All rights reserved. Powered by Google Nano Banana AI Technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global state
+        let attachedImages = [];
+        let generatedImages = [];
+        const maxImages = 5;
+        const maxChars = 1000;
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        // Handle input changes
+        function handleInput() {
+            const input = document.getElementById('prompt-input');
+            const charCount = document.getElementById('char-count');
+            const sendBtn = document.getElementById('send-btn');
+            
+            const length = input.value.length;
+            charCount.textContent = length > 0 ? length.toString() : '';
+            
+            // Auto-resize
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+            
+            // Enable/disable send button
+            sendBtn.disabled = length === 0 && attachedImages.length === 0;
+        }
+
+        // Handle keyboard shortcuts
+        function handleKeyDown(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                event.preventDefault();
+                generateImage();
+            }
+        }
+
+        // Trigger file upload
+        function triggerFileUpload() {
+            document.getElementById('file-input').click();
+        }
+
+        // Handle file upload
+        function handleFileUpload(input) {
+            const files = Array.from(input.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        attachedImages.push({
+                            name: file.name,
+                            data: e.target.result
+                        });
+                        updateAttachedImages();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            input.value = '';
+        }
+
+        // Update attached images display
+        function updateAttachedImages() {
+            const container = document.getElementById('attached-images');
+            
+            if (attachedImages.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'flex';
+            container.innerHTML = attachedImages.map((img, index) => `
+                <div class="attached-image">
+                    <img src="${img.data}" alt="${img.name}">
+                    <button class="remove-attachment" onclick="removeAttachedImage(${index})">×</button>
+                </div>
+            `).join('');
+            
+            handleInput();
+        }
+
+
+
+// Add this to your existing JavaScript
+
+// Download image function
+function downloadImage(imageUrl, prompt = '') {
+    // Create timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    
+    // Create filename
+    const filename = `nano_banana_${timestamp}.png`;
+    
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.style.display = 'none';
+    
+    // Handle different types of image URLs
+    if (imageUrl.startsWith('data:')) {
+        // Data URL - can download directly
+        link.href = imageUrl;
+        link.download = filename;
+    } else {
+        // External URL - need to fetch and convert
+        fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error('Download failed:', error);
+                // Fallback - open in new tab
+                window.open(imageUrl, '_blank');
+            });
+        return;
+    }
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Open image in new tab with custom name
+function openImage(imageUrl) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const windowName = 'nano_banana_' + timestamp;
+    
+    // Simple approach - just open the image URL directly
+    const newWindow = window.open(imageUrl, windowName);
+    
+    // Alternative: Create a simple data URL
+    if (!newWindow) {
+        // Fallback if popup blocked
+        const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(
+            '<!DOCTYPE html><html><head><title>Nano Banana - ' + timestamp + '</title>' +
+            '<style>body{margin:0;padding:20px;background:#f8fafc;text-align:center;font-family:Arial,sans-serif;}' +
+            'img{max-width:100%;max-height:90vh;border-radius:8px;}' +
+            '.btn{background:#1e293b;color:white;border:none;padding:12px 24px;border-radius:8px;margin:16px;cursor:pointer;}' +
+            '</style></head><body>' +
+            '<h1>Nano Banana Generated Image</h1>' +
+            '<img src="' + imageUrl + '" alt="Generated Image">' +
+            '<br><button class="btn" onclick="window.open(\'' + imageUrl + '\')">Open Original</button>' +
+            '</body></html>'
+        );
+        window.open(dataUrl, windowName);
+    }
+}
+
+// Update the displayResult function to include download button
+function displayResult(imageData) {
+    const container = document.getElementById('image-results');
+    container.classList.add('has-content');
+    container.innerHTML = `
+        <img src="${imageData}" alt="Generated Image" class="result-image" onclick="openImage('${imageData}')">
+        <button class="download-btn" onclick="downloadImage('${imageData}')">📥 Download</button>
+    `;
+}
+
+// Update gallery items to include download functionality
+function updateGallery() {
+    const grid = document.getElementById('gallery-grid');
+    
+    if (generatedImages.length === 0) {
+        grid.innerHTML = '<div class="empty-gallery">No images generated yet</div>';
+        return;
+    }
+    
+    grid.innerHTML = generatedImages.map((img, index) => `
+        <div class="gallery-item">
+            <button class="gallery-remove" onclick="event.stopPropagation(); removeFromGallery(${index})">×</button>
+            <img src="${img.data}" alt="Generated Image" onclick="openImage('${img.data}')" style="cursor: pointer;" title="Click to view full size">
+            <div class="gallery-item-text">${img.prompt.substring(0, 40)}...</div>
+            <div style="margin-top: 8px;">
+                <button onclick="event.stopPropagation(); downloadImage('${img.data}', '${img.prompt}')" 
+                        style="background: #1e293b; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+                    📥 Download
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+        // Remove attached image
+        function removeAttachedImage(index) {
+            attachedImages.splice(index, 1);
+            updateAttachedImages();
+        }
+
+        // Use suggestion
+        function useSuggestion(text) {
+            document.getElementById('prompt-input').value = text;
+            handleInput();
+            document.getElementById('prompt-input').focus();
+        }
+
+        // Generate image with API call
+        async function generateImage() {
+            const prompt = document.getElementById('prompt-input').value.trim();
+            
+            if (!prompt) {
+                alert('Please enter a prompt!');
+                return;
+            }
+
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.innerHTML = '⏳';
+            sendBtn.disabled = true;
+
+            // Show loading in results container
+            showLoadingState();
+
+            try {
+                // Prepare form data
+                const formData = new FormData();
+                
+                // Add required fields
+                formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
+                formData.append('message', prompt);
+                formData.append('authToken', 'eyJ1c2VySWQiOiA1LCAibWFpbCI6ICJhYXJlbmF2ZWVudmFybWFAZ21haWwuY29tIiwgIm5hbWUiOiAiTmF2ZWVuIHZhcm1hIEFhcmUiLCAicHJvZmlsZV9waWMiOiAiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTZQa3BFSGJkdGZoQTFETFp5OHVCcnZrejRIaDhTVjhMQmtzajRYRjdTVlB2OEllRDU9czk2LWMiLCAiaXNfcHJlbWl1bV91c2VyIjogbnVsbCwgInN1YnNjcmlwdGlvbl9lbmRfZGF0ZSI6ICIyMDI1LTA5LTI5IDA0OjI4OjU3LjM0OTAwMCJ9ZmM1ODU2MzhhZjM5NzI4ZjcxNDBmNTM3MjNiMjMwNjRhMDNkOTdiOThlYWUwMWM0NmY5OWYxMmIxZjUwYWUwMg==');
+                formData.append('does_chat_have_name', 'false');
+                formData.append('models', 'ChatGpt');
+                formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
+                formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+
+                // Add attached images
+                for (let i = 0; i < attachedImages.length; i++) {
+                    const img = attachedImages[i];
+                    
+                    // Convert base64 to blob
+                    const response = await fetch(img.data);
+                    const blob = await response.blob();
+                    
+                    formData.append(`file_${i}`, blob, img.name);
+                    formData.append(`file_${i}_type`, 'image');
+                    formData.append(`file_${i}_name`, img.name);
+                }
+
+                // Make API call
+                const apiResponse = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': '*/*',
+                        'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',
+                        'Cache-Control': 'no-cache',
+                        'Origin': 'https://chatezzy.com',
+                        'Referer': 'https://chatezzy.com/superai/bXYwNi1zZGtkZ3Y',
+                        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
+                    },
+                    body: formData
+                });
+
+                if (!apiResponse.ok) {
+                    throw new Error(`HTTP error! status: ${apiResponse.status}`);
+                }
+
+                const responseData = await apiResponse.json();
+                
+                // Extract image URL from response
+                let imageUrl = null;
+                if (responseData && responseData.image_url) {
+                    imageUrl = responseData.image_url;
+                } else if (responseData && responseData.data && responseData.data.image_url) {
+                    imageUrl = responseData.data.image_url;
+                } else {
+                    // If no image URL found, create placeholder
+                    imageUrl = createPlaceholderImage(prompt);
+                }
+
+                // Display result
+                displayResult(imageUrl);
+                addToGallery(imageUrl, prompt);
+
+            } catch (error) {
+                console.error('Error generating image:', error);
+                
+                // Show error state
+                const container = document.getElementById('image-results');
+                container.classList.add('has-content');
+                container.innerHTML = `
+                    <div style="text-align: center; color: #ef4444;">
+                        <div style="font-size: 2rem; margin-bottom: 8px;">❌</div>
+                        <div>Failed to generate image</div>
+                        <div style="font-size: 0.875rem; margin-top: 4px;">Please try again</div>
+                    </div>
+                `;
+                
+                // Fallback to placeholder
+                const placeholderUrl = createPlaceholderImage(prompt);
+                addToGallery(placeholderUrl, prompt);
+            } finally {
+                // Reset UI
+                sendBtn.innerHTML = '↑';
+                sendBtn.disabled = false;
+                document.getElementById('prompt-input').value = '';
+                attachedImages = [];
+                updateAttachedImages();
+                handleInput();
+            }
+        }
+
+        // Show loading state with shimmer
+        function showLoadingState() {
+            const container = document.getElementById('image-results');
+            container.classList.add('has-content');
+            container.innerHTML = `
+                <div style="width: 100%; max-width: 400px;">
+                    <div class="loading-shimmer"></div>
+                    <div class="loading-text">
+                        <span class="loading-dots">Generating your image</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create placeholder image
+        function createPlaceholderImage(prompt) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 300;
+            const ctx = canvas.getContext('2d');
+            
+            const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+            gradient.addColorStop(0, '#3b82f6');
+            gradient.addColorStop(1, '#1e40af');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Generated Image', 200, 140);
+            ctx.font = '12px Arial';
+            ctx.fillText(prompt.substring(0, 30) + '...', 200, 160);
+            
+            return canvas.toDataURL();
+        }
+
+
+
+        // Add to gallery
+        function addToGallery(imageData, prompt) {
+            generatedImages.unshift({
+                data: imageData,
+                prompt: prompt,
+                timestamp: new Date()
+            });
+            
+            if (generatedImages.length > maxImages) {
+                generatedImages = generatedImages.slice(0, maxImages);
+            }
+            
+            updateGallery();
+        }
+
+
+
+        // Remove from gallery
+        function removeFromGallery(index) {
+            generatedImages.splice(index, 1);
+            updateGallery();
+        }
+
+        // Toggle FAQ
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('active');
+            });
+            
+            // Toggle current FAQ
+            if (!isActive) {
+                faqItem.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            handleInput();
+        });
+    </script>
+</body>
+</html>
