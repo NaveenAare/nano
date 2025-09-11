@@ -347,23 +347,27 @@
         }
 
         .attach-btn {
-            width: 32px;
-            height: 32px;
-            border: 1px solid #d1d5db;
-            background: white;
-            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6b7280;
-            font-size: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
         }
 
         .attach-btn:hover {
-            background: #f9fafb;
-            border-color: #9ca3af;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-color: #d97706;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(245, 158, 11, 0.35);
         }
 
         .file-input {
@@ -381,29 +385,35 @@
             color: #94a3b8;
         }
 
-        .send-btn {
-            width: 32px;
-            height: 32px;
-            background: #1e293b;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.2s ease;
-        }
+        /* Replace your existing .send-btn style with this: */
+.send-btn {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
 
-        .send-btn:hover {
-            background: #0f172a;
-        }
+.send-btn:hover {
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
 
-        .send-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-        }
+.send-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
 
         /* Suggestions */
         .suggestions {
@@ -1309,11 +1319,184 @@
     width: 60px;
 }
 
+.editing-mode-banner {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #475569;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    animation: slideDown 0.3s ease;
+}
 
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.editing-mode-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.editing-mode-icon {
+    font-size: 16px;
+}
+
+.clear-mode-btn {
+    background: rgba(30, 41, 59, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(30, 41, 59, 0.2);
+    color: #1e293b;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.clear-mode-btn:hover {
+    background: rgba(30, 41, 59, 0.15);
+    border-color: rgba(30, 41, 59, 0.3);
+}
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 360px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.2s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.modal-text {
+    color: #64748b;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.modal-btn {
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.modal-btn-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.modal-btn-cancel:hover {
+    background: #e2e8f0;
+}
+
+.modal-btn-confirm {
+    background: #1e293b;
+    color: white;
+}
+
+.modal-btn-confirm:hover {
+    background: #0f172a;
+}
+
+/* Edited image indicator in attached images */
+.attached-image.edited-result {
+    border: 2px solid #1e293b;
+    position: relative;
+}
+
+.attached-image.edited-result::after {
+    content: '✨';
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #1e293b;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
     </style>
 </head>
 <body>
-
+<div id="clearModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-title">Start New Generation?</div>
+        <div class="modal-text">This will clear your current editing session and start fresh. Your current generated image will be lost.</div>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-cancel" onclick="closeClearModal()">Cancel</button>
+            <button class="modal-btn modal-btn-confirm" onclick="confirmClearEditingMode()">Clear & Start New</button>
+        </div>
+    </div>
+</div>
     <!-- Site Header -->
 <header class="site-header">
     <div class="container">
@@ -1756,6 +1939,50 @@
         const maxImages = 5;
         const maxChars = 1000;
 
+        let editingMode = false;
+let currentEditingImage = null;
+
+// Load state from localStorage on page load
+window.addEventListener('DOMContentLoaded', function() {
+    loadStateFromStorage();
+    handleInput();
+});
+
+// Save state to localStorage
+function saveStateToStorage() {
+    const state = {
+        editingMode: editingMode,
+        currentEditingImage: currentEditingImage,
+        generatedImages: generatedImages,
+        attachedImages: attachedImages
+    };
+    localStorage.setItem('nanobanana_state', JSON.stringify(state));
+}
+
+// Load state from localStorage
+function loadStateFromStorage() {
+    const savedState = localStorage.getItem('nanobanana_state');
+    if (savedState) {
+        try {
+            const state = JSON.parse(savedState);
+            editingMode = state.editingMode || false;
+            currentEditingImage = state.currentEditingImage || null;
+            generatedImages = state.generatedImages || [];
+            attachedImages = state.attachedImages || [];
+            
+            // Restore UI state
+            if (editingMode && currentEditingImage) {
+                activateEditingMode(currentEditingImage);
+            }
+            updateAttachedImages();
+            updateGallery();
+        } catch (e) {
+            console.error('Failed to load state:', e);
+        }
+    }
+}
+
+
         // Tab switching
         function switchTab(tabName) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -1816,25 +2043,37 @@
             input.value = '';
         }
 
-        // Update attached images display
         function updateAttachedImages() {
-            const container = document.getElementById('attached-images');
-            
-            if (attachedImages.length === 0) {
-                container.style.display = 'none';
-                return;
-            }
-            
-            container.style.display = 'flex';
-            container.innerHTML = attachedImages.map((img, index) => `
-                <div class="attached-image">
-                    <img src="${img.data}" alt="${img.name}">
-                    <button class="remove-attachment" onclick="removeAttachedImage(${index})">×</button>
-                </div>
-            `).join('');
-            
-            handleInput();
-        }
+    const container = document.getElementById('attached-images');
+    
+    if (attachedImages.length === 0 && !editingMode) {
+        container.style.display = 'none';
+        return;
+    }
+    
+    container.style.display = 'flex';
+    let html = '';
+    
+    // Show editing image if in editing mode
+    if (editingMode && currentEditingImage) {
+        html += `
+            <div class="attached-image edited-result">
+                <img src="${currentEditingImage}" alt="Editing">
+            </div>
+        `;
+    }
+    
+    // Show regular attached images
+    html += attachedImages.map((img, index) => `
+        <div class="attached-image">
+            <img src="${img.data}" alt="${img.name}">
+            <button class="remove-attachment" onclick="removeAttachedImage(${index})">×</button>
+        </div>
+    `).join('');
+    
+    container.innerHTML = html;
+    handleInput();
+}
 
 
 
@@ -1957,108 +2196,184 @@ function updateGallery() {
 
         // Generate image with API call
         async function generateImage() {
-            const prompt = document.getElementById('prompt-input').value.trim();
-            
-            if (!prompt) {
-                alert('Please enter a prompt!');
-                return;
-            }
+    const prompt = document.getElementById('prompt-input').value.trim();
+    
+    if (!prompt && !editingMode) {
+        alert('Please enter a prompt!');
+        return;
+    }
 
-            const sendBtn = document.getElementById('send-btn');
-            sendBtn.innerHTML = '⏳';
-            sendBtn.disabled = true;
+    const sendBtn = document.getElementById('send-btn');
+    sendBtn.innerHTML = '⏳';
+    sendBtn.disabled = true;
 
-            // Show loading in results container
-            showLoadingState();
+    showLoadingState();
 
-            try {
-                // Prepare form data
-                const formData = new FormData();
-                
-                // Add required fields
-                formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
-                formData.append('message', prompt);
-                formData.append('authToken', 'eyJ1c2VySWQiOiA1LCAibWFpbCI6ICJhYXJlbmF2ZWVudmFybWFAZ21haWwuY29tIiwgIm5hbWUiOiAiTmF2ZWVuIHZhcm1hIEFhcmUiLCAicHJvZmlsZV9waWMiOiAiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTZQa3BFSGJkdGZoQTFETFp5OHVCcnZrejRIaDhTVjhMQmtzajRYRjdTVlB2OEllRDU9czk2LWMiLCAiaXNfcHJlbWl1bV91c2VyIjogbnVsbCwgInN1YnNjcmlwdGlvbl9lbmRfZGF0ZSI6ICIyMDI1LTA5LTI5IDA0OjI4OjU3LjM0OTAwMCJ9ZmM1ODU2MzhhZjM5NzI4ZjcxNDBmNTM3MjNiMjMwNjRhMDNkOTdiOThlYWUwMWM0NmY5OWYxMmIxZjUwYWUwMg==');
-                formData.append('does_chat_have_name', 'false');
-                formData.append('models', 'ChatGpt');
-                formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
-                formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+    try {
+        const formData = new FormData();
+        
+        formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
+        formData.append('message', prompt || 'Continue editing');
+        formData.append('authToken', 'eyJ1c2VySWQiOiA1LCAibWFpbCI6ICJhYXJlbmF2ZWVudmFybWFAZ21haWwuY29tIiwgIm5hbWUiOiAiTmF2ZWVuIHZhcm1hIEFhcmUiLCAicHJvZmlsZV9waWMiOiAiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTZQa3BFSGJkdGZoQTFETFp5OHVCcnZrejRIaDhTVjhMQmtzajRYRjdTVlB2OEllRDU9czk2LWMiLCAiaXNfcHJlbWl1bV91c2VyIjogbnVsbCwgInN1YnNjcmlwdGlvbl9lbmRfZGF0ZSI6ICIyMDI1LTA5LTI5IDA0OjI4OjU3LjM0OTAwMCJ9ZmM1ODU2MzhhZjM5NzI4ZjcxNDBmNTM3MjNiMjMwNjRhMDNkOTdiOThlYWUwMWM0NmY5OWYxMmIxZjUwYWUwMg==');
+        formData.append('does_chat_have_name', 'false');
+        formData.append('models', 'ChatGpt');
+        formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
+        formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
 
-                // Add attached images
-                for (let i = 0; i < attachedImages.length; i++) {
-                    const img = attachedImages[i];
-                    
-                    // Convert base64 to blob
-                    const response = await fetch(img.data);
-                    const blob = await response.blob();
-                    
-                    formData.append(`file_${i}`, blob, img.name);
-                    formData.append(`file_${i}_type`, 'image');
-                    formData.append(`file_${i}_name`, img.name);
-                }
-
-                // Make API call
-                const apiResponse = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': '*/*',
-                        'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',
-                        'Cache-Control': 'no-cache',
-                        'Origin': 'https://chatezzy.com',
-                        'Referer': 'https://chatezzy.com/superai/bXYwNi1zZGtkZ3Y',
-                        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
-                    },
-                    body: formData
-                });
-
-                if (!apiResponse.ok) {
-                    throw new Error(`HTTP error! status: ${apiResponse.status}`);
-                }
-
-                const responseData = await apiResponse.json();
-                
-                // Extract image URL from response
-                let imageUrl = null;
-                if (responseData && responseData.image_url) {
-                    imageUrl = responseData.image_url;
-                } else if (responseData && responseData.data && responseData.data.image_url) {
-                    imageUrl = responseData.data.image_url;
-                } else {
-                    // If no image URL found, create placeholder
-                    imageUrl = createPlaceholderImage(prompt);
-                }
-
-                // Display result
-                displayResult(imageUrl);
-                addToGallery(imageUrl, prompt);
-
-            } catch (error) {
-                console.error('Error generating image:', error);
-                
-                // Show error state
-                const container = document.getElementById('image-results');
-                container.classList.add('has-content');
-                container.innerHTML = `
-                    <div style="text-align: center; color: #ef4444;">
-                        <div style="font-size: 2rem; margin-bottom: 8px;">❌</div>
-                        <div>Failed to generate image</div>
-                        <div style="font-size: 0.875rem; margin-top: 4px;">Please try again</div>
-                    </div>
-                `;
-                
-                // Fallback to placeholder
-                const placeholderUrl = createPlaceholderImage(prompt);
-                addToGallery(placeholderUrl, prompt);
-            } finally {
-                // Reset UI
-                sendBtn.innerHTML = '↑';
-                sendBtn.disabled = false;
-                document.getElementById('prompt-input').value = '';
-                attachedImages = [];
-                updateAttachedImages();
-                handleInput();
-            }
+        // Add current editing image if in editing mode
+        if (editingMode && currentEditingImage) {
+            const response = await fetch(currentEditingImage);
+            const blob = await response.blob();
+            formData.append('file_0', blob, 'editing_image.png');
+            formData.append('file_0_type', 'image');
+            formData.append('file_0_name', 'editing_image.png');
         }
+
+        // Add other attached images
+        for (let i = 0; i < attachedImages.length; i++) {
+            const img = attachedImages[i];
+            const response = await fetch(img.data);
+            const blob = await response.blob();
+            const fileIndex = editingMode ? i + 1 : i;
+            formData.append(`file_${fileIndex}`, blob, img.name);
+            formData.append(`file_${fileIndex}_type`, 'image');
+            formData.append(`file_${fileIndex}_name`, img.name);
+        }
+
+        const apiResponse = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+                'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',
+                'Cache-Control': 'no-cache',
+                'Origin': 'https://chatezzy.com',
+                'Referer': 'https://chatezzy.com/superai/bXYwNi1zZGtkZ3Y',
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
+            },
+            body: formData
+        });
+
+        if (!apiResponse.ok) {
+            throw new Error(`HTTP error! status: ${apiResponse.status}`);
+        }
+
+        const responseData = await apiResponse.json();
+        
+        let imageUrl = null;
+        if (responseData && responseData.image_url) {
+            imageUrl = responseData.image_url;
+        } else if (responseData && responseData.data && responseData.data.image_url) {
+            imageUrl = responseData.data.image_url;
+        } else {
+            imageUrl = createPlaceholderImage(prompt);
+        }
+
+        // Display result and activate editing mode
+        displayResult(imageUrl);
+        addToGallery(imageUrl, prompt || 'Edited image');
+        
+        // Activate editing mode with the new image
+        activateEditingMode(imageUrl);
+        
+        // Clear prompt and regular attachments, but keep editing mode active
+        document.getElementById('prompt-input').value = '';
+        attachedImages = [];
+        updateAttachedImages();
+        
+        // Save state
+        saveStateToStorage();
+
+    } catch (error) {
+        console.error('Error generating image:', error);
+        
+        const container = document.getElementById('image-results');
+        container.classList.add('has-content');
+        container.innerHTML = `
+            <div style="text-align: center; color: #ef4444;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">❌</div>
+                <div>Failed to generate image</div>
+                <div style="font-size: 0.875rem; margin-top: 4px;">Please try again</div>
+            </div>
+        `;
+    } finally {
+        sendBtn.innerHTML = '↑';
+        sendBtn.disabled = false;
+        document.getElementById('prompt-input').value = '';
+        attachedImages = [];
+        updateAttachedImages();
+        handleInput();
+    }
+}
+
+// New function to activate editing mode
+function activateEditingMode(imageUrl) {
+    editingMode = true;
+    currentEditingImage = imageUrl;
+    
+    // Add editing mode banner
+    const inputContainer = document.getElementById('chat-container');
+    
+    // Remove existing banner if present
+    const existingBanner = inputContainer.querySelector('.editing-mode-banner');
+    if (existingBanner) {
+        existingBanner.remove();
+    }
+    
+    // Create and add new banner
+    const banner = document.createElement('div');
+    banner.className = 'editing-mode-banner';
+    banner.innerHTML = `
+        <div class="editing-mode-text">
+            <span class="editing-mode-icon">✨</span>
+            <span>Image Editing Mode Activated</span>
+        </div>
+        <button class="clear-mode-btn" onclick="showClearModal()">Clear</button>
+    `;
+    
+    inputContainer.insertBefore(banner, inputContainer.firstChild);
+    
+    saveStateToStorage();
+}
+
+// Show clear confirmation modal
+function showClearModal() {
+    document.getElementById('clearModal').style.display = 'flex';
+}
+
+// Close clear modal
+function closeClearModal() {
+    document.getElementById('clearModal').style.display = 'none';
+}
+
+// Confirm clear editing mode
+function confirmClearEditingMode() {
+    editingMode = false;
+    currentEditingImage = null;
+    
+    // Remove editing mode banner
+    const banner = document.querySelector('.editing-mode-banner');
+    if (banner) {
+        banner.remove();
+    }
+    
+    // Clear the image results
+    const container = document.getElementById('image-results');
+    container.classList.remove('has-content');
+    container.innerHTML = '<div class="placeholder-text">Generated images will appear here</div>';
+    
+    // Clear all attached images including the editing image
+    attachedImages = [];
+    updateAttachedImages();
+    
+    // Close modal
+    closeClearModal();
+    
+    // Clear localStorage
+    localStorage.removeItem('nanobanana_state');
+    
+    handleInput();
+}
+
 
         // Show loading state with shimmer
         function showLoadingState() {
