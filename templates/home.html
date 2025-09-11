@@ -1484,6 +1484,205 @@
     justify-content: center;
     font-size: 10px;
 }
+
+
+
+/* Image Popup Modal */
+.image-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: popupFadeIn 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes popupFadeIn {
+    from { 
+        opacity: 0; 
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to { 
+        opacity: 1; 
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+}
+
+.image-popup-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: popupScaleIn 0.3s ease;
+}
+
+@keyframes popupScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.image-popup-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image-popup-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.image-popup-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.image-popup-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.image-popup-body {
+    padding: 0;
+    text-align: center;
+    background: #f8fafc;
+}
+
+.image-popup-img {
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.image-popup-footer {
+    background: white;
+    padding: 16px 20px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.image-popup-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.popup-action-btn {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.popup-action-btn:hover {
+    background: #0f172a;
+    transform: translateY(-1px);
+}
+
+.popup-action-btn.secondary {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+.popup-action-btn.secondary:hover {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.image-popup-info {
+    flex: 1;
+    text-align: left;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Responsive popup */
+@media (max-width: 768px) {
+    .image-popup-content {
+        max-width: 95vw;
+        max-height: 95vh;
+        border-radius: 12px;
+    }
+    
+    .image-popup-header {
+        padding: 12px 16px;
+    }
+    
+    .image-popup-title {
+        font-size: 1rem;
+    }
+    
+    .image-popup-footer {
+        padding: 12px 16px;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .image-popup-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .image-popup-info {
+        text-align: center;
+    }
+    
+    .image-popup-img {
+        max-height: 60vh;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -2123,29 +2322,8 @@ function downloadImage(imageUrl, prompt = '') {
 }
 
 // Open image in new tab with custom name
-function openImage(imageUrl) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    const windowName = 'nano_banana_' + timestamp;
-    
-    // Simple approach - just open the image URL directly
-    const newWindow = window.open(imageUrl, windowName);
-    
-    // Alternative: Create a simple data URL
-    if (!newWindow) {
-        // Fallback if popup blocked
-        const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(
-            '<!DOCTYPE html><html><head><title>Nano Banana - ' + timestamp + '</title>' +
-            '<style>body{margin:0;padding:20px;background:#f8fafc;text-align:center;font-family:Arial,sans-serif;}' +
-            'img{max-width:100%;max-height:90vh;border-radius:8px;}' +
-            '.btn{background:#1e293b;color:white;border:none;padding:12px 24px;border-radius:8px;margin:16px;cursor:pointer;}' +
-            '</style></head><body>' +
-            '<h1>Nano Banana Generated Image</h1>' +
-            '<img src="' + imageUrl + '" alt="Generated Image">' +
-            '<br><button class="btn" onclick="window.open(\'' + imageUrl + '\')">Open Original</button>' +
-            '</body></html>'
-        );
-        window.open(dataUrl, windowName);
-    }
+function openImage(imageUrl, prompt = '') {
+    showImagePopup(imageUrl, prompt);
 }
 
 // Update the displayResult function to include download button
@@ -2154,7 +2332,7 @@ function displayResult(imageData) {
     container.classList.add('has-content');
     container.innerHTML = `
         <img src="${imageData}" alt="Generated Image" class="result-image" onclick="openImage('${imageData}')">
-        <button class="download-btn" onclick="downloadImage('${imageData}')">📥 Download</button>
+        <button class="download-btn" onclick="downloadImage('${imageData}')">⇩ Download</button>
     `;
 }
 
@@ -2170,12 +2348,12 @@ function updateGallery() {
     grid.innerHTML = generatedImages.map((img, index) => `
         <div class="gallery-item">
             <button class="gallery-remove" onclick="event.stopPropagation(); removeFromGallery(${index})">×</button>
-            <img src="${img.data}" alt="Generated Image" onclick="openImage('${img.data}')" style="cursor: pointer;" title="Click to view full size">
+            <img src="${img.data}" alt="Generated Image" onclick="openImage('${img.data}', '${img.prompt}')" style="cursor: pointer;" title="Click to view full size">
             <div class="gallery-item-text">${img.prompt.substring(0, 40)}...</div>
             <div style="margin-top: 8px;">
                 <button onclick="event.stopPropagation(); downloadImage('${img.data}', '${img.prompt}')" 
                         style="background: #1e293b; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
-                    📥 Download
+                    ⇩ Download
                 </button>
             </div>
         </div>
@@ -2460,6 +2638,85 @@ function confirmClearEditingMode() {
         document.addEventListener('DOMContentLoaded', function() {
             handleInput();
         });
+
+        // Replace the existing openImage function with this:
+
+
+// Add these new functions:
+function showImagePopup(imageUrl, prompt = '') {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'image-popup-overlay';
+    overlay.onclick = (e) => {
+        if (e.target === overlay) {
+            closeImagePopup();
+        }
+    };
+    
+    // Create popup content
+    const content = document.createElement('div');
+    content.className = 'image-popup-content';
+    
+    // Generate timestamp for filename
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const filename = `nano_banana_${timestamp}`;
+    
+    content.innerHTML = `
+        <div class="image-popup-header">
+            <button class="image-popup-close" onclick="closeImagePopup()">×</button>
+        </div>
+        
+        <div class="image-popup-body">
+            <img src="${imageUrl}" alt="Generated Image" class="image-popup-img">
+        </div>
+        
+        <div class="image-popup-footer">
+            <div class="image-popup-actions">
+                <button class="popup-action-btn" onclick="downloadImageFromPopup('${imageUrl}', '${filename}')">
+                    Download
+                </button>
+            </div>
+        </div>
+    `;
+    
+    overlay.appendChild(content);
+    document.body.appendChild(overlay);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Add escape key listener
+    document.addEventListener('keydown', handlePopupKeydown);
+}
+
+function closeImagePopup() {
+    const overlay = document.querySelector('.image-popup-overlay');
+    if (overlay) {
+        // Add fade out animation
+        overlay.style.animation = 'popupFadeOut 0.2s ease forwards';
+        
+        setTimeout(() => {
+            overlay.remove();
+            document.body.style.overflow = 'auto';
+            document.removeEventListener('keydown', handlePopupKeydown);
+        }, 200);
+    }
+}
+
+function handlePopupKeydown(e) {
+    if (e.key === 'Escape') {
+        closeImagePopup();
+    }
+}
+
+function openImageInNewTab(imageUrl) {
+    window.open(imageUrl, '_blank');
+}
+
+function downloadImageFromPopup(imageUrl, filename) {
+    downloadImage(imageUrl);
+    closeImagePopup();
+}
     </script>
 </body>
 </html>
