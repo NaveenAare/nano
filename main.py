@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+
+# Mount static folder
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def home():
@@ -15,9 +19,8 @@ async def privacy_policy():
 async def terms_and_conditions():
     return FileResponse("templates/terms.html")
 
-
 @app.get("/remove-background")
-async def terms_and_conditions():
+async def remove_background():
     return FileResponse("templates/remove_background.html")
 
 @app.get("/blog")
