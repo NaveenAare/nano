@@ -15,6 +15,11 @@ async def privacy_policy():
 async def terms_and_conditions():
     return FileResponse("templates/terms.html")
 
+
+@app.get("/remove-background")
+async def terms_and_conditions():
+    return FileResponse("templates/remove_background.html")
+
 @app.get("/blog")
 async def blog():
     return FileResponse("templates/nanoblog.html")
