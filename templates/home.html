@@ -1796,9 +1796,187 @@
     color: #92400e;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Maintenance Mode Overlay */
+.maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.maintenance-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 48px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    animation: maintenanceSlideIn 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes maintenanceSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.maintenance-icon {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    animation: maintenancePulse 2s ease-in-out infinite;
+}
+
+@keyframes maintenancePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.maintenance-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.maintenance-message {
+    color: #64748b;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.maintenance-time {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    border: 1px solid #fbbf24;
+}
+
+.maintenance-countdown {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f59e0b;
+    margin: 16px 0;
+}
+
+.maintenance-apology {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-style: italic;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.maintenance-loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #f59e0b;
+    border-radius: 50%;
+    animation: maintenanceSpin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes maintenanceSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.maintenance-decoration {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+.maintenance-decoration:nth-child(2) {
+    top: auto;
+    bottom: -30px;
+    left: -30px;
+    right: auto;
+    width: 60px;
+    height: 60px;
+}
+
+
+
     </style>
 </head>
 <body>
+    <!-- Maintenance Mode Overlay -->
+<div id="maintenanceOverlay" class="maintenance-overlay">
+    <div class="maintenance-modal">
+        <div class="maintenance-decoration"></div>
+        <div class="maintenance-decoration"></div>
+        
+        <div class="maintenance-icon">🔧</div>
+        
+        <h1 class="maintenance-title">Under Maintenance</h1>
+        
+        <p class="maintenance-message">
+            We're currently performing scheduled maintenance to improve your experience with Nano Banana AI.
+        </p>
+        
+        <div class="maintenance-time">
+            <div>Expected completion in:</div>
+            <div class="maintenance-countdown" id="maintenanceCountdown">3:00:00</div>
+        </div>
+        
+        <div class="maintenance-loader"></div>
+        
+        <div class="maintenance-apology">
+            We apologize for any inconvenience caused and appreciate your patience.
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
     <!-- Login Required Modal -->
 <div id="loginModal" class="login-modal-overlay" style="display: none;">
@@ -2266,6 +2444,87 @@
     </footer>
 
     <script>
+
+
+        // Maintenance Mode - Add this at the very beginning of your script
+(function() {
+    // Set maintenance end time (3 hours from now)
+    const maintenanceEndTime = new Date().getTime() + (3 * 60 * 60 * 1000);
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = maintenanceEndTime - now;
+        
+        if (timeLeft <= 0) {
+            // Maintenance is over - remove overlay
+            const overlay = document.getElementById('maintenanceOverlay');
+            if (overlay) {
+                overlay.style.animation = 'maintenanceSlideOut 0.5s ease-in forwards';
+                setTimeout(() => overlay.remove(), 500);
+            }
+            return;
+        }
+        
+        // Calculate hours, minutes, seconds
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Update countdown display
+        const countdownElement = document.getElementById('maintenanceCountdown');
+        if (countdownElement) {
+            countdownElement.textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+    
+    // Update countdown every second
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Disable all interactions
+    document.addEventListener('DOMContentLoaded', function() {
+        // Disable all buttons
+        document.querySelectorAll('button, input, textarea, select, a').forEach(element => {
+            element.disabled = true;
+            element.style.pointerEvents = 'none';
+        });
+        
+        // Disable form submissions
+        document.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
+        
+        // Disable all clicks
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.maintenance-modal')) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, true);
+    });
+    
+    // Add slide out animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes maintenanceSlideOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+
         // Global state
         let attachedImages = [];
         let generatedImages = [];
