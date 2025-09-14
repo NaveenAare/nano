@@ -180,21 +180,22 @@ def callback_v2(request: Request):
         profile_pic = user_info.get("picture")
         locale = user_info.get("locale", "")
         
-        # Your existing database logic - UPDATED to include refer_code
+        # Your existing database logic - UPDATED to include refer_code and source
         conn = get_db_connection()
         cursor = conn.cursor(cursor_factory=DictCursor)
         
-        # Updated query to include refer_code column
+        # Updated query to include both refer_code and source columns
         cursor.execute("""
-        INSERT INTO future_ai.users (mail, password, name, country, image_url, refer_code)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        INSERT INTO future_ai.users (mail, password, name, country, image_url, refer_code, source)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
         ON CONFLICT (mail) DO UPDATE
         SET password = EXCLUDED.password,
             name = EXCLUDED.name,
             country = EXCLUDED.country,
-            image_url = EXCLUDED.image_url
+            image_url = EXCLUDED.image_url,
+            source = EXCLUDED.source
         RETURNING id, premium_user, subscription_end_date;
-        """, (email, '', name, locale, profile_pic, refer_code))
+        """, (email, '', name, locale, profile_pic, refer_code, 'nano'))
         
         user_details = cursor.fetchone()
         user_id = user_details.get('id')
@@ -267,6 +268,11 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 async def home():
     return FileResponse("templates/home.html")
+
+
+@app.get("/aaaaaaaaaaaaaaa")
+async def home():
+    return FileResponse("templates/home_copy.html")
 
 @app.get("/privacy")
 async def privacy_policy():
