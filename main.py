@@ -61,7 +61,7 @@ def login_v2(refer_code: str = None):
 
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri="https://chatezzy.com/login/callback/v2",
+        redirect_uri="https://googlenanobanana.com/login/callback/v2",
         scope=["openid", "email", "profile"],
         state=state  # Pass the refer_code through state parameter
     )
@@ -138,7 +138,7 @@ def callback_v2(request: Request):
         token_url, headers, body = client.prepare_token_request(
             token_endpoint,
             authorization_response=str(request.url),
-            redirect_url="https://chatezzy.com/login/callback/v2",
+            redirect_url="https://googlenanobanana.com/login/callback/v2",
             code=code
         )
         
