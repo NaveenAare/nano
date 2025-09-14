@@ -1364,7 +1364,29 @@
     animation: successPulse 0.6s ease-out;
 }
 
+/* Add these lines to your existing .profile-menu rule */
+.profile-menu {
+    /* ...your existing styles... */
+    max-width: calc(100vw - 40px); /* ADD THIS */
+    width: max-content; /* ADD THIS */
+}
 
+/* ADD these new media query rules */
+@media (max-width: 768px) {
+    .profile-menu {
+        right: -50px;
+        min-width: 200px;
+        max-width: calc(100vw - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-menu {
+        right: -55px;
+        min-width: 180px;
+        max-width: calc(100vw - 10px);
+    }
+}
     </style>
 </head>
 <body>

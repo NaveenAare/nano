@@ -1934,7 +1934,29 @@
             opacity: 0.7;
         }
 
+/* Add these lines to your existing .profile-menu rule */
+.profile-menu {
+    /* ...your existing styles... */
+    max-width: calc(100vw - 40px); /* ADD THIS */
+    width: max-content; /* ADD THIS */
+}
 
+/* ADD these new media query rules */
+@media (max-width: 768px) {
+    .profile-menu {
+        right: -100px;
+        min-width: 200px;
+        max-width: calc(100vw - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-menu {
+        right: -105px;
+        min-width: 180px;
+        max-width: calc(100vw - 10px);
+    }
+}
         /* Responsive adjustments */
 @media (max-width: 1024px) {
     .glass-header-content {
@@ -2297,6 +2319,8 @@
     animation: successPulse 0.6s ease-out;
 }
 
+
+
     </style>
 </head>
 <body>
@@ -2368,8 +2392,8 @@
         <nav class="site-nav">
             <a href="/remove-background">Features</a>
             <a href="/remove-background">Background Remover</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#support">Support</a>
+<!--             <a href="#pricing">Pricing</a>
+ -->            <a href="#support">Support</a>
             <div class="user-profile">
                 <div class="profile-btn" onclick="toggleProfileMenu()">
                     <img src="https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png" alt="Profile" id="headerProfileImg">
