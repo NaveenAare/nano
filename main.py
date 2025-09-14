@@ -111,6 +111,15 @@ def oauth_success(token: str = None, name: str = None, id: str = None):
     </body>
     </html>
     """)
+
+
+def encode_parameters(params, secret_key = "@AAAApjpakier4546120$#%!"):
+    json_str = json.dumps(params)
+    json_bytes = json_str.encode('utf-8')
+    signature = hmac.new(secret_key.encode('utf-8'), json_bytes, hashlib.sha256).hexdigest()
+    data_with_signature = json_bytes + signature.encode('utf-8')
+    encoded_str = base64.urlsafe_b64encode(data_with_signature).decode('utf-8')
+    return encoded_str
 # Modify your existing /login/callback/v2 to return HTML for popup:
 @app.get("/login/callback/v2")
 def callback_v2(request: Request):
@@ -242,6 +251,7 @@ def callback_v2(request: Request):
         
     except Exception as e:
         # Handle errors appropriately
+        print("Exception while login :::: ", str(e))
         return HTMLResponse("<html><body><h2>Login failed</h2></body></html>", status_code=400)
 
 # Mount static folder
