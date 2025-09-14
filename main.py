@@ -20,6 +20,14 @@ GOOGLE_CLIENT_SECRET = "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"
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 
+
+
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
+    
 def get_db_connection():
     conn = psycopg2.connect(
         host=DB_HOST,
