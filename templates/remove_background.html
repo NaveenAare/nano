@@ -1480,11 +1480,11 @@
                             Help & Support
                         </a>
                         <div style="height: 1px; background: #e2e8f0; margin: 8px 0;"></div>
-                        <button type="button" class="menu-item danger" onclick="handleSignOut()">
+                       <button type="button" class="menu-item danger" id="auth-button" onclick="handleAuthAction()">
                             <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                             </svg>
-                            Sign Out
+                            <span id="auth-button-text">Sign Out</span>
                         </button>
 
                 </div>
@@ -1794,6 +1794,40 @@
             </div>
         </div>
     </footer>
+
+
+    <script>
+function handleAuthAction() {
+    const authToken = localStorage.getItem('authToken');
+    
+    if (authToken) {
+        // User is signed in, handle sign out
+        handleSignOut();
+    } else {
+        // User is not signed in, handle sign in
+        showLoginModal();
+    }
+}
+
+function updateAuthButton() {
+    const authToken = localStorage.getItem('authToken');
+    const authButtonText = document.getElementById('auth-button-text');
+    
+    if (authToken) {
+        authButtonText.textContent = 'Sign Out';
+    } else {
+        authButtonText.textContent = 'Sign In';
+    }
+}
+
+// Update button text when page loads
+document.addEventListener('DOMContentLoaded', updateAuthButton);
+
+// Optional: Update button when localStorage changes (if you want real-time updates)
+window.addEventListener('storage', updateAuthButton);
+</script>
+
+
 
     <script>
         let uploadedImage = null;
@@ -2278,7 +2312,7 @@ async function loginWithGoogle() {
     // Example redirect:
     const button = document.getElementById('loginbuttonid1');
     button.disabled = true;
-    button.style.opacity = '0.0';
+    //button.style.opacity = '0.0';
 
     let refer_code = localStorage.getItem('refer_code'); 
 
