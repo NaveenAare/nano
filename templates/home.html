@@ -11,7 +11,7 @@
 
   gtag('config', 'G-XQ345FT3ZE');
 </script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:;">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2902,21 +2902,13 @@ class CreditTracker {
 
     // Check if user has used their first credit using multiple storage methods
     hasUsedFirstCredit() {
-    // Add browser check
-        if (typeof window === 'undefined') return false;
-        
         // Check localStorage
-        if (typeof localStorage !== 'undefined' && localStorage.getItem(this.storageKey) === 'true') {
+        if (localStorage.getItem(this.storageKey) === 'true') {
             return true;
         }
         
         // Check cookie
         if (this.getCookie(this.cookieName) === 'used') {
-            return true;
-        }
-        
-        // Check sessionStorage  
-        if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem(this.sessionKey) === 'used') {
             return true;
         }
         
@@ -2957,11 +2949,10 @@ class CreditTracker {
 
     // Cookie helper functions
     setCookie(name, value, days) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-    // Remove SameSite=Strict which can cause issues
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-}
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict`;
+    }
 
     getCookie(name) {
         const nameEQ = name + "=";
