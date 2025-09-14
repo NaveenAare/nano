@@ -881,7 +881,7 @@
         <div class="login-modal-text">
             Sign in with Google to get unlimited background removals and access premium AI features.
         </div>
-        <button class="google-login-btn" onclick="loginWithGoogle()">
+        <button class="google-login-btn" onclick="loginWithGoogle()" id = "loginbuttonid1">
             <span>G</span>
             Continue with Google
         </button>
@@ -1588,10 +1588,74 @@ function closeLoginModal() {
 }
 
 // Google login function (implement based on your auth system)
-function loginWithGoogle() {
+async function loginWithGoogle() {
     // Implement your Google OAuth login here
     // Example redirect:
-    window.location.href = '/auth/google';
+    const button = document.getElementById('loginbuttonid1');
+    button.disabled = true;
+    button.style.opacity = '0.0';
+
+    let refer_code = localStorage.getItem('refer_code'); 
+
+    try {
+        const url = refer_code ? `/logggin/v2?refer_code=${encodeURIComponent(refer_code)}` : '/logggin/v2';
+
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.redirect_uri) {
+            const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
+
+            // Check if popup was blocked
+            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                // Store current page before redirecting
+                localStorage.setItem('pre_auth_url', window.location.href);
+                // Popup blocked - use full page redirect instead
+                window.location.href = data.redirect_uri;
+                return;
+            }
+
+            // Poll the popup URL instead of listening for messages
+            const checkPopup = setInterval(() => {
+                try {
+                    if (popup.closed) {
+                        clearInterval(checkPopup);
+                        console.log('Popup closed');
+                        return;
+                    }
+
+                    // Check if popup URL contains our success page
+                    const popupUrl = popup.location.href;
+                    if (popupUrl.includes('/oauth-success')) {
+                        const urlParams = new URLSearchParams(popup.location.search);
+                        const token = urlParams.get('token');
+                        const name = urlParams.get('name');
+                        const userId = urlParams.get('id');
+                        
+                        if (token) {
+                            // Save token
+                            localStorage.setItem('authToken', token);
+                            localStorage.setItem('user_id', userId);
+                            console.log('Auth token saved:', token);
+                            
+                            // Close popup and cleanup
+                            popup.close();
+                            clearInterval(checkPopup);
+                            
+                            location.reload();
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin error - popup is still on Google's domain
+                    // This is expected during the OAuth flow
+                }
+            }, 1000);
+        }
+    } catch (error) {
+        location.reload();
+    } finally {
+        button.disabled = false;
+    }
     
     // Or if using Google OAuth library:
     // gapi.auth2.getAuthInstance().signIn();
