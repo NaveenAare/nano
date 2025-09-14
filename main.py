@@ -290,6 +290,10 @@ async def remove_background():
 async def blog():
     return FileResponse("templates/nanoblog.html")
 
+@app.get("/support")
+async def support():
+    return FileResponse("templates/support.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
