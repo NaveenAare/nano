@@ -1945,6 +1945,7 @@
 </head>
 <body>
     <!-- Maintenance Mode Overlay -->
+<!-- Maintenance Mode Overlay -->
 <div id="maintenanceOverlay" class="maintenance-overlay">
     <div class="maintenance-modal">
         <div class="maintenance-decoration"></div>
@@ -1960,7 +1961,7 @@
         
         <div class="maintenance-time">
             <div>Expected completion in:</div>
-            <div class="maintenance-countdown" id="maintenanceCountdown">3:00:00</div>
+            <div class="maintenance-countdown" id="maintenanceCountdown">Loading...</div>
         </div>
         
         <div class="maintenance-loader"></div>
@@ -2447,20 +2448,62 @@
 
 
         // Maintenance Mode - Add this at the very beginning of your script
+// Maintenance Mode - Dynamic Timer Based on Current Time
 (function() {
-    // Set maintenance end time (3 hours from now)
-    const maintenanceEndTime = new Date().getTime() + (3 * 60 * 60 * 1000);
+    const MAINTENANCE_STORAGE_KEY = 'nano_banana_maintenance_end';
+    
+    // Get or set maintenance end time based on current time
+    function getMaintenanceEndTime() {
+        let endTime = localStorage.getItem(MAINTENANCE_STORAGE_KEY);
+        
+        if (!endTime) {
+            // First time - get current user time and set end time
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            
+            // Calculate time until 6:40 (3 hours from 3:40)
+            let targetHour = 18; // 6 PM (18:00 in 24-hour format)
+            let targetMinute = 40;
+            
+            // Create target time for today
+            const today = new Date();
+            today.setHours(targetHour, targetMinute, 0, 0);
+            
+            // If current time is already past 6:40 PM, set for next day
+            if (now.getTime() > today.getTime()) {
+                today.setDate(today.getDate() + 1);
+            }
+            
+            endTime = today.getTime();
+            localStorage.setItem(MAINTENANCE_STORAGE_KEY, endTime);
+        } else {
+            endTime = parseInt(endTime);
+        }
+        
+        return endTime;
+    }
+    
+    const maintenanceEndTime = getMaintenanceEndTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
         const timeLeft = maintenanceEndTime - now;
         
         if (timeLeft <= 0) {
-            // Maintenance is over - remove overlay
+            // Maintenance is over - remove overlay and clear storage
+            localStorage.removeItem(MAINTENANCE_STORAGE_KEY);
             const overlay = document.getElementById('maintenanceOverlay');
             if (overlay) {
                 overlay.style.animation = 'maintenanceSlideOut 0.5s ease-in forwards';
-                setTimeout(() => overlay.remove(), 500);
+                setTimeout(() => {
+                    overlay.remove();
+                    // Re-enable all interactions
+                    document.querySelectorAll('button, input, textarea, select, a').forEach(element => {
+                        element.disabled = false;
+                        element.style.pointerEvents = 'auto';
+                    });
+                }, 500);
             }
             return;
         }
@@ -2475,6 +2518,19 @@
         if (countdownElement) {
             countdownElement.textContent = 
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Update message to show end time
+        const messageElement = document.querySelector('.maintenance-time');
+        if (messageElement && !messageElement.dataset.updated) {
+            const endDate = new Date(maintenanceEndTime);
+            const endTimeString = endDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            messageElement.innerHTML = `
+                <div>Maintenance will complete at: <strong>${endTimeString}</strong></div>
+                <div>Time remaining:</div>
+                <div class="maintenance-countdown" id="maintenanceCountdown">${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</div>
+            `;
+            messageElement.dataset.updated = 'true';
         }
     }
     
