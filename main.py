@@ -8,6 +8,8 @@ from oauthlib.oauth2 import WebApplicationClient
 import requests
 from fastapi.responses import JSONResponse
 from fastapi.responses import RedirectResponse
+from fastapi.responses import HTMLResponse
+
 
 app = FastAPI()
 
@@ -30,7 +32,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
-    
+
 def get_db_connection():
     conn = psycopg2.connect(
         host=DB_HOST,
