@@ -774,9 +774,122 @@
                 font-size: 1.75rem;
             }
         }
+
+
+
+        /* Login Modal Styles */
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.login-modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.3s ease;
+    text-align: center;
+}
+
+.login-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+}
+
+.login-modal-text {
+    color: #64748b;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.google-login-btn {
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+}
+
+.google-login-btn:hover {
+    background: #3367d6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+}
+
+.skip-login-btn {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s ease;
+}
+
+.skip-login-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.credit-info {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #92400e;
+}
     </style>
 </head>
 <body>
+
+    <!-- Login Required Modal -->
+<div id="loginModal" class="login-modal-overlay" style="display: none;">
+    <div class="login-modal-content">
+        <div class="login-modal-title">✨ Continue Processing</div>
+        <div class="credit-info">
+            🎯 You've used your free background removal! 
+        </div>
+        <div class="login-modal-text">
+            Sign in with Google to get unlimited background removals and access premium AI features.
+        </div>
+        <button class="google-login-btn" onclick="loginWithGoogle()">
+            <span>G</span>
+            Continue with Google
+        </button>
+        <button class="skip-login-btn" onclick="closeLoginModal()">Maybe Later</button>
+    </div>
+</div>
+
+
     <!-- Site Header -->
     <header class="site-header">
         <div class="container">
@@ -1192,10 +1305,16 @@
             resultContent.style.display = 'none';
         }
 
-        // Process image
+    
         async function processImage() {
             if (!uploadedImage) {
                 alert('Please upload an image first!');
+                return;
+            }
+
+            // Check if user has used first credit
+            if (creditTracker.hasUsedFirstCredit()) {
+                showLoginModal();
                 return;
             }
 
@@ -1249,6 +1368,9 @@
                 } else {
                     throw new Error('No image URL in response');
                 }
+
+                // Mark first credit as used AFTER successful processing
+                creditTracker.markAsUsed();
 
                 // Display results
                 displayResults(imageUrl);
@@ -1321,6 +1443,186 @@
                 answer.classList.add('active');
             }
         }
+
+
+        // Persistent credit tracking system
+class CreditTracker {
+    constructor() {
+        this.storageKey = 'nanobanana_bg_used_first_credit';
+        this.cookieName = 'nb_bg_first_used';
+        this.sessionKey = 'nb_bg_session_credit';
+    }
+
+    // Check if user has used their first credit using multiple storage methods
+    hasUsedFirstCredit() {
+        // Check localStorage
+        if (localStorage.getItem(this.storageKey) === 'true') {
+            return true;
+        }
+        
+        // Check cookie
+        if (this.getCookie(this.cookieName) === 'used') {
+            return true;
+        }
+        
+        // Check sessionStorage
+        if (sessionStorage.getItem(this.sessionKey) === 'used') {
+            return true;
+        }
+        
+        // Check URL parameter (in case of redirect)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('bg_credit_used') === 'true') {
+            this.markAsUsed(); // Store it persistently
+            return true;
+        }
+
+        return false;
+    }
+
+    // Mark first credit as used in multiple places
+    markAsUsed() {
+        // Store in localStorage
+        localStorage.setItem(this.storageKey, 'true');
+        
+        // Store in cookie (expires in 1 year)
+        this.setCookie(this.cookieName, 'used', 365);
+        
+        // Store in sessionStorage
+        sessionStorage.setItem(this.sessionKey, 'used');
+        
+        // Add to URL parameter (for page refresh persistence)
+        const url = new URL(window.location);
+        url.searchParams.set('bg_credit_used', 'true');
+        window.history.replaceState({}, '', url);
+        
+        // Also try to store in browser's IndexedDB for extra persistence
+        this.storeInIndexedDB();
+    }
+
+    // Cookie helper functions
+    setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict`;
+    }
+
+    getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Store in IndexedDB for maximum persistence
+    storeInIndexedDB() {
+        if (!window.indexedDB) return;
+        
+        const request = indexedDB.open('NanoBananaBGDB', 1);
+        request.onupgradeneeded = function(e) {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('credits')) {
+                db.createObjectStore('credits', { keyPath: 'id' });
+            }
+        };
+        
+        request.onsuccess = function(e) {
+            const db = e.target.result;
+            const transaction = db.transaction(['credits'], 'readwrite');
+            const store = transaction.objectStore('credits');
+            store.put({ id: 'bg_first_credit_used', value: true, timestamp: Date.now() });
+        };
+    }
+
+    // Check IndexedDB
+    checkIndexedDB(callback) {
+        if (!window.indexedDB) {
+            callback(false);
+            return;
+        }
+        
+        const request = indexedDB.open('NanoBananaBGDB', 1);
+        request.onsuccess = function(e) {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('credits')) {
+                callback(false);
+                return;
+            }
+            
+            const transaction = db.transaction(['credits'], 'readonly');
+            const store = transaction.objectStore('credits');
+            const getRequest = store.get('bg_first_credit_used');
+            
+            getRequest.onsuccess = function() {
+                callback(getRequest.result ? true : false);
+            };
+            
+            getRequest.onerror = function() {
+                callback(false);
+            };
+        };
+        
+        request.onerror = function() {
+            callback(false);
+        };
+    }
+}
+
+// Initialize credit tracker
+const creditTracker = new CreditTracker();
+
+// Show login modal
+function showLoginModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close login modal
+function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Google login function (implement based on your auth system)
+function loginWithGoogle() {
+    // Implement your Google OAuth login here
+    // Example redirect:
+    window.location.href = '/auth/google';
+    
+    // Or if using Google OAuth library:
+    // gapi.auth2.getAuthInstance().signIn();
+}
+
+// Update UI based on credit status
+function updateUIForCreditStatus() {
+    if (creditTracker.hasUsedFirstCredit()) {
+        // Update process button text
+        const processBtn = document.getElementById('process-btn');
+        processBtn.title = 'Login required to remove more backgrounds';
+        
+        // Optional: Add visual indicator
+        if (processBtn && !uploadedImage) {
+            processBtn.textContent = 'Sign in to Continue Removing Backgrounds';
+        }
+    }
+}
+
+// Check credit status on page load and initialize IndexedDB check
+document.addEventListener('DOMContentLoaded', function() {
+    // Check IndexedDB as well
+    creditTracker.checkIndexedDB(function(hasUsed) {
+        if (hasUsed && !creditTracker.hasUsedFirstCredit()) {
+            creditTracker.markAsUsed();
+        }
+    });
+    
+    // Update UI based on credit status
+    updateUIForCreditStatus();
+});
     </script>
 </body>
 </html>
