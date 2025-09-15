@@ -4529,7 +4529,7 @@ function updateCreditDisplay(newCreditCount) {
         // Safely handle the credit count
         const safeCredits = Math.max(0, parseInt(newCreditCount) || 0);
         
-        if (safeCredits > 0) {
+        if (safeCredits >= 0) {
             // Show and update the counter
             creditCounter.style.display = 'block';
             creditCount.textContent = safeCredits;
