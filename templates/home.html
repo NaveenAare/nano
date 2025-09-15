@@ -3668,6 +3668,7 @@ async function generateImage() {
         // Check for limit reached error specifically
         if (responseData.status_code === 400 && responseData.detail === "Limit Reached Sorry") {
             showToast("Generation limit reached. Please try again later.", 'error');
+            updateCreditDisplay(0);
             return;
         }
 
