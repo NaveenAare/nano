@@ -111,14 +111,14 @@
         }
 
         .pricing-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 2.5rem;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem; /* Changed from 2.5rem */
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
         .pricing-card:hover {
             border-color: #3b82f6;
@@ -134,7 +134,7 @@
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 0 0 8px 8px;
-            font-size: 0.875rem;
+            font-size: 0.475rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -499,6 +499,69 @@
                 flex-direction: column;
             }
         }
+
+        .plan-description {
+    color: #6b7280;
+    margin-bottom: 1rem; /* Changed from 2rem */
+    font-size: 1rem;
+}
+
+.price-container {
+    margin-bottom: 1rem; /* Changed from 2rem */
+}
+
+.images-included {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem; /* Changed from 1rem */
+    margin-bottom: 1.5rem; /* Changed from 2rem */
+    text-align: center;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 1.5rem; /* Changed from 2.5rem */
+}
+
+.features li {
+    padding: 0.5rem 0; /* Changed from 0.75rem */
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem; /* Slightly smaller font */
+    border-bottom: 1px solid #f3f4f6;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 1rem; /* Changed from 3rem */
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .pricing-card {
+        padding: 1.25rem; /* Changed from 2rem */
+    }
+
+    .modal-content {
+        margin: 5% auto;
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
     </style>
 </head>
 <body>
@@ -543,7 +606,7 @@
             <div class="pricing-card">
                 <div class="popular-badge">Most Popular</div>
                 <h3 class="plan-name">Professional</h3>
-                <p class="plan-description">Best value for content creators and designers</p>
+                <p class="plan-description">Best value for content creators&designers</p>
                 
                 <div class="price-container">
                     <div class="price">
