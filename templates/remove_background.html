@@ -1441,6 +1441,52 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
 }
+
+
+/* Buy Credits Button */
+.buy-credits-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+    margin-left: 12px;
+}
+
+.buy-credits-btn:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(245, 158, 11, 0.4);
+    text-decoration: none;
+    color: white;
+}
+
+.crown-icon {
+    font-size: 0.875rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Mobile responsiveness for credit counter */
+@media (max-width: 480px) {
+    .credit-display {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .buy-credits-btn {
+        margin-left: 0;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1581,6 +1627,10 @@
                 <div class="credit-display">
                     <span class="credit-label">Remaining Images:</span>
                     <span class="credit-count" id="creditCount">Loading...</span>
+                    <a href="/pricing" class="buy-credits-btn">
+                    <span class="crown-icon">👑</span>
+                    Buy Credits
+                </a>
                 </div>
             </div>
         </div>

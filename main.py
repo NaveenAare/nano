@@ -294,6 +294,10 @@ async def blog():
 async def support():
     return FileResponse("templates/support.html")
 
+@app.get("/pricing")
+async def support():
+    return FileResponse("templates/pricing.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
