@@ -719,17 +719,18 @@
         let selectedPlanData = {};
 
         function openModal(planName, planPrice, planImages) {
-            selectedPlanData = {
+            const selectedPlanData = {
                 plan: planName,
                 price: planPrice,
                 images: planImages
             };
-            
-            document.getElementById('selectedPlan').textContent = planName + ' Plan';
-            document.getElementById('selectedPrice').textContent = planPrice + ' - ' + planImages;
-            document.getElementById('interestModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+
+            // Redirect to checkout route with query params
+            const url = `https://chatezzy.com/nano-banana-checkout?plan=${planName.toLowerCase()}`;
+
+            window.location.href = url;
         }
+
 
         function closeModal() {
             document.getElementById('interestModal').style.display = 'none';
