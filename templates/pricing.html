@@ -719,17 +719,25 @@
         let selectedPlanData = {};
 
         function openModal(planName, planPrice, planImages) {
+            const authToken = localStorage.getItem("authToken");
+
+            if (!authToken) {
+                alert("⚠️ Please login now to continue.");
+                return;
+            }
+
             const selectedPlanData = {
                 plan: planName,
                 price: planPrice,
                 images: planImages
             };
 
-            // Redirect to checkout route with query params
-            const url = `https://chatezzy.com/nano-banana-checkout?plan=${planName.toLowerCase()}`;
+            // Redirect to checkout route with query params including token
+            const url = `https://chatezzy.com/nano-banana-checkout?plan=${(planName.toLowerCase())}&token=${(authToken)}`;
 
             window.location.href = url;
         }
+
 
 
         function closeModal() {
