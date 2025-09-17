@@ -2743,7 +2743,7 @@
 <!--             <a href="/remove-background">Features</a>
  -->            <a href="/remove-background">Background Remover</a>
             <a href="/pricing">Pricing</a>
-          
+
             <div class="user-profile">
                 <div class="profile-btn" onclick="toggleProfileMenu()">
                     <img src="https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png" alt="Profile" id="headerProfileImg">
@@ -3685,10 +3685,11 @@ async function generateImage() {
     }
 
     // Check if user has used first credit
-    if (creditTracker.hasUsedFirstCredit()) {
-        showLoginModal();
-        return;
-    }
+     const authToken = localStorage.getItem('authToken');
+        if (!authToken || authToken.trim() === '') {
+            showLoginModal();
+            return;
+        }
 
     const sendBtn = document.getElementById('send-btn');
     sendBtn.innerHTML = '⏳';
@@ -3699,7 +3700,7 @@ async function generateImage() {
     try {
         const formData = new FormData();
 
-        const authToken = localStorage.getItem("authToken") ?? "eyJ1c2VySWQiOiAxMTExLCAibWFpbCI6ICJ5dGJ2aWRlb3Nkb3dubG9hZGVyQGdtYWlsLmNvbSIsICJuYW1lIjogIllvdXR1YmUgdmlkZW8gRG93bmxvYWRlciIsICJwcm9maWxlX3BpYyI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKbURha0tWczVmRW9UTV9XSE81VUNlV3JaTlhSNzYyLTlaZDViam92UHFENnJHX2c9czk2LWMiLCAiaXNfcHJlbWl1bV91c2VyIjogbnVsbCwgInN1YnNjcmlwdGlvbl9lbmRfZGF0ZSI6ICIyMDI1LTEwLTEzIDA4OjQyOjU3Ljg2ODYzOSJ9ZTNjMThlYzNlOWJmMDM1OWYzYTllNzE4YjdjYjFmOWI1NzcwZjdiM2EyMGFlYzQ5ODI1ZTJkNTRiYTMwODg0Zg==";
+        const authToken = localStorage.getItem("authToken") ?? "";
         
         formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
         formData.append('message', prompt || 'Continue editing');
