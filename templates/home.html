@@ -3768,7 +3768,13 @@ async function generateImage() {
         } else if (responseData && responseData.data && responseData.data.image_url) {
             imageUrl = responseData.data.image_url;
         } else {
-            imageUrl = createPlaceholderImage(prompt);
+            showErrorInImageView("Image generation failed");
+            return;
+        }
+
+        if (!imageUrl || imageUrl.trim() === '') {
+            showErrorInImageView("Image generation failed - empty response from server");
+            return;
         }
 
         // Mark first credit as used AFTER successful generation
@@ -3816,6 +3822,34 @@ async function generateImage() {
     }
 }
 
+
+// Add this new function
+function showErrorInImageView(errorMessage) {
+    const container = document.getElementById('image-results');
+    container.classList.add('has-content');
+    container.innerHTML = `
+        <div style="text-align: center; color: #ef4444; padding: 40px 20px;">
+            <div style="font-size: 3rem; margin-bottom: 16px;">⚠️</div>
+            <div style="font-size: 1.25rem; font-weight: 600; margin-bottom: 8px;">Something went wrong</div>
+            <div style="font-size: 0.875rem; color: #64748b; line-height: 1.6; max-width: 400px; margin: 0 auto;">
+                ${errorMessage}
+            </div>
+            <button onclick="confirmClearEditingMode()" style="
+                margin-top: 16px; 
+                padding: 8px 16px; 
+                background: #3b82f6; 
+                color: white; 
+                border: none; 
+                border-radius: 6px; 
+                cursor: pointer;
+                font-size: 0.875rem;
+                transition: background 0.2s ease;
+            " onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                Try Again
+            </button>
+        </div>
+    `;
+}
 // Check credit status on page load and initialize IndexedDB check
 document.addEventListener('DOMContentLoaded', function() {
     // Check IndexedDB as well
