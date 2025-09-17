@@ -3210,6 +3210,25 @@
         font-size: 0.625rem;
     }
 }
+
+/* Fix mobile scrolling in modal */
+@media (max-width: 768px) {
+    .modal-body {
+        padding-bottom: 60px; /* Add extra bottom padding */
+        /* Ensure proper scrolling on mobile */
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .modal-grid {
+        margin-bottom: 40px; /* Add margin to ensure last items are reachable */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-body {
+        padding-bottom: 80px; /* Even more padding on very small screens */
+    }
+}
     </style>
 </head>
 <body>
