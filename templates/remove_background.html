@@ -2165,10 +2165,11 @@ function removeToast(toast) {
     }
 
     // Check if user has used first credit
-    if (creditTracker.hasUsedFirstCredit()) {
-        showLoginModal();
-        return;
-    }
+    const authToken = localStorage.getItem('authToken');
+        if (!authToken || authToken.trim() === '') {
+            showLoginModal();
+            return;
+        }
 
     const processBtn = document.getElementById('process-btn');
     const loadingOverlay = document.getElementById('loading-overlay');
