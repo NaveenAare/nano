@@ -2671,6 +2671,545 @@
         padding: 5px 10px;
     }
 }
+
+
+
+
+
+/* Enhanced Trending Tabs */
+.trending-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    background: white;
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.trending-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.trending-tab {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+.trending-tab.active {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(30, 41, 59, 0.3);
+}
+
+.trending-tab:hover:not(.active) {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.trending-content {
+    display: none;
+}
+
+.trending-content.active {
+    display: block;
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.view-more-btn {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.view-more-btn:hover {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    max-width: 90vw;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-overlay.show .modal-content {
+    right: 0;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #FFF 0%, #FFF 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #000;
+    color: black;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f8fafc;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.modal-suggestion-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-suggestion-item:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+.modal-suggestion-image {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.modal-suggestion-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.modal-suggestion-item:hover .modal-suggestion-image img {
+    transform: scale(1.05);
+}
+
+.modal-suggestion-label {
+    padding: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #475569;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.modal-select-btn {
+    width: calc(100% - 16px);
+    margin: 0 8px 12px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-select-btn:hover {
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 100vw;
+        right: -100vw;
+    }
+    
+    .modal-grid {
+        gap: 12px;
+    }
+    
+    .modal-suggestion-image {
+        height: 100px;
+    }
+    
+    .trending-tab {
+        padding: 6px 12px;
+        font-size: 0.8125rem;
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header {
+        padding: 16px;
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .modal-suggestion-image {
+        height: 80px;
+    }
+    
+    .modal-suggestion-label {
+        padding: 8px;
+        font-size: 11px;
+    }
+}
+
+/* Dynamic grid and professional View More button */
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.view-more-btn {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(30, 41, 59, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.view-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.view-more-btn:hover::before {
+    left: 100%;
+}
+
+.view-more-btn:hover {
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 41, 59, 0.4);
+}
+
+.view-more-btn .arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover .arrow {
+    transform: translateX(3px);
+}
+
+.view-more-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1200px) {
+    .suggestions-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .suggestions-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+    }
+    
+    .view-more-btn {
+        padding: 10px 20px;
+        font-size: 0.8125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .suggestions-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+    }
+    
+    .view-more-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Update the existing view-more-card CSS */
+.view-more-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    /* Match suggestion-item dimensions */
+    width: 140px;
+    height: auto;
+    min-height: 180px; /* Same as suggestion items */
+}
+
+.view-more-card:hover {
+    border-color: #1e293b;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 41, 59, 0.15);
+}
+
+.view-more-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+}
+
+.view-more-card:hover .view-more-icon {
+    transform: scale(1.1);
+}
+
+.view-more-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    text-align: center;
+    margin-bottom: 4px;
+    padding: 0 8px; /* Add padding to prevent text overflow */
+}
+
+.view-more-count {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+    padding: 0 8px; /* Add padding to prevent text overflow */
+}
+
+/* Update coming-soon-card to match as well */
+.coming-soon-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    position: relative;
+    opacity: 0.7;
+    /* Match suggestion-item dimensions */
+    width: 140px;
+    height: auto;
+    min-height: 180px; /* Same as suggestion items */
+}
+
+.coming-soon-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.coming-soon-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 4px;
+    padding: 0 8px;
+}
+
+.coming-soon-subtitle {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+    padding: 0 8px;
+}
+
+/* Responsive adjustments to maintain consistent sizing */
+@media (max-width: 1200px) {
+    .view-more-card,
+    .coming-soon-card {
+        width: 130px;
+        min-height: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .view-more-card,
+    .coming-soon-card {
+        width: 120px;
+        min-height: 160px;
+    }
+    
+    .view-more-text,
+    .coming-soon-text {
+        font-size: 0.8125rem;
+    }
+    
+    .view-more-count,
+    .coming-soon-subtitle {
+        font-size: 0.6875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .view-more-card,
+    .coming-soon-card {
+        width: 110px;
+        min-height: 150px;
+    }
+    
+    .view-more-icon,
+    .coming-soon-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .view-more-text,
+    .coming-soon-text {
+        font-size: 0.75rem;
+    }
+    
+    .view-more-count,
+    .coming-soon-subtitle {
+        font-size: 0.625rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -2892,106 +3431,51 @@
     <h3 class="trending-title">Trending Prompts</h3>
     <div class="trending-subtitle">Popular AI image generations this week</div>
 </div>
-<div class="image-suggestions">
-    <div class="suggestion-item" onclick="useSuggestion('Create a 1/7 scale commercialized figurine of the characters in the picture, while maintaining the original face with no alterations, in a realistic style, in a real environment. The figurine is placed on a computer desk. The figurine has a round transparent acrylic base, with no text on the base. The content on the computer screen is a 3D modeling process of this figurine. Next to the computer screen is a toy packaging box, designed in a style reminiscent of high-quality collectible figures, printed with original artwork. The packaging features two-dimensional flat illustrations.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed.png?alt=media&token=57fbceaa-a9d4-4335-b87b-2815f2ab6213" alt="AI 3D figurine creator - transform photos to collectible figures">
-        </div>
-        <div class="suggestion-label">The Classic 3D</div>
-        <button class="select-btn">Select</button>
-    </div>
+<div class="trending-tabs">
+    <button class="trending-tab active" onclick="switchTrendingTab(event, 'all')">All</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'women')">Women</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'men')">Men</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'couples')">Couples</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'baby')">Baby</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'wedding')">Wedding</button>
+</div>
 
-     <div class="suggestion-item" onclick="useSuggestion('Transform this photo into a Soviet-era portrait with appropriate clothing, background featuring Red Square or Soviet architecture, vintage color grading from the 1960s-80s. Make it look authentic to that period with historically accurate fashion and setting. Preserve the original face completely - no changes to facial features, skin tone, or expression.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-44-08.png?alt=media&token=b6e167cb-8902-46c8-bb7b-7e667fad6dd3" alt="Soviet era portrait filter - vintage USSR style transformation">
-        </div>
-        <div class="suggestion-label">Soviet-Era Retro</div>
-        <button class="select-btn">Select</button>
-    </div>
-    
-    <div class="suggestion-item" onclick="useSuggestion('Create a 90s retro-inspired portrait of this person. The face is the central focus and is kept completely realistic. The person is wearing a shimmering black chiffon saree against a deep wall with dramatic shadows, lit by golden-hour tones. The expression is calm yet mysterious, evoking old Bollywood posters.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-30-55.png?alt=media&token=62b7573b-a156-45f9-a8c3-e95591cd5b41" alt="Vintage Bollywood saree portrait generator using AI">
-        </div>
-        <div class="suggestion-label">Vintage Saree</div>
-        <button class="select-btn">Select</button>
-    </div>
+<!-- Tab Contents -->
+<div id="all" class="trending-content active">
+    <div class="suggestions-grid"></div>
+</div>
 
-    <div class="suggestion-item" onclick="useSuggestion('Turn this photo into a vintage Polaroid instant film picture, white border frame, slight blur, soft flash lighting, warm nostalgic tones, subtle film grain and texture')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-33-54.png?alt=media&token=f44eb7c1-c09a-4117-85cf-d1b79941ee39" alt="Polaroid instant film effect - retro photo filter">
-        </div>
-        <div class="suggestion-label">Classic Polaroid</div>
-        <button class="select-btn">Select</button>
-    </div>
-    
-    <div class="suggestion-item" onclick="useSuggestion('Turn this person into an anime-style Nano Banana figurine, standing in a heroic pose with a glowing sword. Keep the original face with no changes. The character has spiky neon hair and dramatic wind-swept clothing inspired by shōnen anime. Cosmic galaxy background with neon streaks of purple and blue. Stylized outlines, high-energy mood.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(2).png?alt=media&token=08cd19fa-0f68-4bac-b3b8-bc24709ced10" alt="Anime character creator - transform photos to manga style">
-        </div>
-        <div class="suggestion-label">Anime Hero</div>
-        <button class="select-btn">Select</button>
-    </div>
-    
-    
-    
-    <div class="suggestion-item" onclick="useSuggestion('Create a cyberpunk figurine of this person. Keep the original face with no changes, while the body is transformed with neon-lit armor and glowing circuit patterns. The arms and eyes have cybernetic enhancements pulsing in electric blue and magenta. Background: futuristic city skyline with holographic billboards and neon rain. Sleek metallic textures, glowing aura.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(4).png?alt=media&token=44cd73ff-f8ab-486a-a05f-550e5c5e77c8" alt="Cyberpunk avatar generator - futuristic character design">
-        </div>
-        <div class="suggestion-label">Cyberpunk Avatar</div>
-        <button class="select-btn">Select</button>
-    </div>
-    
-    <div class="suggestion-item" onclick="useSuggestion('LinkedIn headshot, professional attire, blurred office background. Keep the original face unaltered - maintain exact facial features, skin tone, and natural expression.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-38-16.png?alt=media&token=351385cf-c4cc-4f03-85e5-faa83c6a8b29" alt="Professional LinkedIn headshot generator using AI">
-        </div>
-        <div class="suggestion-label">LinkedIn Headshot</div>
-        <button class="select-btn">Select</button>
-    </div>
+<div id="women" class="trending-content">
+    <div class="suggestions-grid"></div>
+</div>
 
-   
-    
-    <div class="suggestion-item" onclick="useSuggestion('Transform this image into a collectible figurine inspired by Russian Matryoshka doll aesthetics, with traditional floral patterns and bright colors, but maintaining realistic human proportions. Place on decorative base with Russian folk art elements. Maintain the original face exactly as shown - no stylization of facial features, keep realistic face unchanged.')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-50-43.png?alt=media&token=ec46d836-2f71-41ac-8f5d-82a6d23eca45" alt="Russian Matryoshka doll creator - folk art style transformation">
-        </div>
-        <div class="suggestion-label">Matryoshka Doll</div>
-        <button class="select-btn">Select</button>
-    </div>
+<div id="men" class="trending-content">
+    <div class="suggestions-grid"></div>
+</div>
 
-    <!-- <div class="suggestion-item" onclick="useSuggestion('Professional headshot with soft studio lighting')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/thai-young-girl-with-bangkok-city-background-generative-ai_849906-22389.jpg?alt=media&token=03bc6173-f5ed-4148-a2e7-28387e2aab28" alt="Portrait">
-        </div>
-        <div class="suggestion-label">Portrait</div>
-        <button class="select-btn">Select</button>
-    </div>
-    
-    <div class="suggestion-item" onclick="useSuggestion('Beautiful sunset landscape with mountains')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_h99lthh99lthh99l%20(1).png?alt=media&token=49f5da61-639b-45d5-b037-3c66d831723f" alt="Landscape">
-        </div>
-        <div class="suggestion-label">Landscape</div>
-        <button class="select-btn">Select</button>
-    </div>
+<div id="couples" class="trending-content">
+    <div class="suggestions-grid"></div>
+</div>
 
-    <div class="suggestion-item" onclick="useSuggestion('Professional headshot with soft studio lighting')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/thai-young-girl-with-bangkok-city-background-generative-ai_849906-22389.jpg?alt=media&token=03bc6173-f5ed-4148-a2e7-28387e2aab28" alt="Portrait">
+<div id="baby" class="trending-content">
+    <div class="suggestions-grid"></div>
+</div>
+
+<div id="wedding" class="trending-content">
+    <div class="suggestions-grid"></div>
+</div>
+
+<!-- Modal remains the same -->
+<div id="trendingModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title" id="modalTitle">More Prompts</div>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
-        <div class="suggestion-label">Portrait</div>
-        <button class="select-btn">Select</button>
+        <div class="modal-body">
+            <div class="modal-grid" id="modalGrid"></div>
+        </div>
     </div>
-    
-    <div class="suggestion-item" onclick="useSuggestion('Beautiful sunset landscape with mountains')">
-        <div class="suggestion-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_h99lthh99lthh99l%20(1).png?alt=media&token=49f5da61-639b-45d5-b037-3c66d831723f" alt="Landscape">
-        </div>
-        <div class="suggestion-label">Landscape</div>
-        <button class="select-btn">Select</button>
-    </div> -->
 </div>
                     <!-- Image Gallery -->
                     <div class="image-gallery">
@@ -3802,6 +4286,7 @@ async function generateImage() {
         
         // Show toast for general errors
         showToast("Failed to generate image. Please try again.", 'error');
+        confirmClearEditingMode();
         
         const container = document.getElementById('image-results');
         container.classList.add('has-content');
@@ -4666,6 +5151,424 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchAndDisplayCredits();
     hideLogoutConfirmation();
 });
+
+
+function calculateVisibleItems() {
+    const container = document.querySelector('.suggestions-grid');
+    if (!container) return 6; // default fallback
+    
+    const containerWidth = container.offsetWidth;
+    const itemWidth = 140 + 16; // item width + gap
+    const itemsPerRow = Math.floor(containerWidth / itemWidth);
+    
+    // Calculate based on viewport height to determine rows
+    const viewportHeight = window.innerHeight;
+    const availableHeight = viewportHeight * 0.4; // 40% of viewport for suggestions
+    const itemHeight = 180; // approximate item height including label and button
+    const maxRows = Math.floor(availableHeight / itemHeight);
+    
+    return Math.max(itemsPerRow * Math.min(maxRows, 2), 3); // minimum 3, max 2 rows
+}
+
+// Enhanced tab switching with dynamic item display
+function switchTrendingTab(event, tabName) {
+    document.querySelectorAll('.trending-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.trending-content').forEach(content => content.classList.remove('active'));
+    
+    event.target.classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+}
+
+
+async function handleSuggestionClick(prompt, imageUrl, shouldAttach) {
+    if (shouldAttach && imageUrl) {
+        try {
+            // Fetch the image and convert to blob
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            
+            // Create a File object from the blob
+            const fileName = `reference_${Date.now()}.png`;
+            const file = new File([blob], fileName, { type: blob.type });
+            
+            // Add to attached images
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                attachedImages.push({
+                    name: fileName,
+                    data: e.target.result
+                });
+                updateAttachedImages();
+            };
+            reader.readAsDataURL(file);
+            
+        } catch (error) {
+            console.error('Error fetching reference image:', error);
+            // Fallback to just setting the prompt
+        }
+    }
+    
+    // Set the prompt
+    document.getElementById('prompt-input').value = prompt;
+    handleInput();
+    document.getElementById('prompt-input').focus();
+}
+
+// Modal data for each category
+// Modal data for each category with professional prompts
+const modalData = {
+    all: [
+        { 
+            prompt: 'Create a 1/7 scale commercialized figurine of the characters in the picture, while maintaining the original face with no alterations, in a realistic style, in a real environment. The figurine is placed on a computer desk. The figurine has a round transparent acrylic base, with no text on the base. The content on the computer screen is a 3D modeling process of this figurine. Next to the computer screen is a toy packaging box, designed in a style reminiscent of high-quality collectible figures, printed with original artwork. The packaging features two-dimensional flat illustrations.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed.png?alt=media&token=57fbceaa-a9d4-4335-b87b-2815f2ab6213', 
+            attach: false 
+        },
+        { 
+            prompt: 'Transform this photo into a Soviet-era portrait with appropriate clothing, background featuring Red Square or Soviet architecture, vintage color grading from the 1960s-80s. Make it look authentic to that period with historically accurate fashion and setting. Preserve the original face completely - no changes to facial features, skin tone, or expression.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-44-08.png?alt=media&token=b6e167cb-8902-46c8-bb7b-7e667fad6dd3', 
+            attach: false 
+        },
+        { 
+            prompt: 'Create a 90s retro-inspired portrait of this person. The face is the central focus and is kept completely realistic. The person is wearing a shimmering black chiffon saree against a deep wall with dramatic shadows, lit by golden-hour tones. The expression is calm yet mysterious, evoking old Bollywood posters.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-30-55.png?alt=media&token=62b7573b-a156-45f9-a8c3-e95591cd5b41', 
+            attach: false 
+        },
+        { 
+            prompt: 'Turn this photo into a vintage Polaroid instant film picture, white border frame, slight blur, soft flash lighting, warm nostalgic tones, subtle film grain and texture', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-33-54.png?alt=media&token=f44eb7c1-c09a-4117-85cf-d1b79941ee39', 
+            attach: false 
+        },
+        { 
+            prompt: 'Turn this person into an anime-style Nano Banana figurine, standing in a heroic pose with a glowing sword. Keep the original face with no changes. The character has spiky neon hair and dramatic wind-swept clothing inspired by shōnen anime. Cosmic galaxy background with neon streaks of purple and blue. Stylized outlines, high-energy mood.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(2).png?alt=media&token=08cd19fa-0f68-4bac-b3b8-bc24709ced10', 
+            attach: false 
+        },
+        { 
+            prompt: 'Create a cyberpunk figurine of this person. Keep the original face with no changes, while the body is transformed with neon-lit armor and glowing circuit patterns. The arms and eyes have cybernetic enhancements pulsing in electric blue and magenta. Background: futuristic city skyline with holographic billboards and neon rain. Sleek metallic textures, glowing aura.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(4).png?alt=media&token=44cd73ff-f8ab-486a-a05f-550e5c5e77c8', 
+            attach: false 
+        },
+        { 
+            prompt: 'LinkedIn headshot, professional attire, blurred office background. Keep the original face unaltered - maintain exact facial features, skin tone, and natural expression.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-38-16.png?alt=media&token=351385cf-c4cc-4f03-85e5-faa83c6a8b29', 
+            attach: false 
+        },
+        { 
+            prompt: 'Transform this image into a collectible figurine inspired by Russian Matryoshka doll aesthetics, with traditional floral patterns and bright colors, but maintaining realistic human proportions. Place on decorative base with Russian folk art elements. Maintain the original face exactly as shown - no stylization of facial features, keep realistic face unchanged.', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-50-43.png?alt=media&token=ec46d836-2f71-41ac-8f5d-82a6d23eca45', 
+            attach: false 
+        }
+    ],
+    women: [
+        // { prompt: 'Professional corporate headshot of a confident businesswoman, wearing a navy blazer, clean white background, studio lighting, sharp focus, professional photography style', image: '', attach: false },
+        // { prompt: 'Elegant portrait of a woman in vintage 1950s style, red lipstick, victory rolls hairstyle, pearl necklace, soft warm lighting, classic Hollywood glamour', image: '', attach: false },
+        // { prompt: 'Create a 1/7 scale commercialized figurine of the woman in the picture, maintaining original face, realistic style, computer desk setting with transparent acrylic base', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed.png?alt=media&token=57fbceaa-a9d4-4335-b87b-2815f2ab6213', attach: true },
+        // { prompt: 'Fashion model portrait, high-end couture dress, dramatic studio lighting, clean minimalist background, vogue magazine style, sharp details', image: '', attach: false },
+        // { prompt: 'Bohemian style woman portrait, flowing hair, natural makeup, earth-tone clothing, golden hour lighting, outdoor nature setting, dreamy atmosphere', image: '', attach: false },
+        // { prompt: 'Vintage pin-up style portrait, 1940s aesthetic, victory curls, red dress, classic pose, retro color grading, studio photography', image: '', attach: false },
+        // { prompt: 'Athletic woman portrait, fitness wear, confident pose, gym environment, dynamic lighting, motivational energy, health and wellness theme', image: '', attach: false },
+        // { prompt: 'Creative artist woman, paint-splattered apron, holding brushes, art studio background, natural lighting, inspiring creative atmosphere', image: '', attach: false },
+        // { prompt: 'LinkedIn professional headshot, business attire, confident smile, office background blur, natural lighting, corporate photography style', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-38-16.png?alt=media&token=351385cf-c4cc-4f03-85e5-faa83c6a8b29', attach: true },
+        // { prompt: 'Elegant evening portrait, black dress, jewelry, sophisticated makeup, luxury hotel background, dramatic lighting, high-end fashion photography', image: '', attach: false }
+    ],
+    men: [
+        // { prompt: 'Distinguished businessman portrait, tailored suit, confident expression, modern office background, professional lighting, corporate executive style', image: '', attach: false },
+        // { prompt: 'Rugged outdoor adventurer, flannel shirt, beard, mountain backdrop, natural lighting, masculine energy, wilderness exploration theme', image: '', attach: false },
+        // { prompt: 'Create a cyberpunk figurine of this man, neon-lit armor, glowing circuit patterns, cybernetic enhancements, futuristic city background', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(4).png?alt=media&token=44cd73ff-f8ab-486a-a05f-550e5c5e77c8', attach: true },
+        // { prompt: 'Classic gentleman portrait, three-piece vintage suit, pocket watch, mustache, sepia tones, 1920s aesthetic, timeless elegance', image: '', attach: false },
+        // { prompt: 'Professional athlete portrait, team jersey, determined expression, stadium background, dynamic pose, sports photography style', image: '', attach: false },
+        // { prompt: 'Creative professional, casual smart attire, design studio background, architectural plans, innovative workspace, modern professional', image: '', attach: false },
+        // { prompt: 'Vintage barber shop portrait, classic haircut, leather chair, traditional grooming tools, warm amber lighting, nostalgic atmosphere', image: '', attach: false },
+        // { prompt: 'Tech entrepreneur portrait, modern casual wear, startup office background, laptops and monitors, innovative technology theme', image: '', attach: false },
+        // { prompt: 'Formal groom portrait, black tuxedo, bow tie, boutonniere, elegant pose, wedding photography style, romantic lighting', image: '', attach: false },
+        // { prompt: 'Military officer portrait, dress uniform, medals, American flag background, honorable service, patriotic theme, formal military photography', image: '', attach: false }
+    ],
+    couples: [
+        // { prompt: 'Romantic sunset couple portrait, golden hour lighting, beach setting, flowing clothes, intimate pose, dreamy atmosphere, engagement photography style', image: '', attach: false },
+        // { prompt: 'Vintage couple portrait, 1950s style clothing, classic car background, retro color grading, nostalgic romance, pin-up aesthetic', image: '', attach: false },
+        // { prompt: 'Urban couple portrait, city skyline backdrop, modern casual attire, rooftop setting, contemporary romance, urban lifestyle photography', image: '', attach: false },
+        // { prompt: 'Cozy indoor couple portrait, fireplace setting, warm blankets, intimate lighting, home comfort, winter romance theme', image: '', attach: false },
+        // { prompt: 'Adventure couple portrait, hiking gear, mountain vista, outdoor exploration, matching outfits, nature adventure photography', image: '', attach: false },
+        // { prompt: 'Elegant formal couple portrait, black tie attire, ballroom setting, dance pose, luxury venue, sophisticated evening photography', image: '', attach: false },
+        // { prompt: 'Casual beach couple portrait, summer clothing, ocean waves, playful interaction, vacation vibes, natural beach photography', image: '', attach: false },
+        // { prompt: 'Coffee shop couple portrait, casual meeting, morning light, urban café setting, modern dating, lifestyle photography', image: '', attach: false },
+        // { prompt: 'Festival couple portrait, bohemian style, music festival background, colorful atmosphere, youth culture, concert photography', image: '', attach: false },
+        // { prompt: 'Winter couple portrait, snow setting, warm coats, hot beverages, cozy intimacy, seasonal romance, holiday photography', image: '', attach: false }
+    ],
+    baby: [
+        // { prompt: 'Newborn baby portrait, soft pastel colors, gentle studio lighting, white blankets, peaceful sleeping pose, professional newborn photography', image: '', attach: false },
+        // { prompt: 'Baby milestone portrait, sitting pose, colorful toys, bright studio lighting, 6-month celebration, developmental milestone photography', image: '', attach: false },
+        // { prompt: 'Vintage-style baby portrait, sepia tones, classic clothing, antique props, timeless aesthetic, heirloom photography style', image: '', attach: false },
+        // { prompt: 'Playful toddler portrait, outdoor setting, natural lighting, running pose, joyful expression, childhood energy capture', image: '', attach: false },
+        // { prompt: 'Sleeping baby portrait, dreamy soft focus, angel-like pose, white bedding, ethereal lighting, peaceful innocence theme', image: '', attach: false },
+        // { prompt: 'First birthday portrait, cake smash session, colorful decorations, party setting, messy fun, celebration photography', image: '', attach: false },
+        // { prompt: 'Baby bath time portrait, bubbles, soft lighting, safety and joy, clean aesthetic, intimate parenting moment', image: '', attach: false },
+        // { prompt: 'Artistic baby portrait, creative props, professional studio setup, unique composition, gallery-worthy newborn art', image: '', attach: false },
+        // { prompt: 'Twin babies portrait, matching outfits, synchronized poses, double blessing theme, family portrait style', image: '', attach: false },
+        // { prompt: 'Baby with parents hands, protective embrace, intimate family moment, emotional connection, generational love theme', image: '', attach: false }
+    ],
+    wedding: [
+        // { prompt: 'Elegant bridal portrait, flowing white wedding dress, cathedral veil, natural bridal makeup, soft romantic lighting, classic bride photography', image: '', attach: false },
+        // { prompt: 'Groom portrait, classic black tuxedo, white boutonniere, confident pose, wedding venue background, formal groom photography', image: '', attach: false },
+        // { prompt: 'Vintage wedding couple portrait, 1920s inspired styling, art deco background, sepia tones, timeless romance, gatsby-style wedding', image: '', attach: false },
+        // { prompt: 'Beach wedding portrait, ocean backdrop, flowing fabrics, barefoot elegance, sunset lighting, coastal wedding photography', image: '', attach: false },
+        // { prompt: 'Garden wedding portrait, natural floral background, outdoor ceremony, soft natural lighting, botanical wedding theme', image: '', attach: false },
+        // { prompt: 'Modern minimalist wedding portrait, clean architectural lines, contemporary venue, geometric composition, modern wedding style', image: '', attach: false },
+        // { prompt: 'Rustic barn wedding portrait, countryside setting, vintage décor, natural wood background, country wedding atmosphere', image: '', attach: false },
+        // { prompt: 'Church wedding portrait, gothic architecture, stained glass windows, traditional ceremony, sacred venue photography', image: '', attach: false },
+        // { prompt: 'Destination wedding portrait, exotic location, tropical paradise, vacation wedding vibes, luxury resort setting', image: '', attach: false },
+        // { prompt: 'Winter wedding portrait, snow-covered landscape, elegant winter attire, frosty romance, seasonal wedding photography', image: '', attach: false }
+    ]
+};
+
+// Open modal with category-specific content
+// function openModal(category) {
+//     const modal = document.getElementById('trendingModal');
+//     const modalTitle = document.getElementById('modalTitle');
+//     const modalGrid = document.getElementById('modalGrid');
+    
+//     // Set title
+//     modalTitle.textContent = `More ${category.charAt(0).toUpperCase() + category.slice(1)} Prompts`;
+    
+//     // Populate grid
+//     const items = modalData[category] || [];
+//     modalGrid.innerHTML = items.map((item, index) => `
+//         <div class="modal-suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+//             <div class="modal-suggestion-image">
+//                 <img src="${item.image || 'https://via.placeholder.com/200x120/f1f5f9/64748b?text=' + category}" alt="${item.prompt.substring(0, 30)}...">
+//             </div>
+//             <div class="modal-suggestion-label">${item.prompt.substring(0, 60)}...</div>
+//             <button class="modal-select-btn" onclick="event.stopPropagation(); handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach}); closeModal();">Select</button>
+//         </div>
+//     `).join('');
+    
+//     // Show modal
+//     modal.classList.add('show');
+//     document.body.style.overflow = 'hidden';
+// }
+
+
+function openModal(category) {
+    // Check if category has content
+    if (!modalData[category] || modalData[category].length === 0) {
+        // Show a simple alert for coming soon categories
+        alert('Coming soon! More prompts for this category will be available shortly.');
+        return;
+    }
+    
+    const modal = document.getElementById('trendingModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalGrid = document.getElementById('modalGrid');
+    
+    // Set title
+    modalTitle.textContent = `More ${category.charAt(0).toUpperCase() + category.slice(1)} Prompts`;
+    
+    // Populate grid
+    const items = modalData[category] || [];
+    modalGrid.innerHTML = items.map((item, index) => `
+        <div class="modal-suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+            <div class="modal-suggestion-image">
+                <img src="${item.image || 'https://via.placeholder.com/200x120/f1f5f9/64748b?text=' + category}" alt="${item.prompt.substring(0, 30)}...">
+            </div>
+            <div class="modal-suggestion-label">${item.prompt.substring(0, 60)}...</div>
+            <button class="modal-select-btn" onclick="event.stopPropagation(); handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach}); closeModal();">Select</button>
+        </div>
+    `).join('');
+    
+    // Show modal
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+    const modal = document.getElementById('trendingModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('trendingModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+function getMaxVisibleItems() {
+    return window.innerWidth <= 768 ? 3 : 5; // 3 items on mobile, 5 on desktop
+}
+
+// // Updated display function with responsive counts
+// function updateTabDisplay(tabName) {
+//     const tabContent = document.getElementById(tabName);
+//     const grid = tabContent.querySelector('.suggestions-grid');
+    
+//     if (!grid || !modalData[tabName]) return;
+    
+//     const maxVisibleItems = getMaxVisibleItems();
+//     const totalItems = modalData[tabName].length;
+//     const visibleItems = modalData[tabName].slice(0, maxVisibleItems);
+//     const remainingItems = totalItems - maxVisibleItems;
+    
+//     // Create grid items
+//     let gridHTML = visibleItems.map(item => `
+//         <div class="suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+//             <div class="suggestion-image">
+//                 <img src="${item.image || getPlaceholderImage(tabName)}" alt="${item.prompt.substring(0, 30)}...">
+//             </div>
+//             <div class="suggestion-label">${item.prompt.substring(0, 25)}...</div>
+//             <button class="select-btn">Select</button>
+//         </div>
+//     `).join('');
+    
+//     // Add view more card if there are remaining items
+//     if (remainingItems > 0) {
+//         gridHTML += `
+//             <div class="view-more-card" onclick="openModal('${tabName}')">
+//                 <div class="view-more-icon">+</div>
+//                 <div class="view-more-text">View More</div>
+//                 <div class="view-more-count">${remainingItems} more prompts</div>
+//             </div>
+//         `;
+//     }
+    
+//     grid.innerHTML = gridHTML;
+// }
+
+function updateTabDisplay(tabName) {
+    const tabContent = document.getElementById(tabName);
+    const grid = tabContent.querySelector('.suggestions-grid');
+    
+    if (!grid) return;
+    
+    // Handle coming soon categories
+    if (!modalData[tabName] || modalData[tabName].length === 0) {
+        const maxVisibleItems = getMaxVisibleItems();
+        let gridHTML = '';
+        
+        // Create coming soon cards
+        for (let i = 0; i < maxVisibleItems; i++) {
+            gridHTML += `
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">⏳</div>
+                    <div class="coming-soon-text">Coming Soon</div>
+                    <div class="coming-soon-subtitle">More prompts arriving soon!</div>
+                </div>
+            `;
+        }
+        
+        grid.innerHTML = gridHTML;
+        return;
+    }
+    
+    const maxVisibleItems = getMaxVisibleItems();
+    const totalItems = modalData[tabName].length;
+    const visibleItems = modalData[tabName].slice(0, maxVisibleItems);
+    const remainingItems = totalItems - maxVisibleItems;
+    
+    // Create grid items
+    let gridHTML = visibleItems.map(item => `
+        <div class="suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+            <div class="suggestion-image">
+                <img src="${item.image || getPlaceholderImage(tabName)}" alt="${item.prompt.substring(0, 30)}...">
+            </div>
+            <div class="suggestion-label">${item.prompt.substring(0, 25)}...</div>
+            <button class="select-btn">Select</button>
+        </div>
+    `).join('');
+    
+    // Add view more card if there are remaining items
+    if (remainingItems > 0) {
+        gridHTML += `
+            <div class="view-more-card" onclick="openModal('${tabName}')">
+                <div class="view-more-icon">+</div>
+                <div class="view-more-text">View More</div>
+                <div class="view-more-count">${remainingItems} more prompts</div>
+            </div>
+        `;
+    }
+    
+    grid.innerHTML = gridHTML;
+}
+
+
+function getPlaceholderImage(category) {
+    const placeholders = {
+        all: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=120&fit=crop&crop=face',
+        women: 'https://images.unsplash.com/photo-1494790108755-2616c3e6e602?w=200&h=120&fit=crop&crop=face',
+        men: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=120&fit=crop&crop=face',
+        couples: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=200&h=120&fit=crop',
+        baby: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=120&fit=crop&crop=face',
+        wedding: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=200&h=120&fit=crop'
+    };
+    return placeholders[category] || 'https://via.placeholder.com/200x120/f1f5f9/64748b?text=' + category;
+}
+
+// function getPlaceholderImage(category) {
+//     const placeholders = {
+//         women: 'https://images.unsplash.com/photo-1494790108755-2616c3e6e602?w=200&h=120&fit=crop&crop=face',
+//         men: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=120&fit=crop&crop=face',
+//         couples: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=200&h=120&fit=crop',
+//         baby: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=120&fit=crop&crop=face',
+//         wedding: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=200&h=120&fit=crop'
+//     };
+//     return placeholders[category] || 'https://via.placeholder.com/200x120/f1f5f9/64748b?text=' + category;
+// }
+
+// Initialize when DOM loads
+
+// function initializeTrendingSection() {
+//     // Initialize all tabs
+//     ['women', 'men', 'couples', 'baby', 'wedding'].forEach(tabName => {
+//         updateTabDisplay(tabName);
+//     });
+    
+//     // Update on window resize with debouncing
+//     let resizeTimeout;
+//     window.addEventListener('resize', () => {
+//         clearTimeout(resizeTimeout);
+//         resizeTimeout = setTimeout(() => {
+//             const activeTab = document.querySelector('.trending-content.active');
+//             if (activeTab) {
+//                 const tabName = activeTab.id;
+//                 updateTabDisplay(tabName);
+//             }
+//         }, 250);
+//     });
+// }
+
+function initializeTrendingSection() {
+    // Initialize all tabs, starting with 'all'
+    ['all', 'women', 'men', 'couples', 'baby', 'wedding'].forEach(tabName => {
+        updateTabDisplay(tabName);
+    });
+    
+    // Update on window resize with debouncing
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const activeTab = document.querySelector('.trending-content.active');
+            if (activeTab) {
+                const tabName = activeTab.id;
+                updateTabDisplay(tabName);
+            }
+        }, 250);
+    });
+}
+
+
+
+// Call initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeTrendingSection);
     </script>
 </body>
 </html>
