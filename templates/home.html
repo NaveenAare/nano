@@ -2422,6 +2422,7 @@
 }
 
 .suggestion-item {
+    position: relative; /* MAKE SURE THIS EXISTS */
     flex: 0 0 auto;
     width: 140px;
     background: white;
@@ -2847,6 +2848,7 @@
 }
 
 .modal-suggestion-item {
+    position: relative; /* ADD THIS LINE */
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
@@ -3228,6 +3230,60 @@
     .modal-body {
         padding-bottom: 80px; /* Even more padding on very small screens */
     }
+}
+
+
+/* Credit overlay for individual cards */
+.credit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.suggestion-item.needs-credits .credit-overlay,
+.modal-suggestion-item.needs-credits .credit-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.credit-overlay-content {
+    text-align: center;
+    color: white;
+}
+
+.credit-overlay-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.credit-overlay-text {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.credit-overlay-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
 }
     </style>
 </head>
@@ -5277,31 +5333,94 @@ const modalData = {
             prompt: 'Transform this image into a collectible figurine inspired by Russian Matryoshka doll aesthetics, with traditional floral patterns and bright colors, but maintaining realistic human proportions. Place on decorative base with Russian folk art elements. Maintain the original face exactly as shown - no stylization of facial features, keep realistic face unchanged.', 
             image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-50-43.png?alt=media&token=ec46d836-2f71-41ac-8f5d-82a6d23eca45', 
             attach: false 
-        }
+        },
+        { prompt: 'Use the uploaded reference image as the base, keeping the face and features 100% identical. Transform the subject into a realistic, vintage-inspired depiction of an ancient Hindu goddess. Outfit her in traditional, flowing attire with sheer fabrics that accentuate a graceful silhouette. Her long black hair cascades naturally. Place her in a serene, cinematic setting inspired by Hindu mythological backgrounds, with scenic views that give her presence a mysterious and artistic aura. Apply a soft grainy texture with bright, vintage tones to enhance the mystical, ethereal mood.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.39.11%20PM.jpeg?alt=media&token=ed378528-75e5-4174-bcc7-de7af00cc831', attach: false },
+         { prompt: 'Preserve her exact face. Dress her in a flowing white ballet-style dress, standing in a softly lit vintage studio with tall windows. A moody, grainy aesthetic adds timeless elegance, highlighting grace and strength.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.44.53%20PM.jpeg?alt=media&token=25663214-b20c-41db-89d3-a01ac396c4be', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base and preserve the face 100% without any alteration. Create a 4K ultra-realistic portrait of a young Indian woman styled as Radha. Her long, dark, wavy hair cascades over her shoulders. She wears an elegant translucent Radha-style drape over one shoulder, revealing a fitted blouse paired with a simple yet heavy lehenga. Fresh flowers are used as jewelry accents in her hair and attire. She gazes slightly to the right with a soft, serene expression. The background is a plain blackish-blue toned wall, softly illuminated by a warm light source from the right side. The light should cast a distinct, soft-edged shadow of Krishna’s profile and flowing hair on the wall behind her. The overall style should feel retro, artistic, and deeply cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.42.10%20PM.jpeg?alt=media&token=57b4aca6-1eaa-4fad-9db2-d64263eb848a', attach: false },
+
+        { prompt: 'Use the uploaded face unchanged. Place her in a snowy Moscow street, wearing a long beige trench coat, black boots, and a fur hat. Snowflakes gently fall around her under warm golden streetlights. The mood is cinematic, romantic, and fashion-magazine worthy.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.43.45%20PM.jpeg?alt=media&token=eeab31f0-f3f0-46af-9502-62886682b530', attach: true },
+
+       
+
+        { prompt: 'Keep the reference face intact. She is seated in an ornate vintage chair, wearing a silky emerald-green gown with jewelry accents. Dim moody lighting and rich textures (velvet curtains, golden frames) create a high-fashion Russian Vogue editorial look.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.45.39%20PM.jpeg?alt=media&token=187b455a-4a42-4600-b5c7-83bb3556a084', attach: false },
+
+        { prompt: 'Use the reference face, unchanged. Place her in a desert landscape (Arizona/Utah vibe), wearing a bohemian maxi dress with cowboy boots. Wind blows her hair under a dramatic sunset sky. The style is cinematic and free-spirited.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.46.35%20PM.jpeg?alt=media&token=a17912cb-2913-41bd-8756-118229d08efc', attach: false },
+
+        // { prompt: 'Athletic woman portrait, fitness wear, confident pose, gym environment, dynamic lighting, motivational energy, health and wellness theme', image: '', attach: false },
+
+        { prompt: 'Create a full-body portrait from a side angle of a 25-year-old man (use my photo as the facial reference), height about 5’5”. He is seated on the ground in a fashionable pose, set against a plain deep wine backdrop. His eyes look forward from left to right, while dramatic shadows and a breezy effect bring the mood of a 90s romantic film. The outfit is a coordinated retro-style wine-red shirt with matching trousers, paired with clean white sneakers. A silver wristwatch completes the look, and he holds a single rose delicately in one hand.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.10.34%20PM.jpeg?alt=media&token=c3488e3f-d096-42c0-aca9-962a9320a131', attach: false },
+
+        { prompt: 'Generate a black-and-white portrait of a young man using the uploaded reference photo for facial accuracy (keep all facial features intact). He is positioned in front of a subway train in motion, the train appearing blurred to create a sense of drama. The subject is centered, facing the camera directly, with one hand placed across his chest. He wears a textured black sweater and a silver cross pendant. His medium-length wavy hair frames his fair, smooth skin. Lighting should be soft yet concentrated, emphasizing his serious, intense expression. The overall mood must feel cinematic and atmospheric.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.12.06%20PM.jpeg?alt=media&token=aaa8411c-59be-4222-9611-c5ee80e0cfa7', attach: false },
+
+        { prompt: 'Create a night-time city street scene featuring the young man from the uploaded reference image (preserve his facial features exactly). He is dressed in a dark hoodie, dark trousers, and light-colored sneakers, leaning casually against a vintage black British phone booth. He appears focused on his phone. On the right side of the frame, long exposure streaks of red and blue lights sweep horizontally, representing fast-moving traffic. In the distance, the dome of a grand building, similar to St. Paul’s Cathedral, is faintly visible. The overall color grading should lean toward cool, desaturated blue-gray tones with heavy shadows, contrasted sharply by the glowing light trails for a cinematic effect.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.15.16%20PM.jpeg?alt=media&token=b990849a-89cf-453c-92b9-17e260b88bd8', attach: true },
+
+
+        { prompt: 'Take the uploaded person’s photo as the base and keep the facial features unchanged. Transform it into a black-and-white portrait where he is standing in front of a subway train in motion. He should be wearing a textured black sweater and a silver cross necklace. His hair is medium-length, wavy, and natural, with smooth, fair skin. Position him in the center, facing the camera directly, with one hand placed across his chest. Behind him, the subway appears blurred, emphasizing speed and drama. Use soft but focused lighting to highlight his serious, intense expression. The overall atmosphere should feel moody, cinematic, and timeless.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.16.59%20PM.jpeg?alt=media&token=d03559f2-d7b5-4982-a0aa-f53b46254d12', attach: false },
+
+
+        { prompt: 'Use the uploaded reference image as the base, keeping the face exactly the same with no alterations. Create a hyper-realistic, cinematic editorial portrait in a dark, moody studio setting. Surround the subject with soft, drifting smoke illuminated by a dramatic overhead spotlight. Style the outfit as an oversized slate-blue luxury suit with wide-leg trousers, worn with a slightly unbuttoned white silk shirt. Pose her with both hands casually in the pockets, shoulders relaxed, and head tilted slightly upward, conveying quiet confidence.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.19.13%20PM.jpeg?alt=media&token=33d88c1f-1526-4ae8-86cb-2a940f9b8775', attach: false },
+
+
+        { prompt: 'Take the uploaded person’s photo as the base and preserve the face exactly without any alteration. Place him casually leaning against a modified red Toyota Supra MK4 on a quiet urban street at night. The street is wet and reflective, lit by neon signs and street lamps that create a moody, cinematic atmosphere. He is dressed in a dark button-up shirt, loose blue jeans, and black Vans sneakers. The car’s headlights glow, adding dramatic highlights. Capture the scene from an elevated angle that shows both the detailed car and the reflective street surface. The style should feel inspired by Fast & Furious 2, with a strong cinematic edge. Final composition ratio: 3:4.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.20.43%20PM.jpeg?alt=media&token=4048e304-266b-4a23-96ab-6509d27aa4b7', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base and preserve the face exactly. Generate a close-up, top-angle black-and-white portrait focused only on the head facing forward. Apply a 35mm lens look with ultra-high clarity (10.7K, 4HD quality). Add realistic water droplets across the face, emphasizing texture and detail. The expression should be proud and strong. Place the subject against a deep black shadow background, isolating only the face for a dramatic, cinematic effect.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.21.30%20PM.jpeg?alt=media&token=12b7e17c-4e08-42eb-8817-022c00662acb', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base, keeping the face and hairstyle 100% identical with no alterations. Create an ultra-realistic cinematic photo of a stylish young man with curly hair and a trimmed beard. He is dressed in a fitted black t-shirt, ripped black jeans, and black boots, leaning casually against a sleek black vintage muscle car parked along a winding mountain road. The background features dramatic mountain silhouettes beneath a warm golden sunset sky. Lighting should be soft and cinematic, with golden-hour tones that enhance the moody, atmospheric feel. Render in 4K with high detail for a polished, editorial look.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.26.37%20PM.jpeg?alt=media&token=d3ceae05-7456-49e3-9302-995a40c5dfc1', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base, preserving the exact facial features. Place him standing in a misty pine forest at dawn. He wears a dark green outdoor jacket and boots. Golden sunlight filters softly through the tall trees, casting rays across the fog. The mood is calm, cinematic, and atmospheric with a serene glow.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.28.00%20PM.jpeg?alt=media&token=d2426b41-e850-4ad7-9f34-2a7d89932279', attach: false },
+
+        { prompt: 'Keep the uploaded person’s face and hairstyle identical. Place him on a rocky cliff overlooking a vast ocean at sunset. He wears a casual linen shirt fluttering in the wind with rolled-up sleeves. Waves crash dramatically below, while the horizon glows in warm orange and pink hues. The mood is free-spirited and cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.30.18%20PM.jpeg?alt=media&token=704511b0-0abd-48fd-9521-b037127eeba7', attach: false },
+
+        { prompt: 'Keep the uploaded person’s face and hairstyle identical. Place him on a rocky cliff overlooking a vast ocean at sunset. He wears a casual linen shirt fluttering in the wind with rolled-up sleeves. Waves crash dramatically below, while the horizon glows in warm orange and pink hues. The mood is free-spirited and cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.31.35%20PM.jpeg?alt=media&token=810fa952-fe23-46d5-adab-9b7a708769de', attach: false }
+
     ],
     women: [
-        // { prompt: 'Professional corporate headshot of a confident businesswoman, wearing a navy blazer, clean white background, studio lighting, sharp focus, professional photography style', image: '', attach: false },
-        // { prompt: 'Elegant portrait of a woman in vintage 1950s style, red lipstick, victory rolls hairstyle, pearl necklace, soft warm lighting, classic Hollywood glamour', image: '', attach: false },
-        // { prompt: 'Create a 1/7 scale commercialized figurine of the woman in the picture, maintaining original face, realistic style, computer desk setting with transparent acrylic base', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed.png?alt=media&token=57fbceaa-a9d4-4335-b87b-2815f2ab6213', attach: true },
-        // { prompt: 'Fashion model portrait, high-end couture dress, dramatic studio lighting, clean minimalist background, vogue magazine style, sharp details', image: '', attach: false },
-        // { prompt: 'Bohemian style woman portrait, flowing hair, natural makeup, earth-tone clothing, golden hour lighting, outdoor nature setting, dreamy atmosphere', image: '', attach: false },
-        // { prompt: 'Vintage pin-up style portrait, 1940s aesthetic, victory curls, red dress, classic pose, retro color grading, studio photography', image: '', attach: false },
+        { prompt: 'Use the uploaded reference image as the base, keeping the face and features 100% identical. Transform the subject into a realistic, vintage-inspired depiction of an ancient Hindu goddess. Outfit her in traditional, flowing attire with sheer fabrics that accentuate a graceful silhouette. Her long black hair cascades naturally. Place her in a serene, cinematic setting inspired by Hindu mythological backgrounds, with scenic views that give her presence a mysterious and artistic aura. Apply a soft grainy texture with bright, vintage tones to enhance the mystical, ethereal mood.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.39.11%20PM.jpeg?alt=media&token=ed378528-75e5-4174-bcc7-de7af00cc831', attach: false },
+         { prompt: 'Preserve her exact face. Dress her in a flowing white ballet-style dress, standing in a softly lit vintage studio with tall windows. A moody, grainy aesthetic adds timeless elegance, highlighting grace and strength.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.44.53%20PM.jpeg?alt=media&token=25663214-b20c-41db-89d3-a01ac396c4be', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base and preserve the face 100% without any alteration. Create a 4K ultra-realistic portrait of a young Indian woman styled as Radha. Her long, dark, wavy hair cascades over her shoulders. She wears an elegant translucent Radha-style drape over one shoulder, revealing a fitted blouse paired with a simple yet heavy lehenga. Fresh flowers are used as jewelry accents in her hair and attire. She gazes slightly to the right with a soft, serene expression. The background is a plain blackish-blue toned wall, softly illuminated by a warm light source from the right side. The light should cast a distinct, soft-edged shadow of Krishna’s profile and flowing hair on the wall behind her. The overall style should feel retro, artistic, and deeply cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.42.10%20PM.jpeg?alt=media&token=57b4aca6-1eaa-4fad-9db2-d64263eb848a', attach: false },
+
+        { prompt: 'Use the uploaded face unchanged. Place her in a snowy Moscow street, wearing a long beige trench coat, black boots, and a fur hat. Snowflakes gently fall around her under warm golden streetlights. The mood is cinematic, romantic, and fashion-magazine worthy.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.43.45%20PM.jpeg?alt=media&token=eeab31f0-f3f0-46af-9502-62886682b530', attach: true },
+
+       
+
+        { prompt: 'Keep the reference face intact. She is seated in an ornate vintage chair, wearing a silky emerald-green gown with jewelry accents. Dim moody lighting and rich textures (velvet curtains, golden frames) create a high-fashion Russian Vogue editorial look.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.45.39%20PM.jpeg?alt=media&token=187b455a-4a42-4600-b5c7-83bb3556a084', attach: false },
+
+        { prompt: 'Use the reference face, unchanged. Place her in a desert landscape (Arizona/Utah vibe), wearing a bohemian maxi dress with cowboy boots. Wind blows her hair under a dramatic sunset sky. The style is cinematic and free-spirited.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.46.35%20PM.jpeg?alt=media&token=a17912cb-2913-41bd-8756-118229d08efc', attach: false },
+
         // { prompt: 'Athletic woman portrait, fitness wear, confident pose, gym environment, dynamic lighting, motivational energy, health and wellness theme', image: '', attach: false },
+
+
         // { prompt: 'Creative artist woman, paint-splattered apron, holding brushes, art studio background, natural lighting, inspiring creative atmosphere', image: '', attach: false },
         // { prompt: 'LinkedIn professional headshot, business attire, confident smile, office background blur, natural lighting, corporate photography style', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-09-14T14-38-16.png?alt=media&token=351385cf-c4cc-4f03-85e5-faa83c6a8b29', attach: true },
         // { prompt: 'Elegant evening portrait, black dress, jewelry, sophisticated makeup, luxury hotel background, dramatic lighting, high-end fashion photography', image: '', attach: false }
     ],
     men: [
-        // { prompt: 'Distinguished businessman portrait, tailored suit, confident expression, modern office background, professional lighting, corporate executive style', image: '', attach: false },
-        // { prompt: 'Rugged outdoor adventurer, flannel shirt, beard, mountain backdrop, natural lighting, masculine energy, wilderness exploration theme', image: '', attach: false },
-        // { prompt: 'Create a cyberpunk figurine of this man, neon-lit armor, glowing circuit patterns, cybernetic enhancements, futuristic city background', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/unnamed%20(4).png?alt=media&token=44cd73ff-f8ab-486a-a05f-550e5c5e77c8', attach: true },
-        // { prompt: 'Classic gentleman portrait, three-piece vintage suit, pocket watch, mustache, sepia tones, 1920s aesthetic, timeless elegance', image: '', attach: false },
-        // { prompt: 'Professional athlete portrait, team jersey, determined expression, stadium background, dynamic pose, sports photography style', image: '', attach: false },
-        // { prompt: 'Creative professional, casual smart attire, design studio background, architectural plans, innovative workspace, modern professional', image: '', attach: false },
-        // { prompt: 'Vintage barber shop portrait, classic haircut, leather chair, traditional grooming tools, warm amber lighting, nostalgic atmosphere', image: '', attach: false },
-        // { prompt: 'Tech entrepreneur portrait, modern casual wear, startup office background, laptops and monitors, innovative technology theme', image: '', attach: false },
-        // { prompt: 'Formal groom portrait, black tuxedo, bow tie, boutonniere, elegant pose, wedding photography style, romantic lighting', image: '', attach: false },
-        // { prompt: 'Military officer portrait, dress uniform, medals, American flag background, honorable service, patriotic theme, formal military photography', image: '', attach: false }
+        { prompt: 'Create a full-body portrait from a side angle of a 25-year-old man (use my photo as the facial reference), height about 5’5”. He is seated on the ground in a fashionable pose, set against a plain deep wine backdrop. His eyes look forward from left to right, while dramatic shadows and a breezy effect bring the mood of a 90s romantic film. The outfit is a coordinated retro-style wine-red shirt with matching trousers, paired with clean white sneakers. A silver wristwatch completes the look, and he holds a single rose delicately in one hand.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.10.34%20PM.jpeg?alt=media&token=c3488e3f-d096-42c0-aca9-962a9320a131', attach: false },
+
+        { prompt: 'Generate a black-and-white portrait of a young man using the uploaded reference photo for facial accuracy (keep all facial features intact). He is positioned in front of a subway train in motion, the train appearing blurred to create a sense of drama. The subject is centered, facing the camera directly, with one hand placed across his chest. He wears a textured black sweater and a silver cross pendant. His medium-length wavy hair frames his fair, smooth skin. Lighting should be soft yet concentrated, emphasizing his serious, intense expression. The overall mood must feel cinematic and atmospheric.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.12.06%20PM.jpeg?alt=media&token=aaa8411c-59be-4222-9611-c5ee80e0cfa7', attach: false },
+
+        { prompt: 'Create a night-time city street scene featuring the young man from the uploaded reference image (preserve his facial features exactly). He is dressed in a dark hoodie, dark trousers, and light-colored sneakers, leaning casually against a vintage black British phone booth. He appears focused on his phone. On the right side of the frame, long exposure streaks of red and blue lights sweep horizontally, representing fast-moving traffic. In the distance, the dome of a grand building, similar to St. Paul’s Cathedral, is faintly visible. The overall color grading should lean toward cool, desaturated blue-gray tones with heavy shadows, contrasted sharply by the glowing light trails for a cinematic effect.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.15.16%20PM.jpeg?alt=media&token=b990849a-89cf-453c-92b9-17e260b88bd8', attach: true },
+
+
+        { prompt: 'Take the uploaded person’s photo as the base and keep the facial features unchanged. Transform it into a black-and-white portrait where he is standing in front of a subway train in motion. He should be wearing a textured black sweater and a silver cross necklace. His hair is medium-length, wavy, and natural, with smooth, fair skin. Position him in the center, facing the camera directly, with one hand placed across his chest. Behind him, the subway appears blurred, emphasizing speed and drama. Use soft but focused lighting to highlight his serious, intense expression. The overall atmosphere should feel moody, cinematic, and timeless.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.16.59%20PM.jpeg?alt=media&token=d03559f2-d7b5-4982-a0aa-f53b46254d12', attach: false },
+
+
+        { prompt: 'Use the uploaded reference image as the base, keeping the face exactly the same with no alterations. Create a hyper-realistic, cinematic editorial portrait in a dark, moody studio setting. Surround the subject with soft, drifting smoke illuminated by a dramatic overhead spotlight. Style the outfit as an oversized slate-blue luxury suit with wide-leg trousers, worn with a slightly unbuttoned white silk shirt. Pose her with both hands casually in the pockets, shoulders relaxed, and head tilted slightly upward, conveying quiet confidence.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.19.13%20PM.jpeg?alt=media&token=33d88c1f-1526-4ae8-86cb-2a940f9b8775', attach: false },
+
+
+        { prompt: 'Take the uploaded person’s photo as the base and preserve the face exactly without any alteration. Place him casually leaning against a modified red Toyota Supra MK4 on a quiet urban street at night. The street is wet and reflective, lit by neon signs and street lamps that create a moody, cinematic atmosphere. He is dressed in a dark button-up shirt, loose blue jeans, and black Vans sneakers. The car’s headlights glow, adding dramatic highlights. Capture the scene from an elevated angle that shows both the detailed car and the reflective street surface. The style should feel inspired by Fast & Furious 2, with a strong cinematic edge. Final composition ratio: 3:4.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.20.43%20PM.jpeg?alt=media&token=4048e304-266b-4a23-96ab-6509d27aa4b7', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base and preserve the face exactly. Generate a close-up, top-angle black-and-white portrait focused only on the head facing forward. Apply a 35mm lens look with ultra-high clarity (10.7K, 4HD quality). Add realistic water droplets across the face, emphasizing texture and detail. The expression should be proud and strong. Place the subject against a deep black shadow background, isolating only the face for a dramatic, cinematic effect.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.21.30%20PM.jpeg?alt=media&token=12b7e17c-4e08-42eb-8817-022c00662acb', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base, keeping the face and hairstyle 100% identical with no alterations. Create an ultra-realistic cinematic photo of a stylish young man with curly hair and a trimmed beard. He is dressed in a fitted black t-shirt, ripped black jeans, and black boots, leaning casually against a sleek black vintage muscle car parked along a winding mountain road. The background features dramatic mountain silhouettes beneath a warm golden sunset sky. Lighting should be soft and cinematic, with golden-hour tones that enhance the moody, atmospheric feel. Render in 4K with high detail for a polished, editorial look.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.26.37%20PM.jpeg?alt=media&token=d3ceae05-7456-49e3-9302-995a40c5dfc1', attach: false },
+
+        { prompt: 'Use the uploaded reference image as the base, preserving the exact facial features. Place him standing in a misty pine forest at dawn. He wears a dark green outdoor jacket and boots. Golden sunlight filters softly through the tall trees, casting rays across the fog. The mood is calm, cinematic, and atmospheric with a serene glow.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.28.00%20PM.jpeg?alt=media&token=d2426b41-e850-4ad7-9f34-2a7d89932279', attach: false },
+
+        { prompt: 'Keep the uploaded person’s face and hairstyle identical. Place him on a rocky cliff overlooking a vast ocean at sunset. He wears a casual linen shirt fluttering in the wind with rolled-up sleeves. Waves crash dramatically below, while the horizon glows in warm orange and pink hues. The mood is free-spirited and cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.30.18%20PM.jpeg?alt=media&token=704511b0-0abd-48fd-9521-b037127eeba7', attach: false },
+
+        { prompt: 'Keep the uploaded person’s face and hairstyle identical. Place him on a rocky cliff overlooking a vast ocean at sunset. He wears a casual linen shirt fluttering in the wind with rolled-up sleeves. Waves crash dramatically below, while the horizon glows in warm orange and pink hues. The mood is free-spirited and cinematic.', image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/WhatsApp%20Image%202025-09-18%20at%203.31.35%20PM.jpeg?alt=media&token=810fa952-fe23-46d5-adab-9b7a708769de', attach: false }
     ],
     couples: [
         // { prompt: 'Romantic sunset couple portrait, golden hour lighting, beach setting, flowing clothes, intimate pose, dreamy atmosphere, engagement photography style', image: '', attach: false },
@@ -5367,11 +5486,9 @@ const modalData = {
 //     document.body.style.overflow = 'hidden';
 // }
 
-
 function openModal(category) {
     // Check if category has content
     if (!modalData[category] || modalData[category].length === 0) {
-        // Show a simple alert for coming soon categories
         alert('Coming soon! More prompts for this category will be available shortly.');
         return;
     }
@@ -5381,19 +5498,36 @@ function openModal(category) {
     const modalGrid = document.getElementById('modalGrid');
     
     // Set title
-    modalTitle.textContent = `More ${category.charAt(0).toUpperCase() + category.slice(1)} Prompts`;
+    modalTitle.textContent = `All ${category.charAt(0).toUpperCase() + category.slice(1)} Prompts`;
     
-    // Populate grid
-    const items = modalData[category] || [];
-    modalGrid.innerHTML = items.map((item, index) => `
-        <div class="modal-suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+    // Show ALL items from the category (including the first visible ones)
+    const allItems = modalData[category];
+    
+    modalGrid.innerHTML = allItems.map((item, index) => {
+        // Use the actual index in the full array for overlay logic
+        const needsCredits = shouldShowCreditOverlay(index);
+        
+        return `
+        <div class="modal-suggestion-item ${needsCredits ? 'needs-credits' : ''}" onclick="${needsCredits ? '' : `handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})`}">
             <div class="modal-suggestion-image">
                 <img src="${item.image || 'https://via.placeholder.com/200x120/f1f5f9/64748b?text=' + category}" alt="${item.prompt.substring(0, 30)}...">
             </div>
             <div class="modal-suggestion-label">${item.prompt.substring(0, 60)}...</div>
-            <button class="modal-select-btn" onclick="event.stopPropagation(); handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach}); closeModal();">Select</button>
+            <button class="modal-select-btn">Select</button>
+            ${needsCredits ? `
+            <div class="credit-overlay">
+                <div class="credit-overlay-content">
+                    <div class="credit-overlay-icon">🔒</div>
+                    <div class="credit-overlay-text">Buy Credits to Use</div>
+                    <button class="credit-overlay-btn" onclick="event.stopPropagation(); window.open('/pricing', '_blank')">
+                        Get Credits
+                    </button>
+                </div>
+            </div>
+            ` : ''}
         </div>
-    `).join('');
+        `;
+    }).join('');
     
     // Show modal
     modal.classList.add('show');
@@ -5495,15 +5629,31 @@ function updateTabDisplay(tabName) {
     const remainingItems = totalItems - maxVisibleItems;
     
     // Create grid items
-    let gridHTML = visibleItems.map(item => `
-        <div class="suggestion-item" onclick="handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})">
+    let gridHTML = visibleItems.map((item, index) => {
+        // FIXED: Only show overlay after the 5th card (index >= 5)
+        const needsCredits = shouldShowCreditOverlay(index);
+        
+        return `
+        <div class="suggestion-item ${needsCredits ? 'needs-credits' : ''}" onclick="${needsCredits ? '' : `handleSuggestionClick('${item.prompt}', '${item.image}', ${item.attach})`}">
             <div class="suggestion-image">
                 <img src="${item.image || getPlaceholderImage(tabName)}" alt="${item.prompt.substring(0, 30)}...">
             </div>
             <div class="suggestion-label">${item.prompt.substring(0, 25)}...</div>
             <button class="select-btn">Select</button>
+            ${needsCredits ? `
+            <div class="credit-overlay">
+                <div class="credit-overlay-content">
+                    <div class="credit-overlay-icon">🔒</div>
+                    <div class="credit-overlay-text">Buy Credits to Use</div>
+                    <button class="credit-overlay-btn" onclick="event.stopPropagation(); window.open('/pricing', '_blank')">
+                        Get Credits
+                    </button>
+                </div>
+            </div>
+            ` : ''}
         </div>
-    `).join('');
+        `;
+    }).join('');
     
     // Add view more card if there are remaining items
     if (remainingItems > 0) {
@@ -5518,7 +5668,6 @@ function updateTabDisplay(tabName) {
     
     grid.innerHTML = gridHTML;
 }
-
 
 function getPlaceholderImage(category) {
     const placeholders = {
@@ -5589,6 +5738,21 @@ function initializeTrendingSection() {
 
 // Call initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', initializeTrendingSection);
+
+function shouldShowCreditOverlay(index) {
+    const authToken = localStorage.getItem('authToken');
+    
+    // If user is authenticated, don't show overlay (they have credits or can buy more)
+    if (authToken) {
+        return false;
+    }
+    
+    // For non-authenticated users, show overlay only after first 5 cards
+    return index >= 5;
+}
+
+
+
     </script>
 </body>
 </html>
