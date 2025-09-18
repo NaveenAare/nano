@@ -5741,16 +5741,14 @@ document.addEventListener('DOMContentLoaded', initializeTrendingSection);
 
 function shouldShowCreditOverlay(index) {
     const authToken = localStorage.getItem('authToken');
+    if (!authToken) return index >= 5; // First 5 free for non-authenticated
     
-    // If user is authenticated, don't show overlay (they have credits or can buy more)
-    if (authToken) {
-        return false;
-    }
+    const creditCount = document.getElementById('creditCount');
+    const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
     
-    // For non-authenticated users, show overlay only after first 5 cards
-    return index >= 5;
+    // Change this line - lock only after position 10 instead of 5
+    return credits < 3 && index >= 10;
 }
-
 
 
     </script>
