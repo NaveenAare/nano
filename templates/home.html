@@ -4304,7 +4304,7 @@ async function generateImage() {
         console.error('Error generating image:', error);
         
         // Show toast for general errors
-        showToast("Failed to generate image. Please try again.", 'error');
+        showToast("Failed to generate image. Please try again.", str(error));
         confirmClearEditingMode();
         
         const container = document.getElementById('image-results');
