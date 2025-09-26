@@ -17,6 +17,8 @@ import hashlib
 import base64
 import json
 
+from pathlib import Path
+
 
 app = FastAPI()
 
@@ -32,6 +34,9 @@ GOOGLE_CLIENT_SECRET = "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"
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 
+
+STATIC_DIR = Path("static")
+STATIC_DIR.mkdir(exist_ok=True)
 
 
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
@@ -261,6 +266,83 @@ def callback_v2(request: Request):
         # Handle errors appropriately
         print("Exception while login :::: ", str(e))
         return HTMLResponse("<html><body><h2>Login failed</h2></body></html>", status_code=400)
+
+
+@app.get("/llms.txt")
+async def get_llms_txt():
+    """
+    Serve the llms.txt file for AI crawlers and LLMs
+    This file helps AI systems understand your website structure and content
+    """
+    file_path = STATIC_DIR / "llms.txt"
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="llms.txt file not found")
+    
+    return FileResponse(
+        path=file_path,
+        media_type="text/plain",
+        headers={
+            "Cache-Control": "public, max-age=3600",  # Cache for 1 hour
+            "Content-Type": "text/plain; charset=utf-8"
+        }
+    )
+
+
+@app.get("/llms-full.txt")
+async def get_llms_full_txt():
+    """
+    Serve the complete llms-full.txt file with comprehensive site content
+    This provides AI systems with complete access to all content in one file
+    """
+    file_path = STATIC_DIR / "llms-full.txt"
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="llms-full.txt file not found")
+    
+    return FileResponse(
+        path=file_path,
+        media_type="text/plain",
+        headers={
+            "Cache-Control": "public, max-age=3600",
+            "Content-Type": "text/plain; charset=utf-8"
+        }
+    )
+
+# Alternative approach: Serve from root directory if you prefer
+@app.get("/robots.txt")
+async def get_robots_txt():
+    """Serve robots.txt file"""
+    file_path = STATIC_DIR / "robots.txt"
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="robots.txt file not found")
+    
+    return FileResponse(
+        path=file_path,
+        media_type="text/plain"
+    )
+
+
+@app.get("/sitemap.xml")
+async def get_sitemap():
+    """
+    Serve the sitemap.xml file for search engines and AI crawlers
+    This helps with content discovery and indexing
+    """
+    file_path = STATIC_DIR / "sitemap.xml"
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="sitemap.xml file not found")
+    
+    return FileResponse(
+        path=file_path,
+        media_type="application/xml",
+        headers={
+            "Cache-Control": "public, max-age=86400",  # Cache for 24 hours
+            "Content-Type": "application/xml; charset=utf-8"
+        }
+    )
 
 # Mount static folder
 app.mount("/static", StaticFiles(directory="static"), name="static")

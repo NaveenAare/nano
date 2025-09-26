@@ -1,0 +1,10 @@
+# Robots.txt for Google Nano Banana
+# AI Image Generation Platform - https://googlenanobanana.com
+# OPEN ACCESS - Welcome all crawlers and AI systems
+
+# Allow EVERYTHING for ALL crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location for faster content discovery
+Sitemap: https://googlenanobanana.com/sitemap.xml
