@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Pricing | Google Nano Banana</title>
+    <meta name="description" content="Free Google Nano Banana - Advanced AI-powered image generation platform. Create stunning visuals with professional Google Nano Banana technology. Enterprise-grade AI art creation.">
+    <meta name="keywords" content="google nano banana, nano banana ai, google ai image generation, ai art generator, professional ai image creator, google nano banana technology, ai image generation platform">
+    <meta name="author" content="Google Nano Banana Technologies">
+
+    <link rel="icon" href="/static/favicon.ico">
+
+    <meta property="og:title" content="Google Nano Banana | AI Image Generation Platform">
+    <meta property="og:description" content="Professional AI image generation powered by Google Nano Banana technology. Create stunning visuals instantly with enterprise-grade AI art generation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://googlenanobanana.com">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Google Nano Banana | AI Image Generation">
+    <meta name="twitter:description" content="Create professional AI images with Google Nano Banana technology. Stunning visuals powered by advanced AI.">
+
+    <link rel="canonical" href="https://googlenanobanana.com">
+    <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+    <link rel="apple-touch-icon" href="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:title" content="Google Nano Banana | AI Image Generation Platform">
+    <meta property="og:description" content="Professional AI image generation powered by Google Nano Banana technology. Create stunning visuals instantly with enterprise-grade AI art generation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://googlenanobanana.com">
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+    <meta property="og:image:alt" content="Google Nano Banana Logo">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Google Nano Banana | AI Image Generation">
+    <meta name="twitter:description" content="Create professional AI images with Google Nano Banana technology. Stunning visuals powered by advanced AI.">
+    <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+    <meta name="twitter:image:alt" content="Google Nano Banana Logo">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFEDDC 100%);
+            min-height: 100vh;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Pricing Cards Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 24px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.popular {
+            background: linear-gradient(135deg, #FFF 0%, #FFFBF0 100%);
+            border: 2px solid #FFD700;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .plan-description {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .image-count {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .bonus-credits {
+            display: inline-block;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .bonus-credits.premium {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .currency-label {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .features-list {
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 0.875rem;
+            color: #333;
+        }
+
+        .feature-icon {
+            color: #4CAF50;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #1a1a1a;
+            color: #ffffff;
+            margin-top: auto;
+        }
+
+        .cta-button:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        /* Support Section */
+        .support-section {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .support-section h2 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .support-section > p {
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .contact-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #333;
+        }
+
+        .contact-email {
+            color: #FFA000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #FF6F00;
+            text-decoration: underline;
+        }
+
+        .response-time {
+            font-size: 0.875rem;
+            color: #999;
+            margin-top: 16px;
+        }
+
+        /* Payment Popup */
+        #paymentPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-content h3 {
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .popup-content p {
+            margin-bottom: 24px;
+            color: #666;
+        }
+
+        .spinner {
+            margin: 0 auto;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #FFA000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 10% auto;
+            padding: 32px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #999;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .modal h2 {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .modal .plan-info {
+            background: #FFF9E6;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .modal .plan-name-selected {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 1.125rem;
+        }
+
+        .modal .plan-price {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .modal p {
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .email-display {
+            background: #f8f8f8;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-button.primary {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .modal-button.primary:hover {
+            background: #000;
+        }
+
+        .modal-button.secondary {
+            background: #f8f8f8;
+            color: #666;
+        }
+
+        .modal-button.secondary:hover {
+            background: #e8e8e8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .support-section {
+                padding: 32px 24px;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="paymentPopup">
+        <div class="popup-content">
+            <h3>Please wait...</h3>
+            <p>We are opening our payment partner <b>Chat Ezzy</b></p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Unlimited creativity starts here</h1>
+            <p>Choose the perfect plan for your AI image generation needs</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Starter Pack -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Starter Pack</h3>
+                <p class="plan-description">Perfect for trying out AI</p>
+                
+                <div class="price-display">$5</div>
+                <div class="image-count">100 images</div>
+                <div class="bonus-credits premium">+All Prompt Packs</div>
+                <div class="currency-label">(USD)</div>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>100 images included</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Never expires</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>All features unlocked</span>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="openModal('Starter', '$5', '100 images')">Buy Now</button>
+            </div>
+
+            <!-- Professional Pack (Most Popular) -->
+            <div class="pricing-card popular">
+                <h3 class="plan-name">Professional Pack</h3>
+                <p class="plan-description">Perfect for regular creators</p>
+                
+                <div class="price-display">$24</div>
+                <div class="image-count">500 images</div>
+                <div class="bonus-credits">+All Prompt Packs</div>
+                <div class="currency-label">(USD)</div>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>500 images included</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Never expires</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>All features unlocked</span>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="openModal('Professional', '$24', '500 images')">Buy Now</button>
+            </div>
+
+            <!-- Enterprise Pack -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Enterprise Pack</h3>
+                <p class="plan-description">Maximum value for teams</p>
+                
+                <div class="price-display">$45</div>
+                <div class="image-count">1000 images</div>
+                <div class="bonus-credits premium">+All Prompt Packs</div>
+                <div class="currency-label">(USD)</div>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>1000 images included</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Never expires</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>All features unlocked</span>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="openModal('Enterprise', '$45', '1000 images')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="support-section">
+            <h2>Need Help?</h2>
+            <p>Have questions about our pricing or need assistance with your purchase?</p>
+            
+            <div class="contact-info">
+                <span class="contact-icon">💬</span>
+                <div>
+                    <div class="contact-label">Contact Support</div>
+                    <a href="mailto:contact@googlenanobanana.com" class="contact-email">contact@googlenanobanana.com</a>
+                </div>
+            </div>
+            
+            <div class="response-time">We typically respond within 24 hours during business days.</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="interestModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Contact Us for This Plan</h2>
+            
+            <div class="plan-info">
+                <div class="plan-name-selected" id="selectedPlan">Professional Plan</div>
+                <div class="plan-price" id="selectedPrice">$24 - 500 images</div>
+            </div>
+            
+            <p>Send us an email to get started with this plan:</p>
+            
+            <div class="email-display">
+                gnanobanana@gmail.com
+            </div>
+            
+            <div class="modal-buttons">
+                <button type="button" class="modal-button primary" onclick="copyEmail()">Copy Email</button>
+                <button type="button" class="modal-button secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlanData = {};
+
+        function showPaymentPopupAndRedirect(url) {
+            const popup = document.getElementById("paymentPopup");
+            popup.style.display = "flex";
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 3000);
+        }
+
+        function openModal(planName, planPrice, planImages) {
+            const authToken = localStorage.getItem("authToken");
+
+            if (!authToken) {
+                alert("⚠️ Please login now to continue.");
+                return;
+            }
+
+            const selectedPlanData = {
+                plan: planName,
+                price: planPrice,
+                images: planImages
+            };
+
+            const url = `https://chatezzy.com/nano-banana-checkout?plan=${(planName.toLowerCase())}&token=${(authToken)}`;
+
+            showPaymentPopupAndRedirect(url);
+        }
+
+        function closeModal() {
+            document.getElementById('interestModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyEmail() {
+            navigator.clipboard.writeText('gnanobanana@gmail.com').then(function() {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#22c55e';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#1a1a1a';
+                }, 2000);
+            }).catch(function() {
+                alert('Email: gnanobanana@gmail.com');
+            });
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('interestModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

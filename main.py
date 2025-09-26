@@ -378,7 +378,7 @@ async def support():
 
 @app.get("/pricing")
 async def support():
-    return FileResponse("templates/pricing.html")
+    return FileResponse("templates/pricing2.html")
 
 @app.get("/allprompts")
 async def support():
