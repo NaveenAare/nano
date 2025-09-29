@@ -3285,6 +3285,243 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.bug-report-trigger {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bug-report-trigger:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-container {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.popup-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.popup-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+#bugDescription {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s;
+    margin-bottom: 16px;
+}
+
+#bugDescription:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.success-message svg {
+    margin-bottom: 16px;
+    animation: scaleIn 0.5s ease;
+}
+
+.success-message h3 {
+    color: #4CAF50;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.success-message p {
+    color: #666;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    border-left: 4px solid #c62828;
+    animation: slideDown 0.3s ease;
+}
+
+.warning-message {
+    background: #fff3e0;
+    color: #e65100;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    border-left: 4px solid #e65100;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.google-login-btn:hover {
+    background: #f8f9fa;
+    border-color: #d2d3d4;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.google-login-btn:active {
+    background: #f1f3f4;
+}
+
+.google-logo {
+    flex-shrink: 0;
+}
     </style>
 </head>
 <body>
@@ -3299,15 +3536,53 @@
         <div class="login-modal-text">
             Sign in with Google to get unlimited image generations and access premium features.
         </div>
-        <button class="google-login-btn" onclick="loginWithGoogle()" id = "loginbuttonid1">
-            <span>G</span>
-            Continue with Google
-        </button>
+        <button class="google-login-btn" onclick="loginWithGoogle()" id="loginbuttonid1">
+    <svg class="google-logo" viewBox="0 0 24 24" width="18" height="18">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    </svg>
+    Continue with Google
+</button>
         <button class="skip-login-btn" onclick="closeLoginModal()">Maybe Later</button>
     </div>
 </div>
 
-
+<div id="bugReportOverlay" class="popup-overlay">
+    <div class="popup-container">
+        <button class="close-btn" onclick="closeBugReport()">&times;</button>
+        <h2 class="popup-title">Report a Bug</h2>
+        <p class="popup-subtitle">Help us improve by reporting any issues you encounter</p>
+        
+       <form id="bugReportForm">
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <textarea 
+                id="bugDescription" 
+                placeholder="Describe the bug you encountered..."
+                rows="6"
+                required
+            ></textarea>
+            
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">Submit Report</span>
+                <span class="btn-loader" style="display: none;">
+                    <span class="spinner"></span> Submitting...
+                </span>
+            </button>
+        </form>
+        
+        <div id="successMessage" class="success-message" style="display: none;">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="28" fill="#4CAF50"/>
+                <path d="M20 30 L26 36 L40 22" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+            <h3>Bug Report Submitted!</h3>
+            <p>Thank you for helping us improve</p>
+        </div>
+    </div>
+</div>
 
 <div class="logout-overlay" id="logoutOverlay">
     <div class="logout-modal">
@@ -3357,7 +3632,7 @@
 <!--             <a href="/remove-background">Features</a>
  -->            <a href="/remove-background">Background Remover</a>
             <a href="/pricing">Pricing</a>
-             <a href="/support">Contact</a>
+            <button id="bugReportBtn" class="bug-report-trigger">Report Bug</button>
 
             <div class="user-profile">
                 <div class="profile-btn" onclick="toggleProfileMenu()">
@@ -5941,6 +6216,117 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     // Ensure prompt is filled even if DOM was already ready
     autoFillPromptFromURL();
+});
+
+
+// Open popup
+document.getElementById('bugReportBtn').addEventListener('click', function() {
+    const authToken = localStorage.getItem('authToken');
+    
+    const overlay = document.getElementById('bugReportOverlay');
+    const form = document.getElementById('bugReportForm');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    // Reset states
+    document.getElementById('bugDescription').value = '';
+    errorMsg.style.display = 'none';
+    form.style.display = 'block';
+    successMsg.style.display = 'none';
+    
+    if (!authToken) {
+        errorMsg.textContent = 'Please login to report a bug';
+        errorMsg.className = 'warning-message';
+        errorMsg.style.display = 'block';
+    }
+    
+    overlay.classList.add('active');
+});
+
+// Close popup
+function closeBugReport() {
+    document.getElementById('bugReportOverlay').classList.remove('active');
+}
+
+// Close on overlay click
+document.getElementById('bugReportOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeBugReport();
+    }
+});
+
+// Handle form submission
+document.getElementById('bugReportForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const authToken = localStorage.getItem('authToken');
+    const description = document.getElementById('bugDescription').value.trim();
+    const errorMsg = document.getElementById('errorMessage');
+    
+    // Hide previous errors
+    errorMsg.style.display = 'none';
+    
+    if (!authToken) {
+        errorMsg.textContent = 'Please login to report a bug';
+        errorMsg.className = 'warning-message';
+        errorMsg.style.display = 'block';
+        return;
+    }
+    
+    if (!description) {
+        errorMsg.textContent = 'Please enter a description';
+        errorMsg.className = 'error-message';
+        errorMsg.style.display = 'block';
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = this.querySelector('.submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoader = submitBtn.querySelector('.btn-loader');
+    
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'inline-block';
+    
+    try {
+        const formData = new FormData();
+        formData.append('description', description);
+        formData.append('authToken', authToken);
+        
+        const response = await fetch('https://chatezzy.com/bug-report', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.status === 'success') {
+            // Hide form and show success message
+            document.getElementById('bugReportForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Auto close after 2 seconds
+            setTimeout(() => {
+                closeBugReport();
+            }, 2000);
+        } else {
+            errorMsg.textContent = data.error || 'Failed to submit bug report. Please try again.';
+            errorMsg.className = 'error-message';
+            errorMsg.style.display = 'block';
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline-block';
+            btnLoader.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        errorMsg.textContent = 'Network error. Please check your connection and try again.';
+        errorMsg.className = 'error-message';
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline-block';
+        btnLoader.style.display = 'none';
+    }
 });
     </script>
 </body>
