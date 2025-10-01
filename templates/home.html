@@ -4888,6 +4888,7 @@ async function generateImage() {
         if (responseData.status_code === 400 && responseData.detail === "Limit Reached Sorry") {
             showOutOfCreditsModal(); // Show the new modal instead of toast
             updateCreditDisplay(0);
+            showErrorInImageView("Buy Credits to Continue");
             return;
         }
 
@@ -4989,6 +4990,8 @@ function showErrorInImageView(errorMessage) {
         </div>
     `;
 }
+
+
 // Check credit status on page load and initialize IndexedDB check
 document.addEventListener('DOMContentLoaded', function() {
     // Check IndexedDB as well
