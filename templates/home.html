@@ -2024,7 +2024,7 @@
 
 @media (max-width: 480px) {
     .profile-menu {
-        right: -15px;
+        right: -45px;
         min-width: 180px;
         max-width: calc(100vw - 10px);
     }
@@ -4098,31 +4098,7 @@
     position: relative;
     opacity: 0.4;
     pointer-events: none;
-    overflow: hidden;
-}
-
-/* Shimmer effect */
-.ai-enhance-btn::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.3) 50%,
-        transparent 70%
-    );
-    animation: shimmer 3s infinite;
-    opacity: 0;
-}
-
-
-
-.ai-enhance-btn.active::before {
-    opacity: 1;
+    overflow: visible; /* ADD THIS */
 }
 
 .ai-enhance-btn.active {
@@ -4242,7 +4218,7 @@
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
-    z-index: 100;
+    z-index: 1000 !important; /* ADD THIS LINE - was 100, increase it */
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.3),
@@ -4443,6 +4419,7 @@
         <nav class="site-nav">
 <!--             <a href="/remove-background">Features</a>
  -->            <a href="/remove-background">Background Remover</a>
+             <a href="https://chatezzy.com">Multi AI Chat</a>
             <a href="/pricing">Pricing</a>
             <button id="bugReportBtn" class="bug-report-trigger">Report Bug</button>
 
