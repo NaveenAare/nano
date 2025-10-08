@@ -384,8 +384,13 @@ async def support():
 async def support():
     return FileResponse("templates/allprompts.html")
 
-
+@app.get("/shipping-terms", response_class=HTMLResponse)
+async def shipping(request: Request):
+    return templates.TemplateResponse("shipping.html", {"request": request})
     
+@app.get("/subscription-terms", response_class=HTMLResponse)
+async def Subterms(request: Request):
+    return templates.TemplateResponse("subscription-terms.html", {"request": request})
 
 if __name__ == "__main__":
     import uvicorn
