@@ -386,11 +386,11 @@ async def support():
 
 @app.get("/shipping-terms")
 async def shipping(request: Request):
-    return FileResponse("templates/shipping.html", {"request": request})
+    return FileResponse("templates/shipping.html")
     
 @app.get("/subscription-terms")
 async def Subterms(request: Request):
-    return FileResponse("templates/subscription-terms.html", {"request": request})
+    return FileResponse("templates/subscription-terms.html")
 
 if __name__ == "__main__":
     import uvicorn
