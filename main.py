@@ -392,6 +392,10 @@ async def shipping(request: Request):
 async def Subterms(request: Request):
     return FileResponse("templates/subscription-terms.html")
 
+@app.get("/about-us")
+async def AboutUs(request: Request):
+    return FileResponse("templates/about.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)

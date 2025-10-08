@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Google Nano Banana</title>
+  <style>
+    /* Reset and basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #ffcc00;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #111;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #ff6600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .license {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffeeba;
+      padding: 15px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #856404;
+    }
+
+    /* Optional smooth fade-in effect */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    About Us
+  </header>
+
+  <div class="container">
+    <h2 class="fade-in">Welcome to Google Nano Banana</h2>
+    <p class="fade-in">We provide users with <strong>advanced image editing</strong>, <strong>instant prompt analysis</strong>, and <strong>powerful prompt packers</strong>, all designed to make creativity faster and smarter. Our tools help you transform ideas into visuals, refine prompts with precision, and manage your creative workflows effortlessly.</p>
+    <p class="fade-in">At <strong>Google Nano Banana</strong>, innovation meets simplicity — empowering everyone from casual creators to professionals to explore the next level of AI-driven creativity.</p>
+    
+    <div class="license fade-in">
+      We operate using <strong>Google Nano Banana under their official license and terms of use</strong>, ensuring all tools and services on this platform are fully authorized and legitimate.
+    </div>
+  </div>
+
+  <script>
+    // Simple fade-in effect when scrolling
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.2
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>
