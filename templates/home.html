@@ -4260,6 +4260,111 @@
     }
 }
 
+
+.low-credit-loading-warning-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 243, 205, 0.95) 0%, rgba(255, 234, 167, 0.95) 100%);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.warning-icon {
+    font-size: 48px;
+    animation: rotateWarning 3s linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes rotateWarning {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.low-credit-loading-warning-full .warning-text {
+    text-align: center;
+}
+
+.low-credit-loading-warning-full .warning-text strong {
+    display: block;
+    color: #856404;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.low-credit-loading-warning-full .warning-text p {
+    margin: 0;
+    color: #856404;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .low-credit-loading-warning {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    
+    .warning-icon {
+        font-size: 20px;
+    }
+    
+    .warning-text strong {
+        font-size: 13px;
+    }
+    
+    .warning-text p {
+        font-size: 11px;
+    }
+}
+
+.warning-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(133, 100, 4, 0.2);
+    border-top: 4px solid #856404;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 480px) {
+    .warning-spinner {
+        width: 36px;
+        height: 36px;
+        border-width: 3px;
+    }
+    
+    .low-credit-loading-warning-full .warning-text strong {
+        font-size: 16px;
+    }
+    
+    .low-credit-loading-warning-full .warning-text p {
+        font-size: 13px;
+    }
+    
+    .low-credit-loading-warning-full {
+        padding: 20px;
+        gap: 12px;
+    }
+}
     </style>
 </head>
 <body>
@@ -5589,19 +5694,47 @@ function confirmClearEditingMode() {
 }
 
 
-        // Show loading state with shimmer
-        function showLoadingState() {
-            const container = document.getElementById('image-results');
-            container.classList.add('has-content');
-            container.innerHTML = `
-                <div style="width: 100%; max-width: 400px;">
-                    <div class="loading-shimmer"></div>
-                    <div class="loading-text">
-                        <span class="loading-dots">Generating your image</span>
+// Show loading state with shimmer
+// Show loading state with shimmer
+function showLoadingState() {
+    const container = document.getElementById('image-results');
+    const creditCount = document.getElementById('creditCount');
+    const authToken = localStorage.getItem('authToken');
+    
+    // Check if user has low credits
+    const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
+    const hasLowCredits = authToken && credits < 3;
+    
+    container.classList.add('has-content');
+    
+    // Different message based on credit status
+    if (hasLowCredits) {
+        // LOW CREDITS - Show warning with spinner
+        container.innerHTML = `
+            <div style="width: 100%; max-width: 400px;">
+                <div class="loading-shimmer">
+                    <div class="low-credit-loading-warning-full">
+                        <div class="warning-spinner"></div>
+                        <div class="warning-text">
+                            <strong>Free limit - Takes longer</strong>
+                            <p>Buy credits for instant results</p>
+                        </div>
                     </div>
                 </div>
-            `;
-        }
+            </div>
+        `;
+    } else {
+        // NORMAL CREDITS - Show normal message
+        container.innerHTML = `
+            <div style="width: 100%; max-width: 400px;">
+                <div class="loading-shimmer"></div>
+                <div class="loading-text">
+                    <span class="loading-dots">Generating your image</span>
+                </div>
+            </div>
+        `;
+    }
+}
 
         // Create placeholder image
         function createPlaceholderImage(prompt) {
@@ -6228,15 +6361,13 @@ function refreshProfilePic() {
 async function fetchAndDisplayCredits() {
     const authToken = localStorage.getItem('authToken');
     
-    // Only show if user has authToken
     if (!authToken || authToken.trim() === '') {
-        return; // Don't show the credit counter
+        return;
     }
     
     const creditCounter = document.getElementById('creditCounter');
     const creditCount = document.getElementById('creditCount');
     
-    // Show the counter
     creditCounter.style.display = 'block';
     
     try {
@@ -6254,21 +6385,19 @@ async function fetchAndDisplayCredits() {
         
         const data = await response.json();
         
-        // Only show if credit count is positive
-        if (data.creditcount && data.creditcount > 0) {
-            creditCount.textContent = data.creditcount;
-            creditCount.classList.remove('loading');
-        } else {
-            // Hide counter if credits are 0 or negative
-            creditCounter.style.display = 'none';
-        }
+        const safeCredits = Math.max(0, parseInt(data.creditcount) || 0);
+        creditCount.textContent = safeCredits;
+        creditCount.classList.remove('loading');
+        // REMOVED: updateLowCreditWarning();
         
     } catch (error) {
         console.error('Error fetching nano credits:', error);
-        // Hide counter on error
-        creditCounter.style.display = 'none';
+        creditCount.textContent = '0';
+        creditCount.classList.remove('loading');
+        // REMOVED: updateLowCreditWarning();
     }
 }
+
 
 // Function to update credit display after generation
 function updateCreditDisplay(newCreditCount) {
@@ -6283,20 +6412,19 @@ function updateCreditDisplay(newCreditCount) {
     try {
         const safeCredits = Math.max(0, parseInt(newCreditCount) || 0);
         
-        if (safeCredits >= 0) {
-            creditCounter.style.display = 'block';
-            creditCount.textContent = safeCredits;
-            creditCount.classList.remove('loading');
-            
-            // Update AI Enhance button (ADD THIS LINE)
-            updateAIEnhanceButton();
-        } else {
-            creditCounter.style.display = 'none';
-        }
+        creditCounter.style.display = 'block';
+        creditCount.textContent = safeCredits;
+        creditCount.classList.remove('loading');
+        
+        updateAIEnhanceButton();
+        // REMOVED: updateLowCreditWarning();
         
     } catch (error) {
         console.error('Error updating credit display:', error);
-        creditCounter.style.display = 'none';
+        creditCounter.style.display = 'block';
+        creditCount.textContent = '0';
+        creditCount.classList.remove('loading');
+        // REMOVED: updateLowCreditWarning();
     }
 }
 
