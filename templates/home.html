@@ -4574,6 +4574,122 @@
 .login-modal-content:hover {
     cursor: default;
 }
+
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 12px rgba(30, 41, 59, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.send-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.send-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.send-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 20px rgba(30, 41, 59, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.send-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 2px 8px rgba(30, 41, 59, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.send-btn:disabled {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.6;
+}
+
+/* Loading state for send button */
+.send-btn.loading {
+    pointer-events: none;
+    animation: none;
+}
+
+.send-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid rgba(255, 255, 255, 0.2);
+    border-top: 2.5px solid white;
+    border-radius: 50%;
+    animation: sendButtonSpin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes sendButtonSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.send-btn.loading .send-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.send-icon {
+    transition: all 0.3s ease;
+}
+
+
+.send-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-style: normal;
+}
+
+.send-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(-45deg); /* Rotates the paper plane 90 degrees */
+}
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -4882,9 +4998,15 @@
                                     <span class="ai-icon">✨</span>
                                     <div class="ai-enhance-tooltip">AI Enhance</div>
                                 </button>
-                                <button class="send-btn" id="send-btn" onclick="generateImage()">
-                                    ↑
-                                </button>
+
+
+                               <button class="send-btn" id="send-btn" onclick="generateImage()">
+    <span class="send-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+    </span>
+</button>
                             </div>
 
 
@@ -5398,6 +5520,13 @@ function loadStateFromStorage() {
         }
         // Handle keyboard shortcuts
         function handleKeyDown(event) {
+            // Enter without Shift sends the message
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                generateImage();
+            }
+            
+            // Ctrl/Cmd + Enter also sends (keep existing functionality)
             if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
                 event.preventDefault();
                 generateImage();
@@ -5643,7 +5772,8 @@ async function generateImage() {
         }
 
     const sendBtn = document.getElementById('send-btn');
-    sendBtn.innerHTML = '⏳';
+   sendBtn.classList.add('loading');
+sendBtn.innerHTML = '<span class="send-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>';
     sendBtn.disabled = true;
 
     showLoadingState();
@@ -5766,7 +5896,8 @@ async function generateImage() {
             </div>
         `;
     } finally {
-        sendBtn.innerHTML = '↑';
+        sendBtn.classList.remove('loading');
+sendBtn.innerHTML = '<span class="send-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>';
         sendBtn.disabled = false;
         document.getElementById('prompt-input').value = '';
         attachedImages = [];
