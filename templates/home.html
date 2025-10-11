@@ -4688,11 +4688,137 @@
 
 
 
+/* Image Limit Warning Modal */
+.image-limit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
 
+.image-limit-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-limit-modal {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 20px;
+    padding: 40px 32px;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.image-limit-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 40px;
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+    animation: pulseIcon 2s ease-in-out infinite;
+}
+
+.image-limit-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.image-limit-text {
+    color: #64748b;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.image-limit-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.image-limit-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-limit-btn-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+}
+
+.image-limit-btn-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+}
+
+.image-limit-btn-secondary {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+}
+
+.image-limit-btn-secondary:hover {
+    background: #e2e8f0;
+    color: #475569;
+    transform: translateY(-2px);
+}
 
     </style>
 </head>
 <body>
+<!-- Image Limit Modal -->
+<div id="imageLimitOverlay" class="image-limit-overlay">
+    <div class="image-limit-modal">
+        <h2 class="image-limit-title">Image Limit Reached</h2>
+        <p class="image-limit-text">
+            With less than 3 credits, you can only attach <strong>1 image at a time</strong>. 
+            Upgrade to attach multiple images and unlock unlimited creativity!
+        </p>
+        <div class="image-limit-buttons">
+            <button class="image-limit-btn image-limit-btn-primary" onclick="goToPricing()">
+                Buy Credits
+            </button>
+            <button class="image-limit-btn image-limit-btn-secondary" onclick="closeImageLimitModal()">
+                Got It
+            </button>
+        </div>
+    </div>
+</div>
+
 
 <div id="promptBuilderOverlay" class="prompt-builder-overlay">
     <div class="prompt-builder-modal">
@@ -5540,24 +5666,82 @@ function loadStateFromStorage() {
 
         // Handle file upload
         function handleFileUpload(input) {
-            const files = Array.from(input.files);
-            
-            files.forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        attachedImages.push({
-                            name: file.name,
-                            data: e.target.result
-                        });
-                        updateAttachedImages();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
+    const files = Array.from(input.files);
+    const creditCount = document.getElementById('creditCount');
+    const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
+    const authToken = localStorage.getItem('authToken');
+    
+    // Check credit restriction
+    if (authToken && credits < 3) {
+        // Low credits: only allow 1 image total
+        if (attachedImages.length >= 1) {
+            showImageLimitModal();
             input.value = '';
+            return;
         }
+        
+        // If trying to upload multiple files at once
+        if (files.length > 1) {
+            showImageLimitModal();
+            input.value = '';
+            return;
+        }
+    }
+    
+    files.forEach(file => {
+        if (file.type.startsWith('image/')) {
+            // Check again before adding each file
+            if (authToken && credits < 3 && attachedImages.length >= 1) {
+                showImageLimitModal();
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                attachedImages.push({
+                    name: file.name,
+                    data: e.target.result
+                });
+                updateAttachedImages();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    input.value = '';
+}
+
+
+// Show image limit modal
+function showImageLimitModal() {
+    const overlay = document.getElementById('imageLimitOverlay');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close image limit modal
+function closeImageLimitModal() {
+    const overlay = document.getElementById('imageLimitOverlay');
+    overlay.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Close on overlay click
+document.getElementById('imageLimitOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeImageLimitModal();
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('imageLimitOverlay');
+        if (overlay.classList.contains('show')) {
+            closeImageLimitModal();
+        }
+    }
+});
 
         function updateAttachedImages() {
     const container = document.getElementById('attached-images');
