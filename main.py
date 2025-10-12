@@ -396,6 +396,14 @@ async def Subterms(request: Request):
 async def AboutUs(request: Request):
     return FileResponse("templates/about.html")
 
+@app.get("/nano-banana-checkout")
+async def nanobloggpricing(request: Request):
+    return FileResponse("templates/nano_pricing.html")
+
+@app.get("/ru")
+async def nanobloggpricing(request: Request):
+    return FileResponse("templates/home_russian.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)

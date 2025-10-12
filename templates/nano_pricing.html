@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Nano Banana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a202c;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+
+        .back-button {
+            color: #6b7280;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: #3b82f6;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .logo::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-image: url('https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .plan-summary {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-details {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .currency-info {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .currency-flag {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .currency-name {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .price-breakdown {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .price-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .price-row.total {
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: #1a202c;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .mobile-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 0.75rem;
+        }
+
+        .buy-button {
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .buy-button:hover {
+            background: #1d4ed8;
+        }
+
+        .buy-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .security-note {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 350px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup-icon.error { color: #ef4444; }
+        .popup-icon.success { color: #10b981; }
+
+        .popup h3 {
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .popup p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .mobile-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-icon" id="popupIcon">⚠️</div>
+            <h3 id="popupTitle">Error</h3>
+            <p id="popupMessage">Something went wrong.</p>
+            <button class="popup-button" onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="logo">GoogleNanoBanana Checkout</div>
+        </div>
+
+        <div class="card">
+            <div class="plan-summary">
+                 <div class="currency-info">
+                <div class="currency-flag" id="currencyFlag">🇺🇸</div>
+                <div class="currency-name" id="currencyName">US Dollar</div>
+            </div>
+                <div class="price-display" id="priceDisplay">$1</div>
+            </div>
+
+           
+            
+            <div class="price-breakdown">
+                <div class="price-row">
+                    <span>Plan</span>
+                    <span id="planPrice">$1</span>
+                </div>
+                <div class="price-row">
+                    <span>Tax & Processing Fee</span>
+                    <span id="processingFee">$1</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total</span>
+                    <span id="totalAmount">$1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country" name="country" required>
+                  <option value="">Select Country</option>
+                  <option value="IN">🇮🇳 India</option>
+                  <option value="US" selected>🇺🇸 United States</option>
+                  <option value="RU">🇷🇺 Russia</option>
+                  <option value="DE">🇩🇪 Germany</option>
+
+                  <option value="AR">🇦🇷 Argentina</option>
+                  <option value="AU">🇦🇺 Australia</option>
+                  <option value="BR">🇧🇷 Brazil</option>
+                  <option value="CA">🇨🇦 Canada</option>
+                  <option value="CL">🇨🇱 Chile</option>
+                  <option value="CN">🇨🇳 China</option>
+                  <option value="DK">🇩🇰 Denmark</option>
+                  <option value="FI">🇫🇮 Finland</option>
+                  <option value="FR">🇫🇷 France</option>
+                  
+                  <option value="IT">🇮🇹 Italy</option>
+                  <option value="JP">🇯🇵 Japan</option>
+                  <option value="MX">🇲🇽 Mexico</option>
+                  <option value="NL">🇳🇱 Netherlands</option>
+                  <option value="NZ">🇳🇿 New Zealand</option>
+                  <option value="NO">🇳🇴 Norway</option>
+                  <option value="PL">🇵🇱 Poland</option>
+                  <option value="ZA">🇿🇦 South Africa</option>
+                  <option value="KR">🇰🇷 South Korea</option>
+                  <option value="ES">🇪🇸 Spain</option>
+                  <option value="SE">🇸🇪 Sweden</option>
+                  <option value="CH">🇨🇭 Switzerland</option>
+                  <option value="SG">🇸🇬 Singapore</option>
+                  <option value="AE">🇦🇪 UAE</option>
+                  <option value="GB">🇬🇧 United Kingdom</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number *</label>
+                <div class="mobile-row">
+                    <select id="countryCode" name="countryCode" required disabled>
+                        <option value="">Code</option>
+                    </select>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile number" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="security-note">
+            🔒 Secure encrypted payment
+        </div>
+
+        <button class="buy-button" onclick="proceedToPayment()" id="buyButton">
+            Pay <span id="buttonPrice">$26</span>
+        </button>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+
+
+        const currencyData = {
+            US: { code: 'USD', symbol: '$', rate: 1, name: 'US Dollar', flag: '🇺🇸', phone: '+1' },
+            IN: { code: 'INR', symbol: '₹', rate: 83.50, name: 'Indian Rupee', flag: '🇮🇳', phone: '+91' },
+            GB: { code: 'GBP', symbol: '£', rate: 0.73, name: 'British Pound', flag: '🇬🇧', phone: '+44' },
+            CA: { code: 'CAD', symbol: 'C$', rate: 1.37, name: 'Canadian Dollar', flag: '🇨🇦', phone: '+1' },
+            AU: { code: 'AUD', symbol: 'A$', rate: 1.55, name: 'Australian Dollar', flag: '🇦🇺', phone: '+61' },
+            DE: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇩🇪', phone: '+49' },
+            FR: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇫🇷', phone: '+33' },
+            JP: { code: 'JPY', symbol: '¥', rate: 150, name: 'Japanese Yen', flag: '🇯🇵', phone: '+81' },
+            BR: { code: 'BRL', symbol: 'R$', rate: 5.15, name: 'Brazilian Real', flag: '🇧🇷', phone: '+55' },
+            MX: { code: 'MXN', symbol: '$', rate: 17.25, name: 'Mexican Peso', flag: '🇲🇽', phone: '+52' },
+            AE: { code: 'AED', symbol: 'د.إ', rate: 3.67, name: 'UAE Dirham', flag: '🇦🇪', phone: '+971' },
+            SG: { code: 'SGD', symbol: 'S$', rate: 1.35, name: 'Singapore Dollar', flag: '🇸🇬', phone: '+65' },
+            IT: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇮🇹', phone: '+39' },
+            ES: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇪🇸', phone: '+34' },
+            NL: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇳🇱', phone: '+31' },
+            CH: { code: 'CHF', symbol: 'Fr', rate: 0.88, name: 'Swiss Franc', flag: '🇨🇭', phone: '+41' },
+            SE: { code: 'SEK', symbol: 'kr', rate: 11.20, name: 'Swedish Krona', flag: '🇸🇪', phone: '+46' },
+            NO: { code: 'NOK', symbol: 'kr', rate: 10.85, name: 'Norwegian Krone', flag: '🇳🇴', phone: '+47' },
+            DK: { code: 'DKK', symbol: 'kr', rate: 6.85, name: 'Danish Krone', flag: '🇩🇰', phone: '+45' },
+            FI: { code: 'EUR', symbol: '€', rate: 0.85, name: 'Euro', flag: '🇫🇮', phone: '+358' },
+            PL: { code: 'PLN', symbol: 'zł', rate: 4.25, name: 'Polish Zloty', flag: '🇵🇱', phone: '+48' },
+            RU: { code: 'RUB', symbol: '₽', rate: 95, name: 'Russian Ruble', flag: '🇷🇺', phone: '+7' },
+            CN: { code: 'CNY', symbol: '¥', rate: 7.25, name: 'Chinese Yuan', flag: '🇨🇳', phone: '+86' },
+            KR: { code: 'KRW', symbol: '₩', rate: 1340, name: 'South Korean Won', flag: '🇰🇷', phone: '+82' },
+            ZA: { code: 'ZAR', symbol: 'R', rate: 18.85, name: 'South African Rand', flag: '🇿🇦', phone: '+27' },
+            AR: { code: 'ARS', symbol: '$', rate: 850, name: 'Argentine Peso', flag: '🇦🇷', phone: '+54' },
+            CL: { code: 'CLP', symbol: '$', rate: 925, name: 'Chilean Peso', flag: '🇨🇱', phone: '+56' },
+            NZ: { code: 'NZD', symbol: 'NZ$', rate: 1.65, name: 'New Zealand Dollar', flag: '🇳🇿', phone: '+64' }
+        };
+
+        const planConfigs = {
+            starter: { title: 'Starter', details: '100 AI Images', price: 5 },
+            professional: { title: 'Professional', details: '500 AI Images', price: 24 },
+            enterprise: { title: 'Enterprise', details: '1,000 AI Images', price: 45 }
+        };
+
+        let selectedPlan = 'professional';
+        let selectedCountry = null;
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get plan from URL parameter
+            const planFromUrl = getUrlParameter('plan') || 'professional';
+            
+            if (planConfigs[planFromUrl]) {
+                selectedPlan = planFromUrl;
+            }
+            
+            // Set US as default
+            selectedCountry = 'US';
+            document.getElementById('country').value = 'US';
+            
+            // Update phone code for US
+            const phoneSelect = document.getElementById('countryCode');
+            phoneSelect.innerHTML = `<option value="+1">🇺🇸 +1</option>`;
+            phoneSelect.disabled = false;
+            
+            // Initialize pricing
+            updatePricing();
+        });
+
+        function roundUpPrice(price) {
+            return Math.ceil(price);
+        }
+
+        function formatPrice(amount, currency) {
+            const currencyInfo = currencyData[selectedCountry] || currencyData.US;
+            return `${currencyInfo.symbol}${roundUpPrice(amount).toLocaleString()}`;
+        }
+
+        function updatePricing() {
+            if (!selectedCountry) return;
+
+            const plan = planConfigs[selectedPlan];
+            const currencyInfo = currencyData[selectedCountry];
+            
+            // Calculate prices in the selected country's currency
+            const basePriceInLocal = plan.price * currencyInfo.rate;
+            const processingFeeInLocal = 1 * currencyInfo.rate;
+            const totalInLocal = basePriceInLocal + processingFeeInLocal;
+
+            // Update display in local currency
+            document.getElementById('priceDisplay').textContent = formatPrice(basePriceInLocal, currencyInfo.code);
+            document.getElementById('planPrice').textContent = formatPrice(basePriceInLocal, currencyInfo.code);
+            document.getElementById('processingFee').textContent = formatPrice(processingFeeInLocal, currencyInfo.code);
+            document.getElementById('totalAmount').textContent = formatPrice(totalInLocal, currencyInfo.code);
+            document.getElementById('buttonPrice').textContent = formatPrice(totalInLocal, currencyInfo.code);
+
+            // Update currency info
+            document.getElementById('currencyFlag').textContent = currencyInfo.flag;
+            document.getElementById('currencyName').textContent = currencyInfo.name;
+        }
+
+        // Simplified formatPrice function for INR
+        function formatPrice(amount, currency) {
+            const currencyInfo = currencyData[selectedCountry] || currencyData.US;
+            return `${currencyInfo.symbol}${roundUpPrice(amount).toLocaleString()}`;
+        }
+
+        // Country selection handler
+        document.getElementById('country').addEventListener('change', function() {
+            selectedCountry = this.value;
+            
+            if (selectedCountry && currencyData[selectedCountry]) {
+                const currencyInfo = currencyData[selectedCountry];
+                
+                // Update phone code
+                const phoneSelect = document.getElementById('countryCode');
+                phoneSelect.innerHTML = `<option value="${currencyInfo.phone}">${currencyInfo.flag} ${currencyInfo.phone}</option>`;
+                phoneSelect.disabled = false;
+                
+                updatePricing();
+            } else {
+                document.getElementById('countryCode').disabled = true;
+            }
+        });
+
+        function validateForm() {
+            const country = document.getElementById('country').value;
+            const mobile = document.getElementById('mobile').value.trim();
+            
+            if (!country) {
+                showPopup('error', 'Country Required', 'Please select your country.');
+                return false;
+            }
+            
+            if (!mobile || mobile.length < 7) {
+                showPopup('error', 'Invalid Mobile', 'Please enter a valid mobile number.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function showPopup(type, title, message) {
+            const overlay = document.getElementById('popupOverlay');
+            const icon = document.getElementById('popupIcon');
+            const titleEl = document.getElementById('popupTitle');
+            const messageEl = document.getElementById('popupMessage');
+            
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            if (type === 'error') {
+                icon.textContent = '❌';
+                icon.className = 'popup-icon error';
+            } else if (type === 'success') {
+                icon.textContent = '✅';
+                icon.className = 'popup-icon success';
+            }
+            
+            overlay.classList.add('show');
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('show');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function getAuthTokenFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("token");
+        }
+
+
+        async function proceedToPayment() {
+    if (!validateForm()) {
+        return;
+    }
+
+    var token = getAuthTokenFromUrl();
+    if (token == null) {
+        showPopup('error', 'Authentication Error', 'Please login first');
+        return;
+    }
+    
+    const button = document.getElementById('buyButton');
+    const plan = planConfigs[selectedPlan];
+    
+    try {
+        button.disabled = true;
+        button.innerHTML = `<span class="loading-spinner"></span>Processing...`;
+        
+        const currencyInfo = currencyData[selectedCountry];
+        const amount = Math.ceil((plan.price + 1) * currencyInfo.rate);
+        const currency = currencyInfo.code;
+        
+        const paymentData = {
+            plan_type: selectedPlan,
+            amount: amount,
+            customer_phone: document.getElementById('mobile').value.trim(),
+            currency: currency,
+            authToken: token
+        };
+        
+        // Call your Razorpay backend
+        const response = await fetch('https://ChatEzzy.com/api/create-razorpay-order-pro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(paymentData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data.order_id || !data.razorpay_key_id) {
+            throw new Error('Failed to get order details');
+        }
+        
+        // Open Razorpay Checkout
+        const options = {
+            key: data.razorpay_key_id,
+            order_id: data.order_id,
+            name: 'Nano Banana - ChatEzzy',
+            description: `${plan.title} Plan`,
+            image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2',
+            callback_url: 'https://chatezzy.com/redirect-nano',
+            redirect: true,
+            prefill: {
+                contact: document.getElementById('mobile').value.trim()
+            },
+            theme: {
+                color: '#3b82f6'
+            }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+        
+    } catch (error) {
+        console.error('Payment error:', error);
+        showPopup('error', 'Payment Failed', `${error.message}. Please try again or contact support.`);
+        button.disabled = false;
+        const currencyInfo = currencyData[selectedCountry];
+        button.innerHTML = `Pay ${formatPrice((plan.price + 1) * currencyInfo.rate, currencyInfo.code)}`;
+    }
+}
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const plan = planConfigs[selectedPlan];
+            document.getElementById('planTitle').textContent = plan.title;
+            document.getElementById('planDetails').textContent = plan.details;
+        });
+
+        // Close popup on outside click
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+    </script>
+</body>
+</html>
