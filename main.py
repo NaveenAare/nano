@@ -348,6 +348,7 @@ async def get_sitemap():
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
+@app.post("/")
 async def home():
     return FileResponse("templates/home.html")
 
