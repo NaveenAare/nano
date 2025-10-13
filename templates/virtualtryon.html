@@ -1843,6 +1843,11 @@ function handleOutfitSlotClick(slotNumber) {
 
         const data = await response.json();
 
+        if (data.status_code === 400 && data.detail === "Limit Reached Sorry") {
+            showOutOfCreditsModal(); // Show the new modal instead of toast
+            return;
+        }
+
         if (loadingOverlay) loadingOverlay.classList.remove('show');
 
         if (data && data.image_url) {
