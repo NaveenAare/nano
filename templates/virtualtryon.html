@@ -1762,94 +1762,121 @@ function handleOutfitSlotClick(slotNumber) {
         }
 
         async function generateTryOn() {
-            if (!personImage) {
-                showToast('Please upload your photo first!', 'warning');
-                return;
+    if (!personImage) {
+        showToast('Please upload your photo first!', 'warning');
+        return;
+    }
+
+    // Filter out only unlocked and filled outfits
+    const activeOutfits = [];
+    for (let i = 0; i < outfitImages.length; i++) {
+        if (outfitImages[i] !== null) {
+            // Slot 0 (first slot) is always available
+            if (i === 0) {
+                activeOutfits.push(outfitImages[i]);
             }
-
-            const activeOutfits = outfitImages.filter(img => img !== null);
-            if (activeOutfits.length === 0) {
-                showToast('Please add at least one outfit!', 'warning');
-                return;
-            }
-
-            const authToken = localStorage.getItem('authToken');
-            if (!authToken) {
-                showToast('Please login to continue', 'error');
-                return;
-            }
-
-            document.getElementById('step3').classList.add('active');
-            document.getElementById('generateBtn').disabled = true;
-            document.getElementById('loadingOverlay').classList.add('show');
-
-            try {
-                const formData = new FormData();
-                formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
-                
-                let message = 'Transform this person wearing these outfits. Keep the person\'s face identical, only change the clothing to match all the outfit images. Combine all outfits in a single stylish outfit on the person.';
-                formData.append('message', message);
-                formData.append('authToken', authToken);
-                formData.append('does_chat_have_name', 'false');
-                formData.append('models', 'ChatGpt');
-                formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
-                formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
-
-                const personBlob = await fetch(personImage.data).then(r => r.blob());
-                formData.append('file_0', personBlob, personImage.name);
-                formData.append('file_0_type', 'image');
-                formData.append('file_0_name', personImage.name);
-
-                let fileIndex = 1;
-                for (let i = 0; i < outfitImages.length; i++) {
-                    if (outfitImages[i]) {
-                        const outfitBlob = await fetch(outfitImages[i].data).then(r => r.blob());
-                        formData.append(`file_${fileIndex}`, outfitBlob, outfitImages[i].name);
-                        formData.append(`file_${fileIndex}_type`, 'image');
-                        formData.append(`file_${fileIndex}_name`, outfitImages[i].name);
-                        fileIndex++;
-                    }
-                }
-
-                const response = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': '*/*',
-                        'Origin': 'https://chatezzy.com'
-                    },
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (data.status_code === 400 && data.detail === "Limit Reached Sorry") {
-                    showOutOfCreditsModal(); // Show the new modal instead of toast
-                    updateCreditDisplay(0);
-                    return;
-                }
-
-                document.getElementById('loadingOverlay').classList.remove('show');
-
-                if (data && data.image_url) {
-                    document.getElementById('outputPlaceholder').style.display = 'none';
-                    document.getElementById('liveOutput').style.display = 'flex';
-                    document.getElementById('outputImage').src = data.image_url;
-                    document.getElementById('outputActions').classList.add('show');
-
-                    if (data.creditcount !== undefined) {
-                        document.getElementById('creditCount').textContent = data.creditcount;
-                    }
-                } else {
-                    throw new Error('Failed to generate image');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('loadingOverlay').classList.remove('show');
-                showToast('Failed to generate. Please try again.', 'error');
-            } finally {
-                document.getElementById('generateBtn').disabled = false;
+            // Slots 1-3 (outfit 2-4) require 3+ credits
+            else if (userCredits >= 3) {
+                activeOutfits.push(outfitImages[i]);
             }
         }
+    }
+
+    if (activeOutfits.length === 0) {
+        showToast('Please add at least one outfit!', 'warning');
+        return;
+    }
+
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+        showToast('Please login to continue', 'error');
+        return;
+    }
+
+    // Safely get DOM elements
+    const step3 = document.getElementById('step3');
+    const generateBtn = document.getElementById('generateBtn');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    // Add active state
+    if (step3) step3.classList.add('active');
+    if (generateBtn) generateBtn.disabled = true;
+    if (loadingOverlay) loadingOverlay.classList.add('show');
+
+    try {
+        const formData = new FormData();
+        formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
+        
+        let message = 'Transform this person wearing these outfits. Keep the person\'s face identical, only change the clothing to match all the outfit images. Combine all outfits in a single stylish outfit on the person.';
+        formData.append('message', message);
+        formData.append('authToken', authToken);
+        formData.append('does_chat_have_name', 'false');
+        formData.append('models', 'ChatGpt');
+        formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
+        formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+
+        const personBlob = await fetch(personImage.data).then(r => r.blob());
+        formData.append('file_0', personBlob, personImage.name);
+        formData.append('file_0_type', 'image');
+        formData.append('file_0_name', personImage.name);
+
+        let fileIndex = 1;
+        for (let i = 0; i < outfitImages.length; i++) {
+            // Only add outfit if it's not null and either it's the first slot or user has enough credits
+            if (outfitImages[i] && (i === 0 || userCredits >= 3)) {
+                const outfitBlob = await fetch(outfitImages[i].data).then(r => r.blob());
+                formData.append(`file_${fileIndex}`, outfitBlob, outfitImages[i].name);
+                formData.append(`file_${fileIndex}_type`, 'image');
+                formData.append(`file_${fileIndex}_name`, outfitImages[i].name);
+                fileIndex++;
+            }
+        }
+
+        const response = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+                'Origin': 'https://chatezzy.com'
+            },
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (loadingOverlay) loadingOverlay.classList.remove('show');
+
+        if (data && data.image_url) {
+            const outputPlaceholder = document.getElementById('outputPlaceholder');
+            const liveOutput = document.getElementById('liveOutput');
+            const outputImage = document.getElementById('outputImage');
+            const outputActions = document.getElementById('outputActions');
+            
+            if (outputPlaceholder) outputPlaceholder.style.display = 'none';
+            if (liveOutput) liveOutput.style.display = 'flex';
+            if (outputImage) outputImage.src = data.image_url;
+            if (outputActions) outputActions.classList.add('show');
+
+            showToast('Virtual try-on generated successfully!', 'success');
+
+            if (data.creditcount !== undefined) {
+                userCredits = parseInt(data.creditcount);
+                const creditCountEl = document.getElementById('creditCount');
+                if (creditCountEl) creditCountEl.textContent = userCredits;
+                updateOutfitLocks();
+            }
+        } else {
+            throw new Error('Failed to generate image');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) loadingOverlay.classList.remove('show');
+        showToast('Failed to generate. Please try again.', 'error');
+    } finally {
+        const generateBtn = document.getElementById('generateBtn');
+        if (generateBtn) generateBtn.disabled = false;
+    }
+}
 
         function downloadImage(url, filename) {
             const link = document.createElement('a');
