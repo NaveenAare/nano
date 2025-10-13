@@ -405,6 +405,12 @@ async def nanobloggpricing(request: Request):
 async def nanobloggpricing(request: Request):
     return FileResponse("templates/home_russian.html")
 
+@app.get("/virtual-trial-room")
+async def virtualtrail(request: Request):
+    return FileResponse("templates/virtualtryon.html")
+
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
