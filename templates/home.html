@@ -5175,7 +5175,11 @@
 
             <!-- <button id="bugReportBtn" class="bug-report-trigger">Report Bug</button> -->
 
-            <button id="bugReportBtnnn" onclick="window.location.href='/virtual-trial-room'" class="bug-report-trigger"><span class="btn-icon">✨</span> <span>Virtual Trail Room</span></button>
+            <button id="bugReportBtnnn" onclick="window.open('/virtual-trial-room', '_blank')" class="bug-report-trigger">
+			  <span class="btn-icon">✨</span>
+			  <span>Virtual Trial Room</span>
+			</button>
+
 
              <div class="language-selector">
         <button class="language-btn" onclick="toggleLanguageDropdown()">
