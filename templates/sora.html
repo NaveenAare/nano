@@ -1657,7 +1657,7 @@
             const authToken = getAuthToken();
             const userId = getUserId();
 
-            if (!authToken || !userId) {
+            if (!authToken) {
                 showLoginModal();
                 return false;
             }
