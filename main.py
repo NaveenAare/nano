@@ -373,6 +373,10 @@ async def remove_background():
 async def blog():
     return FileResponse("templates/nanoblog.html")
 
+@app.get("/sora")
+async def sora():
+    return FileResponse("templates/sora.html")
+
 @app.get("/support")
 async def support():
     return FileResponse("templates/support.html")
