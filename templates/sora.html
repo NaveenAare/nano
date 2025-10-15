@@ -1830,9 +1830,8 @@ function updateCreditDisplay() {
 
             // Check auth ONLY when user clicks generate
             const authToken = getAuthToken();
-            const userId = getUserId();
             
-            if (!authToken || !userId) {
+            if (!authToken) {
                 showLoginModal();
                 return;
             }
