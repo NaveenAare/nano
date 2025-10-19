@@ -464,6 +464,31 @@
                 padding: 24px;
             }
         }
+
+        .best-value-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
     </style>
 </head>
 <body>
@@ -488,7 +513,7 @@
                 <h3 class="plan-name">Starter Pack</h3>
                 <p class="plan-description">Perfect for trying out AI</p>
                 
-                <div class="price-display">$5</div>
+                <div class="price-display">$6</div>
                 <div class="image-count">100 images</div>
                 <div class="bonus-credits premium">+All Prompt Packs</div>
                 <div class="currency-label">(USD)</div>
@@ -522,6 +547,7 @@
 
             <!-- Professional Pack (Most Popular) -->
             <div class="pricing-card popular">
+                <div class="best-value-badge">Best Value</div>
                 <h3 class="plan-name">Professional Pack</h3>
                 <p class="plan-description">Perfect for regular creators</p>
                 
