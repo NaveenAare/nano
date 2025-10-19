@@ -5266,7 +5266,374 @@
     }
 }
 
-@keyframes blink {
+.testimonials-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Header */
+        .testimonials-header {
+            margin-top: 100px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #000000 0%, #2d3748 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .star-icon {
+            color: #fbbf24;
+            font-size: 16px;
+        }
+
+        .testimonials-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .testimonials-subtitle {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+            padding: 32px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #000000 0%, #2d3748 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #000000 0%, #2d3748 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a202c;
+            flex-shrink: 0;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 18px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .verified-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .check-icon {
+            width: 18px;
+            height: 18px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .testimonial-date {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Featured Testimonial */
+        .featured-testimonial {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1a202c 0%, #000000 100%);
+            color: white;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-testimonial::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-icon {
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .featured-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .featured-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .featured-info .testimonial-name {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .featured-info .testimonial-role {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        /* CTA Section */
+        .testimonial-cta {
+            text-align: center;
+            padding: 60px 32px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #000000 0%, #2d3748 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .testimonials-title {
+                font-size: 36px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+                padding-bottom: 16px;
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .featured-testimonial {
+                padding: 32px 24px;
+            }
+
+            .featured-text {
+                font-size: 18px;
+            }
+        }
+
+
 
     </style>
 </head>
@@ -5564,6 +5931,9 @@
 </header>
 
     <div class="container">
+
+
+    	
         <!-- Header -->
         <div class="header">
             <h1>Nano Banana</h1>
@@ -5902,48 +6272,154 @@
 
         <!-- Testimonials -->
         <div class="testimonials-section">
-            <h2 class="section-title">Trusted by Professionals Using <span class="banana-accent">Nano Banana</span></h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The Googlenanobanana.com technology in this platform is revolutionary. As a creative professional, I've never seen such accurate and fast AI image generation. Nano Banana has become essential to our workflow."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SJ</div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Creative Director at PixelWorks</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "When I search for 'nano banana AI solutions', this platform consistently delivers the best results. The integration with Google's nano banana technology is seamless and professional-grade."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <h4>Michael Rodriguez</h4>
-                            <p>Senior Content Strategist</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The nano banana technology provides unmatched accuracy and detail. It's like having a professional design team powered by Google's most advanced AI available 24/7."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">EL</div>
-                        <div class="author-info">
-                            <h4>Emily Liu</h4>
-                            <p>Marketing Director at TechFlow</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Header -->
+        <div class="testimonials-header">
+            <div class="testimonials-badge">
+                <span class="star-icon">⭐</span>
+                <span>Trusted by 50,000+ Creators</span>
+            </div>
+            <h2 class="testimonials-title">What Our Users Say</h2>
+            <p class="testimonials-subtitle">
+                Discover how creators, marketers, and businesses are using Nano Banana Sora to bring their visions to life
+            </p>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Happy Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100K+</div>
+                <div class="stat-label">Images Generated</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Would Recommend</div>
             </div>
         </div>
+
+        <!-- Testimonials Grid -->
+        <div class="testimonials-grid">
+            <!-- Featured Testimonial -->
+           
+<!-- Testimonial 1 -->
+<div class="testimonial-card">
+    <div class="testimonial-header">
+        <div class="testimonial-avatar">LS</div>
+        <div class="testimonial-info">
+            <div class="testimonial-name">Lara Sethi</div>
+            <div class="testimonial-role">Creative Director at PixelHive</div>
+        </div>
+    </div>
+    <div class="testimonial-rating">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="testimonial-text">
+        Using Nano Banana on <strong>googlenanobanana.com</strong> has been an amazing experience. The AI generates high-quality images in seconds, the editing tools are super easy to use, and the pre-built prompts save so much time. All this at such affordable prices—I can’t believe how fast and cheap it is!
+    </p>
+    <div class="testimonial-footer">
+        <div class="verified-badge">✓ Verified User</div>
+        <div class="testimonial-date">1 week ago</div>
+    </div>
+</div>
+
+<!-- Testimonial 2 -->
+<div class="testimonial-card">
+    <div class="testimonial-header">
+        <div class="testimonial-avatar">AK</div>
+        <div class="testimonial-info">
+            <div class="testimonial-name">Aarav Kapoor</div>
+            <div class="testimonial-role">E-commerce Store Owner</div>
+        </div>
+    </div>
+    <div class="testimonial-rating">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="testimonial-text">
+        I started using <strong>googlenanobanana.com</strong> for product images and the results are incredible. The platform is lightning fast, editing is simple, and the pre-built prompts make it effortless to generate images. The best part? The pricing is ridiculously cheap for such high-quality outputs.
+    </p>
+    <div class="testimonial-footer">
+        <div class="verified-badge">✓ Verified User</div>
+        <div class="testimonial-date">2 weeks ago</div>
+    </div>
+</div>
+
+<!-- Testimonial 3 -->
+<div class="testimonial-card">
+    <div class="testimonial-header">
+        <div class="testimonial-avatar">NR</div>
+        <div class="testimonial-info">
+            <div class="testimonial-name">Nora Redding</div>
+            <div class="testimonial-role">Social Media Content Creator</div>
+        </div>
+    </div>
+    <div class="testimonial-rating">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="testimonial-text">
+        Nano Banana on <strong>googlenanobanana.com</strong> is a lifesaver for content creators. Generating multiple image variations for social media is super fast, editing is intuitive, and the pre-built prompts are a huge time-saver. I’m amazed they offer this quality at such low prices!
+    </p>
+    <div class="testimonial-footer">
+        <div class="verified-badge">✓ Verified User</div>
+        <div class="testimonial-date">3 weeks ago</div>
+    </div>
+</div>
+
+<!-- Testimonial 4 -->
+<div class="testimonial-card">
+    <div class="testimonial-header">
+        <div class="testimonial-avatar">RM</div>
+        <div class="testimonial-info">
+            <div class="testimonial-name">Rylan Moreno</div>
+            <div class="testimonial-role">Freelance Designer</div>
+        </div>
+    </div>
+    <div class="testimonial-rating">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="testimonial-text">
+        Using <strong>googlenanobanana.com</strong> has completely changed my workflow. The speed is unmatched, the editing tools are user-friendly, and the pre-built prompts make creative projects effortless. I still can’t believe how affordable it is for the quality you get!
+    </p>
+    <div class="testimonial-footer">
+        <div class="verified-badge">✓ Verified User</div>
+        <div class="testimonial-date">1 month ago</div>
+    </div>
+</div>
+
+<!-- Testimonial 5 -->
+<div class="testimonial-card">
+    <div class="testimonial-header">
+        <div class="testimonial-avatar">KT</div>
+        <div class="testimonial-info">
+            <div class="testimonial-name">Kieran Thalos</div>
+            <div class="testimonial-role">Startup Founder</div>
+        </div>
+    </div>
+    <div class="testimonial-rating">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="testimonial-text">
+        <strong>googlenanobanana.com</strong> is an incredible platform for startups. High-quality AI images, ultra-fast generation, easy editing, and pre-built prompts—all at extremely cheap prices. I can’t imagine running my campaigns without it!
+    </p>
+    <div class="testimonial-footer">
+        <div class="verified-badge">✓ Verified User</div>
+        <div class="testimonial-date">2 months ago</div>
+    </div>
+</div>
+
+
+
+            <!-- Regular Testimonials -->
+           
+
+    </div>
+    </div>
 
         <!-- FAQ Section -->
         <div class="faq-section">
