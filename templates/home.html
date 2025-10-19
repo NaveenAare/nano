@@ -5698,30 +5698,42 @@
 
 
 <div id="outOfCreditsOverlay" class="out-of-credits-overlay">
+	
     <div class="out-of-credits-modal">
-        <!-- Sparkle decorations -->
+    <!-- Sparkle decorations -->
 
-        
-        <div class="out-of-credits-content">
+    <div class="out-of-credits-content">
+        <h2 class="out-of-credits-title">Oops! You're Out of Credits</h2>
+        <p class="out-of-credits-subtitle">
+            Unlock unlimited creativity with our premium credits
+        </p>
 
-            
-            <h2 class="out-of-credits-title">Oops! You're Out of Credits</h2>
-            <p class="out-of-credits-subtitle">
-                Unlock unlimited creativity with our premium credits
+        <!-- Highlight current offer -->
+        <div class="out-of-credits-offer" style="background: #fff3e0; border: 1px solid #ffb74d; padding: 10px; border-radius: 8px; margin: 15px 0;">
+            <p class="offer-text" style="color:#e65100; font-weight:bold; margin:0;">
+                🎉 Limited-Time: Get <strong>30% OFF</strong> Today!
             </p>
-            
-            
-            <div class="out-of-credits-buttons">
-                <button class="credits-btn credits-btn-primary" onclick="goToPricing()">
-                    Buy Credits Now
-                </button>
-                <button class="credits-btn credits-btn-secondary" onclick="closeOutOfCreditsModal()">
-                    Maybe Later
-                </button>
-            </div>
+            <small style="color:#bf360c;"> Don’t miss out!</small>
+        </div>
+
+        <div class="out-of-credits-buttons">
+            <button class="credits-btn credits-btn-primary" onclick="goToPricing()">
+                Buy Credits Now
+            </button>
+            <button class="credits-btn credits-btn-secondary" onclick="closeOutOfCreditsModal()">
+                Maybe Later
+            </button>
         </div>
     </div>
 </div>
+
+
+</div>
+
+
+
+
+
     <!-- Login Required Modal -->
 <div id="loginModal" class="login-modal-overlay" style="display: none;">
     <div class="login-modal-content">
