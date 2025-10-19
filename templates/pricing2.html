@@ -489,6 +489,29 @@
         transform: scale(1.05);
     }
 }
+
+
+.price-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.price-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+.original-price {
+    font-size: 1.25rem;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 500;
+}
     </style>
 </head>
 <body>
@@ -513,7 +536,10 @@
                 <h3 class="plan-name">Starter Pack</h3>
                 <p class="plan-description">Perfect for trying out AI</p>
                 
-                <div class="price-display">$6</div>
+                <div class="price-wrapper">
+                    <div class="price-display">$6</div>
+                    <div class="original-price">$10</div>
+                </div>
                 <div class="image-count">100 images</div>
                 <div class="bonus-credits premium">+All Prompt Packs</div>
                 <div class="currency-label">(USD)</div>
@@ -547,11 +573,14 @@
 
             <!-- Professional Pack (Most Popular) -->
             <div class="pricing-card popular">
-                <div class="best-value-badge">Best Value</div>
+                <div class="best-value-badge">Best Value - Save 16$</div>
                 <h3 class="plan-name">Professional Pack</h3>
                 <p class="plan-description">Perfect for regular creators</p>
                 
-                <div class="price-display">$24</div>
+                <div class="price-wrapper">
+                    <div class="price-display">$24</div>
+                    <div class="original-price">$40</div>
+                </div>
                 <div class="image-count">500 images</div>
                 <div class="bonus-credits">+All Prompt Packs</div>
                 <div class="currency-label">(USD)</div>
@@ -584,10 +613,14 @@
 
             <!-- Enterprise Pack -->
             <div class="pricing-card">
+                
                 <h3 class="plan-name">Enterprise Pack</h3>
                 <p class="plan-description">Maximum value for teams</p>
                 
-                <div class="price-display">$45</div>
+                <div class="price-wrapper">
+                    <div class="price-display">$45</div>
+                    <div class="original-price">$75</div>
+                </div>
                 <div class="image-count">1000 images</div>
                 <div class="image-count" style="font-weight: bold; color: green">$0.045 per image (Best Value!)</div>
                 <div class="bonus-credits premium">+All Prompt Packs</div>
