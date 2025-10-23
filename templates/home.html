@@ -5634,6 +5634,587 @@
         }
 
 
+/* Styles Button */
+.styles-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: #64748b;
+    transition: all 0.2s;
+    margin-right: 8px;
+}
+
+.styles-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.styles-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Styles Modal */
+.styles-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    padding: 20px;
+}
+
+.styles-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.styles-modal {
+    background: white;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.styles-header {
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.styles-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.close-styles-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #64748b;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.close-styles-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.styles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 24px;
+}
+
+.style-card {
+    border: 2px solid #fff;
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.style-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.style-card.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.style-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.style-name {
+    font-weight: 500;
+    color: #0f172a;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.style-description {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+    margin-top: 4px;
+}
+
+/* Add to existing styles */
+.styles-btn.has-style {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.style-card.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.style-card.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+}
+
+.selected-style-preview {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.selected-style-emoji {
+    font-size: 1rem;
+}
+
+/* Update the style-preview styles */
+.style-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.style-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Add a subtle overlay on hover */
+.style-card:hover .style-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Show lock icon over image for locked styles */
+.style-card.locked .style-preview::after {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+/* Remove the previous ::after for lock icon on card */
+.style-card.locked::after {
+    display: none;
+}
+
+/* Selected style button with thumbnail */
+.selected-style-thumbnail {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+
+
+/* Styles Modal - Responsive */
+.styles-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    padding: 20px;
+}
+
+.styles-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.styles-modal {
+    background: white;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.styles-header {
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+.styles-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.close-styles-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #64748b;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.close-styles-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+/* Responsive Grid */
+.styles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 24px;
+}
+
+.style-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.style-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.style-card.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.style-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.style-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.style-card:hover .style-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.style-card.locked .style-preview::after {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+.style-card.locked {
+    cursor: not-allowed;
+}
+
+.style-name {
+    font-weight: 500;
+    color: #0f172a;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.style-description {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+    margin-top: 4px;
+    line-height: 1.3;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .styles-overlay {
+        padding: 10px;
+        align-items: flex-end;
+    }
+    
+    .styles-modal {
+        max-height: 80vh;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    .styles-header {
+        padding: 16px 20px;
+    }
+    
+    .styles-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .styles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .style-card {
+        padding: 10px;
+    }
+    
+    .style-name {
+        font-size: 0.813rem;
+    }
+    
+    .style-description {
+        font-size: 0.688rem;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .styles-overlay {
+        padding: 0;
+    }
+    
+    .styles-modal {
+        border-radius: 16px 16px 0 0;
+        max-height: 75vh;
+    }
+    
+    .styles-header {
+        padding: 14px 16px;
+    }
+    
+    .styles-header h2 {
+        font-size: 1.125rem;
+    }
+    
+    .close-styles-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1.25rem;
+    }
+    
+    .styles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .style-card {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .style-preview {
+        border-radius: 6px;
+        margin-bottom: 6px;
+    }
+    
+    .style-name {
+        font-size: 0.75rem;
+    }
+    
+    .style-description {
+        font-size: 0.625rem;
+        margin-top: 2px;
+    }
+    
+    .style-card.locked .style-preview::after {
+        font-size: 1.5rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .styles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 8px;
+    }
+    
+    .style-card {
+        padding: 6px;
+    }
+    
+    .style-name {
+        font-size: 0.688rem;
+    }
+    
+    .style-description {
+        display: none;
+    }
+}
+
+/* Styles Button responsive */
+.styles-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: #64748b;
+    transition: all 0.2s;
+    margin-right: 8px;
+}
+
+.styles-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.styles-btn.has-style {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.styles-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.selected-style-preview {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.selected-style-thumbnail {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 480px) {
+    .styles-btn {
+        padding: 6px 10px;
+        font-size: 0.813rem;
+        gap: 5px;
+    }
+    
+    .styles-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .selected-style-thumbnail {
+        width: 18px;
+        height: 18px;
+    }
+}
 
     </style>
 </head>
@@ -5653,6 +6234,117 @@
             <button class="image-limit-btn image-limit-btn-secondary" onclick="closeImageLimitModal()">
                 Got It
             </button>
+        </div>
+    </div>
+</div>
+
+<!-- Styles Modal -->
+<!-- Styles Modal -->
+<!-- Styles Modal -->
+<div id="stylesOverlay" class="styles-overlay">
+    <div class="styles-modal">
+        <div class="styles-header">
+            <h2>Choose a Style</h2>
+            <button class="close-styles-btn" onclick="closeStylesModal()">×</button>
+        </div>
+        <div class="styles-grid">
+            <!-- FREE STYLES -->
+            <div class="style-card" data-style="none" onclick="selectStyle('none', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_4iugyf4iugyf4iug.png?alt=media&token=20c22dba-a2f1-421f-adce-ae70661a1bb2', 'None')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_4iugyf4iugyf4iug.png?alt=media&token=20c22dba-a2f1-421f-adce-ae70661a1bb2" alt="None" class="style-preview-img">
+                </div>
+                <div class="style-name">None</div>
+                <div class="style-description">No style filter</div>
+            </div>
+            
+            <div class="style-card" data-style="realistic" onclick="selectStyle('realistic', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_bil0h5bil0h5bil0.png?alt=media&token=fc3359ec-6703-4fbd-9343-b1d587292686', 'Realistic')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_bil0h5bil0h5bil0.png?alt=media&token=fc3359ec-6703-4fbd-9343-b1d587292686" alt="Realistic" class="style-preview-img">
+                </div>
+                <div class="style-name">Realistic</div>
+                <div class="style-description">Photo-realistic images</div>
+            </div>
+            
+            <div class="style-card" data-style="anime" onclick="selectStyle('anime', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_yxvr5lyxvr5lyxvr.png?alt=media&token=9a49571c-f423-454d-b132-d26551fa03c5', 'Anime')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_yxvr5lyxvr5lyxvr.png?alt=media&token=9a49571c-f423-454d-b132-d26551fa03c5" alt="Anime" class="style-preview-img">
+                </div>
+                <div class="style-name">Anime</div>
+                <div class="style-description">Studio Ghibli inspired</div>
+            </div>
+            
+            <!-- PREMIUM STYLES (Locked for free users) -->
+            <div class="style-card locked" data-style="3d-render" onclick="selectStyle('3d-render', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_56xtlf56xtlf56xt.png?alt=media&token=43f59020-2d82-4bcc-b34c-d7f9e17a46e2', '3D Render')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_56xtlf56xtlf56xt.png?alt=media&token=43f59020-2d82-4bcc-b34c-d7f9e17a46e2" alt="3D Render" class="style-preview-img">
+                </div>
+                <div class="style-name">3D Render</div>
+                <div class="style-description">Pixar-style 3D art</div>
+            </div>
+            
+            <div class="style-card locked" data-style="cyberpunk" onclick="selectStyle('cyberpunk', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_bp85cebp85cebp85.png?alt=media&token=bc139fc4-8a13-417e-ba30-b5dfc42af8ba', 'Cyberpunk')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_bp85cebp85cebp85.png?alt=media&token=bc139fc4-8a13-417e-ba30-b5dfc42af8ba" alt="Cyberpunk" class="style-preview-img">
+                </div>
+                <div class="style-name">Cyberpunk</div>
+                <div class="style-description">Neon futuristic style</div>
+            </div>
+            
+            <div class="style-card locked" data-style="oil-painting" onclick="selectStyle('oil-painting', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_wvs4jewvs4jewvs4.png?alt=media&token=69ce7c57-42de-4e90-8d1e-d68c3e9cf830', 'Oil Painting')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_wvs4jewvs4jewvs4.png?alt=media&token=69ce7c57-42de-4e90-8d1e-d68c3e9cf830" alt="Oil Painting" class="style-preview-img">
+                </div>
+                <div class="style-name">Oil Painting</div>
+                <div class="style-description">Classic art style</div>
+            </div>
+            
+            <div class="style-card locked" data-style="watercolor" onclick="selectStyle('watercolor', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_ai5gwvai5gwvai5g.png?alt=media&token=a6a68e14-bed8-456c-a04a-9ac60694c291', 'Watercolor')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_ai5gwvai5gwvai5g.png?alt=media&token=a6a68e14-bed8-456c-a04a-9ac60694c291" alt="Watercolor" class="style-preview-img">
+                </div>
+                <div class="style-name">Watercolor</div>
+                <div class="style-description">Soft painted effect</div>
+            </div>
+            
+            <div class="style-card locked" data-style="fantasy" onclick="selectStyle('fantasy', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_vred61vred61vred.png?alt=media&token=c3ce7e33-4c53-41de-8282-e028c8ac93ac', 'Fantasy')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_vred61vred61vred.png?alt=media&token=c3ce7e33-4c53-41de-8282-e028c8ac93ac" alt="Fantasy" class="style-preview-img">
+                </div>
+                <div class="style-name">Fantasy</div>
+                <div class="style-description">Epic mythical worlds</div>
+            </div>
+            
+            <div class="style-card locked" data-style="vintage" onclick="selectStyle('vintage', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_a7e35ga7e35ga7e3.png?alt=media&token=e06dcd2d-82eb-4a36-9f5d-393307e2390f', 'Vintage')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_a7e35ga7e35ga7e3.png?alt=media&token=e06dcd2d-82eb-4a36-9f5d-393307e2390f" alt="Vintage" class="style-preview-img">
+                </div>
+                <div class="style-name">Vintage</div>
+                <div class="style-description">Retro 80s aesthetic</div>
+            </div>
+            
+            <div class="style-card locked" data-style="sketch" onclick="selectStyle('sketch', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_gjfggcgjfggcgjfg.png?alt=media&token=7dcc8dd6-aee6-4ba9-8016-128f704b11e1', 'Sketch')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_gjfggcgjfggcgjfg.png?alt=media&token=7dcc8dd6-aee6-4ba9-8016-128f704b11e1" alt="Sketch" class="style-preview-img">
+                </div>
+                <div class="style-name">Sketch</div>
+                <div class="style-description">Hand-drawn look</div>
+            </div>
+            
+            <div class="style-card locked" data-style="pop-surrealism" onclick="selectStyle('pop-surrealism', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_lxdc8ilxdc8ilxdc.png?alt=media&token=4fe3c97e-827d-461f-87a4-5da283cca872', 'Pop Surrealism')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_lxdc8ilxdc8ilxdc.png?alt=media&token=4fe3c97e-827d-461f-87a4-5da283cca872" alt="Pop Surrealism" class="style-preview-img">
+                </div>
+                <div class="style-name">Pop Surrealism</div>
+                <div class="style-description">Whimsical dreamlike</div>
+            </div>
+            
+            <div class="style-card locked" data-style="lo-fi" onclick="selectStyle('lo-fi', 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_x3dfe3x3dfe3x3df.png?alt=media&token=c0ce9f54-ae9c-411b-b21c-85b0dbccc0e8', 'Lo-Fi')">
+                <div class="style-preview">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_x3dfe3x3dfe3x3df.png?alt=media&token=c0ce9f54-ae9c-411b-b21c-85b0dbccc0e8" alt="Lo-Fi" class="style-preview-img">
+                </div>
+                <div class="style-name">Lo-Fi</div>
+                <div class="style-description">Nostalgic grainy feel</div>
+            </div>
         </div>
     </div>
 </div>
@@ -6018,6 +6710,22 @@
                                 <button class="attach-btn" onclick="triggerFileUpload()">
                                     +
                                 </button>
+
+                                <!-- Styles Button -->
+<!-- Styles Button -->
+<button class="styles-btn" id="stylesBtn" onclick="openStylesModal()">
+    <div class="selected-style-preview">
+        <span id="stylesThumbnail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+        </span>
+        <span id="stylesBtnText">Styles</span>
+    </div>
+</button>
                                 <input 
                                     type="file" 
                                     id="file-input" 
@@ -6962,12 +7670,23 @@ function removeToast(toast) {
 
 // Updated generateImage function
 async function generateImage() {
-    const prompt = document.getElementById('prompt-input').value.trim();
+    const userPrompt = document.getElementById('prompt-input').value.trim();
+
+
     
-    if (!prompt && !editingMode) {
+    if (!userPrompt && !editingMode) {
         alert('Please enter a prompt!');
         return;
     }
+
+	const stylePrompt = getSelectedStylePrompt();
+
+	// Combine user prompt with style
+	let prompt = userPrompt;
+	if (stylePrompt) {
+	    prompt = `${userPrompt}, ${stylePrompt}`;
+	}
+
 
     // Check if user has used first credit
      const authToken = localStorage.getItem('authToken');
@@ -9083,6 +9802,152 @@ document.addEventListener('DOMContentLoaded', function() {
 // Show loader on page unload (browser navigation)
 window.addEventListener('beforeunload', function() {
     showPageLoader();
+});
+
+
+// Styles Modal Functions
+let selectedStyle = 'none';
+let selectedStyleImage = '';
+let selectedStyleName = 'None';
+
+function openStylesModal() {
+    const overlay = document.getElementById('stylesOverlay');
+    const creditCount = document.getElementById('creditCount');
+    const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
+    
+    // Update locked state based on credits
+    updateStylesAccess(credits);
+    
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeStylesModal() {
+    const overlay = document.getElementById('stylesOverlay');
+    overlay.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+function updateStylesAccess(credits) {
+    const styleCards = document.querySelectorAll('.style-card');
+    
+    styleCards.forEach((card, index) => {
+        // First 3 styles (none, realistic, anime) are free - index 0, 1, 2
+        if (index <= 2) {
+            card.classList.remove('locked');
+        } else {
+            // Rest require credits > 3
+            if (credits > 3) {
+                card.classList.remove('locked');
+            } else {
+                card.classList.add('locked');
+            }
+        }
+    });
+}
+
+function selectStyle(style, imageUrl, name) {
+    const creditCount = document.getElementById('creditCount');
+    const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
+    const clickedCard = event.target.closest('.style-card');
+    
+    // Check if style is locked
+    if (clickedCard.classList.contains('locked')) {
+        // Show out of credits modal or buy credits prompt
+        if (credits <= 3) {
+            showOutOfCreditsModal();
+        }
+        return;
+    }
+    
+    selectedStyle = style;
+    selectedStyleImage = imageUrl;
+    selectedStyleName = name;
+    
+    // Remove selected class from all cards
+    document.querySelectorAll('.style-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    
+    // Add selected class to clicked card
+    clickedCard.classList.add('selected');
+    
+    // Update button display
+    updateStylesButton();
+    
+    // Close modal after short delay
+    setTimeout(() => {
+        closeStylesModal();
+        if (style !== 'none') {
+            showToast(`${name} style selected! 🎨`, 'success');
+        } else {
+            showToast(`Style filter removed`, 'success');
+        }
+    }, 300);
+}
+
+function updateStylesButton() {
+    const stylesBtn = document.getElementById('stylesBtn');
+    const stylesBtnText = document.getElementById('stylesBtnText');
+    const stylesThumbnail = document.getElementById('stylesThumbnail');
+    
+    if (selectedStyle !== 'none' && selectedStyleImage) {
+        stylesBtn.classList.add('has-style');
+        stylesBtnText.textContent = selectedStyleName;
+        stylesThumbnail.innerHTML = `<img src="${selectedStyleImage}" alt="${selectedStyleName}" class="selected-style-thumbnail">`;
+    } else {
+        stylesBtn.classList.remove('has-style');
+        stylesBtnText.textContent = 'Styles';
+        stylesThumbnail.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+        `;
+    }
+}
+
+function getSelectedStylePrompt() {
+    const stylePrompts = {
+        'none': '',
+        'realistic': 'in photorealistic style, highly detailed, 8K quality, professional photography lighting',
+        'anime': 'in Studio Ghibli anime style, hand-drawn aesthetic, soft colors, whimsical atmosphere',
+        '3d-render': 'in 3D Pixar style render, vibrant colors, smooth textures, cute character design',
+        'cyberpunk': 'in cyberpunk neon style, futuristic cityscape, neon lights, dark atmosphere with bright accents',
+        'oil-painting': 'in classical oil painting style, visible brushstrokes, rich colors, Renaissance composition',
+        'watercolor': 'in soft watercolor painting style, gentle color blending, artistic paper texture',
+        'fantasy': 'in epic fantasy art style, dramatic lighting, mythical atmosphere, detailed world-building',
+        'vintage': 'in vintage 1980s style, retro aesthetic, film grain, nostalgic color palette',
+        'sketch': 'in hand-drawn pencil sketch style, detailed linework, artistic shading',
+        'pop-surrealism': 'in pop surrealism style, whimsical dreamlike imagery, vibrant colors, playful absurdist elements',
+        'lo-fi': 'in lo-fi nostalgic style, soft film grain, warm muted tones, cozy atmosphere'
+    };
+    
+    return stylePrompts[selectedStyle] || '';
+}
+
+// Close modal on overlay click
+document.addEventListener('DOMContentLoaded', function() {
+    const stylesOverlay = document.getElementById('stylesOverlay');
+    if (stylesOverlay) {
+        stylesOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStylesModal();
+            }
+        });
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('stylesOverlay');
+        if (overlay && overlay.classList.contains('show')) {
+            closeStylesModal();
+        }
+    }
 });
 
     </script>
