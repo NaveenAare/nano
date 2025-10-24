@@ -1704,7 +1704,14 @@
         padding: 5px 10px;
     }
 }
+.image-box.error {
+    border-color: #fecaca;
+    background: #fef2f2;
+}
 
+.image-box.error .box-number {
+    color: #dc2626;
+}
 
     </style>
 </head>
@@ -2461,8 +2468,25 @@
                     }
                 }
             } catch (error) {
-                console.error('Error fetching credits:', error);
-                creditCounter.style.display = 'none';
+                clearInterval(interval);
+                progress.style.width = '0%';
+                
+                // Show error in the box
+                box.classList.remove('loading');
+                box.classList.add('error');
+                box.querySelector('.box-number').innerHTML = `
+                    <div style="text-align: center; color: #dc2626;">
+                        <svg style="width: 32px; height: 32px; margin: 0 auto 8px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <div style="font-size: 0.813rem;">Failed</div>
+                    </div>
+                `;
+                
+                console.error(`Error generating image ${index}:`, error);
+                throw error;
             }
         }
 
