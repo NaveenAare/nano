@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Image Generator | Google Nano Banana</title>
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header */
+        /* Header */
+/* Header Wrapper */
+.header-wrapper {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 32px;
+}
+
+/* Header */
+.header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+    box-shadow: none;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .header-right {
+        gap: 12px;
+    }
+
+    .credit-counter {
+        padding: 6px 12px;
+        font-size: 0.875rem;
+    }
+
+    .login-btn {
+        padding: 8px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 12px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo {
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
+    .header-right {
+        flex: 1 1 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .credit-counter {
+        font-size: 0.813rem;
+        padding: 6px 10px;
+    }
+
+    .login-btn {
+        padding: 8px 14px;
+        font-size: 0.813rem;
+    }
+}
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .credit-counter {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.938rem;
+            color: #475569;
+        }
+
+        .credit-counter.show {
+            display: flex;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .page-title p {
+            font-size: 1.125rem;
+            color: #64748b;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 0.938rem;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .image-box {
+            aspect-ratio: 1;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-box.loading {
+            border-color: #3b82f6;
+        }
+
+        .image-box.loaded {
+            border-color: #10b981;
+        }
+
+        .box-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #cbd5e1;
+        }
+
+        .box-content {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .image-box.loaded .box-content {
+            display: block;
+        }
+
+        .box-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .image-box:hover .box-overlay {
+            opacity: 1;
+        }
+
+        .box-btn {
+            padding: 8px 16px;
+            background: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.813rem;
+            cursor: pointer;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e2e8f0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Form */
+        .form-divider {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 32px;
+        }
+
+        /* Attached Images */
+        .attached-images {
+            display: none;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .attached-images.show {
+            display: flex;
+        }
+
+        .attached-image {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+
+        .attached-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-attachment {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .attach-btn-new {
+            padding: 12px 24px;
+            background: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.938rem;
+            cursor: pointer;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .attach-btn-new:hover {
+            border-color: #94a3b8;
+            background: #f8fafc;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.938rem;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.938rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-end;
+        }
+
+        .form-field {
+            flex: 1;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.938rem;
+            background: white;
+        }
+
+        .btn-generate {
+            padding: 12px 32px;
+            background: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-generate:disabled {
+            opacity: 0.5;
+        }
+
+        .cost-info {
+            padding: 12px 20px;
+            background: #fef3c7;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #92400e;
+            white-space: nowrap;
+        }
+
+        /* Results */
+        .results-section {
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .results-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .result-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .result-img {
+            aspect-ratio: 1;
+            background: #f8fafc;
+        }
+
+        .result-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .result-actions {
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+            background: #fafafa;
+        }
+
+        .result-btn {
+            flex: 1;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .result-btn-primary {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* Login Modal */
+        .login-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-modal-overlay.show {
+            display: flex;
+        }
+
+        .login-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 32px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .credit-info {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #92400e;
+            text-align: center;
+        }
+
+        .login-modal-text {
+            color: #64748b;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .google-login-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #ffffff;
+            color: #3c4043;
+            border: 2px solid #dadce0;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .skip-login-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-left: 4px solid #10b981;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 10000;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .page-title p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .attach-btn-new {
+                width: 100%;
+                order: -1;
+            }
+
+            .form-field {
+                width: 100%;
+            }
+
+            .btn-generate {
+                width: 100%;
+                order: 1;
+            }
+
+            .cost-info {
+                width: 100%;
+                text-align: center;
+                order: 2;
+            }
+
+            .attached-images {
+                gap: 8px;
+            }
+
+            .attached-image {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+
+        /* How It Works Section - Clean White Theme */
+.how-it-works {
+    margin: 80px 0 60px 0;
+    padding: 0;
+    background: transparent;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.section-header p {
+    font-size: 1.063rem;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f1f5f9 0%, #cbd5e1 50%, #f1f5f9 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover::before {
+    transform: scaleX(1);
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 24px;
+}
+
+.step-icon {
+    width: 100%;
+    height: 200px;
+    background: #f8fafc;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.step-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-icon img {
+    transform: scale(1.05);
+}
+
+.step-content {
+    position: relative;
+}
+
+.step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.step-description {
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+.step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 0.813rem;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+/* Responsive for How It Works */
+@media (max-width: 1024px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .step-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .how-it-works {
+        margin: 60px 0 40px 0;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+        font-size: 1.875rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .step-card {
+        padding: 32px 24px;
+    }
+
+    .step-card:last-child {
+        max-width: 100%;
+    }
+
+    .step-icon {
+        height: 180px;
+    }
+
+    .step-number {
+        width: 44px;
+        height: 44px;
+        font-size: 1.375rem;
+    }
+}
+
+/* How It Works Section - Clean White Theme */
+.how-it-works {
+    margin: 80px 0 60px 0;
+    padding: 0;
+    background: transparent;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.section-header p {
+    font-size: 1.063rem;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f1f5f9 0%, #cbd5e1 50%, #f1f5f9 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover::before {
+    transform: scaleX(1);
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 24px;
+}
+
+.step-icon {
+    width: 100%;
+    height: 200px;
+    background: #f8fafc;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.step-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-icon img {
+    transform: scale(1.05);
+}
+
+.step-content {
+    position: relative;
+}
+
+.step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.step-description {
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+.step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 0.813rem;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.step-badge svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Features Section */
+.features-section {
+    margin: 80px 0;
+    padding: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: #475569;
+}
+
+.feature-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+}
+
+.feature-description {
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Use Cases Section */
+.use-cases-section {
+    margin: 80px 0;
+    padding: 64px 0;
+    background: #f8fafc;
+    border-radius: 24px;
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.use-case-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.use-case-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.use-case-image {
+    width: 100%;
+    height: 220px;
+    background: #f1f5f9;
+    overflow: hidden;
+}
+
+.use-case-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.use-case-card:hover .use-case-image img {
+    transform: scale(1.05);
+}
+
+.use-case-content {
+    padding: 28px;
+}
+
+.use-case-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.use-case-description {
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.use-case-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.use-case-tag {
+    padding: 6px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.813rem;
+    font-weight: 500;
+    color: #475569;
+}
+
+/* Benefits Section */
+.benefits-section {
+    margin: 80px 0;
+}
+
+.benefits-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.benefits-image {
+    width: 100%;
+    height: 500px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.benefits-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.benefits-content {
+    padding: 0 24px;
+}
+
+.benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.benefit-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.benefit-icon {
+    width: 44px;
+    height: 44px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.benefit-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #475569;
+}
+
+.benefit-text h4 {
+    font-size: 1.063rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.benefit-text p {
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin: 80px 0;
+    padding: 64px 0;
+    background: white;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #cbd5e1;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 24px 28px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.063rem;
+    font-weight: 600;
+    color: #0f172a;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.faq-question:hover {
+    color: #334155;
+}
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.faq-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #64748b;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon svg {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer-content {
+    padding: 0 28px 24px 28px;
+    font-size: 0.938rem;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+/* CTA Section */
+.cta-section {
+    margin: 80px 0 60px 0;
+    padding: 64px 48px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.cta-section p {
+    font-size: 1.125rem;
+    color: #64748b;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #0f172a;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.063rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+}
+
+.cta-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .benefits-image {
+        height: 400px;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid,
+    .use-cases-grid,
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .step-card:last-child {
+        max-width: 100%;
+    }
+
+    .use-cases-section {
+        padding: 48px 0;
+        margin: 60px 0;
+    }
+
+    .benefits-section,
+    .features-section,
+    .faq-section,
+    .how-it-works {
+        margin: 60px 0;
+    }
+
+    .benefits-image {
+        height: 300px;
+    }
+
+    .benefits-content {
+        padding: 0;
+    }
+
+    .section-header h2 {
+        font-size: 1.875rem;
+    }
+
+    .cta-section {
+        padding: 48px 24px;
+        margin: 60px 0 40px 0;
+    }
+
+    .cta-section h2 {
+        font-size: 1.875rem;
+    }
+
+    .cta-section p {
+        font-size: 1rem;
+    }
+
+    .step-icon {
+        height: 180px;
+    }
+}
+
+
+
+/* History Section */
+.history-section {
+    margin: 32px 0 48px 0;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.history-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+.clear-history-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-history-btn:hover {
+    border-color: #cbd5e1;
+    color: #475569;
+    background: #f8fafc;
+}
+
+.history-container {
+    position: relative;
+}
+
+.history-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0 16px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.history-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.history-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.history-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.history-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.history-item {
+    flex: 0 0 auto;
+    width: 200px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.history-item:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.history-image {
+    width: 100%;
+    height: 200px;
+    background: #f8fafc;
+    overflow: hidden;
+    position: relative;
+}
+
+.history-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.history-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.history-item:hover .history-overlay {
+    opacity: 1;
+}
+
+.history-btn {
+    padding: 8px 12px;
+    background: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.813rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.history-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.history-btn:hover {
+    transform: scale(1.05);
+}
+
+.history-info {
+    padding: 12px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.history-prompt {
+    font-size: 0.813rem;
+    color: #475569;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.history-date {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.history-date svg {
+    width: 12px;
+    height: 12px;
+}
+
+.history-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border: 1px dashed #e2e8f0;
+    border-radius: 12px;
+}
+
+.history-empty svg {
+    width: 64px;
+    height: 64px;
+    stroke: #cbd5e1;
+    margin: 0 auto 16px;
+}
+
+.history-empty h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.history-empty p {
+    font-size: 0.938rem;
+    color: #64748b;
+}
+
+/* Hide history section by default */
+.history-section.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-item {
+        width: 180px;
+    }
+
+    .history-image {
+        height: 180px;
+    }
+
+    .history-title {
+        font-size: 1.125rem;
+    }
+
+    .clear-history-btn {
+        font-size: 0.813rem;
+        padding: 6px 12px;
+    }
+}
+
+.buy-credits-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+    margin-left: 12px;
+}
+
+.buy-credits-btn:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(245, 158, 11, 0.4);
+    text-decoration: none;
+    color: white;
+}
+
+.crown-icon {
+    font-size: 0.875rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Mobile responsiveness for credit counter */
+@media (max-width: 480px) {
+    .credit-display {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .buy-credits-btn {
+        margin-left: 0;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="header-wrapper">
+    <div class="header">
+        <div class="logo">
+            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2" alt="Logo">
+            <span class="logo-text">Nano Banana Bulk Image Generator</span>
+        </div>
+
+        <div class="header-right">
+            <div class="credit-counter" id="creditCounter">
+                <span>⚡</span>
+                <span id="creditCount">0</span>
+
+                <a href="/pricing" target="_blank" rel="noopener noreferrer" class="buy-credits-btn">
+                    <span class="crown-icon">👑</span>
+                    Buy Credits
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <!-- Header -->
+        
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Bulk Image Generator</h1>
+            <p>Generate 4 unique AI image variations from a single prompt</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <h2 class="card-title">Generate 4 Images</h2>
+            <p class="card-subtitle">Preview grid appears above the input</p>
+
+            <!-- IMAGE GRID ABOVE -->
+            <div class="image-grid">
+                <div class="image-box" id="box1">
+                    <span class="box-number">1</span>
+                    <div class="box-content" id="content1">
+                        <img src="" alt="Image 1">
+                    </div>
+                    <div class="box-overlay">
+                        <button class="box-btn" onclick="downloadImg(1)">Download</button>
+                        <button class="box-btn" onclick="regenerateImg(1)">Retry</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress1"></div>
+                    </div>
+                </div>
+
+                <div class="image-box" id="box2">
+                    <span class="box-number">2</span>
+                    <div class="box-content" id="content2">
+                        <img src="" alt="Image 2">
+                    </div>
+                    <div class="box-overlay">
+                        <button class="box-btn" onclick="downloadImg(2)">Download</button>
+                        <button class="box-btn" onclick="regenerateImg(2)">Retry</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress2"></div>
+                    </div>
+                </div>
+
+                <div class="image-box" id="box3">
+                    <span class="box-number">3</span>
+                    <div class="box-content" id="content3">
+                        <img src="" alt="Image 3">
+                    </div>
+                    <div class="box-overlay">
+                        <button class="box-btn" onclick="downloadImg(3)">Download</button>
+                        <button class="box-btn" onclick="regenerateImg(3)">Retry</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress3"></div>
+                    </div>
+                </div>
+
+                <div class="image-box" id="box4">
+                    <span class="box-number">4</span>
+                    <div class="box-content" id="content4">
+                        <img src="" alt="Image 4">
+                    </div>
+                    <div class="box-overlay">
+                        <button class="box-btn" onclick="downloadImg(4)">Download</button>
+                        <button class="box-btn" onclick="regenerateImg(4)">Retry</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM BELOW -->
+            <div class="form-divider">
+                <!-- Attached Images Preview -->
+                <div class="attached-images" id="attachedImages" style="display: none;"></div>
+
+                <div class="form-group">
+                    <label class="form-label">Describe your image</label>
+                    <textarea 
+                        class="form-textarea" 
+                        id="promptInput"
+                        placeholder="Example: A professional product photo of a modern smartwatch on marble surface with soft lighting"
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <button class="attach-btn-new" onclick="triggerFileUpload()">
+                        + Attach Image
+                    </button>
+
+                    <div class="form-field">
+                        <select class="form-select" id="styleSelect">
+                            <option value="">No style</option>
+                            <option value=", photorealistic, 8K">Photorealistic</option>
+                            <option value=", anime style">Anime</option>
+                            <option value=", 3D render">3D Render</option>
+                            <option value=", oil painting">Oil Painting</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-generate" id="generateBtn" onclick="generateBulk()">
+                        Generate 4 Images
+                    </button>
+
+                    <div class="cost-info">
+                        4 Credits
+                    </div>
+                </div>
+
+                <input 
+                    type="file" 
+                    id="fileInput" 
+                    accept="image/*" 
+                    multiple 
+                    onchange="handleFileUpload(this)"
+                    style="display: none;"
+                >
+            </div>
+        </div>
+
+                <section class="history-section hidden" id="historySection">
+            <div class="history-header">
+                <h2 class="history-title">Recent Generations</h2>
+                <button class="clear-history-btn" onclick="clearHistory()">
+                    Clear All
+                </button>
+            </div>
+
+            <div class="history-container">
+                <div class="history-scroll" id="historyScroll">
+                    <!-- History items will be added here dynamically -->
+                </div>
+
+                <!-- Empty state -->
+                <div class="history-empty" id="historyEmpty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <h3>No generations yet</h3>
+                    <p>Your generated images will appear here</p>
+                </div>
+            </div>
+        </section>
+
+        
+    <!-- How It Works Section -->
+      
+        <!-- Features Section -->
+       <!-- How It Works Section -->
+        <section class="how-it-works">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Generate stunning AI images in three simple steps</p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&h=400&fit=crop&q=80" alt="Write your prompt">
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Write Your Prompt</h3>
+                        <p class="step-description">
+                            Describe your vision in detail. Add reference images if needed. The more specific your description, the better your AI-generated results will be.
+                        </p>
+                        <span class="step-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                            </svg>
+                            <span>Text & Images</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <img src="https://images.unsplash.com/photo-1561998338-13ad7883b20f?w=600&h=400&fit=crop&q=80" alt="Choose your style">
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Choose Your Style</h3>
+                        <p class="step-description">
+                            Select from various artistic styles including realistic, anime, 3D render, oil painting, and more to perfectly match your creative vision.
+                        </p>
+                        <span class="step-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                            <span>Multiple Styles</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <img src="https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=600&h=400&fit=crop&q=80" alt="Generate and download">
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Generate & Download</h3>
+                        <p class="step-description">
+                            Receive 4 unique variations instantly. Download your favorites individually or all at once. Regenerate any image until it's perfect.
+                        </p>
+                        <span class="step-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            <span>4 Images Per Click</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2>Powerful Features for Bulk Image Generation</h2>
+                <p>Everything you need to create AI images at scale</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast Generation</h3>
+                    <p class="feature-description">Generate 4 unique image variations simultaneously. Save time with bulk processing powered by advanced AI technology.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <path d="M2 2l7.586 7.586"></path>
+                            <circle cx="11" cy="11" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Multiple Art Styles</h3>
+                    <p class="feature-description">Choose from realistic, anime, 3D render, oil painting, and more. Perfect style for every creative project.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Image-to-Image Support</h3>
+                    <p class="feature-description">Upload reference images to guide the AI. Create variations or transform existing visuals into new artworks.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">High Resolution Output</h3>
+                    <p class="feature-description">Download professional-quality images suitable for prints, social media, marketing, and commercial use.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Individual Regeneration</h3>
+                    <p class="feature-description">Not satisfied with one result? Regenerate individual images while keeping the others. Perfect until every image is exactly right.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Bulk Download</h3>
+                    <p class="feature-description">Download all 4 images at once or select individual favorites. Streamlined workflow for maximum productivity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="use-cases-section">
+            <div class="section-header">
+                <h2>Perfect for Every Creative Need</h2>
+                <p>See how Nano Banana bulk image generator transforms workflows</p>
+            </div>
+
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-image">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&h=400&fit=crop&q=80" alt="Marketing teams">
+                    </div>
+                    <div class="use-case-content">
+                        <h3 class="use-case-title">Marketing & Advertising</h3>
+                        <p class="use-case-description">Create multiple ad variations, social media posts, and campaign visuals in minutes. Test different concepts quickly and scale your creative output.</p>
+                        <div class="use-case-tags">
+                            <span class="use-case-tag">Social Media</span>
+                            <span class="use-case-tag">Ad Campaigns</span>
+                            <span class="use-case-tag">Content Marketing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-image">
+                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=700&h=400&fit=crop&q=80" alt="E-commerce">
+                    </div>
+                    <div class="use-case-content">
+                        <h3 class="use-case-title">E-commerce & Product Design</h3>
+                        <p class="use-case-description">Generate product mockups, lifestyle images, and multiple angle views. Perfect for dropshipping, online stores, and product visualization.</p>
+                        <div class="use-case-tags">
+                            <span class="use-case-tag">Product Photos</span>
+                            <span class="use-case-tag">Mockups</span>
+                            <span class="use-case-tag">Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-image">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&h=400&fit=crop&q=80" alt="Content creators">
+                    </div>
+                    <div class="use-case-content">
+                        <h3 class="use-case-title">Content Creators & Bloggers</h3>
+                        <p class="use-case-description">Create custom thumbnails, blog headers, and visual content that matches your brand. Generate multiple options to find the perfect fit.</p>
+                        <div class="use-case-tags">
+                            <span class="use-case-tag">Thumbnails</span>
+                            <span class="use-case-tag">Blog Images</span>
+                            <span class="use-case-tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-image">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=700&h=400&fit=crop&q=80" alt="Game developers">
+                    </div>
+                    <div class="use-case-content">
+                        <h3 class="use-case-title">Game Development & NFTs</h3>
+                        <p class="use-case-description">Generate character concepts, environment art, and asset variations. Ideal for indie developers, NFT projects, and creative prototyping.</p>
+                        <div class="use-case-tags">
+                            <span class="use-case-tag">Concept Art</span>
+                            <span class="use-case-tag">Characters</span>
+                            <span class="use-case-tag">Assets</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="benefits-container">
+                <div class="benefits-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80" alt="AI image generation benefits">
+                </div>
+                <div class="benefits-content">
+                    <h2 class="section-header" style="text-align: left; margin-bottom: 0;">Why Choose Nano Banana Bulk Generator?</h2>
+                    <p style="color: #64748b; font-size: 1.063rem; margin-bottom: 0;">The smartest way to generate multiple AI images efficiently</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Cost-Effective Bulk Processing</h4>
+                                <p>Generate 4 images for the price of one. Save up to 75% compared to individual image generation services.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Save Hours of Work</h4>
+                                <p>What used to take hours now takes minutes. Parallel processing means faster results without compromising quality.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>More Options, Better Results</h4>
+                                <p>Get 4 variations to choose from every time. Higher chances of finding the perfect image for your needs.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Secure & Private</h4>
+                                <p>Your prompts and images are private. We don't use your data to train AI models or share with third parties.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about Nano Banana bulk image generator</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is Nano Banana bulk image generator?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Nano Banana is an AI-powered bulk image generator that creates 4 unique image variations from a single prompt. It's designed for creators, marketers, and businesses who need multiple high-quality AI images quickly and efficiently.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How many images can I generate at once?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Each generation creates 4 unique image variations simultaneously. You can regenerate individual images if you're not satisfied with any particular result, while keeping the others you like.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What art styles are available?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer multiple styles including Realistic, Anime, 3D Render, Oil Painting, Watercolor, Digital Art, and more. Each style is optimized to produce high-quality results for different use cases.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I upload my own images as reference?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! You can upload reference images to guide the AI generation. This is perfect for creating variations of existing designs, transforming photos into different art styles, or maintaining consistency across multiple images.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What resolution are the generated images?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All images are generated in high resolution suitable for professional use, social media, prints, and commercial applications. The exact resolution depends on the selected model and settings.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I use the generated images commercially?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, you have full commercial rights to all images generated with Nano Banana. Use them for your business, marketing campaigns, products, or any other commercial purpose without restrictions.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does it take to generate images?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Generation typically takes 15-45 seconds for all 4 images. Processing time may vary depending on complexity, selected style, and current server load. All 4 images are generated in parallel for maximum efficiency.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Generate Stunning AI Images in Bulk?</h2>
+            <p>Join thousands of creators using Nano Banana to accelerate their creative workflow. Start generating 4 images at a time today.</p>
+            <button class="cta-button" onclick="document.getElementById('promptInput').scrollIntoView({behavior: 'smooth'})">
+                <span>Start Generating Now</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </section>
+
+    </div>
+
+    <!-- History Section -->
+
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal-overlay">
+        <div class="login-modal-content">
+            <div class="login-modal-title">Continue Creating</div>
+            <div class="credit-info">
+                ✨ Login to continue!
+            </div>
+            <div class="login-modal-text">
+                Sign in with Google to get unlimited image generations and access premium features.
+            </div>
+            <button class="google-login-btn" onclick="loginWithGoogle()" id="loginbuttonid1">
+                <svg class="google-logo" viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Continue with Google
+            </button>
+            <button class="skip-login-btn" onclick="closeLoginModal()">Maybe Later</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+
+    <script>
+        let images = {};
+        let attachedImages = [];
+
+        // Init
+        window.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            fetchAndDisplayCredits();
+        }
+
+        // File upload trigger
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        // Handle file upload - YOUR IMPLEMENTATION
+        function handleFileUpload(input) {
+            const files = Array.from(input.files);
+            const creditCount = document.getElementById('creditCount');
+            const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
+            const authToken = localStorage.getItem('authToken');
+            
+            // Check credit restriction
+            if (authToken && credits < 3) {
+                if (attachedImages.length >= 1) {
+                    showToast('With less than 3 credits, you can only attach 1 image at a time');
+                    input.value = '';
+                    return;
+                }
+                
+                if (files.length > 1) {
+                    showToast('With less than 3 credits, you can only attach 1 image at a time');
+                    input.value = '';
+                    return;
+                }
+            }
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    if (authToken && credits < 3 && attachedImages.length >= 1) {
+                        showToast('With less than 3 credits, you can only attach 1 image at a time');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        attachedImages.push({
+                            name: file.name,
+                            data: e.target.result
+                        });
+                        updateAttachedImages();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            input.value = '';
+        }
+
+        function updateAttachedImages() {
+            const container = document.getElementById('attachedImages');
+            
+            if (attachedImages.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'flex';
+            container.className = 'attached-images show';
+            
+            let html = attachedImages.map((img, index) => `
+                <div class="attached-image">
+                    <img src="${img.data}" alt="${img.name}">
+                    <button class="remove-attachment" onclick="removeAttachedImage(${index})">×</button>
+                </div>
+            `).join('');
+            
+            container.innerHTML = html;
+        }
+
+        function removeAttachedImage(index) {
+            attachedImages.splice(index, 1);
+            updateAttachedImages();
+        }
+
+        // Fetch credits - YOUR ACTUAL API
+        async function fetchAndDisplayCredits() {
+            const authToken = localStorage.getItem('authToken');
+            
+            if (!authToken || authToken.trim() === '') {
+                return;
+            }
+            
+            const creditCounter = document.getElementById('creditCounter');
+            const creditCount = document.getElementById('creditCount');
+            
+            creditCounter.classList.add('show');
+            
+            try {
+                const response = await fetch('https://chatezzy.com/api/get-nano-credits', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `authToken=${encodeURIComponent(authToken)}`
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.creditcount && data.creditcount > 0) {
+                        creditCount.textContent = data.creditcount;
+                    } else {
+                        creditCounter.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching credits:', error);
+                creditCounter.style.display = 'none';
+            }
+        }
+
+        // Generate bulk - YOUR ACTUAL API
+        async function generateBulk() {
+            const authToken = localStorage.getItem('authToken');
+            
+            if (!authToken || authToken.trim() === '') {
+                showLoginModal();
+                return;
+            }
+
+            const prompt = document.getElementById('promptInput').value.trim();
+            if (!prompt) {
+                showToast('Please enter a prompt');
+                return;
+            }
+
+            const style = document.getElementById('styleSelect').value;
+            const fullPrompt = prompt + style;
+
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+
+            // Reset boxes
+            for (let i = 1; i <= 4; i++) {
+                const box = document.getElementById(`box${i}`);
+                box.classList.remove('loaded');
+                box.classList.add('loading');
+                box.querySelector('.box-number').innerHTML = '<div class="loader"></div>';
+            }
+
+            try {
+                const promises = [];
+                for (let i = 1; i <= 4; i++) {
+                    promises.push(generateSingle(i, fullPrompt, authToken));
+                }
+
+                await Promise.all(promises);
+                showToast('All 4 images generated!');
+                fetchAndDisplayCredits();
+            } catch (error) {
+                showToast('Generation failed');
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Generate 4 Images';
+            }
+        }
+
+        // Generate single - YOUR ACTUAL API with attached images
+        async function generateSingle(index, prompt, authToken) {
+            const progress = document.getElementById(`progress${index}`);
+            const box = document.getElementById(`box${index}`);
+            const content = document.getElementById(`content${index}`);
+            const img = content.querySelector('img');
+
+            // Progress simulation
+            let p = 0;
+            const interval = setInterval(() => {
+                p += Math.random() * 10;
+                if (p > 90) p = 90;
+                progress.style.width = p + '%';
+            }, 500);
+
+            try {
+                const formData = new FormData();
+                formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
+                formData.append('message', prompt);
+                formData.append('authToken', authToken);
+                formData.append('does_chat_have_name', 'false');
+                formData.append('models', 'ChatGpt');
+                formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
+                formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+
+                // Add attached images to FormData
+                for (let i = 0; i < attachedImages.length; i++) {
+                    const imgData = attachedImages[i];
+                    const response = await fetch(imgData.data);
+                    const blob = await response.blob();
+                    formData.append(`file_${i}`, blob, imgData.name);
+                    formData.append(`file_${i}_type`, 'image');
+                    formData.append(`file_${i}_name`, imgData.name);
+                }
+
+                const response = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': '*/*',
+                        'Cache-Control': 'no-cache',
+                        'Origin': 'https://chatezzy.com'
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                clearInterval(interval);
+                progress.style.width = '100%';
+
+                let imageUrl = null;
+                if (data && data.image_url) {
+                    imageUrl = data.image_url;
+                } else if (data && data.data && data.data.image_url) {
+                    imageUrl = data.data.image_url;
+                }
+
+                if (!imageUrl) {
+                    throw new Error('No image URL in response');
+                }
+
+                img.src = imageUrl;
+                images[index] = imageUrl;
+
+                // Save first image to history (avoid duplicates)
+                if (index === 1) {
+                    const prompt = document.getElementById('promptInput').value.trim();
+                    saveToHistory(imageUrl, prompt);
+                }
+
+                box.classList.remove('loading');
+                box.classList.add('loaded');
+                box.querySelector('.box-number').textContent = index;
+
+                setTimeout(() => progress.style.width = '0%', 500);
+
+            } catch (error) {
+                clearInterval(interval);
+                throw error;
+            }
+        }
+
+        async function downloadImg(index) {
+            const url = images[index];
+            if (!url) return;
+
+            try {
+                const res = await fetch(url);
+                const blob = await res.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `nano-banana-${Date.now()}-${index}.png`;
+                link.click();
+                showToast(`Image ${index} downloaded`);
+            } catch (e) {
+                showToast('Download failed');
+            }
+        }
+
+        async function downloadAll() {
+            for (let i = 1; i <= 4; i++) {
+                if (images[i]) {
+                    await downloadImg(i);
+                    await new Promise(r => setTimeout(r, 500));
+                }
+            }
+        }
+
+        async function regenerateImg(index) {
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                showLoginModal();
+                return;
+            }
+
+            const prompt = document.getElementById('promptInput').value.trim();
+            const style = document.getElementById('styleSelect').value;
+            const fullPrompt = prompt + style;
+
+            const box = document.getElementById(`box${index}`);
+            box.classList.remove('loaded');
+            box.classList.add('loading');
+            box.querySelector('.box-number').innerHTML = '<div class="loader"></div>';
+
+            await generateSingle(index, fullPrompt, authToken);
+            showToast(`Image ${index} regenerated`);
+            fetchAndDisplayCredits();
+        }
+
+        // Login modal - YOUR ACTUAL IMPLEMENTATION
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        async function loginWithGoogle() {
+            const button = document.getElementById('loginbuttonid1');
+            button.disabled = true;
+
+            let refer_code = localStorage.getItem('refer_code');
+
+            try {
+                const url = refer_code ? `/logggin/v2?refer_code=${encodeURIComponent(refer_code)}` : '/logggin/v2';
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.redirect_uri) {
+                    const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
+
+                    if (!popup || popup.closed) {
+                        localStorage.setItem('pre_auth_url', window.location.href);
+                        window.location.href = data.redirect_uri;
+                        return;
+                    }
+
+                    const checkPopup = setInterval(() => {
+                        try {
+                            if (popup.closed) {
+                                clearInterval(checkPopup);
+                                return;
+                            }
+
+                            const popupUrl = popup.location.href;
+                            if (popupUrl.includes('/oauth-success')) {
+                                const urlParams = new URLSearchParams(popup.location.search);
+                                const token = urlParams.get('token');
+                                const userId = urlParams.get('id');
+                                
+                                if (token) {
+                                    localStorage.setItem('authToken', token);
+                                    localStorage.setItem('user_id', userId);
+                                    popup.close();
+                                    clearInterval(checkPopup);
+                                    location.reload();
+                                }
+                            }
+                        } catch (e) {}
+                    }, 1000);
+                }
+            } catch (error) {
+                location.reload();
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // FAQ Toggle Function
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+
+        // History management
+        let imageHistory = [];
+        const MAX_HISTORY = 12;
+
+        // Load history from localStorage on init
+        function loadHistory() {
+            const saved = localStorage.getItem('imageHistory');
+            if (saved) {
+                imageHistory = JSON.parse(saved);
+                renderHistory();
+            }
+        }
+
+        // Save to history after generation
+        function saveToHistory(imageUrl, prompt) {
+            const historyItem = {
+                id: Date.now(),
+                url: imageUrl,
+                prompt: prompt,
+                date: new Date().toISOString()
+            };
+
+            // Add to beginning of array
+            imageHistory.unshift(historyItem);
+
+            // Keep only last 12 items
+            if (imageHistory.length > MAX_HISTORY) {
+                imageHistory = imageHistory.slice(0, MAX_HISTORY);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('imageHistory', JSON.stringify(imageHistory));
+            renderHistory();
+        }
+
+        // Render history items
+        function renderHistory() {
+            const historyScroll = document.getElementById('historyScroll');
+            const historyEmpty = document.getElementById('historyEmpty');
+            const historySection = document.getElementById('historySection');
+
+            if (imageHistory.length === 0) {
+                historyEmpty.style.display = 'block';
+                historyScroll.innerHTML = '';
+                historySection.classList.add('hidden');
+                return;
+            }
+
+            historySection.classList.remove('hidden');
+            historyEmpty.style.display = 'none';
+
+            historyScroll.innerHTML = imageHistory.map(item => {
+                const date = new Date(item.date);
+                const formattedDate = formatRelativeTime(date);
+
+                return `
+                    <div class="history-item">
+                        <div class="history-image">
+                            <img src="${item.url}" alt="Generated image">
+                            <div class="history-overlay">
+                                <button class="history-btn" onclick="downloadHistoryImage('${item.url}', ${item.id})">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                </button>
+                                <button class="history-btn" onclick="deleteHistoryItem(${item.id})">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="history-info">
+                            <div class="history-prompt">${item.prompt}</div>
+                            <div class="history-date">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                ${formattedDate}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Format relative time
+        function formatRelativeTime(date) {
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+
+            if (minutes < 1) return 'Just now';
+            if (minutes < 60) return `${minutes}m ago`;
+            if (hours < 24) return `${hours}h ago`;
+            if (days < 7) return `${days}d ago`;
+            return date.toLocaleDateString();
+        }
+
+        // Download history image
+        async function downloadHistoryImage(url, id) {
+            try {
+                const res = await fetch(url);
+                const blob = await res.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `nano-banana-${id}.png`;
+                link.click();
+                showToast('Image downloaded');
+            } catch (e) {
+                showToast('Download failed');
+            }
+        }
+
+        // Delete history item
+        function deleteHistoryItem(id) {
+            imageHistory = imageHistory.filter(item => item.id !== id);
+            localStorage.setItem('imageHistory', JSON.stringify(imageHistory));
+            renderHistory();
+            showToast('Image removed from history');
+        }
+
+        // Clear all history
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all history?')) {
+                imageHistory = [];
+                localStorage.removeItem('imageHistory');
+                renderHistory();
+                showToast('History cleared');
+            }
+        }
+
+        // Update the init function to load history
+        function init() {
+            fetchAndDisplayCredits();
+            loadHistory(); // Add this line
+        }
+    </script>
+</body>
+</html>

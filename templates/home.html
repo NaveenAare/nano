@@ -1223,28 +1223,38 @@
 .site-header {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     color: #1e293b;
-    padding: 16px 0;
+    padding: 0;
     margin-bottom: 24px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid #e2e8f0;
+    /* REMOVE THESE TWO LINES: */
+    position: sticky;
+    z-index: 100;
 }
 
 .site-header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
+    height: 70px;
 }
 
 .site-logo {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    gap: 12px;
+    font-size: 1.25rem;
     font-weight: 700;
     text-decoration: none;
     color: #1e293b;
+}
+
+.site-logo .loogo {
+    width: 36px;
+    height: 36px;
 }
 
 .site-logo:hover {
@@ -1253,15 +1263,282 @@
 
 .site-nav {
     display: flex;
-    gap: 32px;
+    gap: 8px;
     align-items: center;
 }
 
-.site-nav a {
+.site-nav > a {
     color: #64748b;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
+    font-size: 0.938rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.site-nav > a:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+/* Tools Dropdown */
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 0.938rem;
+    font-weight: 500;
+    color: #64748b;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.nav-link:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+.nav-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    stroke: currentColor;
+}
+
+.nav-item.active .nav-link {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+.nav-item.active .nav-link svg {
+    transform: rotate(180deg);
+}
+
+/* Mega Dropdown */
+.mega-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    padding: 28px;
+}
+
+.nav-item.active .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    top: calc(100% + 8px);
+}
+
+.dropdown-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.dropdown-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+}
+
+.dropdown-subtitle {
+    font-size: 0.938rem;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.features-grid-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+}
+
+.feature-item:hover {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    transform: translateX(4px);
+}
+
+.feature-icon-box {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-icon-box svg {
+    width: 22px;
+    height: 22px;
+    stroke: #475569;
+}
+
+.feature-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.feature-name {
+    font-size: 0.938rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.feature-desc {
+    font-size: 0.813rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.feature-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 0.688rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.feature-badge.hot {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.feature-badge.new {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #16a34a;
+}
+
+.feature-badge.premium {
+    background: #faf5ff;
+    border-color: #e9d5ff;
+    color: #9333ea;
+}
+
+/* Language Selector */
+.language-selector {
+    position: relative;
+}
+
+.language-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.language-btn:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+/* Profile */
+.user-profile {
+    position: relative;
+}
+
+.profile-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #e2e8f0;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-btn:hover {
+    border-color: #cbd5e1;
+    transform: scale(1.05);
+}
+
+.profile-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .mega-dropdown {
+        width: 550px;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header .container {
+        height: auto;
+        padding: 12px 16px;
+    }
+    
+    .site-nav {
+        display: none;
+    }
+    
+    .site-logo {
+        font-size: 1.125rem;
+    }
+    
+    .site-logo .loogo {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 .site-nav a:hover {
@@ -6216,6 +6493,279 @@
     }
 }
 
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 0.938rem;
+    font-weight: 500;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+.nav-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.active .nav-link svg {
+    transform: rotate(180deg);
+}
+
+/* Mega Dropdown */
+.mega-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    padding: 24px;
+}
+
+.nav-item.active .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.dropdown-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.dropdown-subtitle {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.features-grid-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.feature-item:hover {
+    background: #f8fafc;
+    transform: translateX(4px);
+}
+
+.feature-icon-box {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-icon-box svg {
+    width: 20px;
+    height: 20px;
+    stroke: #475569;
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-name {
+    font-size: 0.938rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.feature-desc {
+    font-size: 0.813rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.feature-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 0.688rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.feature-badge.hot {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.feature-badge.new {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #16a34a;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .mega-dropdown {
+        width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .mega-dropdown {
+        width: calc(100vw - 32px);
+        left: 16px;
+        transform: none;
+    }
+    
+    .features-grid-dropdown {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header .container {
+        height: auto;
+        padding: 12px 16px;
+    }
+    
+    .site-nav {
+        display: flex; /* CHANGED: Keep it visible */
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        margin-top: 12px;
+    }
+    
+    .site-nav > a,
+    .nav-item {
+        font-size: 0.875rem;
+        padding: 6px 12px;
+    }
+    
+    .site-logo {
+        font-size: 1.125rem;
+    }
+    
+    .site-logo .loogo {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .mega-dropdown {
+        width: calc(100vw - 32px);
+        left: 16px;
+        right: 16px;
+        transform: none;
+    }
+    
+    .features-grid-dropdown {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-profile,
+    .language-selector {
+        order: 999;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header .container {
+        height: auto;
+        padding: 12px 16px;
+    }
+    
+    .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .site-nav > a {
+        font-size: 0.875rem;
+        padding: 6px 12px;
+    }
+    
+    .site-logo {
+        font-size: 1.125rem;
+    }
+    
+    .site-logo .loogo {
+        width: 32px;
+        height: 32px;
+    }
+    
+    /* Simple dropdown fix for mobile */
+    .mega-dropdown {
+        left: 8px;
+        right: 8px;
+        width: 70vw;
+        transform: translateX(0);
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .features-grid-dropdown {
+        grid-template-columns: 1fr;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -6522,48 +7072,144 @@
     <!-- Site Header -->
 <header class="site-header">
     <div class="container">
-        <a href="#" class="site-logo">
-           <img class="loogo" src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
-
+        <a href="/" class="site-logo">
+            <img class="loogo" src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2" alt="Nano Banana">
             Nano Banana
         </a>
         
         <nav class="site-nav">
-<!--             <a href="/remove-background">Features</a>
- -->            
+            <!-- Tools Dropdown -->
+            <div class="nav-item" id="toolsNav">
+                <button class="nav-link" onclick="toggleToolsDropdown(event)">
+				    <span>Features 🔥</span>  <!-- CHANGE THIS TEXT -->
+				    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				        <polyline points="6 9 12 15 18 9"></polyline>
+				    </svg>
+				</button>
 
+                <div class="mega-dropdown">
+                    <div class="dropdown-header">
+                        <h3 class="dropdown-title">Powerful AI Features</h3>
+                        <p class="dropdown-subtitle">Everything you need to create stunning AI images</p>
+                    </div>
 
+                    <div class="features-grid-dropdown">
+                        <a target="_blank" href="/bulk-image-generator" class="feature-item">
+                            <div class="feature-icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <div class="feature-name">Bulk Generator</div>
+                                <div class="feature-desc">Generate 4 unique images simultaneously</div>
+                                <span class="feature-badge hot">🔥 Most Popular</span>
+                            </div>
+                        </a>
 
- <a href="/remove-background" target="_blank">Background Remover</a>
-                <a href="https://chatezzy.com" target="_blank">All in one AI ⚡</a>
-                <a href="/pricing" target="_blank">Pricing</a>
+                        <a target="_blank" href="/remove-background" class="feature-item">
+                            <div class="feature-icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <div class="feature-name">Back Ground Remover</div>
+                                <div class="feature-desc">Remove background with one click</div>
+                                <span class="feature-badge">✨ AI Powered</span>
+                            </div>
+                        </a>
 
-	            <a id="bugReportBtn" >Report Bug</a>
+                        <a target="_blank" href="https://chatezzy.com" class="feature-item">
+						    <div class="feature-icon-box">
+						        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+						            <path d="M2 17l10 5 10-5"></path>
+						            <path d="M2 12l10 5 10-5"></path>
+						        </svg>
+						    </div>
+						    <div class="feature-content">
+						        <div class="feature-name">All in one AI</div>
+						        <div class="feature-desc">Complete AI toolkit for all your needs</div>
+						        <span class="feature-badge new">⚡ Popular</span>
+						    </div>
+						</a>
 
-            <!-- <button id="bugReportBtnnn" onclick="window.open('/virtual-trial-room', '_blank')" class="bug-report-trigger">
-			  <span class="btn-icon">✨</span>
-			  <span>Virtual Trial Room</span>
-			</button>
- -->
+                        <a target="_blank" href="/sora" class="feature-item">
+						    <div class="feature-icon-box">
+						        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+						            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+						        </svg>
+						    </div>
+						    <div class="feature-content">
+						        <div class="feature-name">Sora Video Generator</div>
+						        <div class="feature-desc">Create AI videos from text prompts</div>
+						        <span class="feature-badge new">✨ New Feature</span>
+						    </div>
+						</a>
 
-             <div class="language-selector">
-        <button class="language-btn" onclick="toggleLanguageDropdown()">
-            <span class="language-flag" id="currentFlag">🇬🇧</span>
-            <span id="currentLang">EN</span>
-            <span style="font-size: 10px;">▼</span>
-        </button>
-        <div class="language-dropdown" id="languageDropdown">
-            <div class="language-option active" data-lang="en" data-flag="🇬🇧" onclick="changeLanguage('en', '🇬🇧')">
-                <span class="language-flag">🇬🇧</span>
-                <span>English</span>
+                        <a target="_blank" href="/virtual-trial-room" class="feature-item">
+						    <div class="feature-icon-box">
+						        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+						            <circle cx="12" cy="7" r="4"></circle>
+						            <path d="M5.5 11L7 15l2-1"></path>
+						            <path d="M18.5 11L17 15l-2-1"></path>
+						        </svg>
+						    </div>
+						    <div class="feature-content">
+						        <div class="feature-name">AI Virtual Trial Room</div>
+						        <div class="feature-desc">Try on clothes virtually with AI</div>
+						        <span class="feature-badge premium">✨ Premium</span>
+						    </div>
+						</a>
+<!-- 
+                        <a target="_blank" href="#" class="feature-item">
+                            <div class="feature-icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <div class="feature-name">Batch Download</div>
+                                <div class="feature-desc">Save all images with one click</div>
+                                <span class="feature-badge">⚡ Fast</span>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
             </div>
-            <div class="language-option" data-lang="ru" data-flag="🇷🇺" onclick="changeLanguage('ru', '🇷🇺')">
-                <span class="language-flag">🇷🇺</span>
-                <span>Русский</span>
-            </div>
-        </div>
-    </div>
 
+           
+<!--             <a href="https://chatezzy.com" target="_blank">All in one AI ⚡</a>
+ -->            <a href="/pricing" target="_blank">Pricing</a>
+            <a id="bugReportBtn">Report Bug</a>
+
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <button class="language-btn" onclick="toggleLanguageDropdown()">
+                    <span class="language-flag" id="currentFlag">🇬🇧</span>
+                    <span id="currentLang">EN</span>
+                    <span style="font-size: 10px;">▼</span>
+                </button>
+                <div class="language-dropdown" id="languageDropdown">
+                    <div class="language-option active" data-lang="en" data-flag="🇬🇧" onclick="changeLanguage('en', '🇬🇧')">
+                        <span class="language-flag">🇬🇧</span>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" data-lang="ru" data-flag="🇷🇺" onclick="changeLanguage('ru', '🇷🇺')">
+                        <span class="language-flag">🇷🇺</span>
+                        <span>Русский</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile -->
             <div class="user-profile">
                 <div class="profile-btn" onclick="toggleProfileMenu()">
                     <img src="https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png" alt="Profile" id="headerProfileImg">
@@ -6581,38 +7227,13 @@
                         </div>
                     </div>
                     <div class="profile-menu-items">
-                        <!-- <a href="/profile" class="menu-item">
-                            <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                            Profile Settings
-                        </a>
-                        <a href="#" class="menu-item mobile-theme-toggle" onclick="toggleTheme(); event.preventDefault();">
-                            <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                            </svg>
-                            <span id="mobileThemeText">Dark Mode</span>
-                        </a> -->
-                        <!-- <a href="#" class="menu-item">
-                            <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
-                            Chat History
-                        </a>
-                        <a href="#" class="menu-item">
-                            <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            Preferences
-                        </a> -->
                         <a href="https://googlenanobanana.com/pricing" target="_blank" class="menu-item" id="premiumMenuItem">
                             <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                             </svg>
                             Pricing
                         </a>
-                        <a href="https://googlenanobanana.com/support"  target="_blank" class="menu-item" target="_blank" rel="noopener noreferrer">
+                        <a href="https://googlenanobanana.com/support" target="_blank" class="menu-item" rel="noopener noreferrer">
                             <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -6625,11 +7246,9 @@
                             </svg>
                             <span id="auth-button-text">Sign Out</span>
                         </button>
-
+                    </div>
                 </div>
             </div>
-
-</div>
         </nav>
     </div>
 </header>
@@ -9947,6 +10566,29 @@ document.addEventListener('keydown', function(e) {
         if (overlay && overlay.classList.contains('show')) {
             closeStylesModal();
         }
+    }
+});
+
+// Tools dropdown toggle
+function toggleToolsDropdown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const navItem = document.getElementById('toolsNav');
+    navItem.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const toolsNav = document.getElementById('toolsNav');
+    if (toolsNav && !toolsNav.contains(event.target)) {
+        toolsNav.classList.remove('active');
+    }
+});
+
+// Close dropdown on escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        document.getElementById('toolsNav').classList.remove('active');
     }
 });
 

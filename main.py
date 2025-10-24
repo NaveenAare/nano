@@ -377,6 +377,10 @@ async def blog():
 async def sora():
     return FileResponse("templates/sora.html")
 
+@app.get("/bulk-image-generator")
+async def bulk():
+    return FileResponse("templates/bulk_image_generator.html")
+
 @app.get("/support")
 async def support():
     return FileResponse("templates/support.html")
