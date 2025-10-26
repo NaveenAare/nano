@@ -354,8 +354,8 @@ async def home():
 
 @app.get("/redirecthandler")
 @app.post("/redirecthandler")
-async def home():
-    return FileResponse("templates/redirecthandler.html")
+async def redirecthandler():
+    return FileResponse("templates/redire.html")
 
 @app.get("/aaaaaaaaaaaaaaa")
 async def home():
