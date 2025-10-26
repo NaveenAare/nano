@@ -554,6 +554,11 @@
             return true;
         }
 
+        function getSourceFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("sourcee");
+        }
+
         function showPopup(type, title, message) {
             const overlay = document.getElementById('popupOverlay');
             const icon = document.getElementById('popupIcon');
@@ -586,6 +591,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get("token");
         }
+
+
 
 
         async function proceedToPayment() {
@@ -636,6 +643,11 @@
         if (!data.order_id || !data.razorpay_key_id) {
             throw new Error('Failed to get order details');
         }
+
+        const source = getSourceFromUrl();
+        const callbackUrl = source === 'onano' 
+            ? 'https://googlenanobanana.com/redirecthandler' 
+            : 'https://googlenanobanana.com';
         
         // Open Razorpay Checkout
         const options = {

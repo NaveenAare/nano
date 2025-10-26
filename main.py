@@ -352,6 +352,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def home():
     return FileResponse("templates/home.html")
 
+@app.get("/")
+@app.post("/")
+async def home():
+    return FileResponse("templates/redirecthandler.html")
 
 @app.get("/aaaaaaaaaaaaaaa")
 async def home():
