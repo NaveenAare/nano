@@ -12,7 +12,7 @@
   gtag('config', 'G-XQ345FT3ZE');
 </script>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nano Banana | AI Image Generation & Professional AI Art Creator</title>
@@ -8481,6 +8481,16 @@
     
     .pro-empty-text {
         font-size: 0.75rem;
+    }
+}
+
+/* Prevent mobile auto-zoom on input focus */
+@media (max-width: 768px) {
+    .pro-prompt-input,
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 16px !important; /* Mobile browsers don't auto-zoom if font is 16px+ */
     }
 }
     </style>
