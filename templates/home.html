@@ -8339,6 +8339,150 @@
         font-size: 0.688rem;
     }
 }
+
+/* Mobile - Hide download button */
+@media (max-width: 768px) {
+    .download-btn,
+    #download-btn-container {
+        display: none !important;
+    }
+    
+    /* Adjust output content without download button */
+    .pro-output-content {
+        gap: 0;
+    }
+}
+
+/* Mobile - Decrease all font sizes for clarity */
+@media (max-width: 768px) {
+    /* Hide download button */
+    .download-btn,
+    #download-btn-container {
+        display: none !important;
+    }
+    
+    /* Adjust output content without download button */
+    .pro-output-content {
+        gap: 0;
+    }
+    
+    /* Generator header - if visible */
+    .pro-generator-title {
+        font-size: 1.25rem;
+    }
+    
+    .pro-generator-subtitle {
+        font-size: 0.813rem;
+    }
+    
+    /* Labels */
+    .pro-label {
+        font-size: 0.75rem;
+    }
+    
+    .pro-label svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Prompt textarea */
+    .pro-prompt-input {
+        font-size: 0.813rem;
+        line-height: 1.5;
+    }
+    
+    /* Character count */
+    .char-count {
+        font-size: 0.688rem;
+    }
+    
+    /* Action buttons */
+    .pro-action-btn {
+        font-size: 0.75rem;
+    }
+    
+    .pro-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Generate button */
+    .pro-generate-btn {
+        font-size: 0.875rem;
+        padding: 14px;
+    }
+    
+    .pro-generate-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Editing mode banner */
+    .editing-mode-text {
+        font-size: 0.75rem;
+    }
+    
+    .clear-mode-btn {
+        font-size: 0.688rem;
+    }
+    
+    /* Empty state */
+    .pro-empty-title {
+        font-size: 1rem;
+    }
+    
+    .pro-empty-text {
+        font-size: 0.813rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even smaller for very small screens */
+    .pro-generator-title {
+        font-size: 1.125rem;
+    }
+    
+    .pro-generator-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .pro-label {
+        font-size: 0.688rem;
+    }
+    
+    .pro-prompt-input {
+        font-size: 0.75rem;
+    }
+    
+    .char-count {
+        font-size: 0.625rem;
+    }
+    
+    .pro-action-btn {
+        font-size: 0.688rem;
+    }
+    
+    .pro-generate-btn {
+        font-size: 0.813rem;
+        padding: 12px;
+    }
+    
+    .editing-mode-text {
+        font-size: 0.688rem;
+    }
+    
+    .clear-mode-btn {
+        font-size: 0.625rem;
+    }
+    
+    .pro-empty-title {
+        font-size: 0.938rem;
+    }
+    
+    .pro-empty-text {
+        font-size: 0.75rem;
+    }
+}
     </style>
 </head>
 <body>
