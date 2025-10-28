@@ -6766,6 +6766,413 @@
     }
 }
 
+/* Professional Showcase Section */
+.pro-showcase-section {
+    padding: 80px 0;
+}
+
+.pro-showcase-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+.pro-showcase-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.pro-showcase-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.pro-showcase-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Use Cases */
+.pro-use-cases {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.pro-case {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.pro-case-left {
+    grid-template-columns: 1fr 1fr;
+}
+
+.pro-case-right {
+    grid-template-columns: 1fr 1fr;
+}
+
+.pro-case-right .pro-case-content {
+    order: 1;
+}
+
+.pro-case-right .pro-case-visual {
+    order: 2;
+}
+
+/* Visual Containers */
+.pro-case-visual {
+    position: relative;
+}
+
+/* Split Container (Before/After) */
+.pro-split-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pro-image-side {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pro-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pro-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pro-tag-before {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+}
+
+.pro-tag-after {
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+}
+
+.pro-divider-vertical {
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.pro-divider-vertical svg {
+    width: 16px;
+    height: 16px;
+    color: #6366f1;
+}
+
+/* Single Container */
+.pro-single-container {
+    background: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pro-single-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Stacked Container */
+.pro-stacked-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pro-stacked-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Content */
+.pro-case-content {
+    padding: 20px 0;
+}
+
+.pro-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #eff6ff;
+    color: #1e40af;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.pro-case-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.pro-case-text {
+    font-size: 0.938rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.pro-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pro-features-list li {
+    font-size: 0.875rem;
+    color: #64748b;
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.pro-features-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #22c55e;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .pro-case {
+        gap: 40px;
+    }
+    
+    .pro-use-cases {
+        gap: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pro-showcase-section {
+        padding: 60px 0;
+    }
+    
+    .pro-showcase-header {
+        margin-bottom: 60px;
+    }
+    
+    .pro-showcase-title {
+        font-size: 1.875rem;
+    }
+    
+    .pro-showcase-subtitle {
+        font-size: 0.938rem;
+    }
+    
+    .pro-case {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .pro-case-right .pro-case-content {
+        order: 1;
+    }
+    
+    .pro-case-right .pro-case-visual {
+        order: 2;
+    }
+    
+    .pro-use-cases {
+        gap: 60px;
+    }
+    
+    .pro-case-title {
+        font-size: 1.25rem;
+    }
+    
+    .pro-case-text {
+        font-size: 0.875rem;
+    }
+    
+    .pro-features-list li {
+        font-size: 0.813rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pro-split-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .pro-divider-vertical {
+        transform: rotate(90deg);
+    }
+    
+    .pro-single-container,
+    .pro-stacked-container {
+        padding: 12px;
+    }
+}
+
+/* Add/Update these rules in your existing CSS */
+
+/* Fix image sizes for split containers */
+.pro-split-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    max-height: 380px; /* ADD THIS */
+}
+
+.pro-image-side {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 350px; /* ADD THIS */
+}
+
+.pro-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Fix single container size */
+.pro-single-container {
+    background: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    max-height: 380px; /* ADD THIS */
+    display: flex; /* ADD THIS */
+    align-items: center; /* ADD THIS */
+    justify-content: center; /* ADD THIS */
+}
+
+.pro-single-container img {
+    width: 100%;
+    max-height: 330px; /* ADD THIS */
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    object-fit: contain; /* CHANGE from cover to contain */
+}
+
+/* Fix stacked container size */
+.pro-stacked-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    max-height: 380px; /* ADD THIS */
+}
+
+.pro-stacked-container img {
+    width: 100%;
+    height: 180px; /* ADD THIS - split the height for 2 images */
+    border-radius: 12px;
+    display: block;
+    object-fit: cover; /* ADD THIS */
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .pro-split-container {
+        max-height: none; /* REMOVE height constraint on mobile */
+    }
+    
+    .pro-image-side {
+        height: 250px; /* REDUCE height on mobile */
+    }
+    
+    .pro-single-container {
+        max-height: none; /* REMOVE height constraint on mobile */
+    }
+    
+    .pro-single-container img {
+        max-height: 280px; /* REDUCE on mobile */
+    }
+    
+    .pro-stacked-container {
+        max-height: none; /* REMOVE height constraint on mobile */
+    }
+    
+    .pro-stacked-container img {
+        height: 160px; /* REDUCE on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .pro-image-side {
+        height: 200px;
+    }
+    
+    .pro-stacked-container img {
+        height: 140px;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -7476,106 +7883,172 @@
 
 
         <!-- Showcase Section -->
-        <div class="showcase-section">
-            <h2 class="showcase-title">See <span class="banana-accent">Nano Banana</span> in Action</h2>
-            <p class="showcase-subtitle">Professional AI image generation that transforms your ideas into stunning visuals using Google's revolutionary nano banana technology. See real examples of our advanced capabilities.</p>
+       <!-- Showcase Section - Professional Layout -->
+<div class="pro-showcase-section">
+    <div class="pro-showcase-container">
+        <!-- Header -->
+        <div class="pro-showcase-header">
+            <h2 class="pro-showcase-title">See <span class="banana-accent">Nano Banana</span> in Action</h2>
+            <p class="pro-showcase-subtitle">Real transformations. Professional results. Discover how our AI elevates your creative work.</p>
+        </div>
+
+        <!-- Use Cases -->
+        <div class="pro-use-cases">
             
-            <div class="showcase-grid">
-                <div class="showcase-item">
-                    <h3>Portrait Enhancement with Nano Banana</h3>
-                    <div class="before-after">
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
-<!--                             <div class="image-label">Original Photo</div>
- -->                        </div>
-                        <div class="arrow-icon">→</div>
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-57.png?alt=media&token=38f0b473-2fef-44d7-b58f-a3faa515b633" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <h3>Logo Generation</h3>
-                    <div class="before-after">
-                        <div class="showcase-image">
-<!--                             <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Original Photo">
- -->                            <div class="image-label">                         Minimalist logo design for a tech startup</div>
+            <!-- Case 1: Portrait Enhancement (Image Left) -->
+            <div class="pro-case pro-case-left">
+                <div class="pro-case-visual">
+                    <div class="pro-split-container">
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Before">
+                            <span class="pro-tag pro-tag-before">Before</span>
                         </div>
-                        <div class="arrow-icon">→</div>
-                        <div class="showcase-image">
-                            <img src="https://chatezzy.com/generated_images/dalle_5_req_1757528785776_8h5pml6lj_1_20250910_182633.png" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
+                        <div class="pro-divider-vertical">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-10%2023-50-57.png?alt=media&token=38f0b473-2fef-44d7-b58f-a3faa515b633" alt="After">
+                            <span class="pro-tag pro-tag-after">After</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="showcase-item">
-                    <h3>Product Photography</h3>
-                    <div class="before-after">
-                         <!--  -->
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_jpbvo1jpbvo1jpbv.png?alt=media&token=fc91f090-eb95-4677-a62f-8a4e9e60fbee" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
-
-                          <br> </br>
-
-                         <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_lij92zlij92zlij9.png?alt=media&token=9b78b375-6b20-405b-b2f8-084a2435c0ae" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
-                    </div>
+                <div class="pro-case-content">
+                    <span class="pro-label">Portrait Enhancement</span>
+                    <h3 class="pro-case-title">Professional Headshots in Seconds</h3>
+                    <p class="pro-case-text">Transform casual photos into studio-quality portraits with professional lighting, natural retouching, and magazine-ready composition. Perfect for LinkedIn, corporate websites, and professional portfolios.</p>
+                    <ul class="pro-features-list">
+                        <li>Studio-quality lighting adjustments</li>
+                        <li>Natural skin tone enhancement</li>
+                        <li>Professional background optimization</li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="showcase-item">
-                    <h3>Concept Art Creation</h3>
-                    <div class="before-after">
-                         <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_5hespo5hespo5hes.png?alt=media&token=ba9de57c-ac87-4f92-92e3-a3ad516d884f" alt="Original Photo">
-<!--                             <div class="image-label">Original Photo</div>
- -->                        </div>
-                        <br ></br>
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_fgs3k6fgs3k6fgs3.png?alt=media&token=d4f0146c-8fae-4d97-9a52-56b306bcf4c1" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
-                    </div>
+            <!-- Case 2: Logo Design (Image Right) -->
+            <div class="pro-case pro-case-right">
+                <div class="pro-case-content">
+                    <span class="pro-label">Logo Generation</span>
+                    <h3 class="pro-case-title">Brand Identity Made Easy</h3>
+                    <p class="pro-case-text">Generate unique, professional logos that capture your brand essence. Get multiple design variations with modern aesthetics, perfect typography, and memorable visual elements—all in minutes.</p>
+                    <ul class="pro-features-list">
+                        <li>Multiple design concepts instantly</li>
+                        <li>Scalable vector-quality output</li>
+                        <li>Brand-aligned color schemes</li>
+                    </ul>
                 </div>
-
-                <div class="showcase-item">
-                    <h3>Background Replacement</h3>
-                    <div class="before-after">
-                         <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/thai-young-girl-with-bangkok-city-background-generative-ai_849906-22389.jpg?alt=media&token=03bc6173-f5ed-4148-a2e7-28387e2aab28" alt="Original Photo">
-<!--                             <div class="image-label">Original Photo</div>
- -->                        </div>
-                        <div class="arrow-icon">→</div>
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_cj58gicj58gicj58.png?alt=media&token=6d808356-5b0c-4b1f-a6aa-77950259234b" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase-item">
-                    <h3>Style Transfer</h3>
-                    <div class="before-after">
-                         <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_h99lthh99lthh99l%20(1).png?alt=media&token=49f5da61-639b-45d5-b037-3c66d831723f" alt="Original Photo">
-<!--                             <div class="image-label">Original Photo</div>
- -->                        </div>
-                        <div class="arrow-icon">→</div>
-                        <div class="showcase-image">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-11%2001-11-57.png?alt=media&token=07a3f167-7508-403b-8039-0fd9f99ad01b" alt="Enhanced Portrait">
-<!--                             <div class="image-label">Nano banana quality</div>
- -->                        </div>
+                <div class="pro-case-visual">
+                    <div class="pro-single-container">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/nano_banana_2025-10-28T15-15-34.png?alt=media&token=eb55659e-1bcb-49a3-9ebc-cc97f9b3f98d" alt="Logo Design">
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!-- Case 3: Product Photography (Image Left) -->
+            <div class="pro-case pro-case-left">
+                <div class="pro-case-visual">
+                    <div class="pro-stacked-container">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_jpbvo1jpbvo1jpbv.png?alt=media&token=fc91f090-eb95-4677-a62f-8a4e9e60fbee" alt="Product 1">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_lij92zlij92zlij9.png?alt=media&token=9b78b375-6b20-405b-b2f8-084a2435c0ae" alt="Product 2">
+                    </div>
+                </div>
+                <div class="pro-case-content">
+                    <span class="pro-label">Product Photography</span>
+                    <h3 class="pro-case-title">E-Commerce Ready Visuals</h3>
+                    <p class="pro-case-text">Create stunning product photography with clean backgrounds, professional lighting, and consistent styling. Boost conversion rates with high-quality visuals optimized for online stores and marketplaces.</p>
+                    <ul class="pro-features-list">
+                        <li>Clean white or custom backgrounds</li>
+                        <li>Consistent lighting across products</li>
+                        <li>Multiple angle variations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Case 4: Concept Art (Image Right) -->
+            <div class="pro-case pro-case-right">
+                <div class="pro-case-content">
+                    <span class="pro-label">Concept Art</span>
+                    <h3 class="pro-case-title">Fantasy Worlds & Characters</h3>
+                    <p class="pro-case-text">Bring imaginative concepts to life with detailed artwork for games, films, and storytelling. Create compelling characters, epic landscapes, and intricate environments that captivate your audience.</p>
+                    <ul class="pro-features-list">
+                        <li>High-detail character designs</li>
+                        <li>Epic landscape environments</li>
+                        <li>Game-ready visual concepts</li>
+                    </ul>
+                </div>
+                <div class="pro-case-visual">
+                    <div class="pro-image-side">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_fgs3k6fgs3k6fgs3.png?alt=media&token=d4f0146c-8fae-4d97-9a52-56b306bcf4c1" alt="Concept 2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 5: Background Replacement (Image Left) -->
+            <div class="pro-case pro-case-left">
+                <div class="pro-case-visual">
+                    <div class="pro-split-container">
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/thai-young-girl-with-bangkok-city-background-generative-ai_849906-22389.jpg?alt=media&token=03bc6173-f5ed-4148-a2e7-28387e2aab28" alt="Original">
+                            <span class="pro-tag pro-tag-before">Original</span>
+                        </div>
+                        <div class="pro-divider-vertical">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_cj58gicj58gicj58.png?alt=media&token=6d808356-5b0c-4b1f-a6aa-77950259234b" alt="Enhanced">
+                            <span class="pro-tag pro-tag-after">Enhanced</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pro-case-content">
+                    <span class="pro-label">Background Replacement</span>
+                    <h3 class="pro-case-title">Transform Any Setting</h3>
+                    <p class="pro-case-text">Replace distracting backgrounds with professional environments. Choose from studio backdrops, scenic landscapes, or custom settings—no photo shoot required. Perfect edge detection ensures natural results.</p>
+                    <ul class="pro-features-list">
+                        <li>Smart subject detection</li>
+                        <li>Natural edge blending</li>
+                        <li>Custom environment options</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Case 6: Style Transfer (Image Right) -->
+            <div class="pro-case pro-case-right">
+                <div class="pro-case-content">
+                    <span class="pro-label">Style Transfer</span>
+                    <h3 class="pro-case-title">Artistic Transformations</h3>
+                    <p class="pro-case-text">Apply stunning artistic styles to transform ordinary photos into extraordinary art. From oil paintings to anime, watercolor to cyberpunk—explore 12+ professional styles while preserving image details.</p>
+                    <ul class="pro-features-list">
+                        <li>12+ professional art styles</li>
+                        <li>Detail preservation technology</li>
+                        <li>Consistent style application</li>
+                    </ul>
+                </div>
+                <div class="pro-case-visual">
+                    <div class="pro-split-container">
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Gemini_Generated_Image_h99lthh99lthh99l%20(1).png?alt=media&token=49f5da61-639b-45d5-b037-3c66d831723f" alt="Original">
+                            <span class="pro-tag pro-tag-before">Original</span>
+                        </div>
+                        <div class="pro-divider-vertical">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="pro-image-side">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/Screenshot%20from%202025-09-11%2001-11-57.png?alt=media&token=07a3f167-7508-403b-8039-0fd9f99ad01b" alt="Styled">
+                            <span class="pro-tag pro-tag-after">Styled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
         <!-- Features Section -->
@@ -7615,7 +8088,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- Testimonials -->
         <div class="testimonials-section">
