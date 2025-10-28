@@ -592,7 +592,7 @@
             animation: shimmer 2s infinite;
             border-radius: 8px;
             width: 100%;
-            height: 240px;
+            height: 100%;
         }
 
         @keyframes shimmer {
@@ -7953,6 +7953,11 @@
 }
 
 @media (max-width: 768px) {
+	..pro-label {
+		display: none;
+		visibility: hidden;
+
+	}
     .pro-output-panel {
         padding: 20px;
         min-height: 350px;
@@ -7983,9 +7988,36 @@
     .image-results {
         max-width: 100%;
     }
+
+    .pro-generator-title {
+		display: none;
+
+	}
+
+	.pro-generator-subtitle {
+		display: none;
+
+	}
 }
 
 @media (max-width: 480px) {
+	..pro-label {
+		display: none;
+		visibility: hidden;
+
+	}
+
+	.pro-generator-title {
+		display: none;
+
+	}
+
+	.pro-generator-subtitle {
+		display: none;
+
+	}
+
+
     .pro-output-panel {
         padding: 16px;
         min-height: 300px;
@@ -8016,6 +8048,295 @@
     .clear-mode-btn {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* Mobile-specific adjustments for action buttons */
+@media (max-width: 768px) {
+    /* Action buttons row layout */
+    .pro-actions-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+
+    .pro-label{
+    	display: none;
+    	opacity: 0;
+    }
+    
+    /* Attach button - make it a prominent square + button */
+    .pro-actions-row .pro-action-btn:first-child {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        border: 1px solid #f59e0b;
+        border-radius: 10px;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child span {
+        display: none; /* Hide "Attach" text */
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child svg {
+        width: 20px;
+        height: 20px;
+        stroke: white;
+    }
+    
+    /* Styles button - compact */
+    .styles-btn {
+        padding: 10px 12px;
+        font-size: 0.813rem;
+    }
+    
+    /* Enhance button - icon only */
+    .pro-enhance-btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .pro-enhance-btn span:not(.ai-icon) {
+        display: none; /* Hide "Prompt Enhance" text */
+    }
+    
+    .pro-enhance-btn .ai-icon {
+        font-size: 20px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even smaller screens */
+    .pro-actions-row .pro-action-btn:first-child,
+    .pro-enhance-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    
+    .pro-label{
+    	display: none;
+    	opacity: 0;
+    }
+    .styles-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Mobile-specific adjustments for editing mode banner */
+@media (max-width: 768px) {
+    .editing-mode-banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border: 1px solid #fbbf24;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 0.813rem;
+    }
+    
+    .editing-mode-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.813rem;
+        font-weight: 600;
+        color: #92400e;
+    }
+    
+    .editing-mode-icon {
+        font-size: 16px;
+    }
+    
+    .clear-mode-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(146, 64, 14, 0.2);
+        color: #92400e;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .editing-mode-banner {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .editing-mode-text {
+        font-size: 0.75rem;
+        gap: 4px;
+    }
+    
+    .editing-mode-icon {
+        font-size: 14px;
+    }
+    
+    .clear-mode-btn {
+        padding: 5px 10px;
+        font-size: 0.688rem;
+    }
+}
+
+/* Mobile - Attach button shows + icon */
+@media (max-width: 768px) {
+    .pro-actions-row .pro-action-btn:first-child::before {
+        content: '+';
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child svg {
+        display: none; /* Hide the image icon */
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child span {
+        display: none; /* Hide "Attach" text */
+    }
+}
+
+@media (max-width: 480px) {
+    .pro-actions-row .pro-action-btn:first-child::before {
+        font-size: 22px;
+    }
+}
+
+/* Mobile - Action buttons row responsive */
+@media (max-width: 768px) {
+    .pro-actions-row {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+    
+    /* Attach button - square with + */
+    .pro-actions-row .pro-action-btn:first-child {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child::before {
+        content: '+';
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child svg,
+    .pro-actions-row .pro-action-btn:first-child span {
+        display: none;
+    }
+    
+    /* Styles button - flexible width */
+    .styles-btn {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 12px;
+        font-size: 0.813rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Enhance button - square with icon */
+    .pro-enhance-btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0 !important;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .pro-enhance-btn span:not(.ai-icon) {
+        display: none;
+    }
+    
+    .pro-enhance-btn .ai-icon {
+        font-size: 20px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pro-actions-row {
+        gap: 6px;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child,
+    .pro-enhance-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child::before {
+        font-size: 22px;
+    }
+    
+    .styles-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .pro-enhance-btn .ai-icon {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    .pro-actions-row {
+        gap: 4px;
+    }
+    
+    .pro-actions-row .pro-action-btn:first-child,
+    .pro-enhance-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+    
+    .styles-btn {
+        padding: 6px 8px;
+        font-size: 0.688rem;
     }
 }
     </style>
@@ -8568,6 +8889,13 @@
                    <!-- Professional Split Layout -->
 <!-- Professional Layout - Output on Left, Input on Right -->
 <!-- Professional Layout - Input on Left, Output on Right -->
+
+
+<div class="mobile-container">
+	
+
+
+</div>
 <div class="pro-generator-layout">
     
     <!-- Left Panel - Input Controls (MOVED TO FIRST) -->
