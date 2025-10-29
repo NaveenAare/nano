@@ -12,14 +12,7 @@
   gtag('config', 'G-XQ345FT3ZE');
 </script>
 
-<script>
-    // Redirect to mobile version if screen is small
-    if (window.innerWidth <= 768) {
-        window.location.href = '/?device=mobile';
-    }
-</script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nano Banana | AI Image Generation & Professional AI Art Creator</title>
@@ -260,7 +253,7 @@
         }
 
         /* Image Results */
-       /* .image-results {
+        .image-results {
             background: #f8fafc;
             border: 2px dashed #cbd5e1;
             border-radius: 12px;
@@ -316,7 +309,7 @@
         .download-btn:hover {
             background: rgba(0, 0, 0, 0.9);
         }
-*/
+
         /* Chat Input Container */
         .chat-input-container {
             background: white;
@@ -599,7 +592,7 @@
             animation: shimmer 2s infinite;
             border-radius: 8px;
             width: 100%;
-            height: 100%;
+            height: 240px;
         }
 
         @keyframes shimmer {
@@ -1605,7 +1598,7 @@
 
 
 /* Download button styling */
-/*.download-btn {
+.download-btn {
     position: absolute;
     top: 16px;
     right: 16px;
@@ -1629,7 +1622,7 @@
 .download-btn:hover {
     background: rgba(15, 23, 42, 0.95);
     transform: translateY(-1px);
-}*/
+}
 
 .showcase-image {
     position: relative;
@@ -4110,13 +4103,10 @@
 .ai-enhance-btn.active {
     opacity: 1;
     pointer-events: auto;
-    animation: aiPulse 2s ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5) !important;
 }
 
-.ai-enhance-btn:not(.active) {
-    opacity: 0.4;
-    cursor: not-allowed;
+.ai-enhance-btn.loading {
+    pointer-events: none;
     animation: none;
 }
 
@@ -4449,27 +4439,20 @@
 /* Loading state with neural network animation */
 .ai-enhance-btn.loading {
     pointer-events: none;
-    opacity: 0.8;
+    animation: none;
 }
-
 
 .ai-enhance-btn.loading::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid white;
+    width: 24px;
+    height: 24px;
+    border: 3px solid transparent;
+    border-top: 3px solid rgba(255, 255, 255, 0.9);
+    border-right: 3px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: enhanceSpin 0.8s linear infinite;
-}
-@keyframes enhanceSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.ai-enhance-btn.loading .ai-icon {
-    opacity: 0;
+    animation: aiSpin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes aiSpin {
@@ -7313,1194 +7296,6 @@
     color: #78350f;
 }*/
 
-/* Professional Split Screen Layout */
-/* Professional Split Layout - Output Left, Input Right */
-/* Desktop layout - Input Left, Output Right */
-/* Professional Split Layout - Equal Height Panels */
-/* Professional Split Layout - Equal Height Panels */
-.pro-generator-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(60vh - 80px); /* Use min-height instead of height */
-    background: #fafbfc;
-    gap: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .pro-generator-layout {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        min-height: auto; /* Remove height constraint on mobile */
-        height: auto; /* Allow content to flow naturally */
-    }
-
-    
-    /* Output comes first on mobile */
-    .pro-output-panel {
-        order: 1;
-        position: relative;
-        height: auto;
-        min-height: 400px;
-        border-right: none;
-        border-bottom: 1px solid #e8ecf1;
-        padding: 24px;
-    }
-    
-    .pro-input-panel {
-        order: 2;
-        position: relative;
-        height: auto; /* Allow to expand with content */
-        border-right: none;
-    }
-    
-    .image-results {
-        max-width: 500px;
-    }
-}
-/* Left Input Panel */
-.pro-input-panel {
-	margin-right: 10px;
-    background: white;
-    overflow-y: auto;
-    border-right: 1px solid #e8ecf1;
-}
-
-
-/* Right Output Panel */
-.pro-output-panel {
-    background: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    overflow-y: auto;
-}
-.pro-output-content {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;  /* horizontal center */
-  align-items: center;  
-}
-
-
-
-
-/* Empty State */
-.pro-empty-state {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.pro-empty-icon {
-    margin: 0 auto 24px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f5f9;
-    border-radius: 20px;
-}
-
-.pro-empty-icon svg {
-    color: #94a3b8;
-}
-
-.pro-empty-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 8px;
-}
-
-.pro-empty-text {
-    font-size: 0.938rem;
-    color: #64748b;
-}
-
-
-.image-results {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.05),
-        0 8px 24px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e8ecf1;
-    overflow: hidden;
-    position: relative;
-}
-
-/* When image is loaded */
-.image-results.has-content {
-    padding: 0;
-}
-
-.image-results.has-content .pro-empty-state {
-    display: none;
-}
-
-.image-results.has-content img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Download Button - Below the image container */
-.pro-output-content {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Download Button - Below the image container */
-.download-btn {
-    width: 100%;
-    display: none; /* Hidden by default */
-    justify-content: center;
-    margin-top: 20px; /* ADD THIS - creates space between image and button */
-}
-
-.download-btn.show {
-    display: flex; /* Show when image is loaded */
-}
-
-.download-btn button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 32px;
-    background: #f8fafc;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.938rem;
-    font-weight: 600;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
-}
-
-
-.download-btn svg {
-    width: 20px;
-    height: 20px;
-}
-
-/* Remove the old overlay download button styles */
-.image-results.has-content .download-btn {
-    position: static; /* Remove absolute positioning */
-    background: none; /* Remove gradient overlay */
-    padding: 0;
-    opacity: 1; /* Always visible */
-    margin-top: 20px;
-}
-
-.image-results.has-content:hover .download-btn {
-    opacity: 1;
-}
-/* Right Input Panel */
-/*.pro-input-panel {
-    background: white;
-    overflow-y: auto;
-    height: calc(100vh - 80px);
-    position: sticky;
-    top: 80px;
-}*/
-
-.pro-panel-content {
-    padding: 40px 32px;
-}
-
-/* Header */
-.pro-generator-header {
-    margin-bottom: 32px;
-}
-
-.pro-generator-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-}
-
-.pro-generator-subtitle {
-    font-size: 0.938rem;
-    color: #64748b;
-    line-height: 1.5;
-}
-
-/* Editing Mode Banner */
-.editing-mode-banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 1px solid #fbbf24;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.editing-mode-text {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #92400e;
-}
-
-.editing-mode-icon {
-    font-size: 1.125rem;
-}
-
-.clear-mode-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(146, 64, 14, 0.2);
-    color: #92400e;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.813rem;
-    transition: all 0.2s ease;
-}
-
-.clear-mode-btn:hover {
-    background: white;
-    border-color: rgba(146, 64, 14, 0.3);
-    transform: scale(1.05);
-}
-
-/* Attached Images */
-.attached-images {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding: 16px;
-    background: #f8fafc;
-    border-radius: 12px;
-}
-
-/* Label */
-.pro-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 12px;
-}
-
-.pro-label svg {
-    color: #64748b;
-}
-
-/* Prompt Section */
-.pro-prompt-section {
-    margin-bottom: 20px;
-}
-
-.input-area {
-    position: relative;
-}
-
-.pro-prompt-input {
-    width: 100%;
-    min-height: 100px;
-    padding: 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 0.938rem;
-    font-family: inherit;
-    line-height: 1.6;
-    resize: vertical;
-    transition: all 0.2s ease;
-    background: #fafbfc;
-}
-
-.pro-prompt-input:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background: white;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-}
-
-.pro-prompt-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 8px;
-}
-
-.char-count {
-    font-size: 0.813rem;
-    color: #94a3b8;
-    font-weight: 500;
-}
-
-/* Action Buttons Row */
-.pro-actions-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.pro-action-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.pro-action-btn:hover {
-    border-color: #cbd5e1;
-    background: #f8fafc;
-    color: #3b82f6;
-    transform: translateY(-1px);
-}
-
-.pro-action-btn svg {
-    width: 18px;
-    height: 18px;
-}
-
-.styles-btn.has-style {
-    border-color: #3b82f6;
-    background: #eff6ff;
-    color: #3b82f6;
-}
-
-#stylesThumbnail {
-    display: flex;
-    align-items: center;
-    width: 18px;
-    height: 18px;
-}
-
-.pro-enhance-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    border-color: #5a67d8 !important;
-    color: white !important;
-    position: relative;
-    overflow: hidden;
-    opacity: 0.4;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.pro-enhance-btn.active {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
-    animation: enhancePulse 2s ease-in-out infinite;
-}
-
-@keyframes enhancePulse {
-    0%, 100% {
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
-    50% {
-        box-shadow: 0 4px 25px rgba(102, 126, 234, 0.6);
-    }
-}
-
-.pro-enhance-btn.active:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #6941c6 100%) !important;
-    transform: translateY(-2px);
-}
-.ai-icon {
-    font-size: 1.125rem;
-}
-
-.pro-enhance-btn.loading {
-    pointer-events: none !important;
-    opacity: 0.8 !important;
-    animation: none !important;
-}
-
-.pro-enhance-btn.loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid white;
-    border-radius: 50%;
-    animation: enhanceSpin 0.8s linear infinite;
-}
-
-@keyframes enhanceSpin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.pro-enhance-btn.loading .ai-icon,
-.pro-enhance-btn.loading span {
-    opacity: 0;
-}
-
-/* Disabled state - make it very obvious */
-.pro-enhance-btn:not(.active):not(.loading) {
-    opacity: 0.4;
-    cursor: not-allowed;
-    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%) !important;
-}
-/* Generate Button */
-.pro-generate-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 16px;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-.pro-generate-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5);
-    background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
-}
-
-.pro-generate-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Loading state */
-.pro-generate-btn.loading {
-    pointer-events: none;
-}
-
-.pro-generate-btn.loading::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #fff;
-    border-radius: 50%;
-    animation: generateSpin 0.8s linear infinite;
-}
-
-@keyframes generateSpin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-.pro-generate-btn.loading .send-icon {
-    opacity: 0;
-}
-
-.pro-generate-btn.loading span {
-    opacity: 0;
-}
-/* Clear Modal */
-.modal-overlay-edit {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.modal-content-edit {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    max-width: 440px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 12px;
-}
-
-.modal-text {
-    font-size: 0.938rem;
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 24px;
-}
-
-.modal-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.modal-btn {
-    flex: 1;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 0.938rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.modal-btn-cancel {
-    background: #f1f5f9;
-    color: #64748b;
-}
-
-.modal-btn-cancel:hover {
-    background: #e2e8f0;
-}
-
-.modal-btn-confirm {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-}
-
-.modal-btn-confirm:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .pro-generator-layout {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-    }
-    
-    /* Output comes first on mobile */
-    .pro-output-panel {
-        order: 1;
-        position: relative;
-        top: 0;
-        height: auto;
-        min-height: 400px;
-        border-right: none;
-        border-bottom: 1px solid #e8ecf1;
-        padding: 24px;
-    }
-    
-    .pro-input-panel {
-        order: 2;
-        position: relative;
-        top: 0;
-        height: auto;
-    }
-    
-    .image-results {
-        max-width: 500px;
-    }
-}
-
-@media (max-width: 768px) {
-	..pro-label {
-		display: none;
-		visibility: hidden;
-
-	}
-    .pro-output-panel {
-        padding: 20px;
-        min-height: 350px;
-    }
-    
-    .pro-panel-content {
-        padding: 24px 20px;
-    }
-    
-    .pro-generator-title {
-        font-size: 1.5rem;
-    }
-    
-    .pro-prompt-input {
-        min-height: 80px;
-        font-size: 0.875rem;
-    }
-    
-    .pro-actions-row {
-        gap: 8px;
-    }
-    
-    .pro-action-btn {
-        padding: 8px 14px;
-        font-size: 0.813rem;
-    }
-    
-    .image-results {
-        max-width: 100%;
-    }
-
-    .pro-generator-title {
-		display: none;
-
-	}
-
-	.pro-generator-subtitle {
-		display: none;
-
-	}
-}
-
-@media (max-width: 480px) {
-	..pro-label {
-		display: none;
-		visibility: hidden;
-
-	}
-
-	.pro-generator-title {
-		display: none;
-
-	}
-
-	.pro-generator-subtitle {
-		display: none;
-
-	}
-
-
-    .pro-output-panel {
-        padding: 16px;
-        min-height: 300px;
-    }
-    
-    .pro-panel-content {
-        padding: 20px 16px;
-    }
-    
-    .pro-generator-title {
-        font-size: 1.25rem;
-    }
-    
-    .pro-actions-row {
-        gap: 6px;
-    }
-    
-    .pro-action-btn {
-        padding: 7px 12px;
-        font-size: 0.75rem;
-    }
-    
-    .editing-mode-banner {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .clear-mode-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Mobile-specific adjustments for action buttons */
-@media (max-width: 768px) {
-    /* Action buttons row layout */
-    .pro-actions-row {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 16px;
-        align-items: center;
-    }
-
-    .pro-label{
-    	display: none;
-    	opacity: 0;
-    }
-    
-    /* Attach button - make it a prominent square + button */
-    .pro-actions-row .pro-action-btn:first-child {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-        border: 1px solid #f59e0b;
-        border-radius: 10px;
-        color: white;
-        flex-shrink: 0;
-        box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child span {
-        display: none; /* Hide "Attach" text */
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child svg {
-        width: 20px;
-        height: 20px;
-        stroke: white;
-    }
-    
-    /* Styles button - compact */
-    .styles-btn {
-        padding: 10px 12px;
-        font-size: 0.813rem;
-    }
-    
-    /* Enhance button - icon only */
-    .pro-enhance-btn {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        padding: 0 !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-    
-    .pro-enhance-btn span:not(.ai-icon) {
-        display: none; /* Hide "Prompt Enhance" text */
-    }
-    
-    .pro-enhance-btn .ai-icon {
-        font-size: 20px;
-        margin: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Even smaller screens */
-    .pro-actions-row .pro-action-btn:first-child,
-    .pro-enhance-btn {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-    }
-    
-    .pro-label{
-    	display: none;
-    	opacity: 0;
-    }
-    .styles-btn {
-        padding: 8px 10px;
-        font-size: 0.75rem;
-    }
-}
-
-/* Mobile-specific adjustments for editing mode banner */
-@media (max-width: 768px) {
-    .editing-mode-banner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 12px;
-        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-        border: 1px solid #fbbf24;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        font-size: 0.813rem;
-    }
-    
-    .editing-mode-text {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.813rem;
-        font-weight: 600;
-        color: #92400e;
-    }
-    
-    .editing-mode-icon {
-        font-size: 16px;
-    }
-    
-    .clear-mode-btn {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(146, 64, 14, 0.2);
-        color: #92400e;
-        padding: 6px 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.75rem;
-        white-space: nowrap;
-    }
-}
-
-@media (max-width: 480px) {
-    .editing-mode-banner {
-        padding: 8px 10px;
-        font-size: 0.75rem;
-    }
-    
-    .editing-mode-text {
-        font-size: 0.75rem;
-        gap: 4px;
-    }
-    
-    .editing-mode-icon {
-        font-size: 14px;
-    }
-    
-    .clear-mode-btn {
-        padding: 5px 10px;
-        font-size: 0.688rem;
-    }
-}
-
-/* Mobile - Attach button shows + icon */
-@media (max-width: 768px) {
-    .pro-actions-row .pro-action-btn:first-child::before {
-        content: '+';
-        display: block;
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 1;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child svg {
-        display: none; /* Hide the image icon */
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child span {
-        display: none; /* Hide "Attach" text */
-    }
-}
-
-@media (max-width: 480px) {
-    .pro-actions-row .pro-action-btn:first-child::before {
-        font-size: 22px;
-    }
-}
-
-/* Mobile - Action buttons row responsive */
-@media (max-width: 768px) {
-    .pro-actions-row {
-        display: flex;
-        gap: 8px;
-        width: 100%;
-        margin-bottom: 16px;
-    }
-    
-    /* Attach button - square with + */
-    .pro-actions-row .pro-action-btn:first-child {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        padding: 0;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child::before {
-        content: '+';
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 1;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child svg,
-    .pro-actions-row .pro-action-btn:first-child span {
-        display: none;
-    }
-    
-    /* Styles button - flexible width */
-    .styles-btn {
-        flex: 1;
-        min-width: 0;
-        padding: 10px 12px;
-        font-size: 0.813rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    /* Enhance button - square with icon */
-    .pro-enhance-btn {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        padding: 0 !important;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .pro-enhance-btn span:not(.ai-icon) {
-        display: none;
-    }
-    
-    .pro-enhance-btn .ai-icon {
-        font-size: 20px;
-        margin: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .pro-actions-row {
-        gap: 6px;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child,
-    .pro-enhance-btn {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child::before {
-        font-size: 22px;
-    }
-    
-    .styles-btn {
-        padding: 8px 10px;
-        font-size: 0.75rem;
-    }
-    
-    .pro-enhance-btn .ai-icon {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 360px) {
-    .pro-actions-row {
-        gap: 4px;
-    }
-    
-    .pro-actions-row .pro-action-btn:first-child,
-    .pro-enhance-btn {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-    }
-    
-    .styles-btn {
-        padding: 6px 8px;
-        font-size: 0.688rem;
-    }
-}
-
-/* Mobile - Hide download button */
-@media (max-width: 768px) {
-    .download-btn,
-    #download-btn-container {
-        display: none !important;
-    }
-    
-    /* Adjust output content without download button */
-    .pro-output-content {
-        gap: 0;
-    }
-}
-
-/* Mobile - Decrease all font sizes for clarity */
-@media (max-width: 768px) {
-    /* Hide download button */
-    .download-btn,
-    #download-btn-container {
-        display: none !important;
-    }
-    
-    /* Adjust output content without download button */
-    .pro-output-content {
-        gap: 0;
-    }
-    
-    /* Generator header - if visible */
-    .pro-generator-title {
-        font-size: 1.25rem;
-    }
-    
-    .pro-generator-subtitle {
-        font-size: 0.813rem;
-    }
-    
-    /* Labels */
-    .pro-label {
-        font-size: 0.75rem;
-    }
-    
-    .pro-label svg {
-        width: 14px;
-        height: 14px;
-    }
-    
-    /* Prompt textarea */
-    .pro-prompt-input {
-        font-size: 0.813rem;
-        line-height: 1.5;
-    }
-    
-    /* Character count */
-    .char-count {
-        font-size: 0.688rem;
-    }
-    
-    /* Action buttons */
-    .pro-action-btn {
-        font-size: 0.75rem;
-    }
-    
-    .pro-action-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    /* Generate button */
-    .pro-generate-btn {
-        font-size: 0.875rem;
-        padding: 14px;
-    }
-    
-    .pro-generate-btn svg {
-        width: 18px;
-        height: 18px;
-    }
-    
-    /* Editing mode banner */
-    .editing-mode-text {
-        font-size: 0.75rem;
-    }
-    
-    .clear-mode-btn {
-        font-size: 0.688rem;
-    }
-    
-    /* Empty state */
-    .pro-empty-title {
-        font-size: 1rem;
-    }
-    
-    .pro-empty-text {
-        font-size: 0.813rem;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Even smaller for very small screens */
-    .pro-generator-title {
-        font-size: 1.125rem;
-    }
-    
-    .pro-generator-subtitle {
-        font-size: 0.75rem;
-    }
-    
-    .pro-label {
-        font-size: 0.688rem;
-    }
-    
-    .pro-prompt-input {
-        font-size: 0.75rem;
-    }
-    
-    .char-count {
-        font-size: 0.625rem;
-    }
-    
-    .pro-action-btn {
-        font-size: 0.688rem;
-    }
-    
-    .pro-generate-btn {
-        font-size: 0.813rem;
-        padding: 12px;
-    }
-    
-    .editing-mode-text {
-        font-size: 0.688rem;
-    }
-    
-    .clear-mode-btn {
-        font-size: 0.625rem;
-    }
-    
-    .pro-empty-title {
-        font-size: 0.938rem;
-    }
-    
-    .pro-empty-text {
-        font-size: 0.75rem;
-    }
-}
-
-/* Prevent mobile auto-zoom on input focus */
-@media (max-width: 768px) {
-    .pro-prompt-input,
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        font-size: 16px !important; /* Mobile browsers don't auto-zoom if font is 16px+ */
-    }
-}
-
 
     </style>
 </head>
@@ -9049,144 +7844,82 @@
             <div id="edit-tab" class="tab-pane active">
                 <div class="tab-content">
                     <!-- Image Results -->
-                   <!-- Professional Split Layout -->
-<!-- Professional Layout - Output on Left, Input on Right -->
-<!-- Professional Layout - Input on Left, Output on Right -->
+                    <div class="image-results" id="image-results">
+                        <div class="placeholder-text">Generated images will appear here</div>
+                    </div>
 
+                    <!-- Chat Input -->
+                    <div class="chat-input-container" id="chat-container">
+                        <!-- Attached Images -->
+                        <div class="attached-images" id="attached-images" style="display: none;"></div>
+                        
+                        <!-- Input Area -->
+                        <div class="input-area">
+                            <textarea 
+                                id="prompt-input" 
+                                class="prompt-input" 
+                                placeholder="Ask anything..."
+                                oninput="handleInput()"
+                                onkeydown="handleKeyDown(event)"
+                            ></textarea>
+                        </div>
 
-<div class="mobile-container">
-	
+                        <!-- Input Actions -->
+                        <div class="input-actions">
+                            <div class="input-left">
+                                <button class="attach-btn" onclick="triggerFileUpload()">
+                                    +
+                                </button>
 
-
-</div>
-<div class="pro-generator-layout">
-    
-    <!-- Left Panel - Input Controls (MOVED TO FIRST) -->
-    <div class="pro-input-panel">
-        <div class="pro-panel-content" id="chat-container">
-            
-            <!-- Header -->
-            <div class="pro-generator-header">
-                <h1 class="pro-generator-title">Create with AI</h1>
-                <p class="pro-generator-subtitle">Describe your vision, watch it come to life</p>
-            </div>
-
-            <!-- Editing Mode Banner (dynamically inserted by JS) -->
-            
-            <!-- Attached Images -->
-            <div class="attached-images" id="attached-images" style="display: none;"></div>
-
-            <!-- Main Prompt -->
-            <div class="pro-prompt-section">
-                <label class="pro-label">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    Describe your image
-                </label>
-                <div class="input-area">
-                    <textarea 
-                        id="prompt-input" 
-                        class="prompt-input pro-prompt-input" 
-                        placeholder="A serene mountain landscape at sunset..."
-                        oninput="handleInput()"
-                        onkeydown="handleKeyDown(event)"
-                        rows="4"
-                    ></textarea>
-                </div>
-                <div class="pro-prompt-footer">
-                    <span class="char-count" id="char-count">0 / 500</span>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="pro-actions-row">
-                <button class="pro-action-btn" onclick="triggerFileUpload()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    Attach
-                </button>
-
-                <button class="pro-action-btn styles-btn" id="stylesBtn" onclick="openStylesModal()">
-                    <span id="stylesThumbnail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="7" height="7" rx="1"/>
-                            <rect x="14" y="3" width="7" height="7" rx="1"/>
-                            <rect x="3" y="14" width="7" height="7" rx="1"/>
-                            <rect x="14" y="14" width="7" height="7" rx="1"/>
-                        </svg>
-                    </span>
-                    <span id="stylesBtnText">Styles</span>
-                </button>
-
-                <button class="pro-action-btn pro-enhance-btn" id="ai-enhance-btn" onclick="handleAIEnhance()">
-                    <span class="ai-icon">✨</span>
-                    <span>Prompt Enhance</span>
-                </button>
-
-                <input 
-                    type="file" 
-                    id="file-input" 
-                    class="file-input" 
-                    accept="image/*" 
-                    multiple 
-                    onchange="handleFileUpload(this)"
-                    style="display: none;"
-                >
-            </div>
-
-            <!-- Generate Button -->
-            <button class="pro-generate-btn" id="send-btn" onclick="generateImage()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                </svg>
-                Generate Image
-            </button>
-
-        </div>
+                                <!-- Styles Button -->
+<!-- Styles Button -->
+<button class="styles-btn" id="stylesBtn" onclick="openStylesModal()">
+    <div class="selected-style-preview">
+        <span id="stylesThumbnail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+        </span>
+        <span id="stylesBtnText">Styles</span>
     </div>
+</button>
+                                <input 
+                                    type="file" 
+                                    id="file-input" 
+                                    class="file-input" 
+                                    accept="image/*" 
+                                    multiple 
+                                    onchange="handleFileUpload(this)"
+                                >
+                            </div>
 
-    <!-- Right Panel - Image Output (MOVED TO SECOND) -->
-<!-- Right Panel - Image Output (MOVED TO SECOND) -->
-<div class="pro-output-panel">
-    <div class="pro-output-content">
-        <!-- Image Results Container -->
-        <div class="image-results" id="image-results">
-            <div class="pro-empty-state">
-                <div class="pro-empty-icon">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                </div>
-                <h3 class="pro-empty-title">Your creation appears here</h3>
-                <p class="pro-empty-text">Generated images will appear here</p>
-            </div>
-        </div>
-        
-        <!-- Download Button (outside image container) -->
-        <div class="download-btn" id="download-btn-container" style="display: none;">
-            <!-- Button will be inserted here by JavaScript -->
-        </div>
-    </div>
-</div>
-</div>
 
-<!-- Clear Modal -->
-<div id="clearModal" class="modal-overlay-edit" style="display: none;">
-    <div class="modal-content-edit">
-        <div class="modal-title">Start New Generation?</div>
-        <div class="modal-text">This will clear your current editing session and start fresh. Your current generated image will be lost.</div>
-        <div class="modal-buttons">
-            <button class="modal-btn modal-btn-cancel" onclick="closeClearModal()">Cancel</button>
-            <button class="modal-btn modal-btn-confirm" onclick="confirmClearEditingMode()">Clear & Start New</button>
-        </div>
-    </div>
-</div>
+
+                           <div class="input-right">
+                                <span class="char-count" id="char-count"></span>
+                                <button class="ai-enhance-btn" id="ai-enhance-btn" onclick="handleAIEnhance()">
+                                    <span class="ai-icon">✨</span>
+                                    <div class="ai-enhance-tooltip">AI Enhance</div>
+                                </button>
+
+
+                               <button class="send-btn" id="send-btn" onclick="generateImage()">
+    <span class="send-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+    </span>
+</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
 
 
 <div class="trending-header">
@@ -10065,40 +8798,12 @@ function openImage(imageUrl, prompt = '') {
 // Update the displayResult function to include download button
 function displayResult(imageData) {
     const container = document.getElementById('image-results');
-    const downloadContainer = document.getElementById('download-btn-container');
-    
-    // Clear and update image container
     container.classList.add('has-content');
     container.innerHTML = `
-        <img src="${imageData}" alt="Generated Image" class="result-image" onclick="openImage('${imageData}')" style="cursor: pointer;">
+        <img src="${imageData}" alt="Generated Image" class="result-image" onclick="openImage('${imageData}')">
+        <button class="download-btn" onclick="downloadImage('${imageData}')">⇩ Download</button>
     `;
-
-    // Show and populate download button
-    if (downloadContainer) {
-        downloadContainer.style.display = 'flex';
-        downloadContainer.innerHTML = `
-            <button onclick="downloadImage('${imageData}')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Download Image
-            </button>
-        `;
-    }
 }
-
-
-function hideDownloadButton() {
-    const downloadContainer = document.getElementById('download-btn-container');
-    if (downloadContainer) {
-        downloadContainer.style.display = 'none';
-        downloadContainer.innerHTML = '';
-    }
-}
-
-
 
 // Update gallery items to include download functionality
 function updateGallery() {
@@ -10231,6 +8936,7 @@ async function generateImage() {
 
     const sendBtn = document.getElementById('send-btn');
    sendBtn.classList.add('loading');
+sendBtn.innerHTML = '<span class="send-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>';
     sendBtn.disabled = true;
 
     showLoadingState();
@@ -10354,6 +9060,7 @@ async function generateImage() {
         `;
     } finally {
         sendBtn.classList.remove('loading');
+sendBtn.innerHTML = '<span class="send-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>';
         sendBtn.disabled = false;
         document.getElementById('prompt-input').value = '';
         attachedImages = [];
@@ -10483,7 +9190,6 @@ function confirmClearEditingMode() {
     
     // Close modal
     closeClearModal();
-    hideDownloadButton();
     
     // Clear localStorage
     localStorage.removeItem('nanobanana_state');
@@ -12132,10 +10838,7 @@ async function handleAIEnhance() {
     const promptInput = document.getElementById('prompt-input');
     const creditCount = document.getElementById('creditCount');
     
-    if (!aiBtn.classList.contains('active')) {
-        showToast('Please enter a prompt first', 'error');
-        return;
-    }
+    if (!aiBtn.classList.contains('active')) return;
     
     const currentPrompt = promptInput.value.trim();
     const credits = creditCount ? parseInt(creditCount.textContent) || 0 : 0;
@@ -12154,7 +10857,6 @@ async function handleAIEnhance() {
     
     // Show loading state
     aiBtn.classList.add('loading');
-    aiBtn.disabled = true;
     
     try {
         const authToken = localStorage.getItem('authToken');
@@ -12162,7 +10864,6 @@ async function handleAIEnhance() {
         if (!authToken) {
             showToast('Please login to use AI Enhance', 'error');
             aiBtn.classList.remove('loading');
-            aiBtn.disabled = false;
             return;
         }
         
@@ -12200,7 +10901,6 @@ async function handleAIEnhance() {
         showToast('Failed to enhance prompt. Please try again.', 'error');
     } finally {
         aiBtn.classList.remove('loading');
-        aiBtn.disabled = false;
     }
 }
 
