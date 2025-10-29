@@ -419,6 +419,13 @@ async def nanobloggpricing(request: Request):
 async def nanobloggpricing(request: Request):
     return FileResponse("templates/home_russian.html")
 
+
+@app.get("/ru-desk")
+async def nanoRussiaDesk(request: Request):
+    return FileResponse("templates/new_russian_desktop.html")
+
+
+
 @app.get("/virtual-trial-room")
 async def virtualtrail(request: Request):
     return FileResponse("templates/virtualtryon.html")
