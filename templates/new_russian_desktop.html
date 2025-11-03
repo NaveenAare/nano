@@ -8932,13 +8932,13 @@
 
             <div class="user-profile">
                 <div class="profile-btn" onclick="toggleProfileMenu()">
-                    <img src="https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png" alt="Профиль" id="headerProfileImg">
+                    <img src="/static/dummy_profile.png" alt="Профиль" id="headerProfileImg">
                 </div>
                 <div class="profile-menu" id="profileMenu">
                     <div class="profile-menu-header">
                         <div class="profile-info">
                             <div class="profile-avatar">
-                                <img src="https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png" alt="Профиль" id="menuProfileImg">
+                                <img src="/static/dummy_profile.png" alt="Профиль" id="menuProfileImg">
                             </div>
                             <div class="profile-details">
                                 <h3 id="profileName">Загрузка...</h3>
@@ -11118,7 +11118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateUserInterface({
             name: 'Guest User',
             mail: 'guest@googlenanobanana.com',
-            profile_pic: 'https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png'
+            profile_pic: '/static/dummy_profile.png'
         });
     }
 }
@@ -11127,15 +11127,15 @@ function updateUserInterface(userData) {
     // Update ALL profile images - using class selectors instead of IDs
     const profileImages = document.querySelectorAll('.profile-btn img, .profile-avatar img');
     profileImages.forEach(img => {
-        img.src = userData.profile_pic || 'https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png';
+        img.src = userData.profile_pic || '/static/dummy_profile.png';
     });
     
     // Also update by ID if they exist
     const headerImg = document.getElementById('headerProfileImg');
     const menuImg = document.getElementById('menuProfileImg');
     
-    if (headerImg) headerImg.src = userData.profile_pic || 'https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png';
-    if (menuImg) menuImg.src = userData.profile_pic || 'https://chatezzy.com/generated_images/gemini_1111_req_1754245880468_ktzofzepi_1_20250803_183127.png';
+    if (headerImg) headerImg.src = userData.profile_pic || '/static/dummy_profile.png';
+    if (menuImg) menuImg.src = userData.profile_pic || '/static/dummy_profile.png';
     
     // Update name - try multiple selectors
     const profileNames = document.querySelectorAll('#profileName, .profile-details h3');
