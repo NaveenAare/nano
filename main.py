@@ -367,6 +367,11 @@ async def home():
 async def privacy_policy():
     return FileResponse("templates/privacy.html")
 
+@app.get("/veo-3")
+async def privacy_policy():
+    return FileResponse("templates/veo_ext.html")
+
+
 @app.get("/termsconditions")
 async def terms_and_conditions():
     return FileResponse("templates/terms.html")

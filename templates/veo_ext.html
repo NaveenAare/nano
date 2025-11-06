@@ -1,0 +1,3599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBJS30VN6N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BBJS30VN6N');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Google Veo 3 Video Generator - Create Professional AI Videos | AI Video Platform</title>
+    <meta name="title" content="Google Veo 3 Video Generator - Create Professional AI Videos">
+    <meta name="description" content="Generate stunning AI videos with Google Veo 3. Create cinematic videos from text in multiple formats: 16:9, 9:16, 1:1. Professional quality video generation with advanced AI technology.">
+    <meta name="keywords" content="google veo 3, veo video generator, text to video ai, ai video creator, google ai video, video generator online, text to video generator, cinematic ai videos, free video generator, veo 3">
+    <meta name="author" content="AI Video Platform">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #fafbfc;
+            color: #1a1a1a;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced Header */
+        .site-header {
+            background: white;
+            border-bottom: 1px solid #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1e293b;
+            transition: opacity 0.2s;
+        }
+
+        .site-logo:hover {
+            opacity: 0.8;
+        }
+
+        .site-logo .loogo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .site-nav > a {
+            color: #5f6368;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .site-nav > a:hover {
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        /* Compact Page Header */
+        .header {
+            text-align: center;
+            padding: 32px 24px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* Credit Counter */
+        .credit-counter {
+            margin: 12px auto 0;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .credit-counter:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .credit-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+        }
+
+        .credit-label {
+            font-weight: 600;
+            color: #5f6368;
+        }
+
+        .credit-count {
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .buy-credits-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #78350f !important;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+            margin-left: 8px;
+        }
+
+        .buy-credits-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(251, 191, 36, 0.4);
+        }
+
+        .buy-credits-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: #78350f;
+        }
+
+        /* Compact Generator Tabs */
+        .generator-type-selector {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 0 24px;
+        }
+
+        .type-tabs {
+            display: flex;
+            gap: 8px;
+            background: white;
+            padding: 4px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e8eaed;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .type-tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #5f6368;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .type-tab:hover {
+            background: #f8f9fa;
+            color: #1a1a1a;
+        }
+
+        .type-tab.active {
+            background: #1a1a1a;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .type-tab svg {
+            flex-shrink: 0;
+            margin-right: 6px;
+        }
+
+        /* Main Layout - More Compact */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 24px;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 24px;
+        }
+
+        /* Video Section */
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            order: 2;
+        }
+
+        .video-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            max-height: 650px;
+        }
+
+        .video-container {
+            background: #000;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+
+        .video-container[data-aspect="16:9"] {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+
+        .video-container[data-aspect="9:16"] {
+            width: auto;
+            height: 100%;
+            aspect-ratio: 9/16;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: rgba(255,255,255,0.5);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .video-placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.3;
+        }
+
+        .placeholder-text {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .video-player.active {
+            display: block;
+        }
+
+        .video-loading {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .video-loading.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #4285f4;
+            border-radius: 50%;
+            animation: rotate 0.8s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .loading-subtext {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .video-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: none;
+            gap: 8px;
+        }
+
+        .video-actions.show {
+            display: flex;
+        }
+
+        .action-btn {
+            padding: 8px 14px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 6px;
+            color: #1a1a1a;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .action-btn:hover {
+            background: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .action-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Compact Video Info */
+        .video-info {
+            display: flex;
+            gap: 16px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: #5f6368;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #e8eaed;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .info-item svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Compact Controls Panel */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            order: 1;
+        }
+
+        /* Compact Card Styles */
+        .card, .prompt-box, .settings-group, .upload-box {
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #e8eaed;
+            transition: all 0.2s;
+        }
+
+        .card:hover, .prompt-box:hover, .settings-group:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Compact Prompt Box */
+        .prompt-box:focus-within {
+            border-color: #4285f4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .prompt-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #5f6368;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .prompt-textarea {
+            width: 100%;
+            min-height: 100px;
+            background: transparent;
+            border: none;
+            color: #1a1a1a;
+            font-family: inherit;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+        }
+
+        .prompt-textarea::placeholder {
+            color: #9aa0a6;
+        }
+
+        .prompt-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e8eaed;
+        }
+
+        .char-counter {
+            font-size: 0.7rem;
+            color: #5f6368;
+        }
+
+        .enhance-btn {
+            padding: 6px 12px;
+            background: #f1f3f4;
+            border: 1px solid #e8eaed;
+            border-radius: 6px;
+            color: #1a1a1a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .enhance-btn:hover:not(:disabled) {
+            background: #e8eaed;
+        }
+
+        .enhance-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Compact Settings */
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .setting-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .setting-options {
+            display: flex;
+            gap: 6px;
+        }
+
+        .option-btn {
+            padding: 6px 12px;
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 6px;
+            color: #5f6368;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .option-btn:hover {
+            background: #f1f3f4;
+            color: #1a1a1a;
+        }
+
+        .option-btn.active {
+            background: #4285f4;
+            color: #fff;
+            border-color: #4285f4;
+        }
+
+        /* Compact Upload Box */
+        .upload-box {
+            border: 2px dashed #e8eaed;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            padding: 20px;
+        }
+
+        .upload-box:hover {
+            background: #f8f9fa;
+            border-color: #4285f4;
+        }
+
+        .upload-box.has-image {
+            border-style: solid;
+            padding: 0;
+        }
+
+        .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-icon {
+            width: 40px;
+            height: 40px;
+            background: #f1f3f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #5f6368;
+        }
+
+        .upload-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .upload-hint {
+            font-size: 0.7rem;
+            color: #5f6368;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #e8eaed;
+            border-radius: 50%;
+            color: #ea4335;
+            font-size: 1rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #ea4335;
+            color: #fff;
+        }
+
+        /* Compact Generate Button */
+        .generate-area {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .generate-btn {
+            flex: 1;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.25);
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.35);
+        }
+
+        .generate-btn:disabled {
+            background: #f1f3f4;
+            color: #9aa0a6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .generate-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cost-box {
+            padding: 14px;
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 85px;
+        }
+
+        .cost-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #1a1a1a;
+        }
+
+        .cost-label {
+            font-size: 0.65rem;
+            color: #5f6368;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            color: #1a1a1a;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .toast.error {
+            background: #fce8e6;
+            border-color: #ea4335;
+            color: #c5221f;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* History Section - More Compact */
+        .history-section {
+            margin-top: 48px;
+            padding: 24px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #e8eaed;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .history-title {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1a1a1a;
+        }
+
+        .history-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .clear-history-btn {
+            padding: 6px 12px;
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 6px;
+            color: #5f6368;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-history-btn:hover {
+            background: #fce8e6;
+            border-color: #ea4335;
+            color: #ea4335;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .history-item {
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .history-item:hover {
+            background: #fff;
+            border-color: #4285f4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .history-video-thumb {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .history-item-info {
+            padding: 12px;
+        }
+
+        .history-prompt {
+            font-size: 0.75rem;
+            color: #1a1a1a;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .history-meta {
+            display: flex;
+            gap: 6px;
+            font-size: 0.65rem;
+            color: #5f6368;
+            flex-wrap: wrap;
+        }
+
+        .history-empty {
+            text-align: center;
+            padding: 40px 16px;
+            color: #9aa0a6;
+        }
+
+        .history-empty svg {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+            opacity: 0.3;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .history-item:hover .play-overlay {
+            display: flex;
+        }
+
+        .play-icon-circle {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-icon-circle svg {
+            width: 16px;
+            height: 16px;
+            fill: #1a1a1a;
+            margin-left: 2px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Navigation Components */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 14px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #5f6368;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .nav-link:hover {
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .nav-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.active .nav-link {
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .nav-item.active .nav-link svg {
+            transform: rotate(180deg);
+        }
+
+        .mega-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .nav-item.active .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 4px);
+        }
+
+        .dropdown-header {
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e8eaed;
+            margin-bottom: 16px;
+        }
+
+        .dropdown-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .dropdown-subtitle {
+            font-size: 0.875rem;
+            color: #5f6368;
+        }
+
+        .features-grid-dropdown {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+        }
+
+        .feature-item:hover {
+            background: #f8f9fa;
+            border-color: #e8eaed;
+        }
+
+        .feature-icon-box {
+            width: 36px;
+            height: 36px;
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon-box svg {
+            width: 18px;
+            height: 18px;
+            stroke: #5f6368;
+        }
+
+        .feature-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feature-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .feature-desc {
+            font-size: 0.75rem;
+            color: #64748b;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .feature-badge.hot {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #dc2626;
+        }
+
+        .feature-badge.new {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #16a34a;
+        }
+
+        .feature-badge.premium {
+            background: #faf5ff;
+            border-color: #e9d5ff;
+            color: #9333ea;
+        }
+
+        /* User Profile */
+        .user-profile {
+            position: relative;
+        }
+
+        .profile-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-btn:hover {
+            border-color: #cbd5e1;
+            transform: scale(1.05);
+        }
+
+        .profile-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-menu {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 300;
+        }
+
+        .profile-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-menu-header {
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .profile-details p {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin: 2px 0 0 0;
+        }
+
+        .profile-menu-items {
+            padding: 8px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .menu-item:hover {
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .menu-item.danger:hover {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .menu-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+        }
+
+        /* Logout Modal */
+        .logout-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .logout-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .logout-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transform: scale(0.9);
+            transition: all 0.3s;
+        }
+
+        .logout-overlay.show .logout-modal {
+            transform: scale(1);
+        }
+
+        .logout-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .logout-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .logout-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .logout-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .logout-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .logout-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 120px;
+        }
+
+        .logout-btn-cancel {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+        }
+
+        .logout-btn-cancel:hover {
+            background: #e5e7eb;
+        }
+
+        .logout-btn-confirm {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .logout-btn-confirm:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        /* Login Modal */
+        .login-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .credit-info {
+            font-size: 16px;
+            color: #4285f4;
+            margin-bottom: 8px;
+        }
+
+        .login-modal-text {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .google-login-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .google-login-btn:hover {
+            background: #f9fafb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .google-logo {
+            width: 18px;
+            height: 18px;
+        }
+
+        .skip-login-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #6b7280;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .skip-login-btn:hover {
+            color: #374151;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .video-section {
+                order: 1;
+            }
+
+            .controls-panel {
+                order: 2;
+            }
+
+            .video-wrapper {
+                min-height: 300px;
+            }
+
+            .mega-dropdown {
+                width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-header .container {
+                height: auto;
+                padding: 12px 16px;
+            }
+
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .type-tabs {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .type-tab {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .main {
+                padding: 0 16px 16px;
+            }
+
+            .generate-area {
+                flex-direction: column;
+            }
+
+            .history-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .profile-menu {
+                right: -15px;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .site-logo {
+                font-size: 1rem;
+            }
+
+            .site-logo .loogo {
+                width: 28px;
+                height: 28px;
+            }
+
+            .profile-menu {
+                max-width: calc(100vw - 10px);
+            }
+        }
+
+
+        /* Buy Credits Button - Mobile Optimization */
+@media (max-width: 768px) {
+    .site-nav {
+        display: flex;  /* Keep it visible */
+        gap: 8px;
+    }
+    
+    /* Hide only specific nav items */
+    #toolsNav,
+    #bugReportBtn {
+        display: none;
+    }
+    
+    /* Keep buy credits button and profile visible */
+    .buy-credits-btn,
+    .user-profile {
+        display: flex;
+    }
+    
+    /* Make buy credits button compact */
+    .buy-credits-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        min-width: auto;
+    }
+    
+    .buy-credits-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    /* Show only count on mobile */
+    .buy-credits-btn #creditsButtonText .credits-count {
+        display: inline;
+    }
+}
+
+/* Add to the top of your CSS, inside * selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    background: #fafbfc;
+    color: #1a1a1a;
+    line-height: 1.5;
+    overflow-x: hidden;  /* This is already there */
+}
+
+html {
+    overflow-x: hidden;  /* Add this */
+}
+
+/* Fix container width on mobile */
+@media (max-width: 768px) {
+    .container,
+    .main,
+    .history-section {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Fix mega dropdown causing overflow */
+    .mega-dropdown {
+        display: none;  /* Hide dropdown on mobile anyway */
+    }
+    
+    /* Ensure showcase section doesn't overflow */
+    .showcase-section {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Fix carousel track */
+    #veoCarouselTrack {
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    * {
+        max-width: 100vw;
+    }
+    
+    .site-header .container {
+        height: auto;
+        padding: 12px 16px;
+        width: 100%;
+    }
+
+    .site-nav {
+        display: flex;
+        gap: 8px;
+    }
+    
+    #toolsNav,
+    #bugReportBtn {
+        display: none !important;
+    }
+    
+    .buy-credits-btn,
+    .user-profile {
+        display: flex !important;
+    }
+    
+    .buy-credits-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+    
+    .buy-credits-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .type-tabs {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .type-tab {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .main {
+        padding: 0 16px 16px;
+        width: 100%;
+    }
+
+    .generate-area {
+        flex-direction: column;
+    }
+
+    .history-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .profile-menu {
+        right: 0;
+        min-width: 200px;
+    }
+    
+    .mega-dropdown {
+        display: none;
+    }
+    
+    .container,
+    .video-section,
+    .controls-panel,
+    .history-section {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* SHOWCASE SECTION FIX */
+    div[style*="max-width: 1400px"] {
+        padding: 0 16px !important;
+        margin: 60px auto 0 auto !important;
+    }
+    
+    #veoCarouselTrack {
+        gap: 20px;
+        padding: 20px 16px 20px 0;
+        margin-left: 0;
+    }
+    
+    #veoCarouselTrack > div {
+        flex: 0 0 calc(100vw - 60px) !important;
+        max-width: 350px;
+    }
+    
+    #veoPrevBtn, #veoNextBtn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    /* TESTIMONIALS FIX */
+    div[style*="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))"] {
+        grid-template-columns: 1fr !important;
+        padding: 0;
+    }
+    
+    /* FOOTER FIX */
+    footer > div {
+        padding: 0 24px !important;
+    }
+    
+    footer div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 24px;
+    }
+}
+
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;  /* Changed from display: none */
+}
+
+.video-player.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    /* Masonry grid mobile */
+    #videoMasonryGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    /* Reset all span rules on mobile */
+    #videoMasonryGrid > div {
+        grid-row: span 1 !important;
+    }
+    
+    /* Adjust video overlay text */
+    #videoMasonryGrid p {
+        font-size: 11px !important;
+    }
+    
+    #videoMasonryGrid span {
+        font-size: 9px !important;
+        padding: 2px 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Single column on very small screens */
+    #videoMasonryGrid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+@media (max-width: 968px) {
+    /* Zigzag to stack on mobile */
+    div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    /* Reverse order for right-aligned items */
+    div[style*="grid-template-columns: 1fr 1fr"]:nth-child(even) > div:first-child {
+        order: 2;
+    }
+    
+    div[style*="grid-template-columns: 1fr 1fr"]:nth-child(even) > div:last-child {
+        order: 1;
+    }
+    
+    /* Reduce heading sizes */
+    div[style*="flex-direction: column"] h3 {
+        font-size: 24px !important;
+    }
+    
+    div[style*="flex-direction: column"] h2 {
+        font-size: 32px !important;
+    }
+    
+    /* Reduce spacing */
+    div[style*="gap: 120px"] {
+        gap: 80px !important;
+    }
+    
+    /* CTA padding */
+    div[style*="padding: 60px 40px"] {
+        padding: 40px 24px !important;
+    }
+}
+
+
+/* Center content in white cards */
+div[style*="background: white; border: 1px solid #e2e8f0"] {
+    text-align: center;
+}
+
+div[style*="background: white; border: 1px solid #e2e8f0"] > div[style*="width: 64px"] {
+    margin-left: auto;
+    margin-right: auto;
+}
+    </style>
+</head>
+<body>
+    <!-- Logout Modal -->
+    <div class="logout-overlay" id="logoutOverlay">
+        <div class="logout-modal">
+            <div class="logout-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+            </div>
+            
+            <h2 class="logout-title">Sign Out</h2>
+            <p class="logout-subtitle">
+                Are you sure you want to sign out? You'll need to sign in again to access your account.
+            </p>
+            
+            <div class="logout-actions">
+                <button class="logout-btn logout-btn-cancel" onclick="hideLogoutConfirmation()">
+                    Cancel
+                </button>
+                <button class="logout-btn logout-btn-confirm" onclick="confirmLogout()" id="confirmLogoutBtn">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal-overlay" style="display: none;">
+        <div class="login-modal-content">
+            <div class="login-modal-title">Continue Creating</div>
+            <div class="credit-info">✨ Login to continue!</div>
+            <div class="login-modal-text">
+                Sign in with Google to get unlimited image generations and access premium features.
+            </div>
+            <button class="google-login-btn" onclick="loginWithGoogle()" id="loginbuttonid1">
+                <svg class="google-logo" viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Continue with Google
+            </button>
+            <button class="skip-login-btn" onclick="closeLoginModal()">Maybe Later</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="site-logo">
+                <img class="loogo" src="/static/icons8-google-logo-60.png" alt="Veo 3">
+                Google Veo 3 Video Generator
+            </a>
+            
+            <nav class="site-nav">
+                <!-- Tools Dropdown -->
+               
+                
+                <a href="/pricing" class="buy-credits-btn" id="headerBuyCreditsBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span id="creditsButtonText">Buy Credits</span>
+                </a>
+
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="profile-btn" onclick="toggleProfileMenu()">
+                        <img src="/static/dummy_profile.png" alt="Profile" id="headerProfileImg">
+                    </div>
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-menu-header">
+                            <div class="profile-info">
+                                <div class="profile-avatar">
+                                    <img src="/static/dummy_profile.png" alt="Profile" id="menuProfileImg">
+                                </div>
+                                <div class="profile-details">
+                                    <h3 id="profileName">Guest User</h3>
+                                    <p id="profileEmail">guest@veo3.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-menu-items">
+                            <a href="https://googlenanobanana.com/pricing" target="_blank" class="menu-item" id="premiumMenuItem">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                                Pricing
+                            </a>
+                            <a href="https://googlenanobanana.com/support" target="_blank" class="menu-item">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Support
+                            </a>
+                            <div style="height: 1px; background: #e2e8f0; margin: 8px 0;"></div>
+                            <button type="button" class="menu-item danger" id="auth-button" onclick="handleAuthAction()">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                                <span id="auth-button-text">Sign Out</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <div class="credit-counter" id="home_creditCounter" style="display: none;">
+                <div class="credit-display">
+                    <span class="credit-label">Credits:</span>
+                    <span class="credit-count" id="home_creditCount">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generator Type Tabs -->
+        <div class="generator-type-selector">
+            <div class="type-tabs">
+                <a href="/" class="type-tab">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" fill="none" stroke-width="2"/>
+                    </svg>
+                    Image
+                </a>
+                <a href="/veo3" class="type-tab active">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" fill="none" stroke-width="2"/>
+                    </svg>
+                    Video - Veo 3
+                </a>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="toast" id="toast">
+            <span>⚠️</span>
+            <span id="toastMsg"></span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Right: Video Section -->
+            <div class="video-section">
+                <div class="video-wrapper">
+
+
+
+                    <div class="video-container" id="videoContainer" data-aspect="16:9">
+                        <div class="video-placeholder" id="placeholder" style="display: none;">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+                            </svg>
+                            <div class="placeholder-text">Generate your first video</div>
+                        </div>
+
+                        <video class="video-player active" id="videoPlayer" controls autoplay muted loop>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                        </video>
+
+                        <div class="video-loading" id="loading">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">Generating video...</div>
+                            <div class="loading-subtext" id="loadingStatus">Initializing</div>
+                        </div>
+
+                        <div class="video-actions show" id="videoActions">
+                            <button class="action-btn" id="downloadBtn">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+<div class="video-info">
+                <div class="info-item">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                    </svg>
+                    <span id="aspectInfo">16:9 Landscape</span>
+                </div>
+                <div class="info-item">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span id="durationInfo">4 seconds</span>
+                </div>
+                <div class="info-item">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                    <span id="qualityInfo">720p</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left: Controls -->
+        <div class="controls-panel">
+            <!-- Model Badge -->
+
+
+            <!-- Prompt -->
+           
+
+            <!-- Settings -->
+            <div class="settings-group">
+                <div class="setting-row">
+                    <span class="setting-name">Aspect Ratio</span>
+                    <div class="setting-options" id="aspectOptions">
+                        <button class="option-btn active" data-aspect="16:9">16:9</button>
+                        <button class="option-btn" data-aspect="9:16">9:16</button>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <span class="setting-name">Duration</span>
+                    <div class="setting-options" id="durationOptions">
+                        <button class="option-btn active" data-value="4">4s</button>
+                        <button class="option-btn" data-value="6">6s</button>
+                        <button class="option-btn" data-value="8">8s</button>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <span class="setting-name">Quality</span>
+                    <div class="setting-options" id="qualityOptions">
+                        <button class="option-btn active" data-value="720p">720p</button>
+                        <button class="option-btn" data-value="1080p">1080p</button>
+                    </div>
+                </div>
+            </div>
+
+            <label class="upload-box" id="uploadBox">
+                <input type="file" id="imageInput" accept="image/*">
+                <div class="upload-content" id="uploadContent">
+                    <div class="upload-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div class="upload-text">Add reference image</div>
+                    <div class="upload-hint">Optional • PNG or JPG</div>
+                </div>
+                <img class="image-preview" id="imagePreview" alt="Preview">
+                <button type="button" class="remove-btn" id="removeBtn">×</button>
+            </label>
+
+            <!-- Image Upload -->
+            
+
+             <div class="prompt-box">
+                <div class="prompt-label">Describe Your Video</div>
+                <textarea 
+                    class="prompt-textarea" 
+                    id="promptInput"
+                    placeholder="A serene ocean wave crashing against rocks at golden hour, slow motion, cinematic lighting..."
+                ></textarea>
+                <div class="prompt-footer">
+                    <span class="char-counter"><span id="charCount">0</span> / 1000</span>
+                    <button class="enhance-btn" id="enhanceBtn">✨ Enhance</button>
+                </div>
+            </div>
+
+            <!-- Generate -->
+            <div class="generate-area">
+                <button class="generate-btn" id="generateBtn" disabled>
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    Generate Video
+                </button>
+                <div class="cost-box">
+                    <div class="cost-value" id="costValue">50</div>
+                    <div class="cost-label">Credits</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="history-section" id="historySection" style="max-width: 1400px; margin: 0 auto; display: none;">
+        <div class="history-header">
+            <div class="history-title">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Recent Videos
+            </div>
+            <button class="clear-history-btn" id="clearHistoryBtn">Clear History</button>
+        </div>
+        <div class="history-grid" id="historyGrid">
+            <!-- History items will be inserted here -->
+        </div>
+        <div class="history-empty" id="historyEmpty">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+            <div class="history-empty-text">No videos generated yet</div>
+        </div>
+    </section>
+    </main>
+    </div>
+
+    <script>
+
+        // Add at the top with other constants
+const EXAMPLE_VIDEOS = {
+    '16:9': '/static/20250324-215500-sora.mp4',
+    '9:16': '/static/qurir46rwot4.mp4'
+};
+
+// Update aspect ratio buttons
+// Update aspect ratio buttons
+document.querySelectorAll('#aspectOptions .option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#aspectOptions .option-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.aspect = btn.dataset.aspect;
+        
+        // If no user video is playing, show example
+        const videoPlayer = document.getElementById('videoPlayer');
+        if (!state.isGenerating && !currentVideoUrl) {
+            videoPlayer.src = EXAMPLE_VIDEOS[state.aspect];
+            setExampleMode(true);
+        }
+        
+        updateUI();
+    });
+});
+
+// Set initial example video on load
+window.addEventListener('load', () => {
+    const videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.src = EXAMPLE_VIDEOS['16:9'];
+    
+    // Set as example mode initially
+    setExampleMode(true);
+    
+    initializeApp();
+    updateUI();
+    fetchCredits();
+    loadHistory();
+});
+
+        // Fetch and display credits
+        async function fetchAndDisplayHomeCredits() {
+            const authToken = localStorage.getItem('authToken');
+            
+            if (!authToken || authToken.trim() === '') {
+                return;
+            }
+            
+            const creditCounter = document.getElementById('home_creditCounter');
+            const creditCount = document.getElementById('home_creditCount');
+            
+            // creditCounter.style.display = 'block';
+            
+            try {
+                const response = await fetch('https://chatezzy.com/api/get-nano-credits', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `authToken=${encodeURIComponent(authToken)}`
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.creditcount && data.creditcount > 0) {
+                    creditCount.textContent = data.creditcount;
+                    creditCount.classList.remove('loading');
+                } else {
+                    creditCounter.style.display = 'none';
+                }
+                
+            } catch (error) {
+                console.error('Error fetching home credits:', error);
+                creditCounter.style.display = 'none';
+            }
+        }
+
+        function updateHomeCredit(newCreditCount) {
+            const creditCounter = document.getElementById('home_creditCounter');
+            const creditCount = document.getElementById('home_creditCount');
+            
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken || authToken.trim() === '') {
+                return;
+            }
+            
+            try {
+                const safeCredits = Math.max(0, parseInt(newCreditCount) || 0);
+                
+                if (safeCredits >= 0) {
+                    // creditCounter.style.display = 'block';
+                    creditCount.textContent = safeCredits;
+                    creditCount.classList.remove('loading');
+                    
+                    // Update buy credits button
+                    updateBuyCreditsButton();
+                } else {
+                    creditCounter.style.display = 'none';
+                }
+                
+            } catch (error) {
+                console.error('Error updating home credit display:', error);
+                creditCounter.style.display = 'none';
+            }
+        }
+
+        // Call on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchAndDisplayHomeCredits();
+        });
+    </script>
+
+    <script>
+        const API_BASE = 'https://chatezzy.com';
+        const CHAT_ID = 'veo3_' + Date.now();
+
+        const COSTS = {
+            '720p': { 4: 15, 6: 20, 8: 25 },
+            '1080p': { 4: 20, 6: 25, 8: 30 }
+        };
+
+
+        const ASPECTS = {
+            '16:9': { width: 1920, height: 1080, label: '16:9 Landscape' },
+            '9:16': { width: 1080, height: 1920, label: '9:16 Portrait' }
+        };
+
+        let state = {
+            prompt: '',
+            aspect: '16:9',
+            duration: 4,
+            quality: '720p',
+            imageFile: null,
+            isGenerating: false,
+            model: 'veo3'
+        };
+
+        const getToken = () => localStorage.getItem('authToken');
+        const getUserId = () => localStorage.getItem('userId');
+        const getCost = () => COSTS[state.quality][state.duration];
+
+        let currentVideoUrl = null;
+
+        function updateUI() {
+            document.getElementById('costValue').textContent = getCost();
+            document.getElementById('generateBtn').disabled = !state.prompt.trim() || state.isGenerating;
+            document.getElementById('aspectInfo').textContent = ASPECTS[state.aspect].label;
+            document.getElementById('durationInfo').textContent = state.duration + ' seconds';
+            document.getElementById('qualityInfo').textContent = state.quality;
+            document.getElementById('videoContainer').dataset.aspect = state.aspect;
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+            if (isError) toast.classList.add('error');
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.classList.remove('error');
+            }, 5000);
+        }
+
+        // Prompt
+        document.getElementById('promptInput').addEventListener('input', (e) => {
+            state.prompt = e.target.value.slice(0, 1000);
+            document.getElementById('charCount').textContent = state.prompt.length;
+            updateUI();
+        });
+
+        // Enhance Prompt
+        document.getElementById('enhanceBtn').addEventListener('click', async () => {
+            const currentPrompt = state.prompt.trim();
+            if (!currentPrompt) {
+                showToast('Please enter a prompt first', true);
+                return;
+            }
+
+            const token = getToken();
+            if (!token) {
+                showToast('Please login to enhance prompts', true);
+                return;
+            }
+
+            const enhanceBtn = document.getElementById('enhanceBtn');
+            enhanceBtn.classList.add('loading');
+            enhanceBtn.disabled = true;
+            enhanceBtn.textContent = 'Enhancing...';
+
+            try {
+                const formData = new FormData();
+                formData.append('authToken', token);
+                formData.append('prompt', currentPrompt);
+
+                const res = await fetch('https://chatezzy.com/enhancevideo', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (data.prompt) {
+                    state.prompt = data.prompt;
+                    document.getElementById('promptInput').value = data.prompt;
+                    document.getElementById('charCount').textContent = data.prompt.length;
+                    updateUI();
+                } else {
+                    throw new Error('Failed to enhance prompt');
+                }
+            } catch (err) {
+                showToast('Failed to enhance prompt. Please try again.', true);
+                console.error('Enhance error:', err);
+            } finally {
+                enhanceBtn.classList.remove('loading');
+                enhanceBtn.disabled = false;
+                enhanceBtn.textContent = '✨ Enhance';
+            }
+        });
+
+        // Aspect Ratio
+        document.querySelectorAll('#aspectOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#aspectOptions .option-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.aspect = btn.dataset.aspect;
+                updateUI();
+            });
+        });
+
+        // Duration
+        document.querySelectorAll('#durationOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#durationOptions .option-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.duration = parseInt(btn.dataset.value);
+                updateUI();
+            });
+        });
+
+        // Quality
+        document.querySelectorAll('#qualityOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#qualityOptions .option-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.quality = btn.dataset.value;
+                updateUI();
+            });
+        });
+
+        // Image Upload
+        document.getElementById('imageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                state.imageFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                    document.getElementById('uploadContent').style.display = 'none';
+                    document.getElementById('removeBtn').style.display = 'flex';
+                    document.getElementById('uploadBox').classList.add('has-image');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('removeBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            state.imageFile = null;
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('uploadContent').style.display = 'flex';
+            document.getElementById('removeBtn').style.display = 'none';
+            document.getElementById('uploadBox').classList.remove('has-image');
+            document.getElementById('imageInput').value = '';
+        });
+
+        // Generate
+        document.getElementById('generateBtn').addEventListener('click', generate);
+        document.getElementById('downloadBtn').addEventListener('click', downloadVideo);
+
+        async function generate() {
+            const token = getToken();
+            if (!token) {
+                showToast('Please login to generate videos', true);
+                return;
+            }
+
+            state.isGenerating = true;
+            updateUI();
+            document.getElementById('loading').classList.add('active');
+
+            const formData = new FormData();
+            formData.append('prompt', state.prompt);
+            formData.append('authToken', token);
+            formData.append('video_duration', state.duration);
+            formData.append('video_width', ASPECTS[state.aspect].width);
+            formData.append('video_height', ASPECTS[state.aspect].height);
+            formData.append('quality', state.quality);
+            formData.append('requestId', 'veo3_' + Date.now());
+            formData.append('chat_id', CHAT_ID);
+            formData.append('model', 'veo3');
+            if (state.imageFile) formData.append('reference_image', state.imageFile);
+
+            try {
+                const res = await fetch(API_BASE + '/chat/v2/veo-initiate', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (data.status === 'error' || data.status_code === 400) {
+                    throw new Error(data.error || data.detail || 'Generation failed');
+                }
+
+                const taskData = {
+                    taskId: data.operation_name,
+                    requestId: formData.get('requestId'),
+                    prompt: state.prompt,
+                    aspect: state.aspect,
+                    duration: state.duration,
+                    quality: state.quality,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('veo3OngoingTask', JSON.stringify(taskData));
+
+                pollStatus(data.operation_name, formData.get('requestId'));
+
+            } catch (err) {
+                showToast(err.message, true);
+                state.isGenerating = false;
+                updateUI();
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function pollStatus(taskId, requestId) {
+            checkTaskStatus(taskId, requestId);
+        }
+
+        async function checkTaskStatus(taskId, requestId) {
+            const formData = new FormData();
+            formData.append('operation_name', taskId);
+            formData.append('authToken', getToken());
+            formData.append('user_id', getUserId());
+            formData.append('chat_id', CHAT_ID);
+            formData.append('requestId', requestId);
+
+            try {
+                const res = await fetch(API_BASE + '/chat/v2/veo-check-status', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (data.status === 'completed') {
+                    stopPolling();
+                    onComplete(data.video_url);
+                    return;
+                } 
+                else if (data.status === 'failed') {
+                    stopPolling();
+                    throw new Error(data.error || 'Generation failed');
+                }
+                else if (data.status === 'cancelled') {
+                    stopPolling();
+                    throw new Error('Video generation was cancelled');
+                }
+                else if (data.status === 'error') {
+                    stopPolling();
+                    throw new Error(data.error || 'An error occurred');
+                }
+                else if (data.status === 'pending') {
+                    const loadingStatus = document.getElementById('loadingStatus');
+                    if (loadingStatus) {
+                        loadingStatus.textContent = data.current_status || 'Processing';
+                    }
+                    setTimeout(() => checkTaskStatus(taskId, requestId), 5000);
+                }
+                
+            } catch (err) {
+                console.error('Status check error:', err);
+                showToast(err.message, true);
+                
+                stopPolling();
+                state.isGenerating = false;
+                updateUI();
+                
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.classList.remove('active');
+                }
+            }
+        }
+
+        function stopPolling() {
+            localStorage.removeItem('veo3OngoingTask');
+            console.log('Polling stopped and task cleared');
+        }
+
+        function onComplete(url) {
+            stopPolling();
+            
+            document.getElementById('loading').classList.remove('active');
+            
+            // Safely handle placeholder
+            const placeholder = document.getElementById('placeholder');
+            if (placeholder) {
+                placeholder.style.display = 'none';
+            }
+            
+            // Safely handle video player
+            const videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer) {
+                videoPlayer.src = url;
+                videoPlayer.classList.add('active');
+            }
+            
+            // Safely handle video actions
+            const videoActions = document.getElementById('videoActions');
+            if (videoActions) {
+                videoActions.classList.add('show');
+            }
+            
+            currentVideoUrl = url;
+            
+            // Switch to download mode (check if function exists)
+            if (typeof setExampleMode === 'function') {
+                setExampleMode(false);
+            }
+            
+            state.isGenerating = false;
+            updateUI();
+            fetchCredits();
+            
+            saveToHistory({
+                videoUrl: url,
+                prompt: state.prompt,
+                aspect: state.aspect,
+                duration: state.duration,
+                quality: state.quality,
+                timestamp: Date.now()
+            });
+        }
+
+        function downloadVideo() {
+            if (!currentVideoUrl) return;
+            
+            const link = document.createElement('a');
+            link.href = currentVideoUrl;
+            link.download = `veo3-video-${Date.now()}.mp4`;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+       async function fetchCredits() {
+            const token = getToken();
+            if (!token) return;
+
+            try {
+                const res = await fetch('https://chatezzy.com/api/get-nano-credits', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `authToken=${encodeURIComponent(token)}`
+                });
+                const data = await res.json();
+                
+                if (data.creditcount >= 0) {
+                    // Update the button with credits
+                    const buttonText = document.getElementById('creditsButtonText');
+                    if (buttonText && data.creditcount > 0) {
+                        buttonText.innerHTML = `<span class="credits-count">${data.creditcount}</span> Buy More Credits`;
+                    } else if (buttonText) {
+                        buttonText.textContent = 'Buy More Credits';
+                    }
+                    
+                    // Also update the home credit counter if it exists
+                    updateHomeCredit(data.creditcount);
+                }
+            } catch (err) {
+                console.error('Failed to fetch credits:', err);
+            }
+        }
+
+        function initializeApp() {
+            const ongoingTask = localStorage.getItem('veo3OngoingTask');
+            if (ongoingTask) {
+                const taskData = JSON.parse(ongoingTask);
+                console.log('Found ongoing task:', taskData);
+                
+                state.prompt = taskData.prompt;
+                state.aspect = taskData.aspect;
+                state.duration = taskData.duration;
+                state.quality = taskData.quality;
+                state.isGenerating = true;
+                
+                document.getElementById('promptInput').value = taskData.prompt;
+                document.getElementById('charCount').textContent = taskData.prompt.length;
+                
+                document.getElementById('loading').classList.add('active');
+                document.getElementById('loadingStatus').textContent = 'Resuming...';
+                updateUI();
+                
+                pollStatus(taskData.taskId, taskData.requestId);
+            }
+        }
+
+        function saveToHistory(videoData) {
+            let history = getHistory();
+            history.unshift(videoData);
+            if (history.length > 5) {
+                history = history.slice(0, 5);
+            }
+            localStorage.setItem('veo3History', JSON.stringify(history));
+            loadHistory();
+        }
+
+        function getHistory() {
+            const historyJson = localStorage.getItem('veo3History');
+            return historyJson ? JSON.parse(historyJson) : [];
+        }
+
+        function loadHistory() {
+            const history = getHistory();
+            const historySection = document.getElementById('historySection');
+            const historyGrid = document.getElementById('historyGrid');
+            const historyEmpty = document.getElementById('historyEmpty');
+            
+            if (history.length === 0) {
+                historySection.style.display = 'block';
+                historyGrid.style.display = 'none';
+                historyEmpty.style.display = 'block';
+                return;
+            }
+            
+            historySection.style.display = 'block';
+            historyGrid.style.display = 'grid';
+            historyEmpty.style.display = 'none';
+            historyGrid.innerHTML = '';
+            
+            history.forEach((video) => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.onclick = () => playHistoryVideo(video);
+                
+                item.innerHTML = `
+                    <div style="position: relative;">
+                        <video class="history-video-thumb" src="${video.videoUrl}" muted></video>
+                        <div class="play-overlay">
+                            <div class="play-icon-circle">
+                                <svg viewBox="0 0 24 24">
+                                    <polygon points="5 3 19 12 5 21 5 3"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-item-info">
+                        <div class="history-prompt">${video.prompt}</div>
+                        <div class="history-meta">
+                            <span class="history-meta-item">${video.duration}s</span>
+                            <span class="history-meta-item">•</span>
+                            <span class="history-meta-item">${video.quality}</span>
+                            <span class="history-meta-item">•</span>
+                            <span class="history-meta-item">${ASPECTS[video.aspect].label}</span>
+                        </div>
+                    </div>
+                `;
+                
+                historyGrid.appendChild(item);
+            });
+        }
+
+        function playHistoryVideo(video) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            state.aspect = video.aspect;
+            state.duration = video.duration;
+            state.quality = video.quality;
+            
+            document.querySelectorAll('#aspectOptions .option-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.aspect === video.aspect);
+            });
+            document.querySelectorAll('#durationOptions .option-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.value) === video.duration);
+            });
+            document.querySelectorAll('#qualityOptions .option-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === video.quality);
+            });
+            
+            document.getElementById('placeholder').style.display = 'none';
+            document.getElementById('videoPlayer').src = video.videoUrl;
+            document.getElementById('videoPlayer').classList.add('active');
+            document.getElementById('videoActions').classList.add('show');
+            currentVideoUrl = video.videoUrl;
+            
+            // Switch to download mode for history videos
+            setExampleMode(false);
+            
+            updateUI();
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all history?')) {
+                localStorage.removeItem('veo3History');
+                loadHistory();
+            }
+        }
+
+        document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
+
+        window.addEventListener('load', () => {
+            initializeApp();
+            updateUI();
+            fetchCredits();
+            loadHistory(); 
+        });
+    </script>
+
+    <!-- Showcase Section -->
+    <div style="max-width: 1400px; margin: 100px auto 0 auto; padding: 0 24px; position: relative;">
+        <div style="position: absolute; width: 400px; height: 400px; background: linear-gradient(135deg, #000000, #222222); border-radius: 50%; filter: blur(100px); opacity: 0.04; top: -200px; left: -200px; pointer-events: none;"></div>
+        <div style="position: absolute; width: 300px; height: 300px; background: linear-gradient(135deg, #fbbc04, #ea4335); border-radius: 50%; filter: blur(100px); opacity: 0.04; bottom: -150px; right: -150px; pointer-events: none;"></div>
+
+
+
+        <div style="max-width: 1400px; margin: 80px auto 0 auto; padding: 0 24px;">
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 60px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); padding: 8px 20px; border-radius: 50px; color: white; font-size: 13px; font-weight: 600; margin-bottom: 20px;">
+            <span style="font-size: 16px;">✨</span>
+            <span>Powered by Google Veo 3</span>
+        </div>
+        <h2 style="font-size: 48px; font-weight: 800; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; letter-spacing: -1px;">See What's Possible</h2>
+        <p style="font-size: 18px; color: #64748b; max-width: 600px; margin: 0 auto;">Real examples generated with Google Veo 3</p>
+    </div>
+
+    <!-- Masonry Video Grid -->
+    <div id="videoMasonryGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; grid-auto-flow: dense;">
+        
+        <!-- Video 1 - Large -->
+        <div style="grid-row: span 2; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/ge9fcp46l7ai.mp4" type="video/mp4">
+            </video>
+
+
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 16px; left: 16px; right: 16px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px;">16:9</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 12px;">8s</span>
+                </div>
+                <p style="color: white; font-size: 13px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Cinematic nature scene</p>
+            </div>
+        </div>
+
+        <!-- Video 2 - Small -->
+        <div style="position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000; aspect-ratio: 1;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/woblptspbxtt.mp4" type="video/mp4">
+            </video>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;">9:16</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 10px;">4s</span>
+                </div>
+                <p style="color: white; font-size: 12px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Urban street</p>
+            </div>
+        </div>
+
+        <!-- Video 3 - Medium -->
+        <div style="grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/20250324-215500-sora-2.mp4" type="video/mp4">
+            </video>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;">16:9</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 10px;">6s</span>
+                </div>
+                <p style="color: white; font-size: 12px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Dynamic action</p>
+            </div>
+        </div>
+
+        <!-- Video 4 - Small -->
+        <div style="position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000; aspect-ratio: 1;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/20250324-215500-sora-3.mp4" type="video/mp4">
+            </video>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;">1:1</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 10px;">4s</span>
+                </div>
+                <p style="color: white; font-size: 12px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Travel scene</p>
+            </div>
+        </div>
+
+        <!-- Video 5 - Large Vertical -->
+        <div style="grid-row: span 2; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/20250324-215500-sora-4.mp4" type="video/mp4">
+            </video>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 16px; left: 16px; right: 16px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px;">9:16</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 12px;">8s</span>
+                </div>
+                <p style="color: white; font-size: 13px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Social media ready</p>
+            </div>
+        </div>
+
+        <!-- Video 6 - Medium -->
+        <div style="position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; background: #000;" onmouseover="this.style.transform='translateY(-4px)'; this.querySelector('video').play()" onmouseout="this.style.transform='translateY(0)'; this.querySelector('video').pause()">
+            <video style="width: 100%; height: 100%; object-fit: cover; display: block;" muted loop playsinline>
+                <source src="/static/sora_sora_1760552739548_1_1760552758.mp4" type="video/mp4">
+            </video>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;">16:9</span>
+                    <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #1a1a1a; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 10px;">4s</span>
+                </div>
+                <p style="color: white; font-size: 12px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Product showcase</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <div style="text-align: center; margin-top: 60px;">
+        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); text-decoration: none;">
+            <span>Start Creating Now</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+        </a>
+    </div>
+</div>
+        
+
+
+       
+
+
+
+
+<!-- SEO Content - Zigzag Layout -->
+<!-- SEO Content - Zigzag Layout with White Cards -->
+<div style="max-width: 1200px; margin: 120px auto; padding: 0 24px;">
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 80px;">
+        <h2 style="font-size: 42px; font-weight: 700; color: #0f172a; margin-bottom: 16px; line-height: 1.2;">Transform Ideas Into Videos</h2>
+        <p style="font-size: 18px; color: #64748b; max-width: 600px; margin: 0 auto;">Professional AI-powered video generation with Google Veo 3</p>
+    </div>
+
+    <!-- Zigzag Items -->
+    <div style="display: flex; flex-direction: column; gap: 100px;">
+        
+        <!-- Item 1 - Card Left -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 60px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="width: 64px; height: 64px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <svg width="32" height="32" stroke="#0f172a" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">Multiple Formats</h4>
+                <p style="font-size: 15px; color: #64748b; line-height: 1.7;">Generate videos in any aspect ratio for every platform and use case.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 28px; font-weight: 600; color: #0f172a; margin-bottom: 16px; line-height: 1.3;">Create Videos for Every Platform</h3>
+                <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 20px;">
+                    Generate videos in <strong>16:9 landscape</strong> for YouTube, <strong>9:16 vertical</strong> for TikTok and Reels, or <strong>1:1 square</strong> for Instagram posts. One tool, every format you need.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        YouTube & Widescreen
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        TikTok & Instagram Reels
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Social Media Posts
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2 - Card Right -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h3 style="font-size: 28px; font-weight: 600; color: #0f172a; margin-bottom: 16px; line-height: 1.3;">Professional Quality, Zero Equipment</h3>
+                <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 20px;">
+                    Generate <strong>720p and 1080p HD videos</strong> with cinematic lighting, smooth motion, and professional color grading. No cameras, no studios, no editing software required.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        1080p HD Resolution
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Cinematic Lighting
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Smooth Camera Motion
+                    </div>
+                </div>
+            </div>
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 60px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="width: 64px; height: 64px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <svg width="32" height="32" stroke="#0f172a" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">HD Quality</h4>
+                <p style="font-size: 15px; color: #64748b; line-height: 1.7;">Professional broadcast-quality output with advanced rendering.</p>
+            </div>
+        </div>
+
+        <!-- Item 3 - Card Left -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 60px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="width: 64px; height: 64px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <svg width="32" height="32" stroke="#0f172a" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">Lightning Fast</h4>
+                <p style="font-size: 15px; color: #64748b; line-height: 1.7;">From prompt to video in seconds with real-time generation.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 28px; font-weight: 600; color: #0f172a; margin-bottom: 16px; line-height: 1.3;">From Idea to Video in Seconds</h3>
+                <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 20px;">
+                    <strong>Generate videos in 30-90 seconds</strong> with our advanced AI video generator. Simply describe what you want, choose your settings, and download your professional video instantly.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        4-8 Second Videos
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Instant Generation
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        No Editing Required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 4 - Card Right -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h3 style="font-size: 28px; font-weight: 600; color: #0f172a; margin-bottom: 16px; line-height: 1.3;">Perfect for Content Creators</h3>
+                <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 20px;">
+                    Whether you're a <strong>YouTuber, marketer, or business owner</strong>, create stunning video content for social media, ads, presentations, and more. Commercial use included.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Social Media Content
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Marketing & Ads
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #475569;">
+                        <div style="width: 20px; height: 20px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        Commercial Rights
+                    </div>
+                </div>
+            </div>
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 60px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="width: 64px; height: 64px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <svg width="32" height="32" stroke="#0f172a" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">For Everyone</h4>
+                <p style="font-size: 15px; color: #64748b; line-height: 1.7;">From solo creators to enterprise teams, all skill levels welcome.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div style="text-align: center; margin-top: 100px; padding: 60px 40px; background: #0f172a; border-radius: 20px;">
+        <h3 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 16px;">Ready to Create Amazing Videos?</h3>
+        <p style="font-size: 16px; color: #cbd5e1; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">Start generating professional AI videos with Google Veo 3 today</p>
+        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" 
+           style="display: inline-block; padding: 14px 32px; background: white; color: #0f172a; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: transform 0.2s;" 
+           onmouseover="this.style.transform='translateY(-2px)'" 
+           onmouseout="this.style.transform='translateY(0)'">
+            Start Creating Now
+        </a>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <!-- Showcase Section - Masonry Grid -->
+
+
+    <!-- Testimonials Section -->
+    <div style="max-width: 1200px; margin: 100px auto 0 auto; padding: 0 24px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); color: white; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);">
+                <span style="color: #fbbf24; font-size: 16px;">⭐</span>
+                <span>Trusted by 10,000+ Creators</span>
+            </div>
+            <h2 style="font-size: 48px; font-weight: 800; color: #1a202c; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">What Our Users Say</h2>
+            <p style="font-size: 18px; color: #64748b; max-width: 600px; margin: 0 auto; line-height: 1.6;">Discover how creators and businesses are using Google Veo 3 to bring their visions to life</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 40px;">
+            <!-- Testimonial 1 -->
+            <div style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                    <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;">SM</div>
+                    <div>
+                        <div style="font-size: 18px; font-weight: 700; color: #1a202c; margin-bottom: 4px;">Sarah Mitchell</div>
+                        <div style="font-size: 14px; color: #64748b; font-weight: 500;">Content Creator</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                </div>
+                <p style="font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 20px;">Google Veo 3 is absolutely incredible! The video quality is stunning and the generation speed is impressive. It's become an essential tool for my content creation workflow.</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #10b981; font-weight: 600;">
+                        <div style="width: 18px; height: 18px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                        Verified User
+                    </div>
+                    <div style="font-size: 13px; color: #94a3b8;">2 weeks ago</div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                    <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #34a853 0%, #fbbc04 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;">MJ</div>
+                    <div>
+                        <div style="font-size: 18px; font-weight: 700; color: #1a202c; margin-bottom: 4px;">Marcus Johnson</div>
+                        <div style="font-size: 14px; color: #64748b; font-weight: 500;">Digital Marketer</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                </div>
+                <p style="font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 20px;">The quality of videos from Veo 3 is outstanding. We've significantly reduced our video production costs while actually improving quality. Our engagement rates have never been higher!</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #10b981; font-weight: 600;">
+                        <div style="width: 18px; height: 18px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                        Verified User
+                    </div>
+                    <div style="font-size: 13px; color: #94a3b8;">1 month ago</div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                    <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #fbbc04 0%, #ea4335 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;">EL</div>
+                    <div>
+                        <div style="font-size: 18px; font-weight: 700; color: #1a202c; margin-bottom: 4px;">Elena Rodriguez</div>
+                        <div style="font-size: 14px; color: #64748b; font-weight: 500;">Video Producer</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                    <span style="color: #fbbf24; font-size: 18px;">★</span>
+                </div>
+                <p style="font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 20px;">As a professional video producer, I'm amazed by Veo 3's capabilities. It handles complex scenes beautifully and the output is consistently high quality. A game-changer for the industry!</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #10b981; font-weight: 600;">
+                        <div style="width: 18px; height: 18px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                        Verified User
+                    </div>
+                    <div style="font-size: 13px; color: #94a3b8;">3 weeks ago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: center; padding: 60px 32px; background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
+            <h3 style="font-size: 32px; font-weight: 800; color: #1a202c; margin-bottom: 16px;">Ready to Create Amazing Videos?</h3>
+            <p style="font-size: 16px; color: #64748b; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">Join thousands of creators who trust Google Veo 3 to transform their ideas into stunning videos</p>
+            <a href="#" style="display: inline-flex; align-items: center; gap: 8px; padding: 16px 40px; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3); text-decoration: none;">
+                <span>Start Creating Now</span>
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #0f172a; color: white; margin-top: 64px; padding: 48px 0 24px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px; margin-bottom: 48px;">
+                <div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">Google Veo 3</h3>
+                    <p style="color: #cbd5e1; line-height: 1.6;">Professional AI video generation platform powered by Google's most advanced video generation technology.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">Product</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">Features</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/pricing" style="color: #cbd5e1; text-decoration: none;">Pricing</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">Company</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">Careers</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">Support</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #cbd5e1; text-decoration: none;">Help Center</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/privacy" style="color: #cbd5e1; text-decoration: none;">Privacy</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/terms" style="color: #cbd5e1; text-decoration: none;">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 24px; text-align: center; color: #94a3b8;">
+                <p>&copy; 2025 Google Veo 3 Video Generator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality for Veo showcase
+        const veoTrack = document.getElementById('veoCarouselTrack');
+        const veoPrevBtn = document.getElementById('veoPrevBtn');
+        const veoNextBtn = document.getElementById('veoNextBtn');
+        
+        let veoCurrentIndex = 0;
+        const veoCardWidth = 450 + 30;
+        
+        veoPrevBtn.addEventListener('click', () => {
+            veoCurrentIndex = Math.max(0, veoCurrentIndex - 1);
+            veoTrack.scrollTo({
+                left: veoCurrentIndex * veoCardWidth,
+                behavior: 'smooth'
+            });
+        });
+        
+        veoNextBtn.addEventListener('click', () => {
+            const maxIndex = veoTrack.children.length - 1;
+            veoCurrentIndex = Math.min(maxIndex, veoCurrentIndex + 1);
+            veoTrack.scrollTo({
+                left: veoCurrentIndex * veoCardWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        // Hover effects for nav buttons
+        veoPrevBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, #4285f4 0%, #34a853 100%)';
+            this.style.borderColor = 'transparent';
+            this.style.transform = 'scale(1.1)';
+            const svgPath = this.querySelector('svg path');
+            if (svgPath) svgPath.setAttribute('stroke', 'white');
+        });
+        
+        veoPrevBtn.addEventListener('mouseleave', function() {
+            this.style.background = 'white';
+            this.style.borderColor = '#e2e8f0';
+            this.style.transform = 'scale(1)';
+            const svgPath = this.querySelector('svg path');
+            if (svgPath) svgPath.setAttribute('stroke', 'currentColor');
+        });
+        
+        veoNextBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, #4285f4 0%, #34a853 100%)';
+            this.style.borderColor = 'transparent';
+            this.style.transform = 'scale(1.1)';
+            const svgPath = this.querySelector('svg path');
+            if (svgPath) svgPath.setAttribute('stroke', 'white');
+        });
+        
+        veoNextBtn.addEventListener('mouseleave', function() {
+            this.style.background = 'white';
+            this.style.borderColor = '#e2e8f0';
+            this.style.transform = 'scale(1)';
+            const svgPath = this.querySelector('svg path');
+            if (svgPath) svgPath.setAttribute('stroke', 'currentColor');
+        });
+
+        function updateBuyCreditsButton() {
+            const buttonText = document.getElementById('creditsButtonText');
+            const creditCountElement = document.getElementById('home_creditCount');
+            
+            if (!buttonText) return;
+            
+            // Check if mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            // Get credits from the home counter
+            if (creditCountElement && creditCountElement.textContent && 
+                creditCountElement.textContent.trim() !== '' && 
+                creditCountElement.textContent !== 'Loading...') {
+                
+                const credits = parseInt(creditCountElement.textContent.trim());
+                if (!isNaN(credits) && credits > 0) {
+                    if (isMobile) {
+                        // Mobile: Show only the count
+                        buttonText.innerHTML = `<span class="credits-count">${credits}</span>`;
+                    } else {
+                        // Desktop: Show "X Buy More Credits"
+                        buttonText.innerHTML = `<span class="credits-count">${credits}</span> Buy More Credits`;
+                    }
+                    return;
+                }
+            }
+            
+            // Fallback
+            if (isMobile) {
+                buttonText.textContent = 'Buy';
+            } else {
+                buttonText.textContent = 'Buy More Credits';
+            }
+        }
+
+        window.addEventListener('resize', updateBuyCreditsButton);
+
+
+        // Call immediately on page load
+        // Call immediately on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default immediately
+            const buttonText = document.getElementById('creditsButtonText');
+            if (buttonText) {
+                buttonText.textContent = 'Buy More Credits';
+            }
+            
+            // Fetch credits from both sources
+            fetchAndDisplayHomeCredits().then(() => {
+                // After home credits are fetched, update button
+                setTimeout(updateBuyCreditsButton, 100);
+            });
+            
+            fetchCredits();
+            
+            // Watch for credit changes in home counter
+            const creditCountElement = document.getElementById('home_creditCount');
+            if (creditCountElement) {
+                const observer = new MutationObserver(updateBuyCreditsButton);
+                observer.observe(creditCountElement, { 
+                    childList: true, 
+                    characterData: true, 
+                    subtree: true 
+                });
+            }
+        });
+
+
+
+function toggleProfileMenu() {
+            var menu = document.getElementById('profileMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Close profile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            var profileMenu = document.getElementById('profileMenu');
+            var profileBtn = document.querySelector('.profile-btn');
+            
+            if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+                profileMenu.classList.remove('show');
+            }
+        });
+
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+        }
+
+
+
+
+
+
+
+
+function handleSignOut() {
+    showLogoutConfirmation();
+}
+
+function showLogoutConfirmation() {
+    const overlay = document.getElementById('logoutOverlay');
+    overlay.classList.add('show');
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Focus trap (optional)
+    const confirmBtn = document.getElementById('confirmLogoutBtn');
+    confirmBtn.focus();
+}
+
+// Hide logout confirmation modal
+function hideLogoutConfirmation() {
+    const overlay = document.getElementById('logoutOverlay');
+    overlay.classList.remove('show');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+}
+
+// Confirm logout with loading state
+async function confirmLogout() {
+    const confirmBtn = document.getElementById('confirmLogoutBtn');
+    const modal = document.querySelector('.logout-modal');
+    
+    // Show loading state
+    confirmBtn.classList.add('loading');
+    confirmBtn.textContent = '';
+    
+    try {
+        // Simulate processing time (remove this delay in production)
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Add success animation
+        modal.classList.add('logout-success');
+        
+        // Clear localStorage
+        localStorage.clear();
+        
+        // Optional: Clear sessionStorage
+        sessionStorage.clear();
+        
+        // Wait for animation to complete
+        setTimeout(() => {
+            // Navigate to home page
+            window.location.href = "/";
+        }, 600);
+        
+    } catch (error) {
+        console.error('Error during logout:', error);
+        
+        // Reset button state on error
+        confirmBtn.classList.remove('loading');
+        confirmBtn.textContent = 'Sign Out';
+        
+        // Still navigate on error
+        window.location.href = "/";
+    }
+}
+
+
+
+
+// Close modal when clicking outside
+document.getElementById('logoutOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideLogoutConfirmation();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        hideLogoutConfirmation();
+    }
+});
+
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    fetchAndUpdateUserProfile();
+});
+
+
+function handleAuthAction() {
+    const authToken = localStorage.getItem('authToken');
+    
+    if (authToken) {
+        // User is signed in, handle sign out
+        handleSignOut();
+    } else {
+        // User is not signed in, handle sign in
+        showLoginModal();
+    }
+}
+
+function showLoginModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close login modal
+function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+async function loginWithGoogle() {
+    // Implement your Google OAuth login here
+    // Example redirect:
+    const button = document.getElementById('loginbuttonid1');
+    button.disabled = true;
+    //button.style.opacity = '0.0';
+
+    let refer_code = localStorage.getItem('refer_code'); 
+
+    try {
+        const url = refer_code ? `/logggin/v2?refer_code=${encodeURIComponent(refer_code)}` : '/logggin/v2';
+
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.redirect_uri) {
+            const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
+
+            // Check if popup was blocked
+            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                // Store current page before redirecting
+                localStorage.setItem('pre_auth_url', window.location.href);
+                // Popup blocked - use full page redirect instead
+                window.location.href = data.redirect_uri;
+                return;
+            }
+
+            // Poll the popup URL instead of listening for messages
+            const checkPopup = setInterval(() => {
+                try {
+                    if (popup.closed) {
+                        clearInterval(checkPopup);
+                        console.log('Popup closed');
+                        return;
+                    }
+
+                    // Check if popup URL contains our success page
+                    const popupUrl = popup.location.href;
+                    if (popupUrl.includes('/oauth-success')) {
+                        const urlParams = new URLSearchParams(popup.location.search);
+                        const token = urlParams.get('token');
+                        const name = urlParams.get('name');
+                        const userId = urlParams.get('id');
+                        
+                        if (token) {
+                            // Save token
+                            localStorage.setItem('authToken', token);
+                            localStorage.setItem('user_id', userId);
+                            console.log('Auth token saved:', token);
+                            
+                            // Close popup and cleanup
+                            popup.close();
+                            clearInterval(checkPopup);
+                            
+                            location.reload();
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin error - popup is still on Google's domain
+                    // This is expected during the OAuth flow
+                }
+            }, 1000);
+        }
+    } catch (error) {
+        location.reload();
+    } finally {
+        button.disabled = false;
+    }
+    
+    // Or if using Google OAuth library:
+    // gapi.auth2.getAuthInstance().signIn();
+}
+
+
+
+function setExampleMode(isExample) {
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    if (isExample) {
+        downloadBtn.innerHTML = `
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Example Video
+        `;
+        downloadBtn.style.pointerEvents = 'none';
+        downloadBtn.style.opacity = '0.9';
+        downloadBtn.style.background = 'rgba(66, 133, 244, 0.95)';
+        downloadBtn.style.color = 'white';
+    } else {
+        downloadBtn.innerHTML = `
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Download
+        `;
+        downloadBtn.style.pointerEvents = 'auto';
+        downloadBtn.style.opacity = '1';
+        downloadBtn.style.background = 'rgba(255,255,255,0.95)';
+        downloadBtn.style.color = '#1a1a1a';
+    }
+}
+
+    </script>
+</body>
+</html>
