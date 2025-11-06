@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Google Veo 3 Video Generator - Create Professional AI Videos | AI Video Platform</title>
+    <title>Google Veo 3 Video Generator - Create Professional AI Videos | googlenanobanana.com</title>
     <meta name="title" content="Google Veo 3 Video Generator - Create Professional AI Videos">
     <meta name="description" content="Generate stunning AI videos with Google Veo 3. Create cinematic videos from text in multiple formats: 16:9, 9:16, 1:1. Professional quality video generation with advanced AI technology.">
     <meta name="keywords" content="google veo 3, veo video generator, text to video ai, ai video creator, google ai video, video generator online, text to video generator, cinematic ai videos, free video generator, veo 3">
@@ -1830,7 +1830,7 @@ div[style*="background: white; border: 1px solid #e2e8f0"] > div[style*="width: 
     <!-- Header -->
     <header class="site-header">
         <div class="container">
-            <a href="/" class="site-logo">
+            <a href="/veo-3" class="site-logo">
                 <img class="loogo" src="/static/icons8-google-logo-60.png" alt="Veo 3">
                 Google Veo 3 Video Generator
             </a>
@@ -2124,17 +2124,38 @@ document.querySelectorAll('#aspectOptions .option-btn').forEach(btn => {
 });
 
 // Set initial example video on load
-window.addEventListener('load', () => {
+// Remove ALL existing window.addEventListener('load') and DOMContentLoaded listeners
+// Replace with this single one:
+
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🚀 Initializing app...');
+    
+    // 1. Set up video player with example
     const videoPlayer = document.getElementById('videoPlayer');
-    videoPlayer.src = EXAMPLE_VIDEOS['16:9'];
+    if (videoPlayer) {
+        videoPlayer.src = EXAMPLE_VIDEOS['16:9'];
+        setExampleMode(true);
+    }
     
-    // Set as example mode initially
-    setExampleMode(true);
-    
+    // 2. Initialize core app functionality
     initializeApp();
     updateUI();
-    fetchCredits();
     loadHistory();
+    
+    // 3. Hide logout modal (if visible)
+    hideLogoutConfirmation();
+    
+    // 4. Fetch user profile FIRST (most important for UI)
+    await fetchAndUpdateUserProfile();
+    
+    // 5. Then fetch credits (depends on auth token from profile)
+    await fetchAndDisplayHomeCredits();
+    await fetchCredits();
+    
+    // 6. Update buy credits button after all data is loaded
+    updateBuyCreditsButton();
+    
+    console.log('✅ App initialized successfully');
 });
 
         // Fetch and display credits
@@ -3250,22 +3271,9 @@ window.addEventListener('load', () => {
         let veoCurrentIndex = 0;
         const veoCardWidth = 450 + 30;
         
-        veoPrevBtn.addEventListener('click', () => {
-            veoCurrentIndex = Math.max(0, veoCurrentIndex - 1);
-            veoTrack.scrollTo({
-                left: veoCurrentIndex * veoCardWidth,
-                behavior: 'smooth'
-            });
-        });
+
         
-        veoNextBtn.addEventListener('click', () => {
-            const maxIndex = veoTrack.children.length - 1;
-            veoCurrentIndex = Math.min(maxIndex, veoCurrentIndex + 1);
-            veoTrack.scrollTo({
-                left: veoCurrentIndex * veoCardWidth,
-                behavior: 'smooth'
-            });
-        });
+
 
         // Hover effects for nav buttons
         veoPrevBtn.addEventListener('mouseenter', function() {
@@ -3452,8 +3460,8 @@ async function confirmLogout() {
         console.error('Error during logout:', error);
         
         // Reset button state on error
-        confirmBtn.classList.remove('loading');
-        confirmBtn.textContent = 'Sign Out';
+        // confirmBtn.classList.remove('loading');
+        // confirmBtn.textContent = 'Sign Out';
         
         // Still navigate on error
         window.location.href = "/";
@@ -3478,10 +3486,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    fetchAndUpdateUserProfile();
-});
+
 
 
 function handleAuthAction() {
@@ -3609,6 +3614,152 @@ function setExampleMode(isExample) {
         downloadBtn.style.color = '#1a1a1a';
     }
 }
+
+function updateUserInterface(userData) {
+    console.log('📝 Updating UI with user data:', userData);
+    
+    // Update profile images - use querySelectorAll to get ALL matches
+    const profileImages = document.querySelectorAll('img[id*="Profile"], .profile-btn img, .profile-avatar img');
+    console.log(`Found ${profileImages.length} profile images to update`);
+    
+    profileImages.forEach((img, index) => {
+        img.src = userData.profile_pic || '/static/dummy_profile.png';
+        img.alt = userData.name || 'User Profile';
+        console.log(`Updated image ${index + 1}:`, img.src);
+        const authButton = document.getElementById('auth-button-text');
+        authButton.textContent = 'Sign In';
+    });
+    
+    // Update name in ALL locations
+    const nameElements = document.querySelectorAll('#profileName, .profile-details h3');
+    console.log(`Found ${nameElements.length} name elements to update`);
+    
+    nameElements.forEach((el, index) => {
+        el.textContent = userData.name || 'User';
+        console.log(`Updated name ${index + 1}:`, el.textContent);
+    });
+    
+    // Update email in ALL locations
+    const emailElements = document.querySelectorAll('#profileEmail, .profile-details p');
+    console.log(`Found ${emailElements.length} email elements to update`);
+    
+    emailElements.forEach((el, index) => {
+        el.textContent = userData.mail || 'user@email.com';
+        console.log(`Updated email ${index + 1}:`, el.textContent);
+    });
+    
+    // Update auth button text based on login state
+    const authButton = document.getElementById('auth-button-text');
+    if (authButton) {
+        authButton.textContent = getUserToken() ? 'Sign Out' : 'Sign In';
+    }
+    
+    // Show premium features if subscribed
+    if (userData.is_subscribed) {
+        const premiumMenuItem = document.getElementById('premiumMenuItem');
+        if (premiumMenuItem) {
+            premiumMenuItem.style.display = 'flex';
+        }
+        document.body.classList.add('premium-user');
+    }
+    
+    // Store user data globally
+    window.currentUser = userData;
+    
+    console.log('✅ UI update complete');
+}
+
+
+
+
+function getUserToken() {
+    // Check multiple sources for token
+    // 1. From localStorage
+    let token = localStorage.getItem('authToken');
+    if (token) return token;
+    
+
+    if (token) return token;
+    
+    // 4. Default token (for development)
+    return "";
+}
+
+
+
+// Optional: Update button when localStorage changes (if you want real-time updates)
+
+async function fetchAndUpdateUserProfile() {
+    console.log('🔍 Fetching user profile...');
+    
+    // Check localStorage first
+    const savedUserData = localStorage.getItem('userData');
+    
+    if (savedUserData) {
+        try {
+            const userData = JSON.parse(savedUserData);
+            console.log('📦 Using cached user data:', userData);
+            updateUserInterface(userData);
+            return userData; // Return the data
+        } catch (e) {
+            console.error('❌ Failed to parse saved user data:', e);
+            localStorage.removeItem('userData');
+        }
+    }
+    
+    // Fetch from API
+    try {
+        const userToken = getUserToken();
+        
+        if (!userToken) {
+            console.warn('⚠️ No auth token found, using guest profile');
+            const guestData = {
+                name: 'Guest User',
+                mail: 'guest@googlenanobanana.com',
+                profile_pic: '/static/dummy_profile.png'
+            };
+            updateUserInterface(guestData);
+            return guestData;
+        }
+        
+        console.log('🌐 Fetching from API with token:', userToken.substring(0, 10) + '...');
+        
+        const response = await fetch(`https://chatezzy.com/get/details/${userToken}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Cache-Control': 'no-cache'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const userData = await response.json();
+        console.log('✅ User data fetched successfully:', userData);
+        
+        // Save to localStorage
+        localStorage.setItem('userData', JSON.stringify(userData));
+        
+        updateUserInterface(userData);
+        return userData;
+        
+    } catch (error) {
+        console.error('❌ Error fetching user details:', error);
+        
+        // Fallback to guest user
+        const fallbackData = {
+            name: 'Guest User',
+            mail: 'guest@googlenanobanana.com',
+            profile_pic: '/static/dummy_profile.png'
+        };
+        updateUserInterface(fallbackData);
+        return fallbackData;
+    }
+}
+
+
 
     </script>
 </body>
