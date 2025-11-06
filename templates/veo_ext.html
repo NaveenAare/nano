@@ -2441,13 +2441,27 @@ window.addEventListener('load', () => {
             checkTaskStatus(taskId, requestId);
         }
 
+        // Update checkTaskStatus to send resolution and duration
         async function checkTaskStatus(taskId, requestId) {
+            // Get stored task data
+            const storedTask = localStorage.getItem('veo3OngoingTask');
+            let resolution = '720p';
+            let duration = 4;
+            
+            if (storedTask) {
+                const taskData = JSON.parse(storedTask);
+                resolution = taskData.resolution || taskData.quality || '720p';
+                duration = taskData.duration || 8;
+            }
+
             const formData = new FormData();
             formData.append('operation_name', taskId);
             formData.append('authToken', getToken());
             formData.append('user_id', getUserId());
             formData.append('chat_id', CHAT_ID);
             formData.append('requestId', requestId);
+            formData.append('resolution_r', resolution);      // ✅ Add resolution
+            formData.append('duration_r', duration);          // ✅ Add duration
 
             try {
                 const res = await fetch(API_BASE + '/chat/v2/veo-check-status', {
@@ -2587,6 +2601,7 @@ window.addEventListener('load', () => {
             }
         }
 
+        // Update initializeApp to handle existing tasks
         function initializeApp() {
             const ongoingTask = localStorage.getItem('veo3OngoingTask');
             if (ongoingTask) {
@@ -2596,7 +2611,7 @@ window.addEventListener('load', () => {
                 state.prompt = taskData.prompt;
                 state.aspect = taskData.aspect;
                 state.duration = taskData.duration;
-                state.quality = taskData.quality;
+                state.quality = taskData.quality || taskData.resolution || '720p';
                 state.isGenerating = true;
                 
                 document.getElementById('promptInput').value = taskData.prompt;
@@ -2606,6 +2621,7 @@ window.addEventListener('load', () => {
                 document.getElementById('loadingStatus').textContent = 'Resuming...';
                 updateUI();
                 
+                // Pass the stored resolution and duration when resuming
                 pollStatus(taskData.taskId, taskData.requestId);
             }
         }
