@@ -344,6 +344,108 @@ async def get_sitemap():
         }
     )
 
+
+import razorpay
+from datetime import datetime
+from fastapi import HTTPException
+
+RAZORPAY_AUTH_HEADER = "Basic cnpwX2xpdmVfUkw4cEJYT0NOUkp4WHk6dm55cTFuVHpjOUJHc1BVTERUSWNyR1NX"
+
+
+
+def decode_parameters(encoded_str, secret_key="@AAAApjpakier4546120$#%!"):
+    data_with_signature = base64.urlsafe_b64decode(encoded_str)
+    json_bytes = data_with_signature[:-64]
+    signature = data_with_signature[-64:].decode('utf-8')
+    expected_signature = hmac.new(secret_key.encode('utf-8'), json_bytes, hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(signature, expected_signature):
+        raise ValueError("HMAC verification failed")
+    json_str = json_bytes.decode('utf-8')
+    return json.loads(json_str)
+
+    
+@app.post("/chatezzy/api/create-razorpay-order-pro")
+async def create_razorpay_order_pro(request: dict):
+    """
+    Create Razorpay order using your working authorization
+    """
+    try:
+        # Extract request data
+        print(":::::::::::::::::::::::::::::::::")
+        plan_type = request.get("plan_type")
+        authToken = request.get("authToken")
+        currency = request.get("currency", 'USD')
+        amount = request.get("amount", '6')
+        customer_phone = request.get("customer_phone", '9999999999')
+        source = request.get("source", 'chatezzy')
+        
+        # Decode user details from token
+        userDetailsMap = decode_parameters(authToken)
+        user_id = userDetailsMap.get("userId", "")
+        customer_email = userDetailsMap.get("mail", "")
+        customer_name = userDetailsMap.get("name", "")
+        
+        # Generate receipt
+        timestamp = int(datetime.now().timestamp() * 1000)
+        receipt = f"{customer_email}"
+        
+        # Amount in cents (for USD)
+        amount_in_cents = int(float(amount) * 100)
+        
+        # Prepare payload exactly like your working curl
+        payload = {
+            "amount": amount_in_cents,
+            "currency": currency,
+            "receipt": receipt,
+            "notes": {
+                "plan_type": plan_type,
+                "user_id": str(user_id),
+                "customer_name": customer_name,
+                "customer_email": customer_email,
+                "customer_phone": customer_phone,
+                "source": source
+            }
+        }
+        
+        # Make request with exact same headers as your curl
+        headers = {
+            "content-type": "application/json",
+            "Authorization": RAZORPAY_AUTH_HEADER
+        }
+        
+        response = requests.post(
+            "https://api.razorpay.com/v1/orders",
+            json=payload,
+            headers=headers
+        )
+        
+        print(f"Status: {response.status_code}")
+        print(f"Response: {response.text}")
+        
+        if response.status_code != 200:
+            raise HTTPException(
+                status_code=response.status_code,
+                detail=f"Razorpay Error: {response.text}"
+            )
+        
+        razorpay_order = response.json()
+        
+        # Decode key_id from the auth header for frontend
+        import base64
+        decoded = base64.b64decode("cnpwX2xpdmVfUkw4cEJYT0NOUkp4WHk6dm55cTFuVHpjOUJHc1BVTERUSWNyR1NX").decode('utf-8')
+        razorpay_key_id = decoded.split(':')[0]
+        
+        return {
+            "order_id": razorpay_order['id'],
+            "razorpay_key_id": razorpay_key_id
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Mount static folder
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
