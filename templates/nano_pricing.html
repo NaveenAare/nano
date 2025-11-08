@@ -646,7 +646,7 @@
 
         const source = getSourceFromUrl();
         const callbackUrl = source === 'onano' 
-            ? 'https://googlenanobanana.com/redirecthandler' 
+            ? 'https://googlenanobanana.com' 
             : 'https://googlenanobanana.com';
         
         // Open Razorpay Checkout
@@ -656,7 +656,7 @@
             name: 'Nano Banana',
             description: `${plan.title} Plan`,
             image: 'https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2',
-            callback_url: callbackUrl,
+            callback_url: 'https://googlenanobanana.com',
             redirect: true,
             prefill: {
                 contact: document.getElementById('mobile').value.trim()
