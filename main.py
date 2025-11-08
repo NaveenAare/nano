@@ -363,8 +363,8 @@ def decode_parameters(encoded_str, secret_key="@AAAApjpakier4546120$#%!"):
     json_str = json_bytes.decode('utf-8')
     return json.loads(json_str)
 
-    
-@app.post("/chatezzy/api/create-razorpay-order-pro")
+
+@app.post("/api/create-razorpay-order-pro")
 async def create_razorpay_order_pro(request: dict):
     """
     Create Razorpay order using your working authorization
