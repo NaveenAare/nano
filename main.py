@@ -377,7 +377,6 @@ async def create_razorpay_order_pro(request: dict):
         currency = request.get("currency", 'USD')
         amount = request.get("amount", '6')
         customer_phone = request.get("customer_phone", '9999999999')
-        source = request.get("source", 'chatezzy')
         
         # Decode user details from token
         userDetailsMap = decode_parameters(authToken)
@@ -402,8 +401,7 @@ async def create_razorpay_order_pro(request: dict):
                 "user_id": str(user_id),
                 "customer_name": customer_name,
                 "customer_email": customer_email,
-                "customer_phone": customer_phone,
-                "source": source
+                "customer_phone": customer_phone
             }
         }
         
