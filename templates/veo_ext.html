@@ -2465,7 +2465,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Update checkTaskStatus to send resolution and duration
         async function checkTaskStatus(taskId, requestId) {
-            // Get stored task data
             const storedTask = localStorage.getItem('veo3OngoingTask');
             let resolution = '720p';
             let duration = 4;
@@ -2482,14 +2481,22 @@ document.addEventListener('DOMContentLoaded', async function() {
             formData.append('user_id', getUserId());
             formData.append('chat_id', CHAT_ID);
             formData.append('requestId', requestId);
-            formData.append('resolution_r', resolution);      // ✅ Add resolution
-            formData.append('duration_r', duration);          // ✅ Add duration
+            formData.append('resolution_r', resolution);
+            formData.append('duration_r', duration);
 
             try {
+                // ⭐ ADD TIMEOUT FOR MOBILE
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+                
                 const res = await fetch(API_BASE + '/chat/v2/veo-check-status', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    signal: controller.signal  // ⭐ ADD THIS
                 });
+                
+                clearTimeout(timeoutId);
+
                 const data = await res.json();
 
                 if (data.status === 'completed') {
@@ -2497,17 +2504,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                     onComplete(data.video_url);
                     return;
                 } 
-                else if (data.status === 'failed') {
+                else if (data.status === 'failed' || data.status === 'cancelled' || data.status === 'error') {
                     stopPolling();
                     throw new Error(data.error || 'Generation failed');
-                }
-                else if (data.status === 'cancelled') {
-                    stopPolling();
-                    throw new Error('Video generation was cancelled');
-                }
-                else if (data.status === 'error') {
-                    stopPolling();
-                    throw new Error(data.error || 'An error occurred');
                 }
                 else if (data.status === 'pending') {
                     const loadingStatus = document.getElementById('loadingStatus');
@@ -2519,8 +2518,15 @@ document.addEventListener('DOMContentLoaded', async function() {
                 
             } catch (err) {
                 console.error('Status check error:', err);
-                showToast(err.message, true);
                 
+                // ⭐ RETRY ON TIMEOUT (important for mobile)
+                if (err.name === 'AbortError') {
+                    console.log('Request timeout, retrying...');
+                    setTimeout(() => checkTaskStatus(taskId, requestId), 3000);
+                    return;
+                }
+                
+                showToast(err.message, true);
                 stopPolling();
                 state.isGenerating = false;
                 updateUI();
