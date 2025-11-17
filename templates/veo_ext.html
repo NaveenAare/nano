@@ -2405,15 +2405,29 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.getElementById('downloadBtn').addEventListener('click', downloadVideo);
 
         async function generate() {
+            console.log('🚀 Generate clicked');
+            
             const token = getToken();
+            console.log('🔑 Token:', token ? 'exists' : 'missing');
+            
             if (!token) {
                 showToast('Please login to generate videos', true);
                 return;
             }
 
+            console.log('📱 Setting loading state...');
             state.isGenerating = true;
             updateUI();
-            document.getElementById('loading').classList.add('active');
+            
+            const loading = document.getElementById('loading');
+            console.log('🔍 Loading element:', loading);
+            
+            if (loading) {
+                loading.classList.add('active');
+                console.log('✅ Loading overlay activated');
+            } else {
+                console.error('❌ Loading element not found!');
+            }
 
             const formData = new FormData();
             formData.append('prompt', state.prompt);
@@ -2427,12 +2441,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             formData.append('model', 'veo3');
             if (state.imageFile) formData.append('reference_image', state.imageFile);
 
+            console.log('📤 Sending request...');
+
             try {
                 const res = await fetch(API_BASE + '/chat/v2/veo-initiate', {
                     method: 'POST',
                     body: formData
                 });
+                
+                console.log('📥 Response status:', res.status);
                 const data = await res.json();
+                console.log('📦 Response data:', data);
 
                 if (data.status === 'error' || data.status_code === 400) {
                     throw new Error(data.error || data.detail || 'Generation failed');
@@ -2452,6 +2471,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 pollStatus(data.operation_name, formData.get('requestId'));
 
             } catch (err) {
+                console.error('❌ Error:', err);
                 showToast(err.message, true);
                 state.isGenerating = false;
                 updateUI();
@@ -2464,7 +2484,20 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         // Update checkTaskStatus to send resolution and duration
+        // Add this function at the top with other functions
+        function debugToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = msg;
+            toast.classList.remove('error');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 8000); // Show longer
+        }
+
+        // Replace checkTaskStatus with this
         async function checkTaskStatus(taskId, requestId) {
+            debugToast('Checking status...');
+            
             const storedTask = localStorage.getItem('veo3OngoingTask');
             let resolution = '720p';
             let duration = 4;
@@ -2485,28 +2518,35 @@ document.addEventListener('DOMContentLoaded', async function() {
             formData.append('duration_r', duration);
 
             try {
-                // ⭐ ADD TIMEOUT FOR MOBILE
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-                
                 const res = await fetch(API_BASE + '/chat/v2/veo-check-status', {
                     method: 'POST',
-                    body: formData,
-                    signal: controller.signal  // ⭐ ADD THIS
+                    body: formData
                 });
                 
-                clearTimeout(timeoutId);
-
+                if (!res.ok) {
+                    debugToast(`HTTP Error: ${res.status}`);
+                    throw new Error(`HTTP ${res.status}`);
+                }
+                
                 const data = await res.json();
+                debugToast(`Status: ${data.status}`);
 
                 if (data.status === 'completed') {
                     stopPolling();
                     onComplete(data.video_url);
                     return;
                 } 
-                else if (data.status === 'failed' || data.status === 'cancelled' || data.status === 'error') {
+                else if (data.status === 'failed') {
                     stopPolling();
                     throw new Error(data.error || 'Generation failed');
+                }
+                else if (data.status === 'cancelled') {
+                    stopPolling();
+                    throw new Error('Cancelled');
+                }
+                else if (data.status === 'error') {
+                    stopPolling();
+                    throw new Error(data.error || 'Error occurred');
                 }
                 else if (data.status === 'pending') {
                     const loadingStatus = document.getElementById('loadingStatus');
@@ -2517,16 +2557,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 }
                 
             } catch (err) {
-                console.error('Status check error:', err);
+                debugToast(`ERROR: ${err.message}`);
                 
-                // ⭐ RETRY ON TIMEOUT (important for mobile)
-                if (err.name === 'AbortError') {
-                    console.log('Request timeout, retrying...');
-                    setTimeout(() => checkTaskStatus(taskId, requestId), 3000);
-                    return;
-                }
-                
-                showToast(err.message, true);
                 stopPolling();
                 state.isGenerating = false;
                 updateUI();
