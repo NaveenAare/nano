@@ -463,6 +463,12 @@ async def redirecthandler():
 async def home():
     return FileResponse("templates/home_copy.html")
 
+
+@app.get("/new_playground")
+async def newPlayGround():
+    return FileResponse("templates/new_image_playground.html")
+
+
 @app.get("/privacy")
 async def privacy_policy():
     return FileResponse("templates/privacy.html")
