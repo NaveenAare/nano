@@ -469,6 +469,10 @@ async def newPlayGround():
     return FileResponse("templates/new_image_playground.html")
 
 
+@app.get("/nanobananapro")
+async def newPlayGround():
+    return FileResponse("templates/nano_banana_pro.html")
+
 @app.get("/privacy")
 async def privacy_policy():
     return FileResponse("templates/privacy.html")
