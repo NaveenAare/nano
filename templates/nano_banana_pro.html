@@ -6055,33 +6055,29 @@ function changeLanguage(lang, flag) {
 
 function updateBuyCreditsButton() {
     const buttonText = document.getElementById('creditsButtonText');
-    const creditCountElement = document.getElementById('creditCount');
     
     if (!buttonText) return;
     
-    // Default text immediately
-    let finalText = 'Buy More Credits';
+    // Don't overwrite if credits are already showing
+    const currentHTML = buttonText.innerHTML;
+    if (currentHTML.includes('credits-count')) {
+        return; // Credits already loaded, don't touch it
+    }
+    
+    const creditCountElement = document.getElementById('creditCount');
     
     // Only update if credits are actually available
     if (creditCountElement && creditCountElement.textContent && creditCountElement.textContent.trim() !== '') {
         const credits = creditCountElement.textContent.trim();
         if (credits && !isNaN(credits)) {
-            finalText = `<span class="credits-count">${credits}</span> Buy More Credits`;
+            buttonText.innerHTML = `<span class="credits-count">${credits}</span> Buy More Credits`;
         }
     }
-    
-    buttonText.innerHTML = finalText;
 }
 
-// Call immediately on page load
+// Call on page load - REMOVED the default text setter
 document.addEventListener('DOMContentLoaded', function() {
-    // Set default immediately
-    const buttonText = document.getElementById('creditsButtonText');
-    if (buttonText) {
-        buttonText.textContent = 'Buy More Credits';
-    }
-    
-    // Then try to update with credits
+    // Just try to update with credits, don't set default
     setTimeout(updateBuyCreditsButton, 100);
     setTimeout(updateBuyCreditsButton, 500);
     setTimeout(updateBuyCreditsButton, 1000);
@@ -6097,7 +6093,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 
 function updateCreditDisplay(newCreditCount) {
     const creditCounter = document.getElementById('creditCounter');
