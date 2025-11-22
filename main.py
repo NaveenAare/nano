@@ -545,6 +545,9 @@ async def nanoRussiaDesk(request: Request):
 async def virtualtrail(request: Request):
     return FileResponse("templates/virtualtryon.html")
 
+@app.get("/pro/rus")
+async def sorass():
+    return FileResponse("templates/pro_russian.html")
 
 
 if __name__ == "__main__":
