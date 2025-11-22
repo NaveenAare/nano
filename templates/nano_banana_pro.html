@@ -19,7 +19,7 @@
 
     <title>Nano Banana Pro | AI Image Generation & Professional AI Art Creator</title>
 
-    <meta name="description" content="Nano Banana Pro — next-generation AI image generation platform. Create stunning visuals with professional AI technology. Ultra-high-quality art creation for personal and commercial use.">
+    <meta name="description" content="Nano Banana Pro, next-generation AI image generation platform. Create stunning visuals with professional AI technology. Ultra-high-quality art creation for personal and commercial use.">
 
     <meta name="keywords" content="nano banana pro, nano banana ai, ai image generator, ai art generator, professional ai images, premium ai image creation, ai art platform">
 
@@ -133,7 +133,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -839,7 +839,7 @@
             gap: 4px;
             margin: 0 auto 16px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-            width: 280px; /* Fixed width */
+            width: 380px; /* Fixed width */
             max-width: calc(100% - 24px); /* Prevents overflow on small screens */
         }
 
@@ -4141,7 +4141,62 @@ input[type="radio"]:checked + label .ratio-icon {
     opacity: 0.4;
 }
 
+.output-canvas {
+    width: 100%;
+    height: 600px;
+    background: #f8fafc; /* Light gray background */
+    border-radius: 18px; /* Increased border radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
 
+.output-canvas.has-image {
+    background: white; /* White background when image is present */
+    border: 1px solid #e2e8f0; /* Solid border when image present */
+}
+
+.output-canvas img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.placeholder {
+    text-align: center;
+    color: #64748b; /* Muted text color */
+    padding: 40px;
+}
+
+.placeholder-icon {
+    font-size: 80px; /* Larger icon */
+    margin-bottom: 20px;
+    opacity: 0.2; /* More transparent */
+    color: #94a3b8;
+}
+
+/* Custom icon instead of + */
+.placeholder-icon::before {
+    content: '';
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%2394a3b8" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>') center/contain no-repeat;
+}
+
+.placeholder h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.placeholder p {
+    font-size: 0.938rem;
+    color: #94a3b8;
+}
     </style>
 </head>
 <body>
@@ -4648,11 +4703,17 @@ input[type="radio"]:checked + label .ratio-icon {
 
             <!-- Output Section -->
             <div class="card output-section">
+
+
                 <div class="output-canvas" id="outputCanvas">
                     <div class="placeholder">
-                        <p>Your image will appear here</p>
+                        <div class="placeholder-icon"></div>
+                        <h3>Your creation appears here</h3>
+                        <p>Generated images will appear here</p>
                     </div>
                 </div>
+
+
                 <div class="output-actions">
                     <button class="action-btn hidden" id="downloadBtn" onclick="downloadImage()">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -4921,7 +4982,7 @@ input[type="radio"]:checked + label .ratio-icon {
 </section>
 
 <!-- How It Works Section -->
-<section class="how-it-works" style="padding: 80px 0; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border-radius: 18px;">
+<section class="how-it-works" style="padding: 80px 0; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border-radius: 18px; margin-bottom: 20px;">
     <div class="container">
         <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; color: #0f172a; margin-bottom: 48px;">
             How Nano Banana Pro Works
