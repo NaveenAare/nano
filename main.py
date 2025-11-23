@@ -550,6 +550,32 @@ async def sorass():
     return FileResponse("templates/pro_russian.html")
 
 
+@app.get("/rus/blog1")
+async def rusblog1():
+    return FileResponse("templates/blog1.html")
+
+@app.get("/rus/blog2")
+async def rusblog2():
+    return FileResponse("templates/blog2_compre.html")
+
+@app.get("/rus/blog3")
+async def rusblog2():
+    return FileResponse("templates/blog3.html")
+
+
+@app.get("/rus/blog4")
+async def rusblog4():
+    return FileResponse("templates/blog4.html")
+
+@app.get("/rus/blog5")
+async def rusblog4():
+    return FileResponse("templates/blog5.html")
+
+
+@app.get("/rus/blog6")
+async def rusblog4():
+    return FileResponse("templates/blog6.html")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
