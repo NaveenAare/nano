@@ -8976,6 +8976,7 @@
                     <span style="font-size: 10px;">▼</span>
                 </button>
                 <div class="language-dropdown" id="languageDropdown">
+
                     <div class="language-option" data-lang="en" data-flag="🇬🇧" onclick="changeLanguage('en', '🇬🇧')">
                         <span class="language-flag">🇬🇧</span>
                         <span>English</span>
@@ -8989,6 +8990,7 @@
                         <span class="language-flag">🇳🇱</span>
                         <span>Nederlands</span>
                     </div>
+
                 </div>
             </div>
 
@@ -12277,7 +12279,7 @@ document.getElementById('promptBuilderOverlay').addEventListener('click', functi
 
 
 // Language Selector Functions
-let currentLanguage = 'en';
+let currentLanguage = 'nl';
 
 function toggleLanguageDropdown() {
     const dropdown = document.getElementById('languageDropdown');
@@ -12313,7 +12315,7 @@ function changeLanguage(lang, flag) {
     } else if(lang === 'nl'){
         window.location.href = 'https://googlenanobanana.com/nl-desk';
 
-    }else if(lang === 'en'){
+    } else if(lang === 'en'){
         window.location.href = 'https://googlenanobanana.com';
 
     } else {
