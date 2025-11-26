@@ -12,12 +12,6 @@
   gtag('config', 'G-XQ345FT3ZE');
 </script>
 
-<script>
-    // Redirect to mobile version if screen is small OR mobile device
-    if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        window.location.href = '/ru';
-    }
-</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
@@ -8927,6 +8921,10 @@
                         <span class="language-flag">🇷🇺</span>
                         <span>Русский</span>
                     </div>
+                     <div class="language-option active" data-lang="nl" data-flag="🇳🇱" onclick="changeLanguage('nl', '🇳🇱')">
+                        <span class="language-flag">🇳🇱</span>
+                        <span>Nederlands</span>
+                    </div>
                 </div>
             </div>
 
@@ -12275,12 +12273,14 @@ function changeLanguage(lang, flag) {
     
     // Redirect to appropriate URL
     if (lang === 'ru') {
-        window.location.href = 'https://googlenanobanana.com/ru';
+        window.location.href = 'https://googlenanobanana.com/ru-desk';
+    } else if(lang === 'nl'){
+        window.location.href = 'https://googlenanobanana.com/nl-desk';
+
     } else {
         window.location.href = 'https://googlenanobanana.com';
     }
 }
-
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
     const languageSelector = document.querySelector('.language-selector');
