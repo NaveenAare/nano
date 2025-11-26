@@ -450,8 +450,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 @app.post("/")
 async def home(device: str = None):
-    if device == "mobile":
-        return FileResponse("templates/mobile_home.html")
     return FileResponse("templates/home.html")
 
 @app.get("/redirecthandler")
