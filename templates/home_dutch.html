@@ -8974,7 +8974,7 @@
                     <span style="font-size: 10px;">▼</span>
                 </button>
                 <div class="language-dropdown" id="languageDropdown">
-                    <div class="language-option active" data-lang="en" data-flag="🇬🇧" onclick="changeLanguage('en', '🇬🇧')">
+                    <div class="language-option" data-lang="en" data-flag="🇬🇧" onclick="changeLanguage('en', '🇬🇧')">
                         <span class="language-flag">🇬🇧</span>
                         <span>English</span>
                     </div>
@@ -12310,6 +12310,9 @@ function changeLanguage(lang, flag) {
         window.location.href = 'https://googlenanobanana.com/ru-desk';
     } else if(lang === 'nl'){
         window.location.href = 'https://googlenanobanana.com/nl-desk';
+
+    }else if(lang === 'en'){
+        window.location.href = 'https://googlenanobanana.com';
 
     } else {
         window.location.href = 'https://googlenanobanana.com';
