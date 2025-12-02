@@ -542,7 +542,9 @@ async def nanoRussiaDesk(request: Request):
 async def nanoRussiaDesk(request: Request):
     return FileResponse("templates/home_dutch.html")
 
-
+@app.get("/web-design")
+async def webdesign(request: Request):
+    return FileResponse("templates/webDesignshowcase.html")
 
 @app.get("/virtual-trial-room")
 async def virtualtrail(request: Request):
