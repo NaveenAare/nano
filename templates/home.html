@@ -12050,28 +12050,28 @@ window.addEventListener('load', function() {
 
 
 // Open popup
-document.getElementById('bugReportBtn').addEventListener('click', function() {
-    const authToken = localStorage.getItem('authToken');
+// document.getElementById('bugReportBtn').addEventListener('click', function() {
+//     const authToken = localStorage.getItem('authToken');
     
-    const overlay = document.getElementById('bugReportOverlay');
-    const form = document.getElementById('bugReportForm');
-    const successMsg = document.getElementById('successMessage');
-    const errorMsg = document.getElementById('errorMessage');
+//     const overlay = document.getElementById('bugReportOverlay');
+//     const form = document.getElementById('bugReportForm');
+//     const successMsg = document.getElementById('successMessage');
+//     const errorMsg = document.getElementById('errorMessage');
     
-    // Reset states
-    document.getElementById('bugDescription').value = '';
-    errorMsg.style.display = 'none';
-    form.style.display = 'block';
-    successMsg.style.display = 'none';
+//     // Reset states
+//     document.getElementById('bugDescription').value = '';
+//     errorMsg.style.display = 'none';
+//     form.style.display = 'block';
+//     successMsg.style.display = 'none';
     
-    if (!authToken) {
-        errorMsg.textContent = 'Please login to report a bug';
-        errorMsg.className = 'warning-message';
-        errorMsg.style.display = 'block';
-    }
+//     if (!authToken) {
+//         errorMsg.textContent = 'Please login to report a bug';
+//         errorMsg.className = 'warning-message';
+//         errorMsg.style.display = 'block';
+//     }
     
-    overlay.classList.add('active');
-});
+//     overlay.classList.add('active');
+// });
 
 // Close popup
 function closeBugReport() {
