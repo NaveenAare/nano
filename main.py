@@ -554,7 +554,11 @@ async def virtualtrail(request: Request):
 async def sorass():
     return FileResponse("templates/pro_russian.html")
 
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("static/favicon.ico")
 
+    
 @app.get("/rus/blog1")
 async def rusblog1():
     return FileResponse("templates/blog1.html")
