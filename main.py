@@ -20,7 +20,8 @@ import json
 from pathlib import Path
 
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+
 
 DB_HOST = "postgresss.postgres.database.azure.com"
 DB_NAME = "postgres"
