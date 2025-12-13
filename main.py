@@ -44,18 +44,28 @@ STATIC_DIR = Path("static")
 STATIC_DIR.mkdir(exist_ok=True)
 
 # Add cache control middleware
-class CacheMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        response = await call_next(request)
-        
-        if request.url.path.startswith('/static/'):
-            response.headers["Cache-Control"] = "public, max-age=2592000"
-            response.headers["Expires"] = "Thu, 31 Dec 2037 23:55:55 GMT"
-        
-        return response
-
-app.add_middleware(CacheMiddleware)
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+@app.get("/static/{file_path:path}")
+async def serve_static(file_path: str):
+    full_path = STATIC_DIR / file_path
+    
+    if not full_path.exists():
+        return Response(status_code=404)
+    
+    with open(full_path, "rb") as f:
+        content = f.read()
+    
+    content_type, _ = mimetypes.guess_type(str(full_path))
+    if not content_type:
+        content_type = "application/octet-stream"
+    
+    return Response(
+        content=content,
+        media_type=content_type,
+        headers={
+            "Cache-Control": "public, max-age=2592000",
+            "Expires": "Thu, 31 Dec 2037 23:55:55 GMT"
+        }
+    )
 
 
 
