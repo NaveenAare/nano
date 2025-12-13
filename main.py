@@ -44,22 +44,17 @@ STATIC_DIR = Path("static")
 STATIC_DIR.mkdir(exist_ok=True)
 
 # Add cache control middleware
-class CacheControlMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request, call_next):
-        response = await call_next(request)
+class CachedStaticFiles(StaticFiles):
+    def file_response(self, full_path, stat_result, scope, status_code=200):
+        response = super().file_response(full_path, stat_result, scope, status_code)
         
-        # Add cache headers for static files (images, css, js)
-        if request.url.path.startswith('/static/'):
-            # Cache images for 30 days
-            if any(request.url.path.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico']):
-                response.headers['Cache-Control'] = 'public, max-age=2592000'  # 30 days
-            # Cache CSS/JS for 7 days
-            elif any(request.url.path.endswith(ext) for ext in ['.css', '.js']):
-                response.headers['Cache-Control'] = 'public, max-age=604800'  # 7 days
+        file_path = str(full_path).lower()
+        
+        if any(file_path.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico']):
+            response.headers["Cache-Control"] = "public, max-age=2592000"
         
         return response
 
-app.add_middleware(CacheControlMiddleware)
 
 
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
@@ -468,7 +463,7 @@ async def create_razorpay_order_pro(request: dict):
         raise HTTPException(status_code=500, detail=str(e))
 
 # Mount static folder
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", CachedStaticFiles(directory=str(STATIC_DIR)), name="static")
 
 @app.get("/")
 @app.post("/")
