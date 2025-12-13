@@ -44,16 +44,18 @@ STATIC_DIR = Path("static")
 STATIC_DIR.mkdir(exist_ok=True)
 
 # Add cache control middleware
-class CachedStaticFiles(StaticFiles):
-    def file_response(self, full_path, stat_result, scope, status_code=200):
-        response = super().file_response(full_path, stat_result, scope, status_code)
+class CacheMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
         
-        file_path = str(full_path).lower()
-        
-        if any(file_path.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico']):
+        if request.url.path.startswith('/static/'):
             response.headers["Cache-Control"] = "public, max-age=2592000"
+            response.headers["Expires"] = "Thu, 31 Dec 2037 23:55:55 GMT"
         
         return response
+
+app.add_middleware(CacheMiddleware)
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 
@@ -463,7 +465,6 @@ async def create_razorpay_order_pro(request: dict):
         raise HTTPException(status_code=500, detail=str(e))
 
 # Mount static folder
-app.mount("/static", CachedStaticFiles(directory=str(STATIC_DIR)), name="static")
 
 @app.get("/")
 @app.post("/")
