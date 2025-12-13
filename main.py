@@ -19,6 +19,10 @@ import json
 
 from pathlib import Path
 
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from starlette.middleware.base import BaseHTTPMiddleware
+
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -38,6 +42,24 @@ GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configura
 
 STATIC_DIR = Path("static")
 STATIC_DIR.mkdir(exist_ok=True)
+
+# Add cache control middleware
+class CacheControlMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        
+        # Add cache headers for static files (images, css, js)
+        if request.url.path.startswith('/static/'):
+            # Cache images for 30 days
+            if any(request.url.path.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico']):
+                response.headers['Cache-Control'] = 'public, max-age=2592000'  # 30 days
+            # Cache CSS/JS for 7 days
+            elif any(request.url.path.endswith(ext) for ext in ['.css', '.js']):
+                response.headers['Cache-Control'] = 'public, max-age=604800'  # 7 days
+        
+        return response
+
+app.add_middleware(CacheControlMiddleware)
 
 
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
