@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ345FT3ZE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XQ345FT3ZE');
-</script>
-
-
-
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelance Contact</title>
-
+    <title>Get a Quote - Chatezzy</title>
     <link rel="icon" href="/static/favicon.ico">
     <style>
         * {
@@ -27,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -35,451 +22,271 @@
             padding: 20px;
         }
 
-        /* Overlay */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeIn 0.3s ease-out;
-            padding: 20px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Popup Container */
-        .popup-container {
-            background: linear-gradient(135deg, #fff 0%, #fffef7 100%);
-            border-radius: 24px;
-            max-width: 550px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
-                        0 0 0 1px rgba(255, 215, 0, 0.1);
-            animation: slideUp 0.4s ease-out;
-            overflow: hidden;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Golden accent bar */
-        .popup-accent {
-            height: 6px;
-            background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-            background-size: 200% 100%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        /* Close button */
-        .popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .popup-close:hover {
-            background: rgba(0, 0, 0, 0.1);
-            transform: rotate(90deg);
-        }
-
-        .popup-close::before,
-        .popup-close::after {
-            content: '';
-            position: absolute;
-            width: 18px;
-            height: 2px;
-            background: #333;
-            border-radius: 2px;
-        }
-
-        .popup-close::before {
-            transform: rotate(45deg);
-        }
-
-        .popup-close::after {
-            transform: rotate(-45deg);
-        }
-
-        /* Content */
-        .popup-content {
-            padding: 50px 40px 40px;
-        }
-
-        /* Icon */
-        .popup-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .popup-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
-        }
-
-        /* Heading */
-        .popup-heading {
-            font-size: 28px;
-            font-weight: 700;
-            color: #1a1a1a;
-            text-align: center;
-            margin-bottom: 16px;
-            line-height: 1.3;
-        }
-
-        .popup-heading .highlight {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Description */
-        .popup-description {
-            font-size: 16px;
-            color: #555;
-            text-align: center;
-            line-height: 1.6;
-            margin-bottom: 28px;
-        }
-
-        /* Features */
-        .popup-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 32px;
-        }
-
-        .feature-tag {
-            background: rgba(255, 215, 0, 0.1);
-            color: #CC8800;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        /* Email button */
-        .popup-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-            color: white;
-            text-decoration: none;
-            padding: 16px 32px;
+        .card {
+            background: #fff;
             border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: 2px solid transparent;
-            cursor: pointer;
+            max-width: 400px;
             width: 100%;
+            padding: 32px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
             text-align: center;
+            color: #0a0a0a;
+            margin-bottom: 4px;
+            font-weight: 700;
         }
 
-        .popup-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            border-color: #FFD700;
-        }
-
-        .popup-cta.copied {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border-color: #10b981;
-        }
-
-        .popup-cta svg {
-            width: 20px;
-            height: 20px;
-            fill: #FFD700;
-            transition: fill 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .popup-cta.copied svg {
-            fill: white;
-        }
-
-        .popup-cta #emailText {
-            flex: 0 0 auto;
-        }
-
-        /* Footer note */
-        .popup-footer {
+        .subtitle {
             text-align: center;
-            margin-top: 24px;
+            color: #666;
             font-size: 13px;
-            color: #888;
+            margin-bottom: 24px;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .popup-content {
-                padding: 40px 24px 32px;
-            }
-
-            .popup-heading {
-                font-size: 24px;
-            }
-
-            .popup-description {
-                font-size: 15px;
-            }
-
-            .popup-icon {
-                width: 70px;
-                height: 70px;
-            }
-
-            .popup-icon svg {
-                width: 35px;
-                height: 35px;
-            }
-
-            .feature-tag {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
-
-            .popup-cta {
-                padding: 14px 24px;
-                font-size: 15px;
-            }
+        .form-group {
+            margin-bottom: 14px;
         }
 
-        /* Hide class */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Demo button */
-        .demo-reset {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            color: #333;
-            border: 2px solid #FFD700;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
+        label {
+            display: block;
+            font-size: 12px;
             font-weight: 600;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            color: #333;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .demo-reset:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        label .required {
+            color: #e53e3e;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 2px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0a0a0a;
+            background: #fff;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            background: #0a0a0a;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 6px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #222;
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn.success {
+            background: #10b981;
+        }
+
+        .message {
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .message.success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer a {
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 440px) {
+            .card { padding: 24px; }
+            .row { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Popup Overlay -->
-    <div class="popup-overlay" id="freelancePopup">
-        <div class="popup-container">
-            <div class="popup-accent"></div>
-            
-            <button class="popup-close" id="closePopup" aria-label="Close popup"></button>
-            
-            <div class="popup-content">
-                <div class="popup-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
+    <div class="card">
+        <h1>Get Your Project Started</h1>
+        <p class="subtitle">Affordable websites & AI solutions</p>
+
+        <div class="message error" id="errorMsg"></div>
+        <div class="message success" id="successMsg">Thanks! We'll contact you within 24hrs.</div>
+
+        <form id="contactForm">
+            <div class="row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="John">
                 </div>
-                
-                <h2 class="popup-heading">
-                    Need an <span class="highlight">AI Solution</span> or<br>
-                    <span class="highlight">Website</span>?
-                </h2>
-                
-                <p class="popup-description">
-                    We deliver professional AI integrations, custom websites, and tech solutions at competitive prices. Let's bring your ideas to life!
-                </p>
-                
-                <div class="popup-features">
-                    <span class="feature-tag">🤖 AI Integration</span>
-                    <span class="feature-tag">💰 Affordable Pricing</span>
-                    <span class="feature-tag">🎨 Custom Design</span>
-                    <span class="feature-tag">⚡ Fast Delivery</span>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Doe">
                 </div>
-                
-                <button class="popup-cta" id="copyEmailBtn">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                    </svg>
-                    <span id="emailText">contact@chatezzy.com</span>
-                </button>
-                
-                <p class="popup-footer">
-                    💼 Professional services • Trusted by developers
-                </p>
             </div>
+
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Project Details <span class="required">*</span></label>
+                <textarea id="description" placeholder="What do you need?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">Get Free Quote</button>
+        </form>
+
+        <div class="footer">
+            <a href="mailto:contact@chatezzy.com">contact@chatezzy.com</a>
         </div>
     </div>
 
-    <!-- Demo Button -->
-    <button class="demo-reset" id="resetDemo">Show Popup Again</button>
-
     <script>
-        // Check if popup has been shown before
-        const popup = document.getElementById('freelancePopup');
-        const closeBtn = document.getElementById('closePopup');
-        const resetBtn = document.getElementById('resetDemo');
-        const copyEmailBtn = document.getElementById('copyEmailBtn');
-        const emailText = document.getElementById('emailText');
+        const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
 
-        // Function to copy email to clipboard
-        function copyEmail() {
-            const email = 'contact@chatezzy.com';
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Modern clipboard API
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(email).then(() => {
-                    showCopiedFeedback();
-                }).catch(err => {
-                    console.error('Failed to copy:', err);
-                    fallbackCopy(email);
-                });
-            } else {
-                // Fallback for older browsers
-                fallbackCopy(email);
-            }
-        }
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
 
-        // Fallback copy method
-        function fallbackCopy(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
+            const email = document.getElementById('email').value.trim();
+            const description = document.getElementById('description').value.trim();
+
+            if (!email) return showError('Email is required');
+            if (!description) return showError('Please describe your project');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Sending...';
+
             try {
-                document.execCommand('copy');
-                showCopiedFeedback();
+                const formData = new FormData();
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                
+                if (firstName) formData.append('first_name', firstName);
+                if (lastName) formData.append('last_name', lastName);
+                formData.append('mail', email);
+                formData.append('description', description);
+
+                const res = await fetch('https://chatezzy.com/register', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.status === 'success') {
+                    successMsg.classList.add('show');
+                    form.reset();
+                    btn.classList.add('success');
+                    btn.textContent = 'Sent ✓';
+                    setTimeout(() => {
+                        btn.classList.remove('success');
+                        btn.textContent = 'Get Free Quote';
+                    }, 3000);
+                } else {
+                    showError(data.detail || data.error || 'Something went wrong');
+                }
             } catch (err) {
-                console.error('Fallback copy failed:', err);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        // Show copied feedback
-        function showCopiedFeedback() {
-            const originalText = emailText.textContent;
-            const originalIcon = copyEmailBtn.querySelector('svg').innerHTML;
-            
-            // Change button appearance
-            copyEmailBtn.classList.add('copied');
-            emailText.textContent = 'Copied to clipboard!';
-            
-            // Change icon to checkmark
-            copyEmailBtn.querySelector('svg').innerHTML = '<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>';
-            
-            // Reset after 2 seconds
-            setTimeout(() => {
-                copyEmailBtn.classList.remove('copied');
-                emailText.textContent = originalText;
-                copyEmailBtn.querySelector('svg').innerHTML = originalIcon;
-            }, 2000);
-        }
-
-        // Add click event to copy button
-        copyEmailBtn.addEventListener('click', copyEmail);
-
-        // Function to hide popup
-        function hidePopup() {
-            popup.classList.add('hidden');
-        }
-
-        // Close popup on button click
-        closeBtn.addEventListener('click', hidePopup);
-
-        // Close popup when clicking outside
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                hidePopup();
+                showError('Network error. Please try again.');
+            } finally {
+                btn.disabled = false;
+                if (!btn.classList.contains('success')) {
+                    btn.textContent = 'Get Free Quote';
+                }
             }
         });
 
-        // Close popup on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
-                hidePopup();
-            }
-        });
-
-        // Demo reset button - shows popup again
-        resetBtn.addEventListener('click', () => {
-            popup.classList.remove('hidden');
-        });
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.classList.add('show');
+        }
     </script>
 </body>
 </html>
