@@ -9280,6 +9280,7 @@
 </div>
 <div class="trending-tabs">
     <button class="trending-tab active" onclick="switchTrendingTab(event, 'all')">All</button>
+    <button class="trending-tab" onclick="switchTrendingTab(event, 'christmas')">Christmas🔥</button>
     <button class="trending-tab" onclick="switchTrendingTab(event, 'women')">Women</button>
     <button class="trending-tab" onclick="switchTrendingTab(event, 'men')">Men</button>
     <button class="trending-tab" onclick="switchTrendingTab(event, 'couples')">Couples</button>
@@ -9289,6 +9290,10 @@
 
 <!-- Tab Contents -->
 <div id="all" class="trending-content active">
+    <div class="suggestions-grid"></div>
+</div>
+
+<div id="christmas" class="trending-content">
     <div class="suggestions-grid"></div>
 </div>
 
@@ -11544,6 +11549,52 @@ const modalData = {
         { prompt: 'Cinematic candid photo of the child (preserve face 100%). The child plays with colors during Holi, hands covered in vibrant gulal, tossing powder in the air. Outfit: plain white kurta pajama. Background slightly blurred but colorful. Natural daylight, high-speed capture of colors, 35mm lens.', image: '/static/WhatsApp%20Image%202025-09-19%20at%202.18.19%20PM.jpeg?alt=media&token=fe4efcc3-dee1-44e0-a323-307600b496eb', attach: false },
 
     ],
+    christmas: [
+        { prompt: 'Face preserved. A fun luxury portrait with the subject seated next to Santa Claus on an ornate red chair. Background: Christmas tree + warm fairy lights. The style should look like an editorial holiday magazine cover — humorous but elegant.', image: '/static/chris1.png', attach: false },
+
+        { prompt: 'Use the uploaded face with no changes. Scene: a cinematic interrogation room lit by a single overhead light. The subject sits across from Santa Claus at a metal table, a wrapped gift between them like evidence. Santa looks nervous. Cold dramatic lighting, 50mm lens, crime-thriller atmosphere.', image: '/static/chris7.png', attach: false },
+
+
+         { prompt: 'Preserve the face. A dramatic reaction expression while opening a gift box emitting warm glowing light. Background Christmas décor. Mood nostalgic, cinematic storytelling.', image: '/static/chris2.png', attach: false },
+
+        { prompt: 'Keep face intact. Scene of the subject placing ornaments on a Christmas tree while Santa helps. Lots of bokeh, Christmas lights, shiny décor. Soft cinematic film grain.', image: '/static/chris3.png', attach: false },
+
+         { prompt: 'Preserve the face 100%. The subject stands in a snowy runway-style scene wearing winter fashion. Two muscular reindeer wearing sunglasses stand behind like security guards. Christmas lights blurred in the background. High-fashion magazine energy.',image:'/static/chris6.png' , attach: false },
+
+        { prompt: 'Use the uploaded face unchanged. Place her in a snowy Moscow street, wearing a long beige trench coat, black boots, and a fur hat. Snowflakes gently fall around her under warm golden streetlights. The mood is cinematic, romantic, and fashion-magazine worthy.', image: '/static/WhatsApp%20Image%202025-09-18%20at%203.43.45%20PM.jpeg?alt=media&token=eeab31f0-f3f0-46af-9502-62886682b530', attach: true },
+
+       
+
+        { prompt: 'Use the reference face without changes. Place the subject inside Santa’s workshop — toy-making tables, warm golden lights, wooden textures. Small elves working around. Mood: magical realism, high-end digital art.', image: '/static/chris4.png', attach: false },
+
+        { prompt: 'Preserve the uploaded face 100%. Scene shows the subject accepting a beautifully wrapped gift from a realistic, premium-styled Santa Claus — velvet red suit, white fur details, warm lighting. Mood emotional and cinematic, like a Christmas movie poster.', image:'/static/chris5.png', attach: false },
+
+       
+
+
+        
+
+
+
+
+
+
+        { prompt: 'Face unchanged. The subject hides behind a giant Christmas tree, holding a candy-cane–striped sniper rifle (shooting ornaments instead of bullets). Elves hang upside down like tactical agents. Dramatic action lighting, zero comedy exaggeration—dead-serious cinematic tone..', image: '/static/chris8.png', attach: true },
+
+
+        { prompt: 'Face unchanged. The subject stands next to a red Formula-1 sleigh while reindeer in mechanic uniforms hold pit crew tools. Snow sparks, race-track energy, Christmas adrenaline.', image: '/static/chris9.png', attach: false }
+
+
+
+        // { prompt: 'Elegant evening portrait, black dress, jewelry, sophisticated makeup, luxury hotel background, dramatic lighting, high-end fashion photography', image: '', attach: false },
+        // { prompt: 'Elegant evening portrait, black dress, jewelry, sophisticated makeup, luxury hotel background, dramatic lighting, high-end fashion photography', image: '', attach: false },
+        // { prompt: 'Elegant evening portrait, black dress, jewelry, sophisticated makeup, luxury hotel background, dramatic lighting, high-end fashion photography', image: '', attach: false }
+
+
+    ],
+
+
+
     women: [
         { prompt: 'Use the uploaded reference image as the base, keeping the face and features 100% identical. Transform the subject into a realistic, vintage-inspired depiction of an ancient Hindu goddess. Outfit her in traditional, flowing attire with sheer fabrics that accentuate a graceful silhouette. Her long black hair cascades naturally. Place her in a serene, cinematic setting inspired by Hindu mythological backgrounds, with scenic views that give her presence a mysterious and artistic aura. Apply a soft grainy texture with bright, vintage tones to enhance the mystical, ethereal mood.', image: '/static/WhatsApp%20Image%202025-09-18%20at%203.39.11%20PM.jpeg?alt=media&token=ed378528-75e5-4174-bcc7-de7af00cc831', attach: false },
          { prompt: 'Preserve her exact face. Dress her in a flowing white ballet-style dress, standing in a softly lit vintage studio with tall windows. A moody, grainy aesthetic adds timeless elegance, highlighting grace and strength.', image: '/static/WhatsApp%20Image%202025-09-18%20at%203.44.53%20PM.jpeg?alt=media&token=25663214-b20c-41db-89d3-a01ac396c4be', attach: false },
@@ -11896,6 +11947,7 @@ function updateTabDisplay(tabName) {
 function getPlaceholderImage(category) {
     const placeholders = {
         all: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=120&fit=crop&crop=face',
+        christmas: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=200&h=120&fit=crop',
         women: 'https://images.unsplash.com/photo-1494790108755-2616c3e6e602?w=200&h=120&fit=crop&crop=face',
         men: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=120&fit=crop&crop=face',
         couples: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=200&h=120&fit=crop',
@@ -11940,7 +11992,7 @@ function getPlaceholderImage(category) {
 
 function initializeTrendingSection() {
     // Initialize all tabs, starting with 'all'
-    ['all', 'women', 'men', 'couples', 'baby', 'wedding'].forEach(tabName => {
+    ['all', 'christmas' , 'women', 'men', 'couples', 'baby', 'wedding'].forEach(tabName => {
         updateTabDisplay(tabName);
     });
     
