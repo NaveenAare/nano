@@ -497,6 +497,13 @@ async def redirecthandler():
 async def home():
     return FileResponse("templates/home_copy.html")
 
+@app.get("/oblog1")
+async def oblog():
+    return FileResponse("templates/oblog.html")
+
+@app.get("/oblog2")
+async def oblog():
+    return FileResponse("templates/oblog2.html")
 
 @app.get("/new_playground")
 async def newPlayGround():
