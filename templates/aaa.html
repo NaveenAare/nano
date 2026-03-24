@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ345FT3ZE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XQ345FT3ZE');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="page_title">Google Nano Banana | AI Image Generation & Professional AI Art Creator</title>
+    <meta name="description" data-translate="page_description" content="Free Google Nano Banana - Advanced AI-powered image generation platform. Create stunning visuals with professional Google Nano Banana technology. Enterprise-grade AI art creation.">
+    
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="canonical" href="https://googlenanobanana.com">
+    <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        // Handle input changes
+        function handleInput() {
+            const input = document.getElementById('prompt-input');
+            const charCount = document.getElementById('char-count');
+            const sendBtn = document.getElementById('send-btn');
+            
+            const length = input.value.length;
+            charCount.textContent = length > 0 ? length.toString() : '';
+            
+            // Auto-resize textarea
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+            
+            // Enable/disable send button
+            sendBtn.disabled = length === 0;
+        }
+
+        // Handle keyboard shortcuts
+        function handleKeyDown(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                event.preventDefault();
+                generateImage();
+            }
+        }
+
+        // Trigger file upload
+        function triggerFileUpload() {
+            document.getElementById('file-input').click();
+        }
+
+        // Handle file upload
+        function handleFileUpload(input) {
+            const files = Array.from(input.files);
+            const langData = translations[currentLang];
+            
+            if (files.length > 0) {
+                console.log(`${files.length} files uploaded`);
+                // Add your file upload logic here
+                
+                // Show feedback to user
+                const container = document.getElementById('image-results');
+                container.innerHTML = `
+                    <div style="color: #3b82f6; font-weight: 600;">
+                        ${files.length} ${files.length === 1 ? 
+                            (langData.current_language === 'English' ? 'file' : 
+                             currentLang === 'es' ? 'archivo' :
+                             currentLang === 'fr' ? 'fichier' :
+                             currentLang === 'de' ? 'Datei' :
+                             currentLang === 'it' ? 'file' :
+                             currentLang === 'pt' ? 'arquivo' :
+                             currentLang === 'ja' ? 'ファイル' :
+                             currentLang === 'ko' ? '파일' :
+                             currentLang === 'zh' ? '文件' :
+                             currentLang === 'ar' ? 'ملف' :
+                             currentLang === 'hi' ? 'फ़ाइल' :
+                             currentLang === 'ru' ? 'файл' : 'file') :
+                            (langData.current_language === 'English' ? 'files' : 
+                             currentLang === 'es' ? 'archivos' :
+                             currentLang === 'fr' ? 'fichiers' :
+                             currentLang === 'de' ? 'Dateien' :
+                             currentLang === 'it' ? 'file' :
+                             currentLang === 'pt' ? 'arquivos' :
+                             currentLang === 'ja' ? 'ファイル' :
+                             currentLang === 'ko' ? '파일' :
+                             currentLang === 'zh' ? '文件' :
+                             currentLang === 'ar' ? 'ملفات' :
+                             currentLang === 'hi' ? 'फ़ाइलें' :
+                             currentLang === 'ru' ? 'файлов' : 'files')} 
+                        ${langData.current_language === 'English' ? 'uploaded successfully' : 
+                          currentLang === 'es' ? 'subidos exitosamente' :
+                          currentLang === 'fr' ? 'téléchargés avec succès' :
+                          currentLang === 'de' ? 'erfolgreich hochgeladen' :
+                          currentLang === 'it' ? 'caricati con successo' :
+                          currentLang === 'pt' ? 'carregados com sucesso' :
+                          currentLang === 'ja' ? 'アップロードに成功しました' :
+                          currentLang === 'ko' ? '성공적으로 업로드됨' :
+                          currentLang === 'zh' ? '上传成功' :
+                          currentLang === 'ar' ? 'تم رفعها بنجاح' :
+                          currentLang === 'hi' ? 'सफलतापूर्वक अपलोड किया गया' :
+                          currentLang === 'ru' ? 'успешно загружены' : 'uploaded successfully'}
+                    </div>
+                `;
+            }
+            
+            input.value = '';
+        }
+
+        // Generate image function
+        function generateImage() {
+            const prompt = document.getElementById('prompt-input').value.trim();
+            if (!prompt) return;
+            
+            const langData = translations[currentLang];
+            const sendBtn = document.getElementById('send-btn');
+            
+            // Show loading state
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '⏳';
+            
+            // Show generating message
+            const container = document.getElementById('image-results');
+            container.innerHTML = `
+                <div style="color: #3b82f6; font-weight: 600; margin-bottom: 16px;">
+                    ${langData.generating}
+                </div>
+                <div class="loading-shimmer" style="width: 100%; height: 200px; background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 2s infinite; border-radius: 8px;"></div>
+            `;
+            
+            console.log(`Generating image with prompt: "${prompt}" in ${langData.current_language}`);
+            
+            // Simulate image generation (replace with actual API call)
+            setTimeout(() => {
+                // Reset button
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '↑';
+                
+                // Show success message (replace with actual generated image)
+                container.innerHTML = `
+                    <div style="color: #10b981; font-weight: 600;">
+                        ${langData.current_language === 'English' ? 'Image generated successfully!' : 
+                          currentLang === 'es' ? '¡Imagen generada exitosamente!' :
+                          currentLang === 'fr' ? 'Image générée avec succès!' :
+                          currentLang === 'de' ? 'Bild erfolgreich generiert!' :
+                          currentLang === 'it' ? 'Immagine generata con successo!' :
+                          currentLang === 'pt' ? 'Imagem gerada com sucesso!' :
+                          currentLang === 'ja' ? '画像が正常に生成されました！' :
+                          currentLang === 'ko' ? '이미지가 성공적으로 생성되었습니다!' :
+                          currentLang === 'zh' ? '图像生成成功！' :
+                          currentLang === 'ar' ? 'تم إنشاء الصورة بنجاح!' :
+                          currentLang === 'hi' ? 'छवि सफलतापूर्वक उत्पन्न की गई!' :
+                          currentLang === 'ru' ? 'Изображение успешно сгенерировано!' : 'Image generated successfully!'}
+                    </div>
+                    <div style="margin-top: 8px; color: #64748b; font-size: 0.875rem;">
+                        "${prompt}"
+                    </div>
+                `;
+                
+                // Clear input
+                document.getElementById('prompt-input').value = '';
+                handleInput();
+            }, 3000);
+        }
+
+        // Add shimmer animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shimmer {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSelector = document.querySelector('.language-selector');
+            const dropdown = document.getElementById('languageDropdown');
+            
+            if (!languageSelector.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Add keyboard navigation for language dropdown
+        document.addEventListener('keydown', function(event) {
+            const dropdown = document.getElementById('languageDropdown');
+            if (dropdown.classList.contains('show')) {
+                if (event.key === 'Escape') {
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Export functions for global access
+        window.toggleLanguageDropdown = toggleLanguageDropdown;
+        window.changeLanguage = changeLanguage;
+        window.useSuggestion = useSuggestion;
+        window.handleInput = handleInput;
+        window.handleKeyDown = handleKeyDown;
+        window.triggerFileUpload = triggerFileUpload;
+        window.handleFileUpload = handleFileUpload;
+        window.generateImage = generateImage;
+
+        // Initialize language detection from URL parameters
+        function checkUrlLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && translations[urlLang]) {
+                changeLanguage(urlLang);
+            }
+        }
+
+        // Add language parameter to URL when language changes
+        function updateUrlLanguage(langCode) {
+            const url = new URL(window.location);
+            if (langCode !== 'en') {
+                url.searchParams.set('lang', langCode);
+            } else {
+                url.searchParams.delete('lang');
+            }
+            window.history.replaceState({}, '', url);
+        }
+
+        // Check for URL language parameter on load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUrlLanguage();
+        });
+
+        // Update URL when language changes
+        const originalChangeLanguage = changeLanguage;
+        changeLanguage = function(langCode) {
+            originalChangeLanguage(langCode);
+            updateUrlLanguage(langCode);
+        };
+
+        // Add smooth scroll behavior for mobile
+        if (window.innerWidth <= 768) {
+            document.documentElement.style.scrollBehavior = 'smooth';
+        }
+
+        // Performance optimization: Debounce input handling
+        let inputTimeout;
+        const originalHandleInput = handleInput;
+        handleInput = function() {
+            clearTimeout(inputTimeout);
+            inputTimeout = setTimeout(originalHandleInput, 100);
+        };
+
+        // Add loading state management
+        function showGlobalLoading() {
+            document.body.classList.add('loading');
+        }
+
+        function hideGlobalLoading() {
+            document.body.classList.remove('loading');
+        }
+
+        // Preload flag images for better performance
+        function preloadFlags() {
+            languages.forEach(lang => {
+                const img = new Image();
+                img.src = lang.flag;
+            });
+        }
+
+        // Call preload on initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(preloadFlags, 1000);
+        });
+
+        // Add accessibility improvements
+        function addAccessibilityFeatures() {
+            // Add ARIA labels
+            const languageBtn = document.querySelector('.language-btn');
+            if (languageBtn) {
+                languageBtn.setAttribute('aria-label', 'Select language');
+                languageBtn.setAttribute('aria-expanded', 'false');
+                languageBtn.setAttribute('aria-haspopup', 'listbox');
+            }
+
+            const dropdown = document.getElementById('languageDropdown');
+            if (dropdown) {
+                dropdown.setAttribute('role', 'listbox');
+                dropdown.setAttribute('aria-label', 'Language options');
+            }
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Tab' && dropdown.classList.contains('show')) {
+                    const options = dropdown.querySelectorAll('.language-option');
+                    const currentIndex = Array.from(options).findIndex(option => 
+                        option === document.activeElement);
+                    
+                    if (event.shiftKey) {
+                        // Move up
+                        if (currentIndex > 0) {
+                            options[currentIndex - 1].focus();
+                        } else {
+                            languageBtn.focus();
+                        }
+                    } else {
+                        // Move down
+                        if (currentIndex < options.length - 1) {
+                            options[currentIndex + 1].focus();
+                        }
+                    }
+                    event.preventDefault();
+                }
+            });
+        }
+
+        // Initialize accessibility features
+        document.addEventListener('DOMContentLoaded', addAccessibilityFeatures);
+    </script>
+</body>
+</html>
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .language-flag {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .language-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #475569;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: #f8fafc;
+        }
+
+        .language-option.active {
+            background: #f0f9ff;
+            color: #0369a1;
+            font-weight: 600;
+        }
+
+        .language-option .language-flag {
+            width: 24px;
+            height: 18px;
+        }
+
+        /* Site Header with Language Selector */
+        .site-header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #1e293b;
+            padding: 16px 0;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1e293b;
+        }
+
+        .loogo {
+            height: 40px;
+            width: 40px;
+            margin-right: 12px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-right: 16px;
+        }
+
+        .site-nav a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .site-nav a:hover {
+            color: #1e293b;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        /* Main Card */
+        .main-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 48px;
+        }
+
+        .tab-content {
+            padding: 32px;
+        }
+
+        /* Image Results */
+        .image-results {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 48px 32px;
+            text-align: center;
+            margin-bottom: 24px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .placeholder-text {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input-container:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .input-area {
+            position: relative;
+        }
+
+        .prompt-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 16px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: none;
+            min-height: 24px;
+            max-height: 200px;
+            color: #1e293b;
+            background: transparent;
+            line-height: 1.5;
+        }
+
+        .prompt-input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Input Actions */
+        .input-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px 12px 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .input-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .attach-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
+        }
+
+        .attach-btn:hover {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transform: translateY(-1px);
+        }
+
+        .input-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .send-btn:hover {
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Suggestions */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .suggestion {
+            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            margin-top: 64px;
+            padding: 48px 0 24px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .fade-transition {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-transition.loaded {
+            opacity: 1;
+        }
+
+        /* Banana accent */
+        .banana-accent {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+        }
+        
+        body.rtl .language-dropdown {
+            right: auto;
+            left: 0;
+        }
+        
+        body.rtl .site-nav {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .header-right {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .input-actions {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .suggestions {
+            direction: rtl;
+        }
+        
+        body.rtl .footer-grid {
+            direction: rtl;
+        }
+        
+        body.rtl .language-selector {
+            margin-left: 16px;
+            margin-right: 0;
+        }
+        
+        body.rtl .site-logo {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .loogo {
+            margin-left: 12px;
+            margin-right: 0;
+        }
+        
+        body.rtl .input-left {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .input-right {
+            flex-direction: row-reverse;
+        }
+
+        /* Language-specific fonts */
+        body[lang="ja"], body[lang="ko"], body[lang="zh"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK", "Hiragino Sans", sans-serif;
+        }
+        
+        body[lang="ar"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Arabic", "Dubai", sans-serif;
+        }
+        
+        body[lang="hi"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Devanagari", sans-serif;
+        }
+        
+        body[lang="ru"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Cyrillic", sans-serif;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .site-header .container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .header-right {
+                gap: 12px;
+            }
+            
+            .site-nav {
+                gap: 16px;
+                margin-right: 0;
+            }
+
+            .language-dropdown {
+                right: auto;
+                left: 0;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .tab-content {
+                padding: 24px;
+            }
+
+            .language-btn {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+            
+            .language-flag {
+                width: 18px;
+                height: 14px;
+            }
+            
+            .language-dropdown {
+                min-width: 160px;
+                max-height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-btn {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            .language-flag {
+                width: 16px;
+                height: 12px;
+            }
+
+            .language-dropdown {
+                min-width: 180px;
+            }
+
+            .language-btn span:not(:first-child) {
+                display: none;
+            }
+            
+            .language-btn {
+                padding: 6px 8px;
+                min-width: 36px;
+            }
+            
+            .language-dropdown {
+                right: -20px;
+                min-width: 140px;
+            }
+        }
+
+        /* Loading state animations */
+        body.loading * {
+            transition: opacity 0.2s ease !important;
+            opacity: 0.7;
+        }
+
+        .language-changing {
+            animation: languageChange 0.5s ease-in-out;
+        }
+
+        @keyframes languageChange {
+            0% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0.5; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Site Header with Language Selector -->
+    <header class="site-header">
+        <div class="container">
+            <a href="#" class="site-logo">
+                <img class="loogo" src="https://firebasestorage.googleapis.com/v0/b/videos-downloader-13024.appspot.com/o/banana-decoration.png?alt=media&token=1fc2e419-14a2-46a8-b8e9-bb056a561ec2" alt="Nano Banana Logo">
+                <span data-translate="site_name">Nano Banana</span>
+            </a>
+            
+            <div class="header-right">
+                <nav class="site-nav">
+                    <a href="/remove-background" data-translate="nav_bg_remover">Background Remover</a>
+                    <a href="/pricing" data-translate="nav_pricing">Pricing</a>
+                </nav>
+
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn" onclick="toggleLanguageDropdown()">
+                        <div class="language-flag" id="currentLanguageFlag"></div>
+                        <span id="currentLanguageName" data-translate="current_language">English</span>
+                        <span style="font-size: 12px;">▼</span>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <!-- Language options will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header fade-transition">
+            <h1 data-translate="main_title">Nano Banana</h1>
+            <p data-translate="main_subtitle">Professional AI Image Generation Platform</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="main-card fade-transition">
+            <div class="tab-content">
+                <!-- Image Results -->
+                <div class="image-results" id="image-results">
+                    <div class="placeholder-text" data-translate="placeholder_text">Generated images will appear here</div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-container" id="chat-container">
+                    <!-- Input Area -->
+                    <div class="input-area">
+                        <textarea 
+                            id="prompt-input" 
+                            class="prompt-input" 
+                            data-translate-placeholder="input_placeholder"
+                            placeholder="Ask anything..."
+                            oninput="handleInput()"
+                            onkeydown="handleKeyDown(event)"
+                        ></textarea>
+                    </div>
+
+                    <!-- Input Actions -->
+                    <div class="input-actions">
+                        <div class="input-left">
+                            <button class="attach-btn" onclick="triggerFileUpload()" data-title-translate="attach_image">
+                                +
+                            </button>
+                            <input 
+                                type="file" 
+                                id="file-input" 
+                                style="display: none;" 
+                                accept="image/*" 
+                                multiple 
+                                onchange="handleFileUpload(this)"
+                            >
+                        </div>
+                        <div class="input-right">
+                            <span class="char-count" id="char-count"></span>
+                            <button class="send-btn" id="send-btn" onclick="generateImage()" data-title-translate="generate_image">
+                                ↑
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="suggestions fade-transition">
+                    <div class="suggestion" onclick="useSuggestion('portrait')" data-translate="suggestion_portrait">Professional headshot with soft studio lighting</div>
+                    <div class="suggestion" onclick="useSuggestion('landscape')" data-translate="suggestion_landscape">Beautiful sunset landscape with mountains</div>
+                    <div class="suggestion" onclick="useSuggestion('abstract')" data-translate="suggestion_abstract">Abstract colorful digital art</div>
+                    <div class="suggestion" onclick="useSuggestion('anime')" data-translate="suggestion_anime">Anime character illustration</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer fade-transition">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>
+                        <span class="banana-accent" data-translate="site_name">Nano Banana</span>
+                    </h3>
+                    <p data-translate="footer_description">Professional AI image generation platform powered by revolutionary nano banana technology. Experience the future of AI-driven creative workflows.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="footer_product">Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer_features">Features</a></li>
+                        <li><a href="/pricing" data-translate="footer_pricing">Pricing</a></li>
+                        <li><a href="#" data-translate="footer_api">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="footer_support">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer_help">Help Center</a></li>
+                        <li><a href="#" data-translate="footer_contact">Contact</a></li>
+                        <li><a href="#" data-translate="footer_privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-translate="footer_copyright">&copy; 2025 Nano Banana. All rights reserved. Powered by Advanced AI Technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Complete Translation Data for All Languages
+        const translations = {
+            en: {
+                page_title: "Google Nano Banana | AI Image Generation & Professional AI Art Creator",
+                page_description: "Free Google Nano Banana - Advanced AI-powered image generation platform. Create stunning visuals with professional Google Nano Banana technology.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Background Remover",
+                nav_pricing: "Pricing",
+                current_language: "English",
+                main_title: "Nano Banana",
+                main_subtitle: "Professional AI Image Generation Platform",
+                placeholder_text: "Generated images will appear here",
+                input_placeholder: "Ask anything...",
+                attach_image: "Attach image",
+                generate_image: "Generate image",
+                suggestion_portrait: "Professional headshot with soft studio lighting",
+                suggestion_landscape: "Beautiful sunset landscape with mountains",
+                suggestion_abstract: "Abstract colorful digital art",
+                suggestion_anime: "Anime character illustration",
+                suggestions: {
+                    portrait: "Professional headshot with soft studio lighting",
+                    landscape: "Beautiful sunset landscape with mountains",
+                    abstract: "Abstract colorful digital art",
+                    anime: "Anime character illustration"
+                },
+                footer_description: "Professional AI image generation platform powered by revolutionary nano banana technology. Experience the future of AI-driven creative workflows.",
+                footer_product: "Product",
+                footer_features: "Features",
+                footer_pricing: "Pricing",
+                footer_api: "API",
+                footer_support: "Support",
+                footer_help: "Help Center",
+                footer_contact: "Contact",
+                footer_privacy: "Privacy Policy",
+                footer_copyright: "© 2025 Nano Banana. All rights reserved. Powered by Advanced AI Technology.",
+                generating: "Generating..."
+            },
+            es: {
+                page_title: "Google Nano Banana | Generación de Imágenes IA y Creador de Arte IA Profesional",
+                page_description: "Google Nano Banana Gratuito - Plataforma avanzada de generación de imágenes con IA. Crea imágenes impresionantes con tecnología profesional.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Eliminador de Fondo",
+                nav_pricing: "Precios",
+                current_language: "Español",
+                main_title: "Nano Banana",
+                main_subtitle: "Plataforma Profesional de Generación de Imágenes con IA",
+                placeholder_text: "Las imágenes generadas aparecerán aquí",
+                input_placeholder: "Pregunta cualquier cosa...",
+                attach_image: "Adjuntar imagen",
+                generate_image: "Generar imagen",
+                suggestion_portrait: "Retrato profesional con iluminación suave de estudio",
+                suggestion_landscape: "Hermoso paisaje de atardecer con montañas",
+                suggestion_abstract: "Arte digital abstracto colorido",
+                suggestion_anime: "Ilustración de personaje anime",
+                suggestions: {
+                    portrait: "Retrato profesional con iluminación suave de estudio",
+                    landscape: "Hermoso paisaje de atardecer con montañas",
+                    abstract: "Arte digital abstracto colorido",
+                    anime: "Ilustración de personaje anime"
+                },
+                footer_description: "Plataforma profesional de generación de imágenes con IA impulsada por tecnología revolucionaria. Experimenta el futuro de los flujos de trabajo creativos con IA.",
+                footer_product: "Producto",
+                footer_features: "Características",
+                footer_pricing: "Precios",
+                footer_api: "API",
+                footer_support: "Soporte",
+                footer_help: "Centro de Ayuda",
+                footer_contact: "Contacto",
+                footer_privacy: "Política de Privacidad",
+                footer_copyright: "© 2025 Nano Banana. Todos los derechos reservados. Impulsado por Tecnología IA Avanzada.",
+                generating: "Generando..."
+            },
+            fr: {
+                page_title: "Google Nano Banana | Génération d'Images IA et Créateur d'Art IA Professionnel",
+                page_description: "Google Nano Banana Gratuit - Plateforme avancée de génération d'images alimentée par l'IA. Créez des visuels époustouflants avec la technologie professionnelle.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Suppresseur d'Arrière-plan",
+                nav_pricing: "Tarifs",
+                current_language: "Français",
+                main_title: "Nano Banana",
+                main_subtitle: "Plateforme Professionnelle de Génération d'Images IA",
+                placeholder_text: "Les images générées apparaîtront ici",
+                input_placeholder: "Demandez n'importe quoi...",
+                attach_image: "Joindre une image",
+                generate_image: "Générer une image",
+                suggestion_portrait: "Portrait professionnel avec éclairage studio doux",
+                suggestion_landscape: "Magnifique paysage de coucher de soleil avec montagnes",
+                suggestion_abstract: "Art numérique abstrait coloré",
+                suggestion_anime: "Illustration de personnage anime",
+                suggestions: {
+                    portrait: "Portrait professionnel avec éclairage studio doux",
+                    landscape: "Magnifique paysage de coucher de soleil avec montagnes",
+                    abstract: "Art numérique abstrait coloré",
+                    anime: "Illustration de personnage anime"
+                },
+                footer_description: "Plateforme professionnelle de génération d'images IA alimentée par une technologie révolutionnaire. Découvrez l'avenir des flux de travail créatifs pilotés par l'IA.",
+                footer_product: "Produit",
+                footer_features: "Fonctionnalités",
+                footer_pricing: "Tarifs",
+                footer_api: "API",
+                footer_support: "Support",
+                footer_help: "Centre d'Aide",
+                footer_contact: "Contact",
+                footer_privacy: "Politique de Confidentialité",
+                footer_copyright: "© 2025 Nano Banana. Tous droits réservés. Alimenté par une Technologie IA Avancée.",
+                generating: "Génération..."
+            },
+            de: {
+                page_title: "Google Nano Banana | KI-Bildgenerierung & Professioneller KI-Kunst-Ersteller",
+                page_description: "Kostenlose Google Nano Banana - Erweiterte KI-gestützte Bildgenerierungsplattform. Erstellen Sie atemberaubende Bilder mit professioneller Technologie.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Hintergrund-Entferner",
+                nav_pricing: "Preise",
+                current_language: "Deutsch",
+                main_title: "Nano Banana",
+                main_subtitle: "Professionelle KI-Bildgenerierungsplattform",
+                placeholder_text: "Generierte Bilder erscheinen hier",
+                input_placeholder: "Fragen Sie alles...",
+                attach_image: "Bild anhängen",
+                generate_image: "Bild generieren",
+                suggestion_portrait: "Professionelles Porträt mit sanfter Studiobeleuchtung",
+                suggestion_landscape: "Schöne Sonnenuntergangslandschaft mit Bergen",
+                suggestion_abstract: "Abstrakte farbenfrohe digitale Kunst",
+                suggestion_anime: "Anime-Charakter-Illustration",
+                suggestions: {
+                    portrait: "Professionelles Porträt mit sanfter Studiobeleuchtung",
+                    landscape: "Schöne Sonnenuntergangslandschaft mit Bergen",
+                    abstract: "Abstrakte farbenfrohe digitale Kunst",
+                    anime: "Anime-Charakter-Illustration"
+                },
+                footer_description: "Professionelle KI-Bildgenerierungsplattform, angetrieben von revolutionärer Technologie. Erleben Sie die Zukunft KI-gesteuerter kreativer Arbeitsabläufe.",
+                footer_product: "Produkt",
+                footer_features: "Funktionen",
+                footer_pricing: "Preise",
+                footer_api: "API",
+                footer_support: "Support",
+                footer_help: "Hilfezentrum",
+                footer_contact: "Kontakt",
+                footer_privacy: "Datenschutzrichtlinie",
+                footer_copyright: "© 2025 Nano Banana. Alle Rechte vorbehalten. Angetrieben von fortgeschrittener KI-Technologie.",
+                generating: "Generierung..."
+            },
+            it: {
+                page_title: "Google Nano Banana | Generazione Immagini IA e Creatore Arte IA Professionale",
+                page_description: "Google Nano Banana Gratuito - Piattaforma avanzata di generazione immagini alimentata dall'IA. Crea immagini straordinarie con tecnologia professionale.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Rimuovi Sfondo",
+                nav_pricing: "Prezzi",
+                current_language: "Italiano",
+                main_title: "Nano Banana",
+                main_subtitle: "Piattaforma Professionale di Generazione Immagini IA",
+                placeholder_text: "Le immagini generate appariranno qui",
+                input_placeholder: "Chiedi qualsiasi cosa...",
+                attach_image: "Allega immagine",
+                generate_image: "Genera immagine",
+                suggestion_portrait: "Ritratto professionale con illuminazione soffice da studio",
+                suggestion_landscape: "Bellissimo paesaggio al tramonto con montagne",
+                suggestion_abstract: "Arte digitale astratta colorata",
+                suggestion_anime: "Illustrazione personaggio anime",
+                suggestions: {
+                    portrait: "Ritratto professionale con illuminazione soffice da studio",
+                    landscape: "Bellissimo paesaggio al tramonto con montagne",
+                    abstract: "Arte digitale astratta colorata",
+                    anime: "Illustrazione personaggio anime"
+                },
+                footer_description: "Piattaforma professionale di generazione immagini IA alimentata da tecnologia rivoluzionaria. Sperimenta il futuro dei flussi di lavoro creativi guidati dall'IA.",
+                footer_product: "Prodotto",
+                footer_features: "Caratteristiche",
+                footer_pricing: "Prezzi",
+                footer_api: "API",
+                footer_support: "Supporto",
+                footer_help: "Centro Assistenza",
+                footer_contact: "Contatto",
+                footer_privacy: "Informativa Privacy",
+                footer_copyright: "© 2025 Nano Banana. Tutti i diritti riservati. Alimentato da Tecnologia IA Avanzata.",
+                generating: "Generazione..."
+            },
+            pt: {
+                page_title: "Google Nano Banana | Geração de Imagens IA e Criador de Arte IA Profissional",
+                page_description: "Google Nano Banana Gratuito - Plataforma avançada de geração de imagens alimentada por IA. Crie visuais impressionantes com tecnologia profissional.",
+                site_name: "Nano Banana",
+                nav_bg_remover: "Removedor de Fundo",
+                nav_pricing: "Preços",
+                current_language: "Português",
+                main_title: "Nano Banana",
+                main_subtitle: "Plataforma Profissional de Geração de Imagens IA",
+                placeholder_text: "Imagens geradas aparecerão aqui",
+                input_placeholder: "Pergunte qualquer coisa...",
+                attach_image: "Anexar imagem",
+                generate_image: "Gerar imagem",
+                suggestion_portrait: "Retrato profissional com iluminação suave de estúdio",
+                suggestion_landscape: "Bela paisagem do pôr do sol com montanhas",
+                suggestion_abstract: "Arte digital abstrata colorida",
+                suggestion_anime: "Ilustração de personagem anime",
+                suggestions: {
+                    portrait: "Retrato profissional com iluminação suave de estúdio",
+                    landscape: "Bela paisagem do pôr do sol com montanhas",
+                    abstract: "Arte digital abstrata colorida",
+                    anime: "Ilustração de personagem anime"
+                },
+                footer_description: "Plataforma profissional de geração de imagens IA alimentada por tecnologia revolucionária. Experimente o futuro dos fluxos de trabalho criativos orientados por IA.",
+                footer_product: "Produto",
+                footer_features: "Recursos",
+                footer_pricing: "Preços",
+                footer_api: "API",
+                footer_support: "Suporte",
+                footer_help: "Central de Ajuda",
+                footer_contact: "Contato",
+                footer_privacy: "Política de Privacidade",
+                footer_copyright: "© 2025 Nano Banana. Todos os direitos reservados. Powered by Advanced AI Technology.",
+                generating: "Gerando..."
+            },
+            ja: {
+                page_title: "Google Nano Banana | AI画像生成・プロフェッショナルAIアート作成",
+                page_description: "無料のGoogle Nano Banana - 先進的なAI画像生成プラットフォーム。プロフェッショナル技術で素晴らしいビジュアルを作成。",
+                site_name: "Nano Banana",
+                nav_bg_remover: "背景除去",
+                nav_pricing: "料金",
+                current_language: "日本語",
+                main_title: "Nano Banana",
+                main_subtitle: "プロフェッショナルAI画像生成プラットフォーム",
+                placeholder_text: "生成された画像がここに表示されます",
+                input_placeholder: "何でも聞いてください...",
+                attach_image: "画像を添付",
+                generate_image: "画像を生成",
+                suggestion_portrait: "ソフトなスタジオ照明のプロフェッショナルポートレート",
+                suggestion_landscape: "山々と美しい夕日の風景",
+                suggestion_abstract: "抽象的なカラフルデジタルアート",
+                suggestion_anime: "アニメキャラクターイラスト",
+                suggestions: {
+                    portrait: "ソフトなスタジオ照明のプロフェッショナルポートレート",
+                    landscape: "山々と美しい夕日の風景",
+                    abstract: "抽象的なカラフルデジタルアート",
+                    anime: "アニメキャラクターイラスト"
+                },
+                footer_description: "革新的な技術により動作するプロフェッショナルAI画像生成プラットフォーム。AI駆動のクリエイティブワークフローの未来を体験してください。",
+                footer_product: "製品",
+                footer_features: "機能",
+                footer_pricing: "料金",
+                footer_api: "API",
+                footer_support: "サポート",
+                footer_help: "ヘルプセンター",
+                footer_contact: "お問い合わせ",
+                footer_privacy: "プライバシーポリシー",
+                footer_copyright: "© 2025 Nano Banana. すべての権利は留保されています。先進的なAI技術により提供されています。",
+                generating: "生成中..."
+            },
+            ko: {
+                page_title: "구글 나노 바나나 | AI 이미지 생성 및 전문 AI 아트 크리에이터",
+                page_description: "무료 구글 나노 바나나 - 고급 AI 기반 이미지 생성 플랫폼. 전문 기술로 놀라운 비주얼을 만드세요.",
+                site_name: "나노 바나나",
+                nav_bg_remover: "배경 제거기",
+                nav_pricing: "가격",
+                current_language: "한국어",
+                main_title: "나노 바나나",
+                main_subtitle: "전문 AI 이미지 생성 플랫폼",
+                placeholder_text: "생성된 이미지가 여기에 나타납니다",
+                input_placeholder: "무엇이든 물어보세요...",
+                attach_image: "이미지 첨부",
+                generate_image: "이미지 생성",
+                suggestion_portrait: "부드러운 스튜디오 조명의 전문 인물사진",
+                suggestion_landscape: "산이 있는 아름다운 일몰 풍경",
+                suggestion_abstract: "추상적인 컬러풀 디지털 아트",
+                suggestion_anime: "애니메이션 캐릭터 일러스트",
+                suggestions: {
+                    portrait: "부드러운 스튜디오 조명의 전문 인물사진",
+                    landscape: "산이 있는 아름다운 일몰 풍경",
+                    abstract: "추상적인 컬러풀 디지털 아트",
+                    anime: "애니메이션 캐릭터 일러스트"
+                },
+                footer_description: "혁신적인 기술로 구동되는 전문 AI 이미지 생성 플랫폼. AI 기반 창작 워크플로의 미래를 경험하세요.",
+                footer_product: "제품",
+                footer_features: "기능",
+                footer_pricing: "가격",
+                footer_api: "API",
+                footer_support: "지원",
+                footer_help: "도움말 센터",
+                footer_contact: "연락처",
+                footer_privacy: "개인정보처리방침",
+                footer_copyright: "© 2025 나노 바나나. 모든 권리 보유. 고급 AI 기술로 구동됩니다.",
+                generating: "생성 중..."
+            },
+            zh: {
+                page_title: "谷歌纳米香蕉 | AI图像生成和专业AI艺术创作器",
+                page_description: "免费的谷歌纳米香蕉 - 先进的AI驱动图像生成平台。使用专业技术创建令人惊叹的视觉效果。",
+                site_name: "纳米香蕉",
+                nav_bg_remover: "背景去除器",
+                nav_pricing: "价格",
+                current_language: "中文",
+                main_title: "纳米香蕉",
+                main_subtitle: "专业AI图像生成平台",
+                placeholder_text: "生成的图像将显示在这里",
+                input_placeholder: "询问任何事情...",
+                attach_image: "附加图像",
+                generate_image: "生成图像",
+                suggestion_portrait: "柔和工作室照明的专业人像",
+                suggestion_landscape: "美丽的山景日落风景",
+                suggestion_abstract: "抽象彩色数字艺术",
+                suggestion_anime: "动漫角色插图",
+                suggestions: {
+                    portrait: "柔和工作室照明的专业人像",
+                    landscape: "美丽的山景日落风景",
+                    abstract: "抽象彩色数字艺术",
+                    anime: "动漫角色插图"
+                },
+                footer_description: "由革命性技术驱动的专业AI图像生成平台。体验AI驱动创意工作流程的未来。",
+                footer_product: "产品",
+                footer_features: "功能",
+                footer_pricing: "价格",
+                footer_api: "API",
+                footer_support: "支持",
+                footer_help: "帮助中心",
+                footer_contact: "联系",
+                footer_privacy: "隐私政策",
+                footer_copyright: "© 2025 纳米香蕉。保留所有权利。由先进AI技术驱动。",
+                generating: "生成中..."
+            },
+            ar: {
+                page_title: "جوجل نانو بنانا | إنشاء الصور بالذكاء الاصطناعي ومنشئ الفن الاحترافي",
+                page_description: "جوجل نانو بنانا المجاني - منصة متقدمة لإنشاء الصور بالذكاء الاصطناعي. اصنع مرئيات مذهلة بتقنية احترافية.",
+                site_name: "نانو بنانا",
+                nav_bg_remover: "إزالة الخلفية",
+                nav_pricing: "الأسعار",
+                current_language: "العربية",
+                main_title: "نانو بنانا",
+                main_subtitle: "منصة احترافية لإنشاء الصور بالذكاء الاصطناعي",
+                placeholder_text: "ستظهر الصور المُنشأة هنا",
+                input_placeholder: "اسأل عن أي شيء...",
+                attach_image: "إرفاق صورة",
+                generate_image: "إنشاء صورة",
+                suggestion_portrait: "صورة شخصية احترافية بإضاءة استوديو ناعمة",
+                suggestion_landscape: "منظر طبيعي جميل عند غروب الشمس مع الجبال",
+                suggestion_abstract: "فن رقمي تجريدي ملون",
+                suggestion_anime: "رسم توضيحي لشخصية أنمي",
+                suggestions: {
+                    portrait: "صورة شخصية احترافية بإضاءة استوديو ناعمة",
+                    landscape: "منظر طبيعي جميل عند غروب الشمس مع الجبال",
+                    abstract: "فن رقمي تجريدي ملون",
+                    anime: "رسم توضيحي لشخصية أنمي"
+                },
+                footer_description: "منصة احترافية لإنشاء الصور بالذكاء الاصطناعي مدعومة بتقنية ثورية. اختبر مستقبل سير العمل الإبداعي المدفوع بالذكاء الاصطناعي.",
+                footer_product: "المنتج",
+                footer_features: "المميزات",
+                footer_pricing: "الأسعار",
+                footer_api: "واجهة برمجة التطبيقات",
+                footer_support: "الدعم",
+                footer_help: "مركز المساعدة",
+                footer_contact: "اتصل بنا",
+                footer_privacy: "سياسة الخصوصية",
+                footer_copyright: "© 2025 نانو بنانا. جميع الحقوق محفوظة. مدعوم بتقنية الذكاء الاصطناعي المتقدمة.",
+                generating: "جاري الإنشاء..."
+            },
+            hi: {
+                page_title: "गूगल नैनो बनाना | एआई इमेज जेनरेशन और प्रोफेशनल एआई आर्ट क्रिएटर",
+                page_description: "मुफ्त गूगल नैनो बनाना - उन्नत एआई-संचालित इमेज जेनरेशन प्लेटफॉर्म। प्रोफेशनल तकनीक के साथ शानदार विजुअल्स बनाएं।",
+                site_name: "नैनो बनाना",
+                nav_bg_remover: "बैकग्राउंड हटाने वाला",
+                nav_pricing: "मूल्य निर्धारण",
+                current_language: "हिंदी",
+                main_title: "नैनो बनाना",
+                main_subtitle: "प्रोफेशनल एआई इमेज जेनरेशन प्लेटफॉर्म",
+                placeholder_text: "उत्पन्न छवियां यहां दिखाई देंगी",
+                input_placeholder: "कुछ भी पूछें...",
+                attach_image: "छवि संलग्न करें",
+                generate_image: "छवि उत्पन्न करें",
+                suggestion_portrait: "मुलायम स्टूडियो लाइटिंग के साथ प्रोफेशनल पोर्ट्रेट",
+                suggestion_landscape: "पहाड़ों के साथ सुंदर सूर्यास्त का नजारा",
+                suggestion_abstract: "सार रंगीन डिजिटल कला",
+                suggestion_anime: "एनीमे चरित्र चित्रण",
+                suggestions: {
+                    portrait: "मुलायम स्टूडियो लाइटिंग के साथ प्रोफेशनल पोर्ट्रेट",
+                    landscape: "पहाड़ों के साथ सुंदर सूर्यास्त का नजारा",
+                    abstract: "सार रंगीन डिजिटल कला",
+                    anime: "एनीमे चरित्र चित्रण"
+                },
+                footer_description: "क्रांतिकारी तकनीक द्वारा संचालित प्रोफेशनल एआई इमेज जेनरेशन प्लेटफॉर्म। एआई-संचालित रचनात्मक वर्कफ़्लो के भविष्य का अनुभव करें।",
+                footer_product: "उत्पाद",
+                footer_features: "विशेषताएं",
+                footer_pricing: "मूल्य निर्धारण",
+                footer_api: "एपीआई",
+                footer_support: "सहायता",
+                footer_help: "सहायता केंद्र",
+                footer_contact: "संपर्क",
+                footer_privacy: "गोपनीयता नीति",
+                footer_copyright: "© 2025 नैनो बनाना। सभी अधिकार सुरक्षित। उन्नत एआई तकनीक द्वारा संचालित।",
+                generating: "उत्पन्न हो रहा है..."
+            },
+            ru: {
+                page_title: "Google Nano Banana | Генерация изображений ИИ и создатель профессионального ИИ-арта",
+                page_description: "Бесплатная Google Nano Banana - продвинутая платформа генерации изображений на базе ИИ. Создавайте потрясающие визуалы с профессиональными технологиями.",
+                site_name: "Нано Банана",
+                nav_bg_remover: "Удаление фона",
+                nav_pricing: "Цены",
+                current_language: "Русский",
+                main_title: "Нано Банана",
+                main_subtitle: "Профессиональная платформа генерации изображений ИИ",
+                placeholder_text: "Сгенерированные изображения появятся здесь",
+                input_placeholder: "Спросите что угодно...",
+                attach_image: "Прикрепить изображение",
+                generate_image: "Сгенерировать изображение",
+                suggestion_portrait: "Профессиональный портрет с мягким студийным освещением",
+                suggestion_landscape: "Красивый закатный пейзаж с горами",
+                suggestion_abstract: "Абстрактное цветное цифровое искусство",
+                suggestion_anime: "Иллюстрация аниме-персонажа",
+                suggestions: {
+                    portrait: "Профессиональный портрет с мягким студийным освещением",
+                    landscape: "Красивый закатный пейзаж с горами",
+                    abstract: "Абстрактное цветное цифровое искусство",
+                    anime: "Иллюстрация аниме-персонажа"
+                },
+                footer_description: "Профессиональная платформа генерации изображений ИИ на базе революционных технологий. Испытайте будущее творческих рабочих процессов на базе ИИ.",
+                footer_product: "Продукт",
+                footer_features: "Функции",
+                footer_pricing: "Цены",
+                footer_api: "API",
+                footer_support: "Поддержка",
+                footer_help: "Центр помощи",
+                footer_contact: "Контакты",
+                footer_privacy: "Политика конфиденциальности",
+                footer_copyright: "© 2025 Нано Банана. Все права защищены. Работает на передовых ИИ-технологиях.",
+                generating: "Генерация..."
+            }
+        };
+
+        // Language configuration with flag URLs
+        const languages = [
+            { code: 'en', name: 'English', flag: 'https://flagcdn.com/w40/us.png' },
+            { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w40/es.png' },
+            { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w40/fr.png' },
+            { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png' },
+            { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w40/it.png' },
+            { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w40/br.png' },
+            { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w40/jp.png' },
+            { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w40/kr.png' },
+            { code: 'zh', name: '中文', flag: 'https://flagcdn.com/w40/cn.png' },
+            { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w40/sa.png' },
+            { code: 'hi', name: 'हिंदी', flag: 'https://flagcdn.com/w40/in.png' },
+            { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w40/ru.png' }
+        ];
+
+        // Current language state
+        let currentLang = 'en';
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLanguage();
+            populateLanguageDropdown();
+            applyTranslations();
+            handleInput();
+            
+            // Add fade-in effect
+            setTimeout(() => {
+                document.querySelectorAll('.fade-transition').forEach(el => {
+                    el.classList.add('loaded');
+                });
+            }, 100);
+        });
+
+        // Initialize language from storage or browser preference
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('nanobanana_language');
+            const browserLang = navigator.language.split('-')[0];
+            
+            if (savedLang && translations[savedLang]) {
+                currentLang = savedLang;
+            } else if (translations[browserLang]) {
+                currentLang = browserLang;
+            } else {
+                currentLang = 'en';
+            }
+            
+            updateCurrentLanguageDisplay();
+        }
+
+        // Populate language dropdown
+        function populateLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.innerHTML = '';
+            
+            languages.forEach(lang => {
+                const option = document.createElement('div');
+                option.className = `language-option ${lang.code === currentLang ? 'active' : ''}`;
+                option.onclick = () => changeLanguage(lang.code);
+                
+                option.innerHTML = `
+                    <div class="language-flag" style="background-image: url('${lang.flag}')"></div>
+                    <span>${lang.name}</span>
+                `;
+                
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Update current language display
+        function updateCurrentLanguageDisplay() {
+            const currentLangData = languages.find(lang => lang.code === currentLang);
+            const flagElement = document.getElementById('currentLanguageFlag');
+            const nameElement = document.getElementById('currentLanguageName');
+            
+            if (currentLangData) {
+                flagElement.style.backgroundImage = `url('${currentLangData.flag}')`;
+                nameElement.textContent = currentLangData.name;
+            }
+        }
+
+        // Toggle language dropdown
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.language-selector')) {
+                    dropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        }
+
+        // Change language with smooth transition
+        function changeLanguage(langCode) {
+            if (langCode === currentLang) return;
+            
+            // Show loading state
+            document.body.classList.add('loading');
+            
+            setTimeout(() => {
+                currentLang = langCode;
+                localStorage.setItem('nanobanana_language', langCode);
+                
+                updateCurrentLanguageDisplay();
+                applyTranslations();
+                populateLanguageDropdown();
+                
+                // Close dropdown
+                document.getElementById('languageDropdown').classList.remove('show');
+                
+                // Remove loading state
+                document.body.classList.remove('loading');
+                
+                // Update page language attribute
+                document.documentElement.lang = langCode;
+                
+                // Update HTML direction for RTL languages
+                if (langCode === 'ar') {
+                    document.body.classList.add('rtl');
+                    document.body.setAttribute('dir', 'rtl');
+                } else {
+                    document.body.classList.remove('rtl');
+                    document.body.setAttribute('dir', 'ltr');
+                }
+            }, 200);
+        }
+
+        // Apply translations to the page
+        function applyTranslations() {
+            const langData = translations[currentLang];
+            if (!langData) return;
+            
+            // Update page title and meta description
+            document.title = langData.page_title;
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.setAttribute('content', langData.page_description);
+            }
+            
+            // Update elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (langData[key]) {
+                    element.textContent = langData[key];
+                }
+            });
+            
+            // Update placeholder text
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (langData[key]) {
+                    element.setAttribute('placeholder', langData[key]);
+                }
+            });
+            
+            // Update title attributes
+            document.querySelectorAll('[data-title-translate]').forEach(element => {
+                const key = element.getAttribute('data-title-translate');
+                if (langData[key]) {
+                    element.setAttribute('title', langData[key]);
+                }
+            });
+        }
+
+        // Use suggestion function
+        function useSuggestion(suggestionType) {
+            const langData = translations[currentLang];
+            const suggestionText = langData.suggestions[suggestionType] || langData[`suggestion_${suggestionType}`];
+            
+            document.getElementById('prompt-input').value = suggestionText;
+            handleInput();
+            document.getElementById('prompt-input').focus();
+            }
+
+        // Handle input changes
+        function handleInput() {
+            const input = document.getElementById('prompt-input');
+            const charCount = document.getElementById('char-count');
+            const sendBtn = document.getElementById('send-btn');
+            
+            const length = input.value.length;
+            charCount.textContent = length > 0 ? length.toString() : '';
+            
+            // Auto-resize textarea
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+            
+            // Enable/disable send button
+            sendBtn.disabled = length === 0;
+        }
+
+        // Handle keyboard shortcuts
+        function handleKeyDown(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                event.preventDefault();
+                generateImage();
+            }
+        }
+
+        // Trigger file upload
+        function triggerFileUpload() {
+            document.getElementById('file-input').click();
+        }
+
+        // Handle file upload
+        function handleFileUpload(input) {
+            const files = Array.from(input.files);
+            const langData = translations[currentLang];
+            
+            if (files.length > 0) {
+                console.log(`${files.length} files uploaded`);
+                
+                // Show feedback to user
+                const container = document.getElementById('image-results');
+                container.innerHTML = `
+                    <div style="color: #3b82f6; font-weight: 600;">
+                        ${files.length} ${files.length === 1 ? 
+                            getTranslatedWord('file_singular') : 
+                            getTranslatedWord('file_plural')} 
+                        ${getTranslatedWord('uploaded_successfully')}
+                    </div>
+                `;
+            }
+            
+            input.value = '';
+        }
+
+        // Get translated words for dynamic content
+        function getTranslatedWord(key) {
+            const words = {
+                file_singular: {
+                    en: 'file', es: 'archivo', fr: 'fichier', de: 'Datei',
+                    it: 'file', pt: 'arquivo', ja: 'ファイル', ko: '파일',
+                    zh: '文件', ar: 'ملف', hi: 'फ़ाइल', ru: 'файл'
+                },
+                file_plural: {
+                    en: 'files', es: 'archivos', fr: 'fichiers', de: 'Dateien',
+                    it: 'file', pt: 'arquivos', ja: 'ファイル', ko: '파일',
+                    zh: '文件', ar: 'ملفات', hi: 'फ़ाइलें', ru: 'файлов'
+                },
+                uploaded_successfully: {
+                    en: 'uploaded successfully', es: 'subidos exitosamente',
+                    fr: 'téléchargés avec succès', de: 'erfolgreich hochgeladen',
+                    it: 'caricati con successo', pt: 'carregados com sucesso',
+                    ja: 'アップロードに成功しました', ko: '성공적으로 업로드됨',
+                    zh: '上传成功', ar: 'تم رفعها بنجاح',
+                    hi: 'सफलतापूर्वक अपलोड किया गया', ru: 'успешно загружены'
+                },
+                image_generated_successfully: {
+                    en: 'Image generated successfully!', es: '¡Imagen generada exitosamente!',
+                    fr: 'Image générée avec succès!', de: 'Bild erfolgreich generiert!',
+                    it: 'Immagine generata con successo!', pt: 'Imagem gerada com sucesso!',
+                    ja: '画像が正常に生成されました！', ko: '이미지가 성공적으로 생성되었습니다!',
+                    zh: '图像生成成功！', ar: 'تم إنشاء الصورة بنجاح!',
+                    hi: 'छवि सफलतापूर्वक उत्पन्न की गई!', ru: 'Изображение успешно сгенерировано!'
+                }
+            };
+            
+            return words[key] ? (words[key][currentLang] || words[key]['en']) : '';
+        }
+
+        // Generate image function
+        function generateImage() {
+            const prompt = document.getElementById('prompt-input').value.trim();
+            if (!prompt) return;
+            
+            const langData = translations[currentLang];
+            const sendBtn = document.getElementById('send-btn');
+            
+            // Show loading state
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '⏳';
+            
+            // Show generating message
+            const container = document.getElementById('image-results');
+            container.innerHTML = `
+                <div style="color: #3b82f6; font-weight: 600; margin-bottom: 16px;">
+                    ${langData.generating}
+                </div>
+                <div class="loading-shimmer" style="width: 100%; height: 200px; background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 2s infinite; border-radius: 8px;"></div>
+            `;
+            
+            console.log(`Generating image with prompt: "${prompt}" in ${langData.current_language}`);
+            
+            // Simulate image generation (replace with actual API call)
+            setTimeout(() => {
+                // Reset button
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '↑';
+                
+                // Show success message (replace with actual generated image)
+                container.innerHTML = `
+                    <div style="color: #10b981; font-weight: 600;">
+                        ${getTranslatedWord('image_generated_successfully')}
+                    </div>
+                    <div style="margin-top: 8px; color: #64748b; font-size: 0.875rem;">
+                        "${prompt}"
+                    </div>
+                `;
+                
+                // Clear input
+                document.getElementById('prompt-input').value = '';
+                handleInput();
+            }, 3000);
+        }
+
+        // Add shimmer animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shimmer {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSelector = document.querySelector('.language-selector');
+            const dropdown = document.getElementById('languageDropdown');
+            
+            if (languageSelector && dropdown && !languageSelector.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Add keyboard navigation for language dropdown
+        document.addEventListener('keydown', function(event) {
+            const dropdown = document.getElementById('languageDropdown');
+            if (dropdown && dropdown.classList.contains('show')) {
+                if (event.key === 'Escape') {
+                    dropdown.classList.remove('show');
+                } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    const options = dropdown.querySelectorAll('.language-option');
+                    const currentIndex = Array.from(options).findIndex(option => 
+                        option.classList.contains('focused'));
+                    
+                    let newIndex;
+                    if (event.key === 'ArrowDown') {
+                        newIndex = currentIndex < options.length - 1 ? currentIndex + 1 : 0;
+                    } else {
+                        newIndex = currentIndex > 0 ? currentIndex - 1 : options.length - 1;
+                    }
+                    
+                    options.forEach(option => option.classList.remove('focused'));
+                    options[newIndex].classList.add('focused');
+                } else if (event.key === 'Enter') {
+                    const focusedOption = dropdown.querySelector('.language-option.focused');
+                    if (focusedOption) {
+                        focusedOption.click();
+                    }
+                }
+            }
+        });
+
+        // Export functions for global access
+        window.toggleLanguageDropdown = toggleLanguageDropdown;
+        window.changeLanguage = changeLanguage;
+        window.useSuggestion = useSuggestion;
+        window.handleInput = handleInput;
+        window.handleKeyDown = handleKeyDown;
+        window.triggerFileUpload = triggerFileUpload;
+        window.handleFileUpload = handleFileUpload;
+        window.generateImage = generateImage;
+
+        // Initialize language detection from URL parameters
+        function checkUrlLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && translations[urlLang]) {
+                changeLanguage(urlLang);
+            }
+        }
+
+        // Add language parameter to URL when language changes
+        function updateUrlLanguage(langCode) {
+            const url = new URL(window.location);
+            if (langCode !== 'en') {
+                url.searchParams.set('lang', langCode);
+            } else {
+                url.searchParams.delete('lang');
+            }
+            window.history.replaceState({}, '', url);
+        }
+
+        // Enhanced language change function with URL update
+        const originalChangeLanguage = changeLanguage;
+        changeLanguage = function(langCode) {
+            originalChangeLanguage(langCode);
+            updateUrlLanguage(langCode);
+        };
+
+        // Performance optimizations
+        let inputTimeout;
+        const originalHandleInput = handleInput;
+        handleInput = function() {
+            clearTimeout(inputTimeout);
+            inputTimeout = setTimeout(originalHandleInput, 150);
+        };
+
+        // Preload flag images for better performance
+        function preloadFlags() {
+            languages.forEach(lang => {
+                const img = new Image();
+                img.src = lang.flag;
+            });
+        }
+
+        // Add accessibility improvements
+        function addAccessibilityFeatures() {
+            const languageBtn = document.querySelector('.language-btn');
+            if (languageBtn) {
+                languageBtn.setAttribute('aria-label', 'Select language');
+                languageBtn.setAttribute('aria-expanded', 'false');
+                languageBtn.setAttribute('aria-haspopup', 'listbox');
+                
+                // Update aria-expanded when dropdown opens/closes
+                const dropdown = document.getElementById('languageDropdown');
+                if (dropdown) {
+                    const observer = new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if (mutation.attributeName === 'class') {
+                                const isOpen = dropdown.classList.contains('show');
+                                languageBtn.setAttribute('aria-expanded', isOpen.toString());
+                            }
+                        });
+                    });
+                    observer.observe(dropdown, { attributes: true });
+                }
+            }
+
+            const dropdown = document.getElementById('languageDropdown');
+            if (dropdown) {
+                dropdown.setAttribute('role', 'listbox');
+                dropdown.setAttribute('aria-label', 'Language options');
+                
+                // Add role and tabindex to language options
+                dropdown.addEventListener('click', function() {
+                    const options = dropdown.querySelectorAll('.language-option');
+                    options.forEach((option, index) => {
+                        option.setAttribute('role', 'option');
+                        option.setAttribute('tabindex', '-1');
+                        option.setAttribute('aria-selected', 
+                            option.classList.contains('active').toString());
+                    });
+                });
+            }
+        }
+
+        // Enhanced initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize core functionality
+            initializeLanguage();
+            populateLanguageDropdown();
+            applyTranslations();
+            handleInput();
+            
+            // Check URL parameters
+            checkUrlLanguage();
+            
+            // Add accessibility features
+            addAccessibilityFeatures();
+            
+            // Preload images after a delay
+            setTimeout(preloadFlags, 1000);
+            
+            // Add fade-in effect
+            setTimeout(() => {
+                document.querySelectorAll('.fade-transition').forEach(el => {
+                    el.classList.add('loaded');
+                });
+            }, 100);
+            
+            // Add smooth scrolling for better UX
+            if (window.innerWidth <= 768) {
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }
+        });
+
+        // Error handling for missing elements
+        function safeElementOperation(elementId, operation) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                operation(element);
+            } else {
+                console.warn(`Element with ID '${elementId}' not found`);
+            }
+        }
+
+        // Enhanced language dropdown population with error handling
+        function populateLanguageDropdown() {
+            safeElementOperation('languageDropdown', function(dropdown) {
+                dropdown.innerHTML = '';
+                
+                languages.forEach(lang => {
+                    const option = document.createElement('div');
+                    option.className = `language-option ${lang.code === currentLang ? 'active' : ''}`;
+                    option.onclick = () => changeLanguage(lang.code);
+                    option.setAttribute('data-lang', lang.code);
+                    
+                    option.innerHTML = `
+                        <div class="language-flag" style="background-image: url('${lang.flag}')"></div>
+                        <span>${lang.name}</span>
+                    `;
+                    
+                    dropdown.appendChild(option);
+                });
+            });
+        }
+
+        // Enhanced current language display update
+        function updateCurrentLanguageDisplay() {
+            const currentLangData = languages.find(lang => lang.code === currentLang);
+            
+            if (currentLangData) {
+                safeElementOperation('currentLanguageFlag', function(flagElement) {
+                    flagElement.style.backgroundImage = `url('${currentLangData.flag}')`;
+                });
+                
+                safeElementOperation('currentLanguageName', function(nameElement) {
+                    nameElement.textContent = currentLangData.name;
+                });
+            }
+        }
+
+        // Language detection from browser with fallback
+        function detectBrowserLanguage() {
+            const browserLangs = navigator.languages || [navigator.language];
+            
+            for (const lang of browserLangs) {
+                const langCode = lang.split('-')[0];
+                if (translations[langCode]) {
+                    return langCode;
+                }
+            }
+            
+            return 'en'; // Default fallback
+        }
+
+        // Enhanced language initialization
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('nanobanana_language');
+            const browserLang = detectBrowserLanguage();
+            
+            if (savedLang && translations[savedLang]) {
+                currentLang = savedLang;
+            } else {
+                currentLang = browserLang;
+            }
+            
+            updateCurrentLanguageDisplay();
+            
+            // Set initial HTML lang attribute
+            document.documentElement.lang = currentLang;
+            
+            // Set RTL for Arabic
+            if (currentLang === 'ar') {
+                document.body.classList.add('rtl');
+                document.body.setAttribute('dir', 'rtl');
+            }
+        }
+
+        // Add loading states and better UX
+        function showLoadingState(show = true) {
+            document.body.classList.toggle('loading', show);
+        }
+
+        // Enhanced change language function
+        const enhancedChangeLanguage = changeLanguage;
+        changeLanguage = function(langCode) {
+            if (langCode === currentLang) return;
+            
+            showLoadingState(true);
+            
+            // Add a small delay for better UX perception
+            setTimeout(() => {
+                enhancedChangeLanguage(langCode);
+                showLoadingState(false);
+                
+                // Announce language change to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.textContent = `Language changed to ${languages.find(l => l.code === langCode)?.name}`;
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
+            }, 150);
+        };
+
+        // Add global error handler
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+            // Optionally show user-friendly error message
+        });
+
+        // Add unhandled promise rejection handler
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        });
+
+        // Final initialization check
+        setTimeout(() => {
+            if (!document.getElementById('currentLanguageFlag') || 
+                !document.getElementById('languageDropdown')) {
+                console.warn('Some language selector elements may be missing');
+            }
+        }, 500);
+
+    </script>
+</body>
+</html>
