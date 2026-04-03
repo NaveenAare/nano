@@ -1,0 +1,18 @@
+INFO:     Shutting down
+INFO:     Shutting down
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1131167]
+INFO:     Finished server process [1131166]
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1131165]
+INFO:     Received SIGTERM, exiting.
+INFO:     Received SIGTERM, exiting.
+INFO:     Waiting for child process [1131165]
+INFO:     Waiting for child process [1131166]
+INFO:     Waiting for child process [1131167]
+INFO:     Stopping parent process [1131163]

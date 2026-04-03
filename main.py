@@ -1,9 +1,11 @@
 from fastapi import FastAPI
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import psycopg2
 from psycopg2.extras import DictCursor
-from fastapi import FastAPI, Request, HTTPException, Depends, Query, Header
+from fastapi import FastAPI
+from fastapi.middleware.gzip import GZipMiddleware, Request, HTTPException, Depends, Query, Header
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 from fastapi.responses import JSONResponse
@@ -25,6 +27,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+app.add_middleware(GZipMiddleware, minimum_size=500)
 
 
 DB_HOST = "postgresss.postgres.database.azure.com"
@@ -494,15 +497,15 @@ async def redirecthandler():
     return FileResponse("templates/redire.html")
 
 @app.get("/aaaaaaaaaaaaaaa")
-async def home():
+async def home_copy_route():
     return FileResponse("templates/home_copy.html")
 
 @app.get("/oblog1")
-async def oblog():
+async def oblog1_route():
     return FileResponse("templates/oblog.html")
 
 @app.get("/oblog2")
-async def oblog():
+async def oblog2_route():
     return FileResponse("templates/oblog2.html")
 
 @app.get("/new_playground")
