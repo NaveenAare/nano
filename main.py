@@ -646,3 +646,17 @@ async def prompt_category(category: str):
         raise HTTPException(status_code=404, detail="Prompt category not found")
     return FileResponse(file_path)
 
+
+
+@app.get("/prompt-optimizer")
+async def prompt_optimizer_route():
+    return FileResponse("templates/prompt_optimizer.html")
+
+@app.get("/what-is-nano-banana")
+async def what_is_nano_banana_route():
+    return FileResponse("templates/what_is_nano_banana.html")
+
+@app.get("/ai-updates")
+async def ai_updates_route():
+    return FileResponse("templates/ai_updates.html")
+

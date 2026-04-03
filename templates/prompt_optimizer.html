@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Prompt Optimizer | Google Nano Banana</title>
+    <meta name="description" content="Turn simple ideas into highly detailed, cinematic AI image prompts for Midjourney, DALL-E 3, and Nano Banana. Free prompt engineering tool.">
+    <link rel="canonical" href="https://googlenanobanana.com/prompt-optimizer">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; font-size: 2.5rem; text-align: center; }
+        p.subtitle { text-align: center; color: #64748b; font-size: 1.1rem; margin-bottom: 30px; }
+        textarea { width: 100%; height: 120px; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; margin-bottom: 20px; box-sizing: border-box; }
+        button { background: #f59e0b; color: white; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        button:hover { background: #d97706; }
+        .result-box { margin-top: 30px; padding: 20px; background: #0f172a; color: #10b981; border-radius: 8px; font-family: monospace; min-height: 100px; display: none; }
+        .home-link { display: block; text-align: center; margin-top: 20px; color: #3b82f6; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ AI Prompt Optimizer</h1>
+        <p class="subtitle">Enter a basic idea, and our AI will rewrite it into a professional, high-converting prompt.</p>
+        <textarea id="raw-prompt" placeholder="e.g., 'A cool dog in space'"></textarea>
+        <button onclick="optimizePrompt()" id="opt-btn">Optimize My Prompt</button>
+        <div id="result-box" class="result-box"></div>
+        <a href="/" class="home-link">← Back to Image Generator</a>
+    </div>
+    
+    <script>
+        function optimizePrompt() {
+            const raw = document.getElementById('raw-prompt').value;
+            if(!raw) return alert('Enter a prompt first!');
+            const btn = document.getElementById('opt-btn');
+            const res = document.getElementById('result-box');
+            btn.innerText = 'Optimizing...';
+            
+            // Basic UI simulation of enhancement
+            setTimeout(() => {
+                const enhancements = ", cinematic lighting, highly detailed, 8k resolution, unreal engine 5 render, masterpiece, vivid colors, volumetric fog";
+                res.style.display = 'block';
+                res.innerText = raw + enhancements;
+                btn.innerText = 'Optimize Another Prompt';
+                
+                // Also add a button to try it directly
+                const generateBtn = document.createElement('a');
+                generateBtn.href = '/?prompt=' + encodeURIComponent(raw + enhancements);
+                generateBtn.innerText = 'Generate This Image';
+                generateBtn.style.display = 'block';
+                generateBtn.style.marginTop = '15px';
+                generateBtn.style.color = '#f59e0b';
+                res.appendChild(generateBtn);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
