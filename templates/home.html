@@ -10538,53 +10538,46 @@ function removeToast(toast) {
     }, 300);
 }
 
+
 // Updated generateImage function
 async function generateImage() {
     const userPrompt = document.getElementById('prompt-input').value.trim();
 
-
-    
     if (!userPrompt && !editingMode) {
         alert('Please enter a prompt!');
         return;
     }
 
-	const stylePrompt = getSelectedStylePrompt();
+    const stylePrompt = getSelectedStylePrompt();
+    let prompt = userPrompt;
+    if (stylePrompt) {
+        prompt = `${userPrompt}, ${stylePrompt}`;
+    }
 
-	// Combine user prompt with style
-	let prompt = userPrompt;
-	if (stylePrompt) {
-	    prompt = `${userPrompt}, ${stylePrompt}`;
-	}
-
-
-    // Check if user has used first credit
-     const authToken = localStorage.getItem('authToken');
-        if (!authToken || authToken.trim() === '') {
-            showLoginModal();
-            return;
-        }
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken || authToken.trim() === '') {
+        showLoginModal();
+        return;
+    }
 
     const sendBtn = document.getElementById('send-btn');
-   sendBtn.classList.add('loading');
+    sendBtn.classList.add('loading');
     sendBtn.disabled = true;
 
     showLoadingState();
 
     try {
         const formData = new FormData();
-
-        const authToken = localStorage.getItem("authToken") ?? "";
+        const storedAuthToken = localStorage.getItem("authToken") ?? "";
         
         formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
         formData.append('message', prompt || 'Continue editing');
-        formData.append('authToken', authToken);
+        formData.append('authToken', storedAuthToken);
         formData.append('does_chat_have_name', 'false');
         formData.append('models', 'ChatGpt');
         formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
         formData.append('requestId', `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
 
-        // Add current editing image if in editing mode
         if (editingMode && currentEditingImage) {
             const response = await fetch(currentEditingImage);
             const blob = await response.blob();
@@ -10593,7 +10586,6 @@ async function generateImage() {
             formData.append('file_0_name', 'editing_image.png');
         }
 
-        // Add other attached images
         for (let i = 0; i < attachedImages.length; i++) {
             const img = attachedImages[i];
             const response = await fetch(img.data);
@@ -10617,12 +10609,10 @@ async function generateImage() {
             body: formData
         });
 
-        // Parse response regardless of status
         const responseData = await apiResponse.json();
         
-        // Check for limit reached error specifically
         if (responseData.status_code === 400 && responseData.detail === "Limit Reached Sorry") {
-            showOutOfCreditsModal(); // Show the new modal instead of toast
+            showOutOfCreditsModal();
             updateCreditDisplay(0);
             showErrorInImageView("Buy Credits to Continue");
             return;
@@ -10632,7 +10622,6 @@ async function generateImage() {
             updateCreditDisplay(responseData.creditcount);
         }
         
-        // Check for other HTTP errors
         if (!apiResponse.ok) {
             throw new Error(`HTTP error! status: ${apiResponse.status}`);
         }
@@ -10652,54 +10641,35 @@ async function generateImage() {
             return;
         }
 
-        // Mark first credit as used AFTER successful generation
         if (!editingMode) {
-            creditTracker.markAsUsed();
+            // creditTracker.markAsUsed();
         }
 
-        // Display result and activate editing mode
         displayResult(imageUrl);
-        addToGallery(imageUrl, prompt || 'Edited image');
+        // addToGallery(imageUrl, prompt || 'Edited image');
+        // activateEditingMode(imageUrl);
         
-        // Activate editing mode with the new image
-        activateEditingMode(imageUrl);
-        
-        // Clear prompt and regular attachments, but keep editing mode active
-        document.getElementById('prompt-input').value = '';
-        attachedImages = [];
-        updateAttachedImages();
-        
-        // Save state
-        saveStateToStorage();
-
-    } catch (error) {
-        console.error('Error generating image:', error);
-        
-        // Show toast for general errors
-        showToast("Failed to generate image. Please try again.", str(error));
-        confirmClearEditingMode();
-        
-        const container = document.getElementById('image-results');
-        container.classList.add('has-content');
-        container.innerHTML = `
-            <div style="text-align: center; color: #ef4444;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">❌</div>
-                <div>Failed to generate image</div>
-                <div style="font-size: 0.875rem; margin-top: 4px;">Please try again</div>
-            </div>
-        `;
-    } finally {
-        sendBtn.classList.remove('loading');
-        sendBtn.disabled = false;
         document.getElementById('prompt-input').value = '';
         attachedImages = [];
         updateAttachedImages();
         handleInput();
+
+    } catch (error) {
+        console.error('Generation Error:', error);
+        
+        if (error.name === 'AbortError') {
+            showErrorInImageView("Generation timed out. Please try again.");
+        } else {
+            showErrorInImageView("An error occurred during generation");
+            // showToast("Failed to generate image. Please try again.", "error");
+        }
+    } finally {
+        sendBtn.classList.remove('loading');
+        sendBtn.disabled = false;
     }
 }
 
 
-// Add this new function
 function showErrorInImageView(errorMessage) {
     const container = document.getElementById('image-results');
     container.classList.add('has-content');
