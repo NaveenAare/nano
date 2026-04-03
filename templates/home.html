@@ -13360,7 +13360,48 @@ document.addEventListener('DOMContentLoaded', function() {
       toast.style.borderColor = 'rgba(96, 165, 250, 0.3)';
     } else {
       toast.style.background = 'rgba(16, 185, 129, 0.9)';
-      toast.style.borderColor = 'rgba(16, 185,
+      toast.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+    }
+
+    toast.style.padding = '12px 20px';
+    toast.style.borderRadius = '8px';
+    toast.style.backdropFilter = 'blur(10px)';
+    toast.style.borderWidth = '1px';
+    toast.style.borderStyle = 'solid';
+    toast.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.5)';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '500';
+    toast.style.color = '#f8fafc';
+    toast.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+
+    toastContainer.appendChild(toast);
+
+    // Animate in
+    setTimeout(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    }, 10);
+
+    // Auto remove
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  }
+
+  // Expose global methods if needed by other components
+  window.openStudio = openStudio;
+  window.closeStudio = closeStudio;
+  
+}); // End DOMContentLoaded
+</script>
 <!-- END MY STUDIO FEATURE -->
 </body>
 </html>
