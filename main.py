@@ -634,3 +634,14 @@ async def rusblog4():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
+
+@app.get("/prompts/{category}")
+async def prompt_category(category: str):
+    import os
+    from fastapi import HTTPException
+    from fastapi.responses import FileResponse
+    file_path = os.path.join(os.path.dirname(__file__), 'templates', 'prompts', f"{category}.html")
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="Prompt category not found")
+    return FileResponse(file_path)
+
