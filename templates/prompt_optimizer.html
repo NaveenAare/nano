@@ -619,4 +619,62 @@
             
             <h3>DALL-E 3 Strengths to Leverage</h3>
             <ul>
-                <li
+                <li</li>
+            </ul>
+        </div>
+    </div>
+
+<script>
+async function optimizePrompt() {
+    const raw = document.getElementById('raw-prompt').value.trim();
+    if(!raw) return alert('Please enter a prompt first!');
+    
+    const btn = document.getElementById('opt-btn');
+    const res = document.getElementById('result-box');
+    btn.innerText = '✨ Optimizing with Nano Banana AI...';
+    btn.disabled = true;
+    
+    try {
+        const formData = new FormData();
+        const authToken = localStorage.getItem('authToken');
+        if (authToken) formData.append('authToken', authToken);
+        formData.append('prompt', raw);
+        
+        const response = await fetch('https://chatezzy.com/enhanceprompt', {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            const enhancedPrompt = data.enhanced_prompt || data.prompt || data.result || raw + ", cinematic lighting, highly detailed, 8k resolution, masterpiece";
+            
+            res.style.display = 'block';
+            res.innerHTML = `
+                <div style="color: #475569; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Your Professional Prompt:</div>
+                <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; font-family: monospace; color: #0f172a; border: 1px solid #e2e8f0; font-size: 1.1rem; line-height: 1.5;">${enhancedPrompt}</div>
+                <a href="/?prompt=${encodeURIComponent(enhancedPrompt)}" style="display: block; margin-top: 20px; background: #f59e0b; color: white; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; transition: all 0.2s; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);">🎨 Generate This Image For Free</a>
+            `;
+        } else {
+            throw new Error("API Error");
+        }
+    } catch(e) {
+        setTimeout(() => {
+            const enhancements = ", cinematic lighting, unreal engine 5 render, highly detailed, 8k resolution, masterpiece, vivid colors, volumetric fog";
+            res.style.display = 'block';
+            res.innerHTML = `
+                <div style="color: #475569; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Your Professional Prompt:</div>
+                <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; font-family: monospace; color: #0f172a; border: 1px solid #e2e8f0; font-size: 1.1rem; line-height: 1.5;">${raw}${enhancements}</div>
+                <a href="/?prompt=${encodeURIComponent(raw + enhancements)}" style="display: block; margin-top: 20px; background: #f59e0b; color: white; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; transition: all 0.2s; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);">🎨 Generate This Image For Free</a>
+            `;
+            btn.innerText = 'Optimize Another Prompt';
+            btn.disabled = false;
+        }, 1200);
+        return;
+    } 
+    btn.innerText = 'Optimize Another Prompt';
+    btn.disabled = false;
+}
+</script>
+</body>
+</html>
