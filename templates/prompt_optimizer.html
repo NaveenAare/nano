@@ -3,208 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Prompt Optimizer</title>
+    <title>AI Prompt Optimizer - Enhance Your Creative Vision</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            min-height: 100vh;
-            padding: 20px;
+
+        html, body {
+            background: #ffffff;
+            color: #0f172a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
         }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 60px 24px;
         }
-        
-        header {
+
+        .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+            margin-bottom: 80px;
         }
-        
-        h1 {
-            font-size: 3em;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0f172a;
             margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+            line-height: 1.1;
         }
-        
-        .intro {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            color: #cbd5e1;
-            font-size: 0.95em;
+
+        .header p {
+            font-size: 1.25rem;
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
         }
-        
+
         .tool-section {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 30px;
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 100px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-section {
             margin-bottom: 40px;
         }
-        
-        .tool-section h2 {
-            color: #fbbf24;
-            margin-bottom: 20px;
-            font-size: 1.5em;
+
+        .input-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-        
-        textarea {
+
+        #raw-prompt {
             width: 100%;
-            height: 150px;
-            padding: 15px;
-            background: #0f172a;
-            border: 2px solid #334155;
-            border-radius: 8px;
-            color: #10b981;
-            font-family: monospace;
-            font-size: 0.95em;
+            min-height: 200px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1.1rem;
+            color: #0f172a;
+            background: #ffffff;
             resize: vertical;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
+            line-height: 1.6;
         }
-        
-        textarea:focus {
+
+        #raw-prompt:focus {
             outline: none;
             border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
         }
-        
-        .button-group {
-            margin-top: 20px;
+
+        #raw-prompt::placeholder {
+            color: #94a3b8;
+        }
+
+        .button-section {
             display: flex;
-            gap: 10px;
+            gap: 16px;
+            justify-content: center;
         }
-        
-        button {
-            flex: 1;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: #0f172a;
+
+        #opt-btn {
+            background: #f59e0b;
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
+            padding: 16px 48px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3);
         }
-        
-        button:hover:not(:disabled) {
+
+        #opt-btn:hover:not(:disabled) {
+            background: #d97706;
+            box-shadow: 0 8px 12px -2px rgba(245, 158, 11, 0.4);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
         }
-        
-        button:disabled {
+
+        #opt-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        #opt-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
         }
-        
+
         #result-box {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #10b981;
-            border-radius: 8px;
-        }
-        
-        .guide-section {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .guide-section h2 {
-            color: #fbbf24;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        
-        .guide-section h3 {
-            color: #10b981;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .guide-section p {
-            line-height: 1.8;
-            color: #cbd5e1;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        a {
-            color: #fbbf24;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        a:hover {
-            color: #f59e0b;
-        }
-        
-        footer {
-            text-align: center;
-            color: #64748b;
             margin-top: 40px;
-            padding-bottom: 20px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .content-section h2 {
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            color: #1e293b;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .content-section p {
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .content-section li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
+        .intro-text {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.9;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .highlight {
+            color: #f59e0b;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>✨ Ultimate Prompt Optimizer</h1>
-        </header>
-        
-        <section class="intro">
-            <p>Writing the perfect Midjourney prompt is an art form that separates mediocre images from masterpieces. It's incredibly challenging to nail the balance between specificity and creativity, technical parameters and artistic vision. You spend hours tweaking words, testing different keywords, and scrolling through reference images—only to generate something that's "almost there." The struggle is real: negative prompts conflict with your vision, camera angles don't convey depth, lighting descriptions fall flat, and your carefully crafted descriptions lose their impact in translation. That's why we built the Ultimate Prompt Optimizer. This intelligent tool analyzes your raw creative ideas and transforms them into professional-grade Midjourney prompts enhanced with perfect lighting, precise camera directions, strategic negative prompts, and all the technical polish that separates AI art amateurs from professionals. Stop guessing. Start generating extraordinary images with prompts that actually work.</p>
-        </section>
-        
-        <section class="tool-section">
-            <h2>🎯 Optimize Your Prompt</h2>
-            <textarea id="raw-prompt" placeholder="Describe your image idea here... (e.g., 'a mystical forest with glowing mushrooms at night')"></textarea>
-            <div class="button-group">
-                <button id="opt-btn" onclick="optimizePrompt()">⚡ Optimize My Prompt</button>
+        <div class="header">
+            <h1>AI Prompt Optimizer</h1>
+            <p>Transform your creative ideas into powerful, professional prompts that unlock the full potential of generative AI.</p>
+        </div>
+
+        <div class="tool-section">
+            <div class="input-section">
+                <label for="raw-prompt" class="input-label">Your Creative Prompt</label>
+                <textarea 
+                    id="raw-prompt" 
+                    placeholder="Describe what you want to create... (e.g., 'a futuristic city at sunset' or 'a peaceful forest with magical elements')"
+                ></textarea>
             </div>
+
+            <div class="button-section">
+                <button id="opt-btn" onclick="optimizePrompt()">✨ Optimize My Prompt</button>
+            </div>
+
             <div id="result-box"></div>
-        </section>
-        
-        <section class="guide-section">
-            <h2>📚 The Complete Guide to Midjourney Prompts</h2>
-            
-            <h3>🎬 Lighting: The Soul of Your Image</h3>
-            <p>Lighting is the most transformative element in AI image generation. The difference between a flat, amateurish image and a professional masterpiece often comes down to how you describe light. Never skip lighting descriptions. Specify the light source: "soft golden hour sunlight," "harsh studio lights," "neon cyberpunk glow," or "volumetric atmospheric fog lit from above." Include light quality: is it diffused and soft, or sharp and dramatic? Describe light direction: backlighting creates silhouettes and drama, side lighting emphasizes texture and dimension, front lighting reveals detail. Use temperature language: "warm amber light," "cool blue moonlight," "harsh white spotlight." The magic happens when you combine lighting with mood: "cinematic chiaroscuro lighting with deep shadows," "bioluminescent glowing undergrowth," "golden hour rim lighting on water." Professional Midjourney users spend 30-40% of their prompt on lighting specifications because it fundamentally transforms the image's emotional impact and technical quality. Add phrases like "dramatic lighting," "mood lighting," "professional photography lighting," or "studio lighting" to instantly elevate your results.</p>
-            
-            <h3>📷 Camera Angles & Composition</h3>
-            <p>Camera perspective controls how your viewer experiences the image. An ultra-wide angle shot creates epic, overwhelming scale; a close-up macro shot reveals intimate detail; a Dutch angle creates unease and dynamic energy. Start by choosing your primary angle: bird's eye view, low angle looking up (cinematic and powerful), eye-level (natural and relatable), extreme close-up, or landscape wide shot. Add depth with compositional language: "depth of field," "shallow focus," "bokeh background," or "sharp foreground with blurred background." Use lens terminology to trigger specific visual effects: "35mm lens" feels intimate, "85mm lens" is cinematic and flattering, "14mm ultra-wide" creates dramatic perspective distortion, "macro photography" shows intricate detail. Frame your subject strategically using compositional rules: "rule of thirds," "golden ratio," "leading lines," "centered composition," "negative space." Camera movement language matters too: "tracking shot," "pan," "crane shot," "establishing shot," or "over-the-shoulder shot" all trigger specific framing patterns in Midjourney. The most successful prompts specify both what you want to see AND where in the frame it appears. Combine camera language with action: "low angle action shot," "overhead tactical view," "first-person perspective," each creating entirely different images from the same object.</p>
-            
-            <h3>🚫 Negative Prompts: Removing Visual Noise</h3>
-            <p>Negative prompts are your secret weapon for controlling what Midjourney WON'T generate. They're equally important as positive descriptions. Start with quality control negatives: add "low quality, bad quality, blurry, distorted, deformed, ugly, amateur" to universally improve results. Include anatomy/technical negatives when needed: "bad hands, extra fingers, missing fingers, mutated limbs, anatomically incorrect" for human figures. Add specific rejection terms based on your vision: if you don't want text, add "text, watermark, letters, writing"; if you want realism, add "cartoon, anime, illustration, stylized"; if you want high quality, add "compression artifacts, pixelated, jpeg artifacts." Use medium-specific negatives: "3D render, CGI, video game" if you want photography or painting; "photorealistic" if you want stylized art. Avoid common mistakes: don't use negative prompts to say "not X" (use "exclude X" instead), and don't list contradictory terms. The best approach is adding 5-8 specific negative prompt terms that protect your creative vision. Every prompt should include "--no low quality, blurry" as a baseline. Advanced users craft negative prompts as carefully as positive ones, understanding that sometimes what you exclude matters more than what you include.</p>
-        </section>
-        
-        <footer>
-            <p>&copy; 2024 Ultimate Prompt Optimizer. Crafted for AI artists who demand excellence.</p>
-        </footer>
+        </div>
+
+        <div class="content-section">
+            <h2>Why Prompt Optimization Matters</h2>
+            <p class="intro-text">
+                The difference between a good image and an <span class="highlight">extraordinary one</span> often comes down to how you describe it. Our AI Prompt Optimizer analyzes your creative vision and enhances it with professional techniques used by world-class artists and photographers. You'll get detailed, compelling prompts that guide generative AI models to produce stunning, high-quality results.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Master the Art of Prompting</h2>
+
+            <h3>🎬 Lighting & Atmosphere</h3>
+            <p>
+                Professional images rely heavily on lighting to create mood and depth. When describing lighting in your prompts, be specific about the source and quality.
+            </p>
+            <ul>
+                <li>Specify light sources: "golden hour sunlight," "studio lighting," "moonlight," "neon glow"</li>
+                <li>Describe the mood: "warm and intimate," "dramatic and moody," "bright and cheerful"</li>
+                <li>Add atmospheric effects: "volumetric lighting," "lens flare," "atmospheric haze," "god rays"</li>
+                <li>Consider time of day: "dawn light," "twilight," "midday harsh shadows," "soft overcast"</li>
+            </ul>
+
+            <h3>📐 Composition & Angles</h3>
+            <p>
+                The angle and framing of your image dramatically impact its visual impact and storytelling power. Master these photographic principles to guide your AI generations.
+            </p>
+            <ul>
+                <li>Use camera terminology: "wide-angle shot," "close-up portrait," "overhead view," "Dutch angle"</li>
+                <li>Reference artistic movements: "Renaissance composition," "Art Deco style," "minimalist layout"</li>
+                <li>Specify depth: "shallow depth of field," "tack-sharp focus," "bokeh background," "layered depth"</li>
+                <li>Frame the subject: "rule of thirds," "centered composition," "leading lines," "negative space"</li>
+            </ul>
+
+            <h3>🚫 The Power of Negative Prompts</h3>
+            <p>
+                Sometimes what you don't want is just as important as what you do. Negative prompts guide the AI away from common mistakes and unwanted elements.
+            </p>
+            <ul>
+                <li>Exclude quality issues: "avoid blurry," "no distorted proportions," "no weird fingers," "no duplicate objects"</li>
+                <li>Remove unwanted styles: "not anime," "not cartoon," "not illustrated," "not low resolution"</li>
+                <li>Specify artistic boundaries: "no oversaturation," "avoid plastic look," "no artificial appearance"</li>
+                <li>Control composition: "not cluttered," "no busy background," "avoid watermarks," "no text artifacts"</li>
+            </ul>
+        </div>
     </div>
-    
+
     <script>
         async function optimizePrompt() {
             const raw = document.getElementById('raw-prompt').value.trim();
@@ -232,9 +300,9 @@
                     
                     res.style.display = 'block';
                     res.innerHTML = `
-                        <div style="color: #fbbf24; margin-bottom: 10px; font-weight: bold;">Your Professional Prompt:</div>
-                        <div style="background: #0f172a; padding: 15px; border-radius: 8px; font-family: monospace; color: #10b981; border: 1px solid #334155;">${enhancedPrompt}</div>
-                        <a href="/?prompt=${encodeURIComponent(enhancedPrompt)}" style="display: block; margin-top: 20px; background: #f59e0b; color: #0f172a; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center;">🎨 Generate This Image in Nano Banana</a>
+                        <div style="color: #475569; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Your Professional Prompt:</div>
+                        <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; font-family: monospace; color: #0f172a; border: 1px solid #e2e8f0; font-size: 1.1rem; line-height: 1.5;">${enhancedPrompt}</div>
+                        <a href="/?prompt=${encodeURIComponent(enhancedPrompt)}" style="display: block; margin-top: 20px; background: #f59e0b; color: white; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; transition: all 0.2s; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);">🎨 Generate This Image in Nano Banana</a>
                     `;
                 }
             } catch(e) {
