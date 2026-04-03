@@ -672,3 +672,39 @@ async def how_to_use_nano_banana_route():
     from fastapi.responses import FileResponse
     return FileResponse("templates/how_to_use_nano_banana.html")
 
+
+
+# --- INTERNATIONALIZATION ROUTES ---
+
+@app.get("/es")
+async def home_es(device: str = None):
+    return FileResponse("templates/home_es.html")
+
+@app.get("/fr")
+async def home_fr(device: str = None):
+    return FileResponse("templates/home_fr.html")
+
+@app.get("/de")
+async def home_de(device: str = None):
+    return FileResponse("templates/home_de.html")
+
+@app.get("/ja")
+async def home_ja(device: str = None):
+    return FileResponse("templates/home_ja.html")
+
+@app.get("/pt")
+async def home_pt(device: str = None):
+    return FileResponse("templates/home_pt.html")
+
+@app.get("/it")
+async def home_it(device: str = None):
+    return FileResponse("templates/home_it.html")
+
+@app.get("/ko")
+async def home_ko(device: str = None):
+    return FileResponse("templates/home_ko.html")
+
+@app.get("/hi")
+async def home_hi(device: str = None):
+    return FileResponse("templates/home_hi.html")
+
