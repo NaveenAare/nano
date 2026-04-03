@@ -11103,30 +11103,7 @@ class CreditTracker {
     storeInIndexedDB() {
         if (!window.indexedDB) return;
         
-        const request = indexedDB.open('NanoBananaDB', 1);
-        request.onupgradeneeded = function(e) {
-            const db = e.target.result;
-            if (!db.objectStoreNames.contains('credits')) {
-                db.createObjectStore('credits', { keyPath: 'id' });
-            }
-        };
-        
-        request.onsuccess = function(e) {
-            const db = e.target.result;
-            const transaction = db.transaction(['credits'], 'readwrite');
-            const store = transaction.objectStore('credits');
-            store.put({ id: 'first_credit_used', value: true, timestamp: Date.now() });
-        };
-    }
-
-    // Check IndexedDB
-    checkIndexedDB(callback) {
-        if (!window.indexedDB) {
-            callback(false);
-            return;
-        }
-        
-        const request = indexedDB.open('NanoBananaDB', 1);
+                const request = indexedDB.open('NanoBananaDB', 1);
         request.onsuccess = function(e) {
             const db = e.target.result;
             if (!db.objectStoreNames.contains('credits')) {
@@ -11236,42 +11213,27 @@ async function loginWithGoogle() {
     } finally {
         button.disabled = false;
     }
-    
-    // Or if using Google OAuth library:
-    // gapi.auth2.getAuthInstance().signIn();
 }
 
-
-
-
-
-
-
 function toggleProfileMenu() {
-            var menu = document.getElementById('profileMenu');
-            menu.classList.toggle('show');
-        }
+    var menu = document.getElementById('profileMenu');
+    menu.classList.toggle('show');
+}
 
-        // Close profile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            var profileMenu = document.getElementById('profileMenu');
-            var profileBtn = document.querySelector('.profile-btn');
-            
-            if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
-                profileMenu.classList.remove('show');
-            }
-        });
+// Close profile menu when clicking outside
+document.addEventListener('click', function(event) {
+    var profileMenu = document.getElementById('profileMenu');
+    var profileBtn = document.querySelector('.profile-btn');
+    
+    if (profileBtn && profileMenu && !profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+        profileMenu.classList.remove('show');
+    }
+});
 
-        function closePopup() {
-            document.getElementById('popup').classList.remove('show');
-        }
-
-
-
-
-
-
-
+function closePopup() {
+    const popup = document.getElementById('popup');
+    if (popup) popup.classList.remove('show');
+}
 
 function handleSignOut() {
     showLogoutConfirmation();
@@ -11338,31 +11300,34 @@ async function confirmLogout() {
     }
 }
 
-
-
-
 // Close modal when clicking outside
-document.getElementById('logoutOverlay').addEventListener('click', function(e) {
-    if (e.target === this) {
-        hideLogoutConfirmation();
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutOverlay = document.getElementById('logoutOverlay');
+    if (logoutOverlay) {
+        logoutOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLogoutConfirmation();
+            }
+        });
     }
 });
 
 // Close modal with Escape key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-        hideLogoutConfirmation();
+        const overlay = document.getElementById('logoutOverlay');
+        if (overlay && overlay.classList.contains('show')) {
+            hideLogoutConfirmation();
+        }
     }
 });
-
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     fetchAndUpdateUserProfile();
 });
 
-
-        async function fetchAndUpdateUserProfile() {
+async function fetchAndUpdateUserProfile() {
     // Check if user data exists in localStorage
     const savedUserData = localStorage.getItem('userData');
     
@@ -11393,7 +11358,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!response.ok) {
             throw new Error('Failed to fetch user details');
         }
-        
         const userData = await response.json();
 
 
