@@ -5,7 +5,8 @@ from fastapi.staticfiles import StaticFiles
 import psycopg2
 from psycopg2.extras import DictCursor
 from fastapi import FastAPI
-from fastapi.middleware.gzip import GZipMiddleware, Request, HTTPException, Depends, Query, Header
+from fastapi.middleware.gzip import GZipMiddleware
+from fastapi import Request, HTTPException, Depends, Query, Header
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 from fastapi.responses import JSONResponse
