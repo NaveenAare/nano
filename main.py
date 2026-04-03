@@ -660,3 +660,15 @@ async def what_is_nano_banana_route():
 async def ai_updates_route():
     return FileResponse("templates/ai_updates.html")
 
+
+
+@app.get("/is-nano-banana-free")
+async def is_nano_banana_free_route():
+    from fastapi.responses import FileResponse
+    return FileResponse("templates/is_nano_banana_free.html")
+
+@app.get("/how-to-use-nano-banana")
+async def how_to_use_nano_banana_route():
+    from fastapi.responses import FileResponse
+    return FileResponse("templates/how_to_use_nano_banana.html")
+
