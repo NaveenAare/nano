@@ -10633,12 +10633,12 @@ async function generateImage() {
         }
 
         if (!editingMode) {
-            // creditTracker.markAsUsed();
+            creditTracker.markAsUsed();
         }
 
         displayResult(imageUrl);
-        // addToGallery(imageUrl, prompt || 'Edited image');
-        // activateEditingMode(imageUrl);
+        addToGallery(imageUrl, prompt || 'Edited image');
+        activateEditingMode(imageUrl);
         
         document.getElementById('prompt-input').value = '';
         attachedImages = [];
