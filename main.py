@@ -246,7 +246,7 @@ def callback_v2(request: Request):
         token_url, headers, body = client.prepare_token_request(
             token_endpoint,
             authorization_response=str(request.url),
-            redirect_url="https://googlenanobanana.com/login/callback/v2",
+            redirect_url="https://onlineaiimagegenerator.com/login/callback/v2",
             code=code
         )
         
