@@ -8716,6 +8716,129 @@ tailwind.config = {
 }
 </style>
 
+<style>
+
+/* Material 3 Theme Overrides */
+:root {
+    --primary: #81542b;
+    --primary-container: #ebb17f;
+    --on-primary: #ffffff;
+    --bg-surface: #f7f9fb;
+    --bg-surface-low: #f2f4f6;
+    --border-color: #d5c3b7;
+    --text-main: #191c1e;
+    --text-muted: #51443b;
+}
+
+body {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-main) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.glass-header {
+    background: rgba(247, 249, 251, 0.8) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.logo {
+    color: var(--text-main) !important;
+}
+
+.banana-accent, .logo-accent, .nav-link:hover, .menu-item:hover, .text-primary {
+    color: var(--primary) !important;
+}
+
+/* Redesign the big generate button */
+.pro-generate-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #6c421a 100%) !important;
+    color: var(--on-primary) !important;
+}
+
+.pro-generate-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #996839 0%, var(--primary) 100%) !important;
+    box-shadow: 0 6px 20px rgba(129, 84, 43, 0.4) !important;
+}
+
+.prompt-input {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+.prompt-input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px rgba(129, 84, 43, 0.1) !important;
+}
+
+/* Modals and Cards */
+.login-modal-content, .popup-container, .image-limit-modal, .styles-modal-content, .out-of-credits-modal, .pro-workspace, .chat-container {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.style-card {
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-surface) !important;
+}
+
+.style-card.selected {
+    border-color: var(--primary) !important;
+    background: var(--primary-container) !important;
+}
+
+.style-card:hover {
+    border-color: var(--primary) !important;
+}
+
+.google-login-btn, .image-limit-btn-primary, .premium-btn, .clear-confirm-btn {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+.google-login-btn:hover, .image-limit-btn-primary:hover, .premium-btn:hover, .clear-confirm-btn:hover {
+    background: #6c421a !important;
+}
+
+.skip-login-btn, .image-limit-btn-secondary, .cancel-btn {
+    color: var(--text-muted) !important;
+    border-color: var(--border-color) !important;
+}
+
+.gallery-item {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+}
+
+/* Tags and Chips */
+.tag, .ai-selector-btn, .settings-btn, .styles-btn {
+    background: var(--bg-surface-low) !important;
+    color: var(--text-muted) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.tag:hover, .ai-selector-btn:hover, .settings-btn:hover, .styles-btn:hover {
+    background: var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+/* Footer overrides */
+.glass-footer {
+    background: var(--bg-surface-low) !important;
+    border-top: 1px solid var(--border-color) !important;
+    color: var(--text-muted) !important;
+}
+.footer-title {
+    color: var(--text-main) !important;
+}
+.footer-link, .footer-bottom-link {
+    color: var(--text-muted) !important;
+}
+.footer-link:hover, .footer-bottom-link:hover {
+    color: var(--primary) !important;
+}
+
+</style>
 </head>
 <body>
 <!-- Image Limit Modal -->
@@ -9574,652 +9697,7 @@ tailwind.config = {
 
 
 
-        <!-- Showcase Section -->
-       <!-- Showcase Section - Professional Layout -->
-<div class="pro-showcase-section">
-    <div class="pro-showcase-container">
-        <!-- Header -->
-        <div class="pro-showcase-header">
-            <h2 class="pro-showcase-title">See <span class="banana-accent">Online AI Image Generator</span> in Action</h2>
-            <p class="pro-showcase-subtitle">Real transformations. Professional results. Discover how our AI elevates your creative work.</p>
-        </div>
-
-        <!-- Use Cases -->
-        <div class="pro-use-cases">
-            
-            <!-- Case 1: Portrait Enhancement (Image Left) -->
-            <div class="pro-case pro-case-left">
-                <div class="pro-case-visual">
-                    <div class="pro-split-container">
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/Screenshot%20from%202025-09-10%2023-50-48.png?alt=media&token=c4a05d41-44c5-4567-b4a4-211ceae40d9a" alt="Before">
-                            <span class="pro-tag pro-tag-before">Before</span>
-                        </div>
-                        <div class="pro-divider-vertical">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/Screenshot%20from%202025-09-10%2023-50-57.png?alt=media&token=38f0b473-2fef-44d7-b58f-a3faa515b633" alt="After">
-                            <span class="pro-tag pro-tag-after">After</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-case-content">
-                    <span class="pro-label">Portrait Enhancement</span>
-                    <h3 class="pro-case-title">Professional Headshots in Seconds</h3>
-                    <p class="pro-case-text">Transform casual photos into studio-quality portraits with professional lighting, natural retouching, and magazine-ready composition. Perfect for LinkedIn, corporate websites, and professional portfolios.</p>
-                    <ul class="pro-features-list">
-                        <li>Studio-quality lighting adjustments</li>
-                        <li>Natural skin tone enhancement</li>
-                        <li>Professional background optimization</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Case 2: Logo Design (Image Right) -->
-            <div class="pro-case pro-case-right">
-                <div class="pro-case-content">
-                    <span class="pro-label">Logo Generation</span>
-                    <h3 class="pro-case-title">Brand Identity Made Easy</h3>
-                    <p class="pro-case-text">Generate unique, professional logos that capture your brand essence. Get multiple design variations with modern aesthetics, perfect typography, and memorable visual elements—all in minutes.</p>
-                    <ul class="pro-features-list">
-                        <li>Multiple design concepts instantly</li>
-                        <li>Scalable vector-quality output</li>
-                        <li>Brand-aligned color schemes</li>
-                    </ul>
-                </div>
-                <div class="pro-case-visual">
-                    <div class="pro-single-container">
-                        <img loading="lazy" decoding="async" src="/static/nano_banana_2025-10-28T15-15-34.png?alt=media&token=eb55659e-1bcb-49a3-9ebc-cc97f9b3f98d" alt="Logo Design">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case 3: Product Photography (Image Left) -->
-            <div class="pro-case pro-case-left">
-                <div class="pro-case-visual">
-                    <div class="pro-stacked-container">
-                        <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_jpbvo1jpbvo1jpbv.png?alt=media&token=fc91f090-eb95-4677-a62f-8a4e9e60fbee" alt="Product 1">
-                        <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_lij92zlij92zlij9.png?alt=media&token=9b78b375-6b20-405b-b2f8-084a2435c0ae" alt="Product 2">
-                    </div>
-                </div>
-                <div class="pro-case-content">
-                    <span class="pro-label">Product Photography</span>
-                    <h3 class="pro-case-title">E-Commerce Ready Visuals</h3>
-                    <p class="pro-case-text">Create stunning product photography with clean backgrounds, professional lighting, and consistent styling. Boost conversion rates with high-quality visuals optimized for online stores and marketplaces.</p>
-                    <ul class="pro-features-list">
-                        <li>Clean white or custom backgrounds</li>
-                        <li>Consistent lighting across products</li>
-                        <li>Multiple angle variations</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Case 4: Concept Art (Image Right) -->
-            <div class="pro-case pro-case-right">
-                <div class="pro-case-content">
-                    <span class="pro-label">Concept Art</span>
-                    <h3 class="pro-case-title">Fantasy Worlds & Characters</h3>
-                    <p class="pro-case-text">Bring imaginative concepts to life with detailed artwork for games, films, and storytelling. Create compelling characters, epic landscapes, and intricate environments that captivate your audience.</p>
-                    <ul class="pro-features-list">
-                        <li>High-detail character designs</li>
-                        <li>Epic landscape environments</li>
-                        <li>Game-ready visual concepts</li>
-                    </ul>
-                </div>
-                <div class="pro-case-visual">
-                    <div class="pro-image-side">
-                        <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_fgs3k6fgs3k6fgs3.png?alt=media&token=d4f0146c-8fae-4d97-9a52-56b306bcf4c1" alt="Concept 2">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case 5: Background Replacement (Image Left) -->
-            <div class="pro-case pro-case-left">
-                <div class="pro-case-visual">
-                    <div class="pro-split-container">
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/thai-young-girl-with-bangkok-city-background-generative-ai_849906-22389.jpg?alt=media&token=03bc6173-f5ed-4148-a2e7-28387e2aab28" alt="Original">
-                            <span class="pro-tag pro-tag-before">Original</span>
-                        </div>
-                        <div class="pro-divider-vertical">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_cj58gicj58gicj58.png?alt=media&token=6d808356-5b0c-4b1f-a6aa-77950259234b" alt="Enhanced">
-                            <span class="pro-tag pro-tag-after">Enhanced</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-case-content">
-                    <span class="pro-label">Background Replacement</span>
-                    <h3 class="pro-case-title">Transform Any Setting</h3>
-                    <p class="pro-case-text">Replace distracting backgrounds with professional environments. Choose from studio backdrops, scenic landscapes, or custom settings—no photo shoot required. Perfect edge detection ensures natural results.</p>
-                    <ul class="pro-features-list">
-                        <li>Smart subject detection</li>
-                        <li>Natural edge blending</li>
-                        <li>Custom environment options</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Case 6: Style Transfer (Image Right) -->
-            <div class="pro-case pro-case-right">
-                <div class="pro-case-content">
-                    <span class="pro-label">Style Transfer</span>
-                    <h3 class="pro-case-title">Artistic Transformations</h3>
-                    <p class="pro-case-text">Apply stunning artistic styles to transform ordinary photos into extraordinary art. From oil paintings to anime, watercolor to cyberpunk—explore 12+ professional styles while preserving image details.</p>
-                    <ul class="pro-features-list">
-                        <li>12+ professional art styles</li>
-                        <li>Detail preservation technology</li>
-                        <li>Consistent style application</li>
-                    </ul>
-                </div>
-                <div class="pro-case-visual">
-                    <div class="pro-split-container">
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_h99lthh99lthh99l%20(1).png?alt=media&token=49f5da61-639b-45d5-b037-3c66d831723f" alt="Original">
-                            <span class="pro-tag pro-tag-before">Original</span>
-                        </div>
-                        <div class="pro-divider-vertical">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                        <div class="pro-image-side">
-                            <img loading="lazy" decoding="async" src="/static/Screenshot%20from%202025-09-11%2001-11-57.png?alt=media&token=07a3f167-7508-403b-8039-0fd9f99ad01b" alt="Styled">
-                            <span class="pro-tag pro-tag-after">Styled</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-        <!-- Features Section -->
-        <div class="features-section">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon banana">🚀</div>
-                    <div class="feature-title">Advanced <span class="banana-accent">Online AI Image Generator</span> Processing</div>
-                    <div class="feature-description">Lightning-fast image generation powered by Google's revolutionary online ai image generator algorithms. Experience professional-quality results in seconds with our enterprise-grade online ai image generator technology.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-title">Precision Control</div>
-                    <div class="feature-description">Fine-tune every aspect with our advanced online ai image generator technology parameters. Professional-grade control for enterprise applications and creative workflows.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-title">Cross-Platform Ready</div>
-                    <div class="feature-description">Seamless online ai image generator experience across all devices. Optimized for both desktop and mobile professional workflows with responsive design.</div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Google Model Info -->
-        <div class="model-info">
-            <h2>Powered by Google's Revolutionary <span style="color: #fbbf24;">Online AI Image Generator</span> AI</h2>
-            <p>Our platform leverages Google's groundbreaking <strong>online ai image generator technology</strong> - the most advanced AI image generation system available. This cutting-edge <em>google online ai image generator</em> integration delivers professional-quality results with enterprise-grade reliability, security, and performance that exceeds industry standards.</p>
-            <div class="model-badges">
-                <div class="model-badge">Google Online AI Image Generator Technology</div>
-                <div class="model-badge">Real-time Processing</div>
-                <div class="model-badge">High-Resolution Output</div>
-                <div class="model-badge">Enterprise Security</div>
-                <div class="model-badge">API Integration</div>
-                <div class="model-badge">24/7 Availability</div>
-            </div>
-        </div>
-
-
-
-        <!-- Testimonials -->
-        <div class="testimonials-section">
-        <!-- Header -->
-        <div class="testimonials-header">
-            <div class="testimonials-badge">
-                <span class="star-icon">⭐</span>
-                <span>Trusted by 50,000+ Creators</span>
-            </div>
-            <h2 class="testimonials-title">What Our Users Say</h2>
-            <p class="testimonials-subtitle">
-                Discover how creators, marketers, and businesses are using Online AI Image Generator Sora to bring their visions to life
-            </p>
-        </div>
-
-        <!-- Stats Bar -->
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-number">4.9/5</div>
-                <div class="stat-label">Average Rating</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Happy Users</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100K+</div>
-                <div class="stat-label">Images Generated</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Would Recommend</div>
-            </div>
-        </div>
-
-        <!-- Testimonials Grid -->
-        <div class="testimonials-grid">
-            <!-- Featured Testimonial -->
-           
-<!-- Testimonial 1 -->
-<div class="testimonial-card">
-    <div class="testimonial-header">
-        <div class="testimonial-avatar">LS</div>
-        <div class="testimonial-info">
-            <div class="testimonial-name">Lara Sethi</div>
-            <div class="testimonial-role">Creative Director at PixelHive</div>
-        </div>
-    </div>
-    <div class="testimonial-rating">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-    <p class="testimonial-text">
-        Using Online AI Image Generator on <strong>googlenanobanana.com</strong> has been an amazing experience. The AI generates high-quality images in seconds, the editing tools are super easy to use, and the pre-built prompts save so much time. All this at such affordable prices—I can’t believe how fast and cheap it is!
-    </p>
-    <div class="testimonial-footer">
-        <div class="verified-badge">✓ Verified User</div>
-        <div class="testimonial-date">1 week ago</div>
-    </div>
-</div>
-
-<!-- Testimonial 2 -->
-<div class="testimonial-card">
-    <div class="testimonial-header">
-        <div class="testimonial-avatar">AK</div>
-        <div class="testimonial-info">
-            <div class="testimonial-name">Aarav Kapoor</div>
-            <div class="testimonial-role">E-commerce Store Owner</div>
-        </div>
-    </div>
-    <div class="testimonial-rating">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-    <p class="testimonial-text">
-        I started using <strong>googlenanobanana.com</strong> for product images and the results are incredible. The platform is lightning fast, editing is simple, and the pre-built prompts make it effortless to generate images. The best part? The pricing is ridiculously cheap for such high-quality outputs.
-    </p>
-    <div class="testimonial-footer">
-        <div class="verified-badge">✓ Verified User</div>
-        <div class="testimonial-date">2 weeks ago</div>
-    </div>
-</div>
-
-<!-- Testimonial 3 -->
-<div class="testimonial-card">
-    <div class="testimonial-header">
-        <div class="testimonial-avatar">NR</div>
-        <div class="testimonial-info">
-            <div class="testimonial-name">Nora Redding</div>
-            <div class="testimonial-role">Social Media Content Creator</div>
-        </div>
-    </div>
-    <div class="testimonial-rating">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-    <p class="testimonial-text">
-        Online AI Image Generator on <strong>googlenanobanana.com</strong> is a lifesaver for content creators. Generating multiple image variations for social media is super fast, editing is intuitive, and the pre-built prompts are a huge time-saver. I’m amazed they offer this quality at such low prices!
-    </p>
-    <div class="testimonial-footer">
-        <div class="verified-badge">✓ Verified User</div>
-        <div class="testimonial-date">3 weeks ago</div>
-    </div>
-</div>
-
-<!-- Testimonial 4 -->
-<div class="testimonial-card">
-    <div class="testimonial-header">
-        <div class="testimonial-avatar">RM</div>
-        <div class="testimonial-info">
-            <div class="testimonial-name">Rylan Moreno</div>
-            <div class="testimonial-role">Freelance Designer</div>
-        </div>
-    </div>
-    <div class="testimonial-rating">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-    <p class="testimonial-text">
-        Using <strong>googlenanobanana.com</strong> has completely changed my workflow. The speed is unmatched, the editing tools are user-friendly, and the pre-built prompts make creative projects effortless. I still can’t believe how affordable it is for the quality you get!
-    </p>
-    <div class="testimonial-footer">
-        <div class="verified-badge">✓ Verified User</div>
-        <div class="testimonial-date">1 month ago</div>
-    </div>
-</div>
-
-<!-- Testimonial 5 -->
-<div class="testimonial-card">
-    <div class="testimonial-header">
-        <div class="testimonial-avatar">KT</div>
-        <div class="testimonial-info">
-            <div class="testimonial-name">Kieran Thalos</div>
-            <div class="testimonial-role">Startup Founder</div>
-        </div>
-    </div>
-    <div class="testimonial-rating">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-    <p class="testimonial-text">
-        <strong>googlenanobanana.com</strong> is an incredible platform for startups. High-quality AI images, ultra-fast generation, easy editing, and pre-built prompts—all at extremely cheap prices. I can’t imagine running my campaigns without it!
-    </p>
-    <div class="testimonial-footer">
-        <div class="verified-badge">✓ Verified User</div>
-        <div class="testimonial-date">2 months ago</div>
-    </div>
-</div>
-
-
-
-            <!-- Regular Testimonials -->
-           
-
-    </div>
-    </div>
-
-        <!-- FAQ Section -->
-        <div class="faq-section">
-            <h2 class="section-title">Frequently Asked Questions About <span class="banana-accent">Online AI Image Generator</span></h2>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    What is Google Online AI Image Generator technology and how does it work?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Google Online AI Image Generator is an advanced AI image generation technology that combines machine learning algorithms with innovative processing techniques. Our online ai image generator platform leverages this cutting-edge Google technology to deliver professional-quality image generation with unprecedented speed, accuracy, and creative control for enterprise applications.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    How does Online AI Image Generator compare to other AI image generators?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Online AI Image Generator is powered by Google's exclusive online ai image generator technology, ensuring superior image quality and faster generation times. Our professional interface is designed for enterprise users, offering advanced online ai image generator algorithms that deliver consistently better results than standard AI generators, with enterprise-grade security and reliability.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    What are the pricing plans for online ai image generator technology?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    We offer flexible pricing tiers for online ai image generator technology to suit different needs. Professional users can access unlimited high-resolution online ai image generator generations with our premium plans. Contact our sales team for enterprise online ai image generator pricing and custom Google AI integration solutions.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Can I use online ai image generator generated images for commercial purposes?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Yes, all images generated through our online ai image generator platform can be used for both personal and commercial purposes. You retain full rights to the online ai image generator created content, with no additional licensing fees or restrictions on commercial usage.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    What file formats and resolutions does online ai image generator support?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Online AI Image Generator supports JPG, PNG, and WebP formats for input. Generated images are available in multiple resolutions up to 4K using our advanced online ai image generator processing, with options to download in various formats including high-quality PNG and professional-grade TIFF for enterprise applications.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    How secure is my data with online ai image generator technology?
-                    <span class="faq-icon">▼</span>
-                </button>
-                <div class="faq-answer">
-                    We prioritize enterprise-level security with our online ai image generator platform. All data is encrypted in transit and at rest, with SOC 2 compliance and GDPR adherence. Google's online ai image generator technology includes built-in security features, and we never store or share your content without explicit permission.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
- <div style="text-align: center; margin-top: 20px;">
-		  googlenanobanana.com is an independent product and is not affiliated with Google or any of its brands
-		</div>
-
-    <!-- Footer -->
-    
-
-<!-- NEW SEO SECTIONS -->
-<section style="background-color: #ffffff; padding: 60px 20px; margin: 0 auto;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="font-size: 36px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 50px; line-height: 1.2;">How Google Online AI Image Generator Generates Images in 3 Simple Steps</h2>
-    
-    <div style="display: flex; flex-direction: column; gap: 40px; margin-bottom: 60px;">
-      <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; background-color: #f8fafc; border-radius: 12px; border-left: 4px solid #f59e0b;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-          <div style="width: 50px; height: 50px; background-color: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 24px; flex-shrink: 0;">1</div>
-          <h3 style="font-size: 24px; font-weight: 600; color: #0f172a; margin: 0;">Enter Your Prompt</h3>
-        </div>
-        <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0;">Simply describe what you want to create in natural language. Be as detailed or as brief as you like—our AI understands both specific and creative descriptions.</p>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; background-color: #f8fafc; border-radius: 12px; border-left: 4px solid #f59e0b;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-          <div style="width: 50px; height: 50px; background-color: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 24px; flex-shrink: 0;">2</div>
-          <h3 style="font-size: 24px; font-weight: 600; color: #0f172a; margin: 0;">Customize & Refine</h3>
-        </div>
-        <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0;">Choose your preferred style, aspect ratio, and quality settings. Use our advanced filters to fine-tune colors, composition, and effects in seconds.</p>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; background-color: #f8fafc; border-radius: 12px; border-left: 4px solid #f59e0b;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-          <div style="width: 50px; height: 50px; background-color: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 24px; flex-shrink: 0;">3</div>
-          <h3 style="font-size: 24px; font-weight: 600; color: #0f172a; margin: 0;">Download & Share</h3>
-        </div>
-        <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0;">Get your high-resolution image in seconds. Download in multiple formats and resolutions, or share directly to social media and design tools.</p>
-      </div>
-    </div>
-
-    <div style="text-align: center;">
-      <button style="background-color: #f59e0b; color: #ffffff; border: none; padding: 16px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">Get Started Free</button>
-    </div>
-  </div>
-</section>
-
-<section style="background-color: #f8fafc; padding: 60px 20px; margin: 0 auto;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="font-size: 36px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 50px; line-height: 1.2;">See What You Can Create: Real Examples from Our Community</h2>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📸</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Product Photography</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Create professional product shots with custom backgrounds, lighting, and angles without expensive studio setups.</p>
-        </div>
-      </div>
-
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">🎮</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Game Assets</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate unique characters, environments, and textures for indie games, 2D sprites, and 3D concept art.</p>
-        </div>
-      </div>
-
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">✏️</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Illustration & Art</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate stunning digital artwork, book covers, and custom illustrations in any art style imaginable.</p>
-        </div>
-      </div>
-
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📱</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Social Media Content</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Create engaging posts, banners, and thumbnails optimized for Instagram, TikTok, YouTube, and more.</p>
-        </div>
-      </div>
-
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">🏢</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Business Marketing</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Design marketing materials, presentations, and promotional graphics tailored to your brand identity.</p>
-        </div>
-      </div>
-
-      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📚</div>
-        <div style="padding: 25px;">
-          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Educational Content</h3>
-          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate diagrams, infographics, and visual learning materials to enhance presentations and courses.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRAMMATIC SEO FOOTER -->
-<div id="seo-prompts-footer" style="background: #0f172a; padding: 60px 20px; border-top: 1px solid #1e293b; text-align: center; max-width: 100%; overflow-x: hidden; box-sizing: border-box;">
-<h3 style="color: #fbbf24; margin-bottom: 30px; font-size: 1.8rem; font-weight: bold;">Explore Google Online AI Image Generator Use Cases</h3>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; text-align: left;">
-<a href="/prompts/youtube-thumbnail-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">AI YouTube Thumbnail Generator Prompts</a>
-<a href="/prompts/ecommerce-product-backgrounds" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">E-Commerce Product Background Generator</a>
-<a href="/prompts/isometric-3d-icons" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Isometric 3D Icon Generator for Apps & Websites</a>
-<a href="/prompts/flat-vector-illustrations" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Flat Vector Illustration Generator</a>
-<a href="/prompts/app-ui-mockups" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">App UI Mockup Generator</a>
-<a href="/prompts/anime-concept-art" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Anime & Manga Concept Art Generator</a>
-<a href="/prompts/seamless-textures" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Seamless Texture Generator for 3D & Design</a>
-<a href="/prompts/instagram-story-templates" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Instagram Story Template Generator</a>
-<a href="/prompts/blog-header-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Blog Header Image Generator</a>
-<a href="/prompts/product-mockups" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Physical Product Mockup Generator</a>
-<a href="/prompts/email-newsletter-graphics" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Email Newsletter Graphic Generator</a>
-<a href="/prompts/landing-page-hero-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Landing Page Hero Image Generator</a>
-<a href="/prompts/book-cover-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">AI Book Cover Generator</a>
-<a href="/prompts/social-media-post-templates" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Social Media Post Template Generator</a>
-<a href="/prompts/infographic-backgrounds" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Infographic & Data Visualization Background Generator</a>
-<a href="/prompts/podcast-cover-art" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Podcast Cover Art Generator</a>
-<a href="/prompts/twitch-stream-overlay" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Twitch Stream Overlay Generator</a>
-<a href="/prompts/real-estate-property-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Real Estate Property Image Generator</a>
-<a href="/prompts/webinar-promotional-graphics" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Webinar Promotional Graphics Generator</a>
-<a href="/prompts/gaming-asset-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Game Asset & Environment Generator</a>
-</div></div>
-<!-- END PROGRAMMATIC SEO FOOTER -->
-
-<footer class="footer">
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h3><span class="banana-icon"></span>Online AI Image Generator</h3>
-                    <p>Professional Google AI image generation platform powered by revolutionary <strong>online ai image generator technology</strong>. Experience the future of AI-driven creative workflows with enterprise-grade <em>google online ai image generator</em> solutions designed for professionals and businesses worldwide.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">f</a>
-                        <a href="#" class="social-link">t</a>
-                        <a href="#" class="social-link">in</a>
-                        <a href="#" class="social-link">ig</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Online AI Image Generator Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Online AI Image Generator Features</a></li>
-                        <li><a href="/pricing">Pricing & Plans</a></li>
-                        <li><a href="/rus/blog1">Us vs Others</a></li>
-                        <li><a href="/rus/blog2">Avatar with AI</a></li>
-                        <li><a href="/rus/blog3">Best tool to create instagram Photos 2025</a></li>
-                        <li><a href="#">Best For Ecommerce</a></li>
-                        <li><a href="#">How to Improve Image Quality</a></li>
-
-
-                        
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://onlineaiimagegenerator.com/support">Support</a></li>
-                        <li><a href="https://onlineaiimagegenerator.com/support">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press & Media</a></li>
-                        <li><a href="#">Contact Sales</a></li>
-                        <li><a href="#">Partner Program</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Online AI Image Generator Help Center</a></li>
-                        <li><a href="#">Developer Community</a></li>
-                        <li><a href="#">System Status</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/termsconditions">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Online AI Image Generator. All rights reserved. Powered by Google Online AI Image Generator AI Technology.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-function handleAuthAction() {
-    const authToken = localStorage.getItem('authToken');
-    
-    if (authToken) {
-        // User is signed in, handle sign out
-        handleSignOut();
-    } else {
-        // User is not signed in, handle sign in
-        showLoginModal();
-    }
-}
-
-function updateAuthButton() {
-    const authToken = localStorage.getItem('authToken');
-    const authButtonText = document.getElementById('auth-button-text');
-    
-    if (authToken) {
-        authButtonText.textContent = 'Sign Out';
-    } else {
-        authButtonText.textContent = 'Sign In';
-    }
-}
-
-// Update button text when page loads
-document.addEventListener('DOMContentLoaded', updateAuthButton);
-
-// Optional: Update button when localStorage changes (if you want real-time updates)
-window.addEventListener('storage', updateAuthButton);
-</script>
-
-    
-    <!-- Extended SEO & Marketing Section -->
+        <!-- Extended SEO & Marketing Section -->
     <div class="mt-12 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" style="margin-top: 40px; margin-bottom: 40px;">
         
         <!-- Key Features Grid -->
