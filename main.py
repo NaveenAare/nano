@@ -490,7 +490,7 @@ async def create_razorpay_order_pro(request: dict):
 @app.get("/")
 @app.post("/")
 async def home(device: str = None):
-    return FileResponse("templates/home.html")
+    return FileResponse("templates/home.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 @app.get("/redirecthandler")
 @app.post("/redirecthandler")
