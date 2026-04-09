@@ -9262,22 +9262,7 @@ async function fetchAndDisplayUserProfile() {
     }
 }
 
-function updateUserInterface(userData) {
-    const profileNames = document.querySelectorAll('#profileName');
-    profileNames.forEach(el => {
-        if (el) el.textContent = userData.name || 'User';
-    });
-    
-    const profileEmails = document.querySelectorAll('#profileEmail');
-    profileEmails.forEach(el => {
-        if (el) el.textContent = userData.mail || 'user@email.com';
-    });
-    
-    const profileImages = document.querySelectorAll('#headerProfileImg');
-    profileImages.forEach(img => {
-        img.src = userData.profile_pic || '/static/dummy_profile.png';
-    });
-}
+
 
 
 // Listen for OAuth messages
@@ -9312,8 +9297,8 @@ var selectedStyleName = 'None';
 var editingMode = false;
 var currentEditingImage = null;
 
-        let attachedImages = [];
-        let generatedImages = [];
+        var attachedImages = [];
+        var generatedImages = [];
         const maxImages = 5;
         const maxChars = 1000;
 
