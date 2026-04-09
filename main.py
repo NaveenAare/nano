@@ -509,6 +509,11 @@ async def oblog1_route():
 async def oblog2_route():
     return FileResponse("templates/oblog2.html")
 
+
+@app.get("/blog/local-llm-stack")
+async def local_llm_blog():
+    return FileResponse("templates/blog_localllm.html")
+
 @app.get("/new_playground")
 async def newPlayGround():
     return FileResponse("templates/new_image_playground.html")
