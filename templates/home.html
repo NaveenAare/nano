@@ -10901,7 +10901,17 @@ async function loginWithGoogle() {
             const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
 
             // Check if popup was blocked
-            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+            
+            let isBlocked = false;
+            try {
+                if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                    isBlocked = true;
+                }
+            } catch (e) {
+                // If checking popup.closed throws, it's not blocked, it's just restricted by COOP.
+            }
+            if (isBlocked) {
+
                 // Store current page before redirecting
                 localStorage.setItem('pre_auth_url', window.location.href);
                 // Popup blocked - use full page redirect instead

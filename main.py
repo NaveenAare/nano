@@ -534,7 +534,9 @@ async def create_razorpay_order_pro(request: dict):
 @app.get("/")
 @app.post("/")
 async def home(device: str = None):
-    return FileResponse("templates/home.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
+    response = FileResponse("templates/home.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
+    response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
+    return response
 
 @app.get("/redirecthandler")
 @app.post("/redirecthandler")
