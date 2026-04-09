@@ -8684,6 +8684,192 @@ tailwind.config = {
         "outline": "#83746a",
         "inverse-on-surface": "#eff1f3",
         "on-tertiary-fixed-variant": "#0b4e5d"
+      }
+    }
+  }
+}
+</script>
+<style>
+/* Material 3 Theme Overrides */
+:root {
+    --primary: #81542b;
+    --primary-container: #ebb17f;
+    --on-primary: #ffffff;
+    --bg-surface: #f7f9fb;
+    --bg-surface-low: #f2f4f6;
+    --border-color: #d5c3b7;
+    --text-main: #191c1e;
+    --text-muted: #51443b;
+}
+
+body {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-main) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.glass-header {
+    background: rgba(247, 249, 251, 0.8) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.logo {
+    color: var(--text-main) !important;
+}
+
+.banana-accent, .logo-accent, .nav-link:hover, .menu-item:hover, .text-primary {
+    color: var(--primary) !important;
+}
+
+/* Redesign the big generate button */
+.pro-generate-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #6c421a 100%) !important;
+    color: var(--on-primary) !important;
+}
+
+.pro-generate-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #996839 0%, var(--primary) 100%) !important;
+    box-shadow: 0 6px 20px rgba(129, 84, 43, 0.4) !important;
+}
+
+.prompt-input {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+.prompt-input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px rgba(129, 84, 43, 0.1) !important;
+}
+
+/* Modals and Cards */
+.login-modal-content, .popup-container, .image-limit-modal, .styles-modal-content, .out-of-credits-modal, .pro-workspace, .chat-container {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.style-card {
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-surface) !important;
+}
+
+.style-card.selected {
+    border-color: var(--primary) !important;
+    background: var(--primary-container) !important;
+}
+
+.style-card:hover {
+    border-color: var(--primary) !important;
+}
+
+.google-login-btn, .image-limit-btn-primary, .premium-btn, .clear-confirm-btn {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+.google-login-btn:hover, .image-limit-btn-primary:hover, .premium-btn:hover, .clear-confirm-btn:hover {
+    background: #6c421a !important;
+}
+
+.skip-login-btn, .image-limit-btn-secondary, .cancel-btn {
+    color: var(--text-muted) !important;
+    border-color: var(--border-color) !important;
+}
+
+.gallery-item {
+    background: var(--on-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+}
+
+/* Tags and Chips */
+.tag, .ai-selector-btn, .settings-btn, .styles-btn {
+    background: var(--bg-surface-low) !important;
+    color: var(--text-muted) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.tag:hover, .ai-selector-btn:hover, .settings-btn:hover, .styles-btn:hover {
+    background: var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+/* Footer overrides */
+.glass-footer {
+    background: var(--bg-surface-low) !important;
+    border-top: 1px solid var(--border-color) !important;
+    color: var(--text-muted) !important;
+}
+.footer-title {
+    color: var(--text-main) !important;
+}
+.footer-link, .footer-bottom-link {
+    color: var(--text-muted) !important;
+}
+.footer-link:hover, .footer-bottom-link:hover {
+    color: var(--primary) !important;
+}
+</style>
+
+
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-primary-container": "#6c421a",
+        "on-background": "#191c1e",
+        "error-container": "#ffdad6",
+        "on-secondary": "#ffffff",
+        "on-tertiary-container": "#145362",
+        "on-primary-fixed": "#2e1500",
+        "on-secondary-container": "#5a6373",
+        "on-error": "#ffffff",
+        "surface-container-low": "#f2f4f6",
+        "surface": "#f7f9fb",
+        "on-primary-fixed-variant": "#663d15",
+        "on-secondary-fixed-variant": "#3e4756",
+        "inverse-surface": "#2d3133",
+        "primary-container": "#ebb17f",
+        "secondary-fixed": "#dae3f6",
+        "tertiary-fixed-dim": "#98cfe1",
+        "surface-container-high": "#e6e8ea",
+        "surface-container": "#eceef0",
+        "surface-variant": "#e0e3e5",
+        "secondary": "#565f6f",
+        "outline-variant": "#d5c3b7",
+        "on-surface-variant": "#51443b",
+        "on-tertiary-fixed": "#001f27",
+        "on-tertiary": "#ffffff",
+        "tertiary-fixed": "#b3ebfe",
+        "tertiary-container": "#8ec5d7",
+        "surface-container-highest": "#e0e3e5",
+        "surface-bright": "#f7f9fb",
+        "background": "#f7f9fb",
+        "tertiary": "#2c6675",
+        "primary-fixed": "#ffdcc1",
+        "primary": "#81542b",
+        "surface-dim": "#d8dadc",
+        "on-surface": "#191c1e",
+        "surface-container-lowest": "#ffffff",
+        "on-error-container": "#93000a",
+        "error": "#ba1a1a",
+        "primary-fixed-dim": "#f6bb88",
+        "surface-tint": "#81542b",
+        "secondary-container": "#d7e0f3",
+        "inverse-primary": "#f6bb88",
+        "secondary-fixed-dim": "#bec7d9",
+        "on-secondary-fixed": "#131c2a",
+        "on-primary": "#ffffff",
+        "outline": "#83746a",
+        "inverse-on-surface": "#eff1f3",
+        "on-tertiary-fixed-variant": "#0b4e5d"
       },
       "borderRadius": {
         "DEFAULT": "0.25rem",
@@ -8714,9 +8900,6 @@ tailwind.config = {
 .ghost-border {
   border: 1px solid rgba(213, 195, 183, 0.2);
 }
-</style>
-
-<style>
 
 /* Material 3 Theme Overrides */
 :root {
@@ -8837,8 +9020,8 @@ body {
 .footer-link:hover, .footer-bottom-link:hover {
     color: var(--primary) !important;
 }
-
 </style>
+
 </head>
 <body>
 <!-- Image Limit Modal -->
@@ -9697,7 +9880,9 @@ body {
 
 
 
-        <!-- Extended SEO & Marketing Section -->
+        <!-- Showcase Section -->
+       
+    <!-- Extended SEO & Marketing Section -->
     <div class="mt-12 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" style="margin-top: 40px; margin-bottom: 40px;">
         
         <!-- Key Features Grid -->
@@ -9759,25 +9944,6 @@ body {
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="bg-surface-container-low rounded-3xl p-8 border border-outline-variant/30" style="margin-top: 40px;">
-            <h2 class="font-headline text-3xl font-extrabold mb-8 text-on-surface text-center" style="font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center;">Frequently Asked Questions</h2>
-            <div class="space-y-4 max-w-4xl mx-auto" style="display: flex; flex-direction: column; gap: 15px;">
-                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
-                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Is this AI image generator completely free?</h3>
-                    <p class="text-sm" style="color: #51443b; font-size: 14px;">Yes! We provide free daily credits to all users so you can generate stunning AI artwork without paying a dime. You can upgrade to a premium plan later if you need higher volume generation or priority rendering speeds.</p>
-                </div>
-                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
-                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Can I use the generated AI images commercially?</h3>
-                    <p class="text-sm" style="color: #51443b; font-size: 14px;">Absolutely. The images you create using our text to image AI are yours to use for commercial projects, including websites, marketing campaigns, and merchandise. You hold the rights to your generations.</p>
-                </div>
-                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
-                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Do I need to install any software?</h3>
-                    <p class="text-sm" style="color: #51443b; font-size: 14px;">No installation is required. Our platform is 100% web-based. Simply type your prompt into the browser interface, hit generate, and our cloud servers will handle all the complex rendering. It works seamlessly on Desktop, Mac, and Mobile devices.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- How it Works Section -->
         <section class="mt-12 bg-surface p-8 rounded-2xl border border-outline-variant/30" style="background: #ffffff; padding: 30px; border-radius: 15px; margin-top: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
             <h2 class="font-headline text-3xl font-extrabold mb-6" style="font-size: 24px; font-weight: bold; margin-bottom: 25px; text-align: center;">How to Use the <span class="text-primary" style="color: #81542b;">Online AI Image Generator</span></h2>
@@ -9812,18 +9978,31 @@ body {
                 <p style="color: #51443b; font-size: 14.5px; line-height: 1.7; margin-bottom: 15px;">
                     Sick of complicated Discord servers and expensive subscription tiers? <strong>Online AI Image Generator</strong> provides a seamless web-UI experience that rivals Midjourney v6 and DALL-E 3. As a premier <strong>free AI drawing tool</strong>, you get direct browser access to advanced diffusion models without the hassle.
                 </p>
-                <p style="color: #51443b; font-size: 14.5px; line-height: 1.7;">
-                    Create <strong>4K AI images</strong>, utilize image-to-image editing, and fine-tune your aspect ratios—all in one place. No downloads, no Discord bots, just pure creative freedom.
-                </p>
             </div>
             <div class="bg-surface-container-low p-8 rounded-2xl border border-outline-variant/30" style="background: #f7f9fb; padding: 30px; border-radius: 15px;">
                 <h2 class="font-headline text-2xl font-extrabold mb-4" style="font-size: 22px; font-weight: bold; margin-bottom: 15px;">Advanced <span class="text-primary" style="color: #81542b;">Text to Image AI</span> Features</h2>
                 <p style="color: #51443b; font-size: 14.5px; line-height: 1.7; margin-bottom: 15px;">
                     Our platform isn't just a basic <strong>AI avatar maker</strong>. Professional designers use our <strong>online AI photo creator</strong> for conceptualizing architectural renders, generating UI/UX assets, and producing hyper-realistic stock photography for marketing campaigns.
                 </p>
-                <p style="color: #51443b; font-size: 14.5px; line-height: 1.7;">
-                    By supporting complex natural language prompts and multi-image attachments, we empower you to dictate exact visual aesthetics effortlessly. Turn a quick sketch into a finished oil painting in seconds.
-                </p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="bg-surface-container-low rounded-3xl p-8 border border-outline-variant/30" style="margin-top: 40px;">
+            <h2 class="font-headline text-3xl font-extrabold mb-8 text-on-surface text-center" style="font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center;">Frequently Asked Questions</h2>
+            <div class="space-y-4 max-w-4xl mx-auto" style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
+                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Is this AI image generator completely free?</h3>
+                    <p class="text-sm" style="color: #51443b; font-size: 14px;">Yes! We provide free daily credits to all users so you can generate stunning AI artwork without paying a dime. You can upgrade to a premium plan later if you need higher volume generation or priority rendering speeds.</p>
+                </div>
+                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
+                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Can I use the generated AI images commercially?</h3>
+                    <p class="text-sm" style="color: #51443b; font-size: 14px;">Absolutely. The images you create using our text to image AI are yours to use for commercial projects, including websites, marketing campaigns, and merchandise. You hold the rights to your generations.</p>
+                </div>
+                <div class="bg-surface p-5 rounded-xl border border-outline-variant/20" style="background: #f7f9fb; padding: 20px; border-radius: 10px;">
+                    <h3 class="font-bold text-lg mb-2" style="font-weight: bold; margin-bottom: 8px;">Do I need to install any software?</h3>
+                    <p class="text-sm" style="color: #51443b; font-size: 14px;">No installation is required. Our platform is 100% web-based. Simply type your prompt into the browser interface, hit generate, and our cloud servers will handle all the complex rendering. It works seamlessly on Desktop, Mac, and Mobile devices.</p>
+                </div>
             </div>
         </section>
 
@@ -9837,19 +10016,158 @@ body {
                 <p style="margin-bottom: 15px;">
                     Unlike traditional stock photo websites where you are limited to what a photographer has already captured, a <strong>free AI art generator</strong> gives you infinite variations of reality. You can specify "cinematic lighting, 8k resolution, Unreal Engine 5 render, trending on ArtStation" to completely transform a simple text prompt into a breathtaking digital masterpiece. Our <strong>online AI generator no signup</strong> policy (for initial free tiers) ensures that you can test the immense power of our neural network models immediately.
                 </p>
-                <p style="margin-bottom: 15px;">
-                    From hobbyists looking for a reliable <strong>DALL-E 3 free online</strong> alternative, to digital marketers needing an ultra-fast <strong>AI picture generator</strong> for ad creatives, our platform is heavily optimized for speed, prompt adherence, and user experience.
-                </p>
                 <p>
-                    Stop searching for the perfect image and start creating it. Utilize the best <strong>free AI drawing tool</strong> on the web today and turn your wildest imagination into high-fidelity visual reality.
+                    From hobbyists looking for a reliable <strong>DALL-E 3 free online</strong> alternative, to digital marketers needing an ultra-fast <strong>AI picture generator</strong> for ad creatives, our platform is heavily optimized for speed, prompt adherence, and user experience.
                 </p>
             </div>
         </section>
-
     </div>
 
-<script>
-        
+
+<section style="background-color: #f8fafc; padding: 60px 20px; margin: 0 auto;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="font-size: 36px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 50px; line-height: 1.2;">See What You Can Create: Real Examples from Our Community</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📸</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Product Photography</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Create professional product shots with custom backgrounds, lighting, and angles without expensive studio setups.</p>
+        </div>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">🎮</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Game Assets</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate unique characters, environments, and textures for indie games, 2D sprites, and 3D concept art.</p>
+        </div>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">✏️</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Illustration & Art</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate stunning digital artwork, book covers, and custom illustrations in any art style imaginable.</p>
+        </div>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📱</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Social Media Content</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Create engaging posts, banners, and thumbnails optimized for Instagram, TikTok, YouTube, and more.</p>
+        </div>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">🏢</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Business Marketing</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Design marketing materials, presentations, and promotional graphics tailored to your brand identity.</p>
+        </div>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 48px;">📚</div>
+        <div style="padding: 25px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 12px 0;">Educational Content</h3>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">Generate diagrams, infographics, and visual learning materials to enhance presentations and courses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMATIC SEO FOOTER -->
+<div id="seo-prompts-footer" style="background: #0f172a; padding: 60px 20px; border-top: 1px solid #1e293b; text-align: center; max-width: 100%; overflow-x: hidden; box-sizing: border-box;">
+<h3 style="color: #fbbf24; margin-bottom: 30px; font-size: 1.8rem; font-weight: bold;">Explore Google Online AI Image Generator Use Cases</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; text-align: left;">
+<a href="/prompts/youtube-thumbnail-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">AI YouTube Thumbnail Generator Prompts</a>
+<a href="/prompts/ecommerce-product-backgrounds" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">E-Commerce Product Background Generator</a>
+<a href="/prompts/isometric-3d-icons" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Isometric 3D Icon Generator for Apps & Websites</a>
+<a href="/prompts/flat-vector-illustrations" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Flat Vector Illustration Generator</a>
+<a href="/prompts/app-ui-mockups" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">App UI Mockup Generator</a>
+<a href="/prompts/anime-concept-art" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Anime & Manga Concept Art Generator</a>
+<a href="/prompts/seamless-textures" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Seamless Texture Generator for 3D & Design</a>
+<a href="/prompts/instagram-story-templates" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Instagram Story Template Generator</a>
+<a href="/prompts/blog-header-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Blog Header Image Generator</a>
+<a href="/prompts/product-mockups" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Physical Product Mockup Generator</a>
+<a href="/prompts/email-newsletter-graphics" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Email Newsletter Graphic Generator</a>
+<a href="/prompts/landing-page-hero-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Landing Page Hero Image Generator</a>
+<a href="/prompts/book-cover-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">AI Book Cover Generator</a>
+<a href="/prompts/social-media-post-templates" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Social Media Post Template Generator</a>
+<a href="/prompts/infographic-backgrounds" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Infographic & Data Visualization Background Generator</a>
+<a href="/prompts/podcast-cover-art" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Podcast Cover Art Generator</a>
+<a href="/prompts/twitch-stream-overlay" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Twitch Stream Overlay Generator</a>
+<a href="/prompts/real-estate-property-images" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Real Estate Property Image Generator</a>
+<a href="/prompts/webinar-promotional-graphics" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Webinar Promotional Graphics Generator</a>
+<a href="/prompts/gaming-asset-generator" style="color: #94a3b8; text-decoration: none; padding: 10px 15px; background: #1e293b; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; border: 1px solid #334155; display: block;" onmouseover="this.style.color='#fbbf24'; this.style.borderColor='#fbbf24'" onmouseout="this.style.color='#94a3b8'; this.style.borderColor='#334155'">Game Asset & Environment Generator</a>
+</div></div>
+<!-- END PROGRAMMATIC SEO FOOTER -->
+
+<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><span class="banana-icon"></span>Online AI Image Generator</h3>
+                    <p>Professional Google AI image generation platform powered by revolutionary <strong>online ai image generator technology</strong>. Experience the future of AI-driven creative workflows with enterprise-grade <em>google online ai image generator</em> solutions designed for professionals and businesses worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Online AI Image Generator Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Online AI Image Generator Features</a></li>
+                        <li><a href="/pricing">Pricing & Plans</a></li>
+                        <li><a href="/rus/blog1">Us vs Others</a></li>
+                        <li><a href="/rus/blog2">Avatar with AI</a></li>
+                        <li><a href="/rus/blog3">Best tool to create instagram Photos 2025</a></li>
+                        <li><a href="#">Best For Ecommerce</a></li>
+                        <li><a href="#">How to Improve Image Quality</a></li>
+
+
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://onlineaiimagegenerator.com/support">Support</a></li>
+                        <li><a href="https://onlineaiimagegenerator.com/support">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Contact Sales</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Online AI Image Generator Help Center</a></li>
+                        <li><a href="#">Developer Community</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/termsconditions">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Online AI Image Generator. All rights reserved. Powered by Google Online AI Image Generator AI Technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
 function handleAuthAction() {
     const authToken = localStorage.getItem('authToken');
     
@@ -9865,7 +10183,6 @@ function handleAuthAction() {
 function updateAuthButton() {
     const authToken = localStorage.getItem('authToken');
     const authButtonText = document.getElementById('auth-button-text');
-    if (!authButtonText) return;
     
     if (authToken) {
         authButtonText.textContent = 'Sign Out';
@@ -9874,7 +10191,15 @@ function updateAuthButton() {
     }
 }
 
-// Global state
+// Update button text when page loads
+document.addEventListener('DOMContentLoaded', updateAuthButton);
+
+// Optional: Update button when localStorage changes (if you want real-time updates)
+window.addEventListener('storage', updateAuthButton);
+</script>
+
+    <script>
+        // Global state
         let attachedImages = [];
         let generatedImages = [];
         const maxImages = 5;
@@ -10333,7 +10658,7 @@ async function generateImage() {
             formData.append(`file_${fileIndex}_name`, img.name);
         }
 
-        const apiResponse = await fetch('/api/proxy/generate', {
+        const apiResponse = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
             method: 'POST',
             headers: {
                 'Accept': '*/*',
@@ -10901,17 +11226,7 @@ async function loginWithGoogle() {
             const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
 
             // Check if popup was blocked
-            
-            let isBlocked = false;
-            try {
-                if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                    isBlocked = true;
-                }
-            } catch (e) {
-                // If checking popup.closed throws, it's not blocked, it's just restricted by COOP.
-            }
-            if (isBlocked) {
-
+            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
                 // Store current page before redirecting
                 localStorage.setItem('pre_auth_url', window.location.href);
                 // Popup blocked - use full page redirect instead
@@ -11089,7 +11404,7 @@ async function fetchAndUpdateUserProfile() {
     try {
         const userToken = getUserToken();
         
-        const response = await fetch(`/api/proxy/details?authToken=${userToken}`, {
+        const response = await fetch(`https://chatezzy.com/get/details/${userToken}`, {
             method: 'GET',
             headers: {
                 'Accept': '*/*',
