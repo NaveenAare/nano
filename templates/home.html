@@ -8908,6 +8908,226 @@ tailwind.config = {
         </div>
     </div>
 
+
+<div id="loginModal" class="login-modal-overlay" style="display: none;">
+    <div class="login-modal-content">
+        <div class="login-modal-title">Continue Creating</div>
+        <div class="credit-info">
+            ✨ Login to continue! 
+        </div>
+        <div class="login-modal-text">
+            Sign in with Google to get unlimited image generations and access premium features.
+        </div>
+        <button class="google-login-btn" onclick="loginWithGoogle()" id="loginbuttonid1">
+    <svg class="google-logo" viewBox="0 0 24 24" width="18" height="18">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    </svg>
+    Continue with Google
+</button>
+        <button class="skip-login-btn" onclick="closeLoginModal()">Maybe Later</button>
+    </div>
+</div>
+
+<div id="bugReportOverlay" class="popup-overlay">
+    <div class="popup-container">
+        <button class="close-btn" onclick="closeBugReport()">&times;</button>
+        <h2 class="popup-title">Report a Bug</h2>
+        <p class="popup-subtitle">Help us improve by reporting any issues you encounter</p>
+        
+       <form id="bugReportForm">
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <textarea 
+                id="bugDescription" 
+                placeholder="Describe the bug you encountered..."
+                rows="6"
+                required
+            ></textarea>
+            
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">Submit Report</span>
+                <span class="btn-loader" style="display: none;">
+                    <span class="spinner"></span> Submitting...
+                </span>
+            </button>
+        </form>
+        
+        <div id="successMessage" class="success-message" style="display: none;">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="28" fill="#4CAF50"/>
+                <path d="M20 30 L26 36 L40 22" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+            <h3>Bug Report Submitted!</h3>
+            <p>Thank you for helping us improve</p>
+        </div>
+    </div>
+</div>
+<div id="imageLimitOverlay" class="image-limit-overlay">
+    <div class="image-limit-modal">
+        <h2 class="image-limit-title">Attachment Limit Reached</h2>
+        <p class="image-limit-text">
+            With less than 3 credits, you can only attach <strong>1 image at a time</strong>. 
+            Upgrade to attach multiple images and unlock unlimited creativity!
+        </p>
+        <div class="image-limit-buttons">
+            <button class="image-limit-btn image-limit-btn-primary" onclick="goToPricing()">
+                Buy Credits
+            </button>
+            <button class="image-limit-btn image-limit-btn-secondary" onclick="closeImageLimitModal()">
+                Got It
+            </button>
+        </div>
+    </div>
+<div id="outOfCreditsOverlay" class="out-of-credits-overlay">
+	
+    <div class="out-of-credits-modal">
+    <!-- Sparkle decorations -->
+
+    <div class="out-of-credits-content">
+        <h2 class="out-of-credits-title">Oops! You're Out of Credits</h2>
+        <p class="out-of-credits-subtitle">
+            Unlock unlimited creativity with our premium credits
+        </p>
+
+        <!-- Highlight current offer -->
+        <div class="out-of-credits-offer" style="background: #fff3e0; border: 1px solid #ffb74d; padding: 10px; border-radius: 8px; margin: 15px 0;">
+            <p class="offer-text" style="color:#e65100; font-weight:bold; margin:0;">
+                🎉 Limited-Time: Get <strong>40% OFF</strong> Today!
+            </p>
+            <small style="color:#bf360c;"> Don’t miss out!</small>
+        </div>
+
+        <div class="out-of-credits-buttons">
+            <button class="credits-btn credits-btn-primary" onclick="goToPricing()">
+                Buy Credits Now
+            </button>
+            <button class="credits-btn credits-btn-secondary" onclick="closeOutOfCreditsModal()">
+                Maybe Later
+            </button>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<div id="clearModal" class="modal-overlay-edit" style="display: none;">
+    <div class="modal-content-edit">
+        <div class="modal-title">Start New Generation?</div>
+        <div class="modal-text">This will clear your current editing session and start fresh. Your current generated image will be lost.</div>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-cancel" onclick="closeClearModal()">Cancel</button>
+            <button class="modal-btn modal-btn-confirm" onclick="confirmClearEditingMode()">Clear & Start New</button>
+        </div>
+    </div>
+
+<div id="stylesOverlay" class="styles-overlay">
+    <div class="styles-modal">
+        <div class="styles-header">
+            <h2>Choose a Style</h2>
+            <button class="close-styles-btn" onclick="closeStylesModal()">×</button>
+        </div>
+        <div class="styles-grid">
+            <!-- FREE STYLES -->
+            <div class="style-card" data-style="none" onclick="selectStyle('none', '/static/Gemini_Generated_Image_4iugyf4iugyf4iug.png?alt=media&token=20c22dba-a2f1-421f-adce-ae70661a1bb2', 'None')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_4iugyf4iugyf4iug.png?alt=media&token=20c22dba-a2f1-421f-adce-ae70661a1bb2" alt="None" class="style-preview-img">
+                </div>
+                <div class="style-name">None</div>
+                <div class="style-description">No style filter</div>
+            </div>
+            
+            <div class="style-card" data-style="realistic" onclick="selectStyle('realistic', '/static/Gemini_Generated_Image_bil0h5bil0h5bil0.png?alt=media&token=fc3359ec-6703-4fbd-9343-b1d587292686', 'Realistic')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_bil0h5bil0h5bil0.png?alt=media&token=fc3359ec-6703-4fbd-9343-b1d587292686" alt="Realistic" class="style-preview-img">
+                </div>
+                <div class="style-name">Realistic</div>
+                <div class="style-description">Photo-realistic images</div>
+            </div>
+            
+            <div class="style-card" data-style="anime" onclick="selectStyle('anime', '/static/Gemini_Generated_Image_yxvr5lyxvr5lyxvr.png?alt=media&token=9a49571c-f423-454d-b132-d26551fa03c5', 'Anime')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_yxvr5lyxvr5lyxvr.png?alt=media&token=9a49571c-f423-454d-b132-d26551fa03c5" alt="Anime" class="style-preview-img">
+                </div>
+                <div class="style-name">Anime</div>
+                <div class="style-description">Studio Ghibli inspired</div>
+            </div>
+            
+            <!-- PREMIUM STYLES (Locked for free users) -->
+            <div class="style-card locked" data-style="3d-render" onclick="selectStyle('3d-render', '/static/Gemini_Generated_Image_56xtlf56xtlf56xt.png?alt=media&token=43f59020-2d82-4bcc-b34c-d7f9e17a46e2', '3D Render')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_56xtlf56xtlf56xt.png?alt=media&token=43f59020-2d82-4bcc-b34c-d7f9e17a46e2" alt="3D Render" class="style-preview-img">
+                </div>
+                <div class="style-name">3D Render</div>
+                <div class="style-description">Pixar-style 3D art</div>
+            </div>
+            
+            <div class="style-card locked" data-style="cyberpunk" onclick="selectStyle('cyberpunk', '/static/Gemini_Generated_Image_bp85cebp85cebp85.png?alt=media&token=bc139fc4-8a13-417e-ba30-b5dfc42af8ba', 'Cyberpunk')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_bp85cebp85cebp85.png?alt=media&token=bc139fc4-8a13-417e-ba30-b5dfc42af8ba" alt="Cyberpunk" class="style-preview-img">
+                </div>
+                <div class="style-name">Cyberpunk</div>
+                <div class="style-description">Neon futuristic style</div>
+            </div>
+            
+            <div class="style-card locked" data-style="oil-painting" onclick="selectStyle('oil-painting', '/static/Gemini_Generated_Image_wvs4jewvs4jewvs4.png?alt=media&token=69ce7c57-42de-4e90-8d1e-d68c3e9cf830', 'Oil Painting')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_wvs4jewvs4jewvs4.png?alt=media&token=69ce7c57-42de-4e90-8d1e-d68c3e9cf830" alt="Oil Painting" class="style-preview-img">
+                </div>
+                <div class="style-name">Oil Painting</div>
+                <div class="style-description">Classic art style</div>
+            </div>
+            
+            <div class="style-card locked" data-style="watercolor" onclick="selectStyle('watercolor', '/static/Gemini_Generated_Image_ai5gwvai5gwvai5g.png?alt=media&token=a6a68e14-bed8-456c-a04a-9ac60694c291', 'Watercolor')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_ai5gwvai5gwvai5g.png?alt=media&token=a6a68e14-bed8-456c-a04a-9ac60694c291" alt="Watercolor" class="style-preview-img">
+                </div>
+                <div class="style-name">Watercolor</div>
+                <div class="style-description">Soft painted effect</div>
+            </div>
+            
+            <div class="style-card locked" data-style="fantasy" onclick="selectStyle('fantasy', '/static/Gemini_Generated_Image_vred61vred61vred.png?alt=media&token=c3ce7e33-4c53-41de-8282-e028c8ac93ac', 'Fantasy')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_vred61vred61vred.png?alt=media&token=c3ce7e33-4c53-41de-8282-e028c8ac93ac" alt="Fantasy" class="style-preview-img">
+                </div>
+                <div class="style-name">Fantasy</div>
+                <div class="style-description">Epic mythical worlds</div>
+            </div>
+            
+            <div class="style-card locked" data-style="vintage" onclick="selectStyle('vintage', '/static/Gemini_Generated_Image_a7e35ga7e35ga7e3.png?alt=media&token=e06dcd2d-82eb-4a36-9f5d-393307e2390f', 'Vintage')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_a7e35ga7e35ga7e3.png?alt=media&token=e06dcd2d-82eb-4a36-9f5d-393307e2390f" alt="Vintage" class="style-preview-img">
+                </div>
+                <div class="style-name">Vintage</div>
+                <div class="style-description">Retro 80s aesthetic</div>
+            </div>
+            
+            <div class="style-card locked" data-style="sketch" onclick="selectStyle('sketch', '/static/Gemini_Generated_Image_gjfggcgjfggcgjfg.png?alt=media&token=7dcc8dd6-aee6-4ba9-8016-128f704b11e1', 'Sketch')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_gjfggcgjfggcgjfg.png?alt=media&token=7dcc8dd6-aee6-4ba9-8016-128f704b11e1" alt="Sketch" class="style-preview-img">
+                </div>
+                <div class="style-name">Sketch</div>
+                <div class="style-description">Hand-drawn look</div>
+            </div>
+            
+            <div class="style-card locked" data-style="pop-surrealism" onclick="selectStyle('pop-surrealism', '/static/Gemini_Generated_Image_lxdc8ilxdc8ilxdc.png?alt=media&token=4fe3c97e-827d-461f-87a4-5da283cca872', 'Pop Surrealism')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_lxdc8ilxdc8ilxdc.png?alt=media&token=4fe3c97e-827d-461f-87a4-5da283cca872" alt="Pop Surrealism" class="style-preview-img">
+                </div>
+                <div class="style-name">Pop Surrealism</div>
+                <div class="style-description">Whimsical dreamlike</div>
+            </div>
+            
+            <div class="style-card locked" data-style="lo-fi" onclick="selectStyle('lo-fi', '/static/Gemini_Generated_Image_x3dfe3x3dfe3x3df.png?alt=media&token=c0ce9f54-ae9c-411b-b21c-85b0dbccc0e8', 'Lo-Fi')">
+                <div class="style-preview">
+                    <img loading="lazy" decoding="async" src="/static/Gemini_Generated_Image_x3dfe3x3dfe3x3df.png?alt=media&token=c0ce9f54-ae9c-411b-b21c-85b0dbccc0e8" alt="Lo-Fi" class="style-preview-img">
+                </div>
+                <div class="style-name">Lo-Fi</div>
+                <div class="style-description">Nostalgic grainy feel</div>
+            </div>
+        </div>
 </main>
 
 
