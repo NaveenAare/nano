@@ -44,16 +44,15 @@ from fastapi import Request
 
 @app.post("/api/proxy/generate")
 async def proxy_generate(request: Request):
-    async with httpx.AsyncClient() as client:
-        # Get multipart form data
+    async with httpx.AsyncClient(timeout=120.0) as client:
         form_data = await request.form()
         
-        # Prepare multipart data for httpx
         files = []
         data = {}
         for key, value in form_data.multi_items():
-            if hasattr(value, 'filename'):
-                files.append((key, (value.filename, value.file.read(), value.content_type)))
+            if hasattr(value, 'filename') and value.filename:
+                file_content = await value.read()
+                files.append((key, (value.filename, file_content, value.content_type)))
             else:
                 data[key] = value
 
@@ -68,8 +67,7 @@ async def proxy_generate(request: Request):
             'https://chatezzy.com/chat/v2/nanobanana-direct',
             data=data,
             files=files,
-            headers=headers,
-            timeout=60.0
+            headers=headers
         )
         
         return JSONResponse(content=response.json(), status_code=response.status_code)
