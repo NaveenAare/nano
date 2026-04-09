@@ -9849,7 +9849,32 @@ body {
     </div>
 
 <script>
-        // Global state
+        
+function handleAuthAction() {
+    const authToken = localStorage.getItem('authToken');
+    
+    if (authToken) {
+        // User is signed in, handle sign out
+        handleSignOut();
+    } else {
+        // User is not signed in, handle sign in
+        showLoginModal();
+    }
+}
+
+function updateAuthButton() {
+    const authToken = localStorage.getItem('authToken');
+    const authButtonText = document.getElementById('auth-button-text');
+    if (!authButtonText) return;
+    
+    if (authToken) {
+        authButtonText.textContent = 'Sign Out';
+    } else {
+        authButtonText.textContent = 'Sign In';
+    }
+}
+
+// Global state
         let attachedImages = [];
         let generatedImages = [];
         const maxImages = 5;
