@@ -8739,8 +8739,8 @@ tailwind.config = {
             <a href="#" class="login-btn" onclick="showLoginModal(); return false;" style="width: 100%; text-align: center; display: block; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.05); color: #333; font-weight: bold; text-decoration: none;">Login / Signup</a>
         </div>
         <div class="profile-section" id="profileSection" style="display: none; align-items: center; gap: 10px; width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.05);">
-            <div class="profile-btn" onclick="toggleMenu()" style="display: flex; align-items: center; gap: 10px; cursor: pointer; width: 100%;">
-                <img id="headerProfileImg" src="" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%;">
+            <div class="sidebar-profile-btn" onclick="toggleMenu()" style="display: flex; align-items: center; gap: 10px; cursor: pointer; width: 100%;">
+                <img id="headerProfileImg" src="" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
                 <div style="display: flex; flex-direction: column; overflow: hidden;">
                     <span id="profileName" style="font-weight: bold; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">User</span>
                     <span id="profileEmail" style="font-size: 10px; opacity: 0.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">email</span>
@@ -9306,11 +9306,11 @@ window.addEventListener('message', function(event) {
 });
 
 // Global state
-let selectedStyle = 'none';
-let selectedStyleImage = '';
-let selectedStyleName = 'None';
-let editingMode = false;
-let currentEditingImage = null;
+var selectedStyle = 'none';
+var selectedStyleImage = '';
+var selectedStyleName = 'None';
+var editingMode = false;
+var currentEditingImage = null;
 
         let attachedImages = [];
         let generatedImages = [];
@@ -10398,7 +10398,7 @@ function toggleProfileMenu() {
 // Close profile menu when clicking outside
 document.addEventListener('click', function(event) {
     var profileMenu = document.getElementById('profileMenu');
-    var profileBtn = document.querySelector('.profile-btn');
+    var profileBtn = document.querySelector('.profile-btn') || document.querySelector('.sidebar-profile-btn');
     
     if (profileBtn && profileMenu && !profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
         profileMenu.classList.remove('show');
@@ -10555,7 +10555,7 @@ async function fetchAndUpdateUserProfile() {
 
 function updateUserInterface(userData) {
     // Update ALL profile images - using class selectors instead of IDs
-    const profileImages = document.querySelectorAll('.profile-btn img, .profile-avatar img');
+    const profileImages = document.querySelectorAll('.profile-btn img, .sidebar-profile-btn img, .profile-avatar img');
     profileImages.forEach(img => {
         img.src = userData.profile_pic || '/static/dummy_profile.png';
     });
