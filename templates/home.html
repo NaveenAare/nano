@@ -9132,7 +9132,87 @@ tailwind.config = {
 
 
 <script>
-        // Global state
+        
+function updateAuthUI() {
+    const token = localStorage.getItem('authToken');
+    const authSection = document.getElementById('authSection');
+    const profileSection = document.getElementById('profileSection');
+    
+    if (token) {
+        if (authSection) authSection.style.display = 'none';
+        if (profileSection) profileSection.style.display = 'flex';
+        
+        // Also fetch user details
+        fetchAndDisplayUserProfile();
+    } else {
+        if (authSection) authSection.style.display = 'flex';
+        if (profileSection) profileSection.style.display = 'none';
+    }
+}
+
+async function fetchAndDisplayUserProfile() {
+    const savedUserData = localStorage.getItem('userData');
+    if (savedUserData) {
+        updateUserInterface(JSON.parse(savedUserData));
+    }
+    
+    try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(`/api/proxy/details?authToken=${token}`);
+        if (response.ok) {
+            const userData = await response.json();
+            localStorage.setItem('userData', JSON.stringify(userData));
+            updateUserInterface(userData);
+        }
+    } catch (e) {
+        console.error("Failed to fetch user profile", e);
+    }
+}
+
+function updateUserInterface(userData) {
+    const profileNames = document.querySelectorAll('#profileName');
+    profileNames.forEach(el => {
+        if (el) el.textContent = userData.name || 'User';
+    });
+    
+    const profileEmails = document.querySelectorAll('#profileEmail');
+    profileEmails.forEach(el => {
+        if (el) el.textContent = userData.mail || 'user@email.com';
+    });
+    
+    const profileImages = document.querySelectorAll('#headerProfileImg');
+    profileImages.forEach(img => {
+        img.src = userData.profile_pic || '/static/dummy_profile.png';
+    });
+}
+
+
+// Listen for OAuth messages
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'oauth_success') {
+        const token = event.data.token;
+        const user = event.data.user;
+        
+        if (token) {
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('user_id', user.id);
+            localStorage.setItem('userData', JSON.stringify(user));
+            
+            console.log('Auth token saved from postMessage');
+            
+            // Close the modal
+            closeLoginModal();
+            
+            // Update UI
+            updateAuthUI();
+            
+            // Show toast
+            showToast('Successfully logged in!', 'success');
+        }
+    }
+});
+
+// Global state
         let attachedImages = [];
         let generatedImages = [];
         const maxImages = 5;
@@ -9143,6 +9223,7 @@ let currentEditingImage = null;
 
 // Load state from localStorage on page load
 window.addEventListener('DOMContentLoaded', function() {
+    updateAuthUI();
     loadStateFromStorage();
     handleInput();
 });
@@ -9591,7 +9672,7 @@ async function generateImage() {
             formData.append(`file_${fileIndex}_name`, img.name);
         }
 
-        const apiResponse = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
+        const apiResponse = await fetch('/api/proxy/generate', {
             method: 'POST',
             headers: {
                 'Accept': '*/*',

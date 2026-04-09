@@ -28,6 +28,52 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+
+@app.get("/api/proxy/details")
+async def proxy_details(authToken: str):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f'https://chatezzy.com/get/details/{authToken}',
+            headers={'Origin': 'https://chatezzy.com', 'Referer': 'https://chatezzy.com/'}
+        )
+        return JSONResponse(content=response.json(), status_code=response.status_code)
+
+
+import httpx
+from fastapi import Request
+
+@app.post("/api/proxy/generate")
+async def proxy_generate(request: Request):
+    async with httpx.AsyncClient() as client:
+        # Get multipart form data
+        form_data = await request.form()
+        
+        # Prepare multipart data for httpx
+        files = []
+        data = {}
+        for key, value in form_data.multi_items():
+            if hasattr(value, 'filename'):
+                files.append((key, (value.filename, value.file.read(), value.content_type)))
+            else:
+                data[key] = value
+
+        headers = {
+            'Accept': '*/*',
+            'Origin': 'https://chatezzy.com',
+            'Referer': 'https://chatezzy.com/superai/bXYwNi1zZGtkZ3Y',
+            'User-Agent': 'Mozilla/5.0'
+        }
+
+        response = await client.post(
+            'https://chatezzy.com/chat/v2/nanobanana-direct',
+            data=data,
+            files=files,
+            headers=headers,
+            timeout=60.0
+        )
+        
+        return JSONResponse(content=response.json(), status_code=response.status_code)
+
 app.add_middleware(GZipMiddleware, minimum_size=500)
 
 
@@ -116,7 +162,7 @@ def login_v2(refer_code: str = None):
 
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri="https://googlenanobanana.com/login/callback/v2",
+        redirect_uri="https://onlineaiimagegenerator.com/login/callback/v2",
         scope=["openid", "email", "profile"],
         state=state  # Pass the refer_code through state parameter
     )
@@ -301,7 +347,7 @@ def callback_v2(request: Request):
         response = HTMLResponse(content=html_content)
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
-        return RedirectResponse(f"/oauth-success?token={auth_token}&name={name}&id={user_id}")
+        return response
         
     except Exception as e:
         # Handle errors appropriately
