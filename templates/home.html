@@ -9189,8 +9189,8 @@ function updateUserInterface(userData) {
 
 // Listen for OAuth messages
 window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'oauth_success') {
-        const token = event.data.token;
+    if (event.data && event.data.type === 'OAUTH_SUCCESS') {
+        const token = event.data.auth_token || event.data.token;
         const user = event.data.user;
         
         if (token) {
@@ -9213,13 +9213,19 @@ window.addEventListener('message', function(event) {
 });
 
 // Global state
+let selectedStyle = 'none';
+let selectedStyleImage = '';
+let selectedStyleName = 'None';
+let editingMode = false;
+let currentEditingImage = null;
+
         let attachedImages = [];
         let generatedImages = [];
         const maxImages = 5;
         const maxChars = 1000;
 
-        let editingMode = false;
-let currentEditingImage = null;
+        
+
 
 // Load state from localStorage on page load
 window.addEventListener('DOMContentLoaded', function() {
@@ -9374,7 +9380,7 @@ function closeImageLimitModal() {
 }
 
 // Close on overlay click
-document.getElementById('imageLimitOverlay').addEventListener('click', function(e) {
+const ilo = document.getElementById('imageLimitOverlay'); if (ilo) ilo.addEventListener('click', function(e) {
     if (e.target === this) {
         closeImageLimitModal();
     }
@@ -11382,14 +11388,14 @@ function closeBugReport() {
 }
 
 // Close on overlay click
-document.getElementById('bugReportOverlay').addEventListener('click', function(e) {
+const bro = document.getElementById('bugReportOverlay'); if (bro) bro.addEventListener('click', function(e) {
     if (e.target === this) {
         closeBugReport();
     }
 });
 
 // Handle form submission
-document.getElementById('bugReportForm').addEventListener('submit', async function(e) {
+const brf = document.getElementById('bugReportForm'); if (brf) brf.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const authToken = localStorage.getItem('authToken');
@@ -11482,7 +11488,7 @@ function goToPricing() {
 }
 
 // Close on overlay click
-document.getElementById('outOfCreditsOverlay').addEventListener('click', function(e) {
+const ooc = document.getElementById('outOfCreditsOverlay'); if (ooc) ooc.addEventListener('click', function(e) {
     if (e.target === this) {
         closeOutOfCreditsModal();
     }
@@ -11612,7 +11618,7 @@ function closePromptBuilderModal() {
 }
 
 // Close on overlay click
-document.getElementById('promptBuilderOverlay').addEventListener('click', function(e) {
+const pbo = document.getElementById('promptBuilderOverlay'); if (pbo) pbo.addEventListener('click', function(e) {
     if (e.target === this) {
         closePromptBuilderModal();
     }
@@ -11756,9 +11762,9 @@ window.addEventListener('beforeunload', function() {
 
 
 // Styles Modal Functions
-let selectedStyle = 'none';
-let selectedStyleImage = '';
-let selectedStyleName = 'None';
+
+
+
 
 function openStylesModal() {
     const overlay = document.getElementById('stylesOverlay');
