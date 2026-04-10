@@ -309,6 +309,12 @@ def callback_v2(request: Request):
         return HTMLResponse("<html><body><h2>Login failed</h2></body></html>", status_code=400)
 
 
+
+@app.get("/a2b4c6d8e0f123456789abcdef012345.txt")
+async def indexnow_key():
+    from fastapi.responses import PlainTextResponse
+    return PlainTextResponse("a2b4c6d8e0f123456789abcdef012345")
+
 @app.get("/llms.txt")
 async def get_llms_txt():
     """
