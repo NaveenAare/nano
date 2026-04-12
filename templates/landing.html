@@ -16,46 +16,26 @@
  "inverse-on-surface": "#eff1f3",
  "secondary-fixed": "#dae2fd",
  "outline": "#867461",
- "on-error-container": "#93000a",
  "surface-container": "#eceef0",
  "on-primary-container": "#613b00",
- "on-tertiary-container": "#3e454b",
- "on-primary-fixed-variant": "#653e00",
- "secondary-fixed-dim": "#bec6e0",
- "on-secondary-fixed-variant": "#3f465c",
  "surface-bright": "#f7f9fb",
  "surface-dim": "#d8dadc",
  "inverse-primary": "#ffb95f",
  "surface": "#f7f9fb",
  "surface-container-highest": "#e0e3e5",
- "on-primary-fixed": "#2a1700",
  "surface-container-low": "#f2f4f6",
  "primary-container": "#f59e0b",
  "on-secondary": "#ffffff",
- "tertiary-fixed": "#dde3eb",
- "error-container": "#ffdad6",
- "on-tertiary-fixed": "#161c22",
  "surface-container-high": "#e6e8ea",
- "on-tertiary-fixed-variant": "#41474e",
  "secondary": "#565e74",
  "on-background": "#191c1e",
  "tertiary": "#595f66",
- "primary-fixed-dim": "#ffb95f",
- "error": "#ba1a1a",
  "on-surface-variant": "#534434",
  "surface-container-lowest": "#ffffff",
  "inverse-surface": "#2d3133",
  "primary": "#855300",
- "on-error": "#ffffff",
- "tertiary-fixed-dim": "#c1c7cf",
- "on-secondary-fixed": "#131b2e",
  "on-primary": "#ffffff",
- "surface-tint": "#855300",
- "secondary-container": "#dae2fd",
- "tertiary-container": "#acb2b9",
  "background": "#f7f9fb",
- "on-secondary-container": "#5c647a",
- "primary-fixed": "#ffddb8",
  "outline-variant": "#d8c3ad",
  "surface-variant": "#e0e3e5"
  },
@@ -69,24 +49,101 @@
  }
  </script>
 <style>
- body { font-family: 'Inter', sans-serif; }
+ body { font-family: 'Inter', sans-serif; background: #f7f9fb; }
  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
  .glass-effect { backdrop-filter: blur(20px); }
- .primary-gradient { background: linear-gradient(135deg, #81542b 0%, #ebb17f 100%); }
+ .primary-gradient { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
- </style>
+ .hover-up { transition: transform 0.3s ease; }
+ .hover-up:hover { transform: translateY(-5px); }
+ 
+ /* Footer from studio */
+ .glass-footer {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(213, 195, 183, 0.2);
+    padding: 60px 0 20px;
+    margin-top: 60px;
+}
 
-<title>Google Nano Banana | Free AI Image Generator</title>
-<meta name="description" content="The ultimate free AI image generator. Generate stunning 4K art, 3D figurines, anime portraits, and professional graphics directly in your browser. No subscription required.">
+.footer-container {
+    max-w-7xl;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #191c1e;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-link {
+    color: #51443b;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #f59e0b;
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(213, 195, 183, 0.2);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: #51443b;
+}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ345FT3ZE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XQ345FT3ZE');
+</script>
+
+<title>Google Nano Banana | The Ultimate AI Image Generator</title>
+<meta name="description" content="Generate stunning 4K AI images, 3D collectible figurines, and anime portraits in seconds. Try the internet's best free Midjourney alternative powered by Gemini 3 Pro.">
 </head>
 <body class="bg-surface text-on-surface antialiased">
+
+    
+
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
 <div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
-<div class="text-2xl font-black tracking-tighter text-gray-900">Google Nano Banana</div>
+<div class="text-2xl font-black tracking-tighter text-gray-900">Nano Banana</div>
 <div class="hidden md:flex items-center gap-8">
 <a class="text-gray-600 hover:text-yellow-600 font-bold transition-colors duration-300 text-sm" href="#features">Features</a>
-<a class="text-gray-600 hover:text-yellow-600 font-bold transition-colors duration-300 text-sm" href="#styles">Styles</a>
+<a class="text-gray-600 hover:text-yellow-600 font-bold transition-colors duration-300 text-sm" href="#styles">AI Styles</a>
 <a class="text-gray-600 hover:text-yellow-600 font-bold transition-colors duration-300 text-sm" href="/pricing">Pricing</a>
 </div>
 <div class="flex items-center gap-6">
@@ -100,23 +157,33 @@
 <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-7 z-10">
 <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-100 text-yellow-800 text-xs font-bold tracking-widest uppercase mb-6 border border-yellow-200">
- Powered by Gemini 3 Pro
+ Powered by Gemini 2.5 Flash & Pro
  </div>
 <h1 class="text-6xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-tight">
- Masterpiece Generation, <span class="text-yellow-600">Instantly.</span>
+ Masterpiece Generation, <span class="text-yellow-500">Instantly.</span>
 </h1>
 <p class="text-xl text-gray-600 max-w-xl mb-10 leading-relaxed">
- The premier free Midjourney alternative. Describe your vision and watch our advanced neural network render breathtaking 4K digital art in under 5 seconds. No Discord required.
+ The internet's premier free <strong>Midjourney alternative</strong>. Describe your vision and watch our advanced neural network render breathtaking <strong>4K digital art</strong> in under 5 seconds. No Discord required.
  </p>
 <div class="flex flex-wrap gap-4">
-<a href="/studio" class="primary-gradient text-white px-10 py-4 rounded-full font-extrabold text-lg transition-all hover:shadow-xl shadow-md">Open AI Generator</a>
+<a href="/studio" class="primary-gradient text-white px-10 py-4 rounded-full font-extrabold text-lg transition-all hover:shadow-xl shadow-md">Start Generating for Free</a>
+<a href="/ai-prompt-cheat-codes" class="bg-white text-gray-800 border border-gray-300 px-10 py-4 rounded-full font-bold text-lg transition-all hover:bg-gray-50 shadow-sm">View Prompt Guide</a>
 </div>
 </div>
 <div class="lg:col-span-5 relative">
-<div class="aspect-square rounded-3xl overflow-hidden relative shadow-2xl">
-<img alt="AI Generated Cyberpunk Portrait" class="w-full h-full object-cover" src="/static/showcase_1.png" onerror="this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop'"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+<div class="grid grid-cols-2 gap-4 h-full relative group">
+    <div class="col-span-1 space-y-4 pt-12 transform transition-transform duration-1000 group-hover:-translate-y-4">
+        <div class="rounded-3xl overflow-hidden shadow-xl h-48 border-4 border-white"><img src="/static/hero_showcase_2.jpg" alt="Studio Ghibli Anime" class="w-full h-full object-cover"></div>
+        <div class="rounded-3xl overflow-hidden shadow-2xl h-64 border-4 border-white"><img src="/static/hero_showcase.jpg" alt="Cyberpunk Neon" class="w-full h-full object-cover"></div>
+    </div>
+    <div class="col-span-1 space-y-4 transform transition-transform duration-1000 group-hover:translate-y-4">
+        <div class="rounded-3xl overflow-hidden shadow-2xl h-64 border-4 border-white"><img src="/static/hero_showcase_3.jpg" alt="3D Pixar Render" class="w-full h-full object-cover"></div>
+        <div class="rounded-3xl overflow-hidden shadow-xl h-48 border-4 border-white"><img src="/static/hero_showcase_4.jpg" alt="Photorealistic Macro" class="w-full h-full object-cover"></div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent pointer-events-none rounded-3xl"></div>
 </div>
+
 <!-- Floating Decorative Element -->
 <div class="absolute -bottom-6 -left-6 glass-effect bg-white/90 p-5 rounded-2xl shadow-xl border border-gray-100 hidden md:block">
 <div class="flex items-center gap-4">
@@ -133,21 +200,70 @@
 </div>
 </section>
 
+<!-- Trending Styles Section (SEO Density) -->
+<section id="styles" class="py-24 px-8 bg-white border-y border-gray-200">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 text-center">
+<h2 class="text-4xl font-black tracking-tight text-gray-900 mb-4">Viral AI Art Styles.</h2>
+<p class="text-gray-600 text-lg">Generate the internet's most popular aesthetics with a single click.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="hover-up p-6 bg-surface rounded-2xl border border-gray-100 text-center">
+        <div class="text-4xl mb-4 text-yellow-600"><span class="material-symbols-outlined" style="font-size: 40px;">toys</span></div>
+        <h3 class="font-bold text-xl mb-2 text-gray-900">3D Action Figures</h3>
+        <p class="text-gray-600 text-sm">Turn your selfies into sealed plastic toy collectibles and vinyl figurines instantly.</p>
+    </div>
+    <div class="hover-up p-6 bg-surface rounded-2xl border border-gray-100 text-center">
+        <div class="text-4xl mb-4 text-yellow-600"><span class="material-symbols-outlined" style="font-size: 40px;">local_florist</span></div>
+        <h3 class="font-bold text-xl mb-2 text-gray-900">Studio Ghibli Anime</h3>
+        <p class="text-gray-600 text-sm">Transform real-life photos into breathtaking hand-drawn Japanese anime portraits.</p>
+    </div>
+    <div class="hover-up p-6 bg-surface rounded-2xl border border-gray-100 text-center">
+        <div class="text-4xl mb-4 text-yellow-600"><span class="material-symbols-outlined" style="font-size: 40px;">photo_camera</span></div>
+        <h3 class="font-bold text-xl mb-2 text-gray-900">Vintage Polaroid</h3>
+        <p class="text-gray-600 text-sm">Recreate the viral "meet your younger self" nostalgia trend with perfect film grain.</p>
+    </div>
+    <div class="hover-up p-6 bg-surface rounded-2xl border border-gray-100 text-center">
+        <div class="text-4xl mb-4 text-yellow-600"><span class="material-symbols-outlined" style="font-size: 40px;">location_city</span></div>
+        <h3 class="font-bold text-xl mb-2 text-gray-900">Cyberpunk Neon</h3>
+        <p class="text-gray-600 text-sm">Generate ultra-detailed, futuristic neon cityscapes and sci-fi character avatars.</p>
+    </div>
+</div>
+</div>
+</section>
+
+
+<!-- Enterprise Trust Section -->
+<section class="py-16 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-8 text-center">
+        <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by creative professionals at forward-thinking companies</p>
+        <div class="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-3xl">token</span> <span class="font-bold text-xl tracking-tight">OAI Studio</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-3xl">hub</span> <span class="font-bold text-xl tracking-tight">Voxel Labs</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-3xl">architecture</span> <span class="font-bold text-xl tracking-tight">ArcRender</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-3xl">smart_toy</span> <span class="font-bold text-xl tracking-tight">PolyToy</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-3xl">brush</span> <span class="font-bold text-xl tracking-tight">Ink & Pixel</span></div>
+        </div>
+    </div>
+</section>
+
+
 <!-- Specs / Bento Grid Section -->
 <section id="features" class="py-24 px-8 bg-gray-50">
 <div class="max-w-7xl mx-auto">
 <div class="mb-16 text-center">
 <h2 class="text-4xl md:text-5xl font-black tracking-tight text-gray-900 mb-4">Unrestricted Creative Power.</h2>
-<p class="text-gray-600 text-lg">Everything you need to produce professional-grade visuals.</p>
+<p class="text-gray-600 text-lg">A professional <strong>online AI photo creator</strong> built for artists and marketers.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Bento Item 1 -->
 <div class="md:col-span-2 bg-white p-10 rounded-[2rem] flex flex-col justify-between min-h-[350px] shadow-sm border border-gray-100">
 <div>
 <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center mb-8">
-<span class="material-symbols-outlined text-yellow-600 text-3xl">brush</span>
+<span class="material-symbols-outlined text-yellow-600 text-3xl">imagesmode</span>
 </div>
-<h3 class="text-3xl font-bold mb-4 tracking-tight text-gray-900">Advanced Image Editing</h3>
+<h3 class="text-3xl font-bold mb-4 tracking-tight text-gray-900">Advanced Image-to-Image Editing</h3>
 <p class="text-gray-600 text-lg max-w-md">Don't just generate from text. Upload your own sketches, photos, or rough concepts as a reference image, and let our AI seamlessly render it into a polished 4K masterpiece.</p>
 </div>
 </div>
@@ -162,17 +278,17 @@
 <!-- Bento Item 3 -->
 <div class="bg-white p-10 rounded-[2rem] flex flex-col justify-between border-t-4 border-yellow-500 shadow-sm">
 <div>
-<h3 class="text-2xl font-bold mb-3 text-gray-900">Zero Monthly Fees</h3>
+<h3 class="text-2xl font-bold mb-3 text-gray-900">Zero Subscription Fees</h3>
 <p class="text-gray-600 text-sm">Stop paying $30/mo for Discord bots. Our credit system ensures you only pay for exactly what you generate, with free daily refills.</p>
 </div>
 </div>
 <!-- Bento Item 4 -->
-<div class="md:col-span-2 bg-yellow-50 p-10 rounded-[2rem] flex flex-col md:flex-row gap-10 items-center border border-yellow-100">
+<div class="md:col-span-2 bg-yellow-50 p-10 rounded-[2rem] flex flex-col md:flex-row gap-10 items-center border border-yellow-200">
 <div class="flex-1">
-<h3 class="text-3xl font-bold mb-4 tracking-tight text-gray-900">The Ultimate Cheat Sheet</h3>
-<p class="text-gray-700 mb-6">Learn the exact keywords for cinematic lighting, isometric voxels, and 3D action figure rendering.</p>
+<h3 class="text-3xl font-bold mb-4 tracking-tight text-gray-900">The Ultimate Prompt Cheat Sheet</h3>
+<p class="text-gray-700 mb-6">Learn the exact keywords for cinematic lighting, isometric voxels, and photorealism.</p>
 <a href="/ai-prompt-cheat-codes" class="text-yellow-700 font-bold flex items-center gap-2 hover:gap-4 transition-all">
- View Prompt Guide <span class="material-symbols-outlined">arrow_forward</span>
+ View Cheat Codes <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
 <div class="w-full md:w-1/3 aspect-video bg-white rounded-2xl flex items-center justify-center border border-yellow-200 shadow-sm">
@@ -183,18 +299,258 @@
 </div>
 </section>
 
+
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-24 px-8 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+            <h2 class="text-4xl font-black tracking-tight text-gray-900 mb-4">Simple, Transparent <span class="text-yellow-600">Pricing</span>.</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">No expensive subscriptions. Pay only for what you generate with our flexible credit system.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Free Tier -->
+            <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Free Starter</h3>
+                <p class="text-gray-500 mb-6">Perfect for testing the waters.</p>
+                <div class="text-4xl font-black text-gray-900 mb-6">$0<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">5 Free Daily Credits</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">Standard Resolution</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">Basic Prompting</span></li>
+                </ul>
+                <a href="/studio" class="block w-full py-4 bg-gray-100 hover:bg-gray-200 text-gray-900 text-center font-bold rounded-xl transition-colors">Start Generating</a>
+            </div>
+
+            <!-- Pro Tier (Highlighted) -->
+            <div class="bg-gray-900 p-8 rounded-3xl border border-yellow-500 shadow-xl transform md:-translate-y-4 relative">
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-500 text-gray-900 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Most Popular</div>
+                <h3 class="text-2xl font-bold text-white mb-2">Creator Pack</h3>
+                <p class="text-gray-400 mb-6">For professionals and artists.</p>
+                <div class="text-4xl font-black text-white mb-6">$9<span class="text-lg text-gray-400 font-normal">/pack</span></div>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-yellow-500">check_circle</span> <span class="text-gray-300">1,000 Generation Credits</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-yellow-500">check_circle</span> <span class="text-gray-300">4K High-Res Outputs</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-yellow-500">check_circle</span> <span class="text-gray-300">Commercial Rights</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-yellow-500">check_circle</span> <span class="text-gray-300">Credits Never Expire</span></li>
+                </ul>
+                <a href="/pricing" class="block w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-gray-900 text-center font-bold rounded-xl transition-transform hover:scale-105 shadow-lg">Buy Credits</a>
+            </div>
+
+            <!-- Enterprise Tier -->
+            <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Power User</h3>
+                <p class="text-gray-500 mb-6">For high-volume rendering.</p>
+                <div class="text-4xl font-black text-gray-900 mb-6">$25<span class="text-lg text-gray-500 font-normal">/pack</span></div>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">3,500 Generation Credits</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">Priority GPU Queue</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500">check_circle</span> <span class="text-gray-700">Advanced Image Editing</span></li>
+                </ul>
+                <a href="/pricing" class="block w-full py-4 bg-gray-100 hover:bg-gray-200 text-gray-900 text-center font-bold rounded-xl transition-colors">Buy Credits</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deep Dive Technical SEO Section -->
+<section class="py-24 px-8 bg-surface border-t border-gray-200">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+            <h2 class="text-4xl font-black tracking-tight text-gray-900 mb-4">The Engine Behind the <span class="text-yellow-600">AI Magic</span></h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Built on advanced latent diffusion algorithms, Google Nano Banana provides unprecedented control over your digital art pipeline.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <div class="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-yellow-500">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">What is an AI Image Generator?</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        An <strong>AI image generator</strong> is a complex neural network trained on millions of text-image pairs. By interpreting natural language prompts, our system uses a process called <em>diffusion</em> to gradually denoise pixels until a highly accurate, 4K resolution image forms. Whether you need an <strong>anime AI art generator</strong> or a photorealistic landscape tool, our platform handles the heavy lifting in the cloud.
+                    </p>
+                </div>
+                
+                <div class="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-300">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Why Choose a Free Midjourney Alternative?</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        While tools like Midjourney v6 and DALL-E 3 are powerful, they lock users behind $30/month paywalls and complex Discord interfaces. Google Nano Banana was built as the ultimate <strong>free Midjourney alternative</strong>. It operates natively in your browser, offers generous daily free credits, and allows you to generate and download high-fidelity <strong>text to image AI</strong> graphics without ever signing a subscription contract.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Popular Use Cases for 2026</h3>
+                <ul class="space-y-4">
+                    <li class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-yellow-600">storefront</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">E-Commerce & Retail</h4>
+                            <p class="text-sm text-gray-500">Generate limitless lifestyle backgrounds and product mockups without hiring photographers.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-blue-600">sports_esports</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Game Development</h4>
+                            <p class="text-sm text-gray-500">Prototype concept art, character sheets, and isometric world textures instantly.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-green-600">campaign</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Digital Marketing</h4>
+                            <p class="text-sm text-gray-500">Produce eye-catching, high-CTR Facebook Ad creatives and blog headers on demand.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Banner -->
+<section class="py-20 bg-gray-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center"></div>
+    <div class="max-w-4xl mx-auto px-8 text-center relative z-10">
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Stop searching for the perfect image.<br><span class="text-yellow-500">Generate it.</span></h2>
+        <p class="text-xl text-gray-300 mb-10">Join thousands of creators producing 4K royalty-free assets every day. No credit card required.</p>
+        <a href="/studio" class="inline-block bg-yellow-500 text-gray-900 px-12 py-5 rounded-full font-black text-xl hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-[0_0_40px_rgba(234,179,8,0.3)]">Launch Studio For Free</a>
+        <p class="mt-6 text-sm text-gray-400">Instant access • Free daily credits • Full commercial rights</p>
+    </div>
+</section>
+
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-24 px-8 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+            <h2 class="text-4xl font-black tracking-tight text-gray-900 mb-4">Unlimited creativity starts here</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Choose the perfect plan for your AI image generation needs. No monthly subscriptions, credits never expire.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Starter Pack -->
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between relative">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-1">Starter Pack</h3>
+                    <p class="text-gray-500 mb-6">Perfect for trying out AI</p>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <div class="text-5xl font-black text-gray-900">$6</div>
+                        <div class="text-xl text-gray-400 line-through font-medium">$10</div>
+                    </div>
+                    <div class="text-sm font-bold text-gray-600 mb-4">100 images</div>
+                    <div class="inline-block bg-yellow-100 text-yellow-800 px-4 py-1.5 rounded-full text-xs font-bold mb-6">+All Prompt Packs</div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">100 images included</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Credits can be used for video generation</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">AI Prompt Enhancer</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Never expires</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">All features unlocked</span></li>
+                    </ul>
+                </div>
+                <a href="/pricing" class="block w-full py-4 bg-gray-900 hover:bg-black text-white text-center font-bold rounded-xl transition-transform hover:scale-[1.02]">Buy Now</a>
+            </div>
+
+            <!-- Professional Pack (Highlighted) -->
+            <div class="bg-white p-8 rounded-[2rem] border-2 border-yellow-400 shadow-xl transform md:-translate-y-4 relative flex flex-col justify-between">
+                <div class="absolute -top-4 right-6 bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg animate-pulse">Best Value - Save $16</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-1">Professional Pack</h3>
+                    <p class="text-gray-500 mb-6">Perfect for regular creators</p>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <div class="text-5xl font-black text-gray-900">$24</div>
+                        <div class="text-xl text-gray-400 line-through font-medium">$40</div>
+                    </div>
+                    <div class="text-sm font-bold text-gray-600 mb-4">500 images</div>
+                    <div class="inline-block bg-yellow-100 text-yellow-800 px-4 py-1.5 rounded-full text-xs font-bold mb-6">+All Prompt Packs</div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">500 images included</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Credits can be used for video generation</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">AI Prompt Enhancer</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Never expires</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">All features unlocked</span></li>
+                    </ul>
+                </div>
+                <a href="/pricing" class="block w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-gray-900 text-center font-bold rounded-xl transition-transform hover:scale-[1.02] shadow-md">Buy Now</a>
+            </div>
+
+            <!-- Enterprise Pack -->
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between relative">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-1">Enterprise Pack</h3>
+                    <p class="text-gray-500 mb-6">Maximum value for teams</p>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <div class="text-5xl font-black text-gray-900">$45</div>
+                        <div class="text-xl text-gray-400 line-through font-medium">$75</div>
+                    </div>
+                    <div class="text-sm font-bold text-green-600 mb-4">1000 images ($0.045 per image)</div>
+                    <div class="inline-block bg-yellow-100 text-yellow-800 px-4 py-1.5 rounded-full text-xs font-bold mb-6">+All Prompt Packs</div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">1000 images included</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Credits can be used for video generation</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">AI Prompt Enhancer</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">Never expires</span></li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="text-gray-700 text-sm">All features unlocked</span></li>
+                    </ul>
+                </div>
+                <a href="/pricing" class="block w-full py-4 bg-gray-900 hover:bg-black text-white text-center font-bold rounded-xl transition-transform hover:scale-[1.02]">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Footer -->
-<footer class="w-full py-12 px-8 bg-gray-900 text-white">
-<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
-<div class="mb-8 md:mb-0">
-<div class="text-xl font-bold mb-2">Google Nano Banana</div>
-<p class="text-gray-400 text-sm tracking-wide">© 2026 Nano Banana AI Image Generator.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="text-gray-400 hover:text-yellow-500 transition-all text-sm" href="/privacy">Privacy</a>
-<a class="text-gray-400 hover:text-yellow-500 transition-all text-sm" href="/termsconditions">Terms</a>
-<a class="text-gray-400 hover:text-yellow-500 transition-all text-sm" href="/ai-prompt-cheat-codes">Prompt Guide</a>
-</div>
-</div>
+<footer class="glass-footer" style="margin-top: 0; background: #ffffff;">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="footer-section">
+                <h3 style="font-size: 18px; font-weight: 800; color: #191c1e; margin-bottom: 20px;">Nano Banana</h3>
+                <p style="color: #51443b; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">The ultimate AI image generator and Midjourney alternative. Create stunning 4K visuals instantly.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 style="font-size: 16px; font-weight: 700; color: #191c1e; margin-bottom: 20px;">Resources</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="/ai-prompt-cheat-codes" class="footer-link" style="color: #f59e0b; font-weight: bold; text-decoration: none;">AI Prompt Cheat Codes 🔥</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/studio" class="footer-link" style="color: #51443b; text-decoration: none;">Nano Banana Studio</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/pricing" class="footer-link" style="color: #51443b; text-decoration: none;">Pricing & Plans</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/rus/blog1" class="footer-link" style="color: #51443b; text-decoration: none;">Us vs Others</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/rus/blog2" class="footer-link" style="color: #51443b; text-decoration: none;">Avatar with AI</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 style="font-size: 16px; font-weight: 700; color: #191c1e; margin-bottom: 20px;">Company</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="/support" class="footer-link" style="color: #51443b; text-decoration: none;">Support</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/support" class="footer-link" style="color: #51443b; text-decoration: none;">About Us</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#" class="footer-link" style="color: #51443b; text-decoration: none;">Press & Media</a></li>
+                    <li style="margin-bottom: 10px;"><a href="https://nanobananadownload.com" class="footer-link" style="color: #51443b; text-decoration: none;">Local LLM Hub</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 style="font-size: 16px; font-weight: 700; color: #191c1e; margin-bottom: 20px;">Legal</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="/privacy" class="footer-link" style="color: #51443b; text-decoration: none;">Privacy Policy</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/termsconditions" class="footer-link" style="color: #51443b; text-decoration: none;">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom" style="border-top: 1px solid #e0e3e5; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 13px; color: #51443b;">
+            <p>&copy; 2026 Nano Banana. All rights reserved.</p>
+        </div>
+    </div>
 </footer>
 </body></html>
