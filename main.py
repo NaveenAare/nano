@@ -494,8 +494,12 @@ async def create_razorpay_order_pro(request: dict):
 # Mount static folder
 
 @app.get("/")
-@app.post("/")
-async def home(device: str = None):
+async def landing_page():
+    return FileResponse("templates/landing.html", headers={"Cache-Control": "no-cache"})
+
+@app.get("/studio")
+@app.post("/studio")
+async def home_studio(device: str = None):
     return FileResponse("templates/home.html")
 
 @app.get("/redirecthandler")
