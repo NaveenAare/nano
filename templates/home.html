@@ -10264,7 +10264,51 @@ window.addEventListener('storage', updateAuthButton);
 </script>
 
     <script>
-        // Global state
+        
+// Listen for OAuth messages
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'OAUTH_SUCCESS') {
+        const token = event.data.auth_token;
+        const user = event.data.user;
+        
+        if (token) {
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('user_id', user.id);
+            localStorage.setItem('userData', JSON.stringify(user));
+            
+            console.log('Auth token saved from postMessage');
+            
+            // Close the modal
+            if (typeof closeLoginModal === 'function') {
+                closeLoginModal();
+            }
+            
+            // Update UI
+            if (typeof updateAuthUI === 'function') {
+                updateAuthUI();
+            }
+            
+            // Try updating other UI elements
+            if (typeof fetchAndDisplayUserProfile === 'function') {
+                fetchAndDisplayUserProfile();
+            }
+            
+            if (typeof updateAuthButton === 'function') {
+                updateAuthButton();
+            }
+            
+            // Show toast
+            if (typeof showToast === 'function') {
+                showToast('Successfully logged in!', 'success');
+            }
+            
+            // Force a page reload to guarantee UI refresh if all else fails
+            location.reload();
+        }
+    }
+});
+
+// Global state
         let attachedImages = [];
         let generatedImages = [];
         const maxImages = 5;
