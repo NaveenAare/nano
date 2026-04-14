@@ -2,21 +2,25 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform, Animated, Easing, useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // You need to install this
 
-// Simulated Auth Session for now until we configure Google Cloud Console
 export default function App() {
-  const colorScheme = useColorScheme(); // detects light/dark mode based on device/time
+  const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 
+  const [isAppReady, setIsAppReady] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState(null);
+  const [userCredits, setUserCredits] = useState('...');
   
   // Animation Values
   const spinValue = new Animated.Value(0);
   const floatValue = new Animated.Value(0);
   const fadeValue = new Animated.Value(0);
+  const splashFadeValue = new Animated.Value(1);
+  const splashScaleValue = new Animated.Value(1);
 
   useEffect(() => {
     // Background spin animation
@@ -37,12 +41,46 @@ export default function App() {
       ])
     ).start();
 
-    // Fade in text
-    Animated.timing(fadeValue, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
+    // Initial load check
+    const prepareApp = async () => {
+      try {
+        // Check for existing authToken in React Native's AsyncStorage (equivalent to web localStorage)
+        const token = await AsyncStorage.getItem('authToken');
+        
+        if (token) {
+          setIsAuthenticated(true);
+          // Optional: Fetch user details/credits with token
+        }
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Wait 2 seconds so they see the beautiful splash screen
+        setTimeout(() => {
+          Animated.parallel([
+            Animated.timing(splashFadeValue, {
+              toValue: 0,
+              duration: 800,
+              useNativeDriver: true,
+            }),
+            Animated.timing(splashScaleValue, {
+              toValue: 1.2,
+              duration: 800,
+              easing: Easing.out(Easing.exp),
+              useNativeDriver: true,
+            })
+          ]).start(() => {
+            setIsAppReady(true);
+            Animated.timing(fadeValue, {
+              toValue: 1,
+              duration: 1000,
+              useNativeDriver: true,
+            }).start();
+          });
+        }, 2000);
+      }
+    };
+    
+    prepareApp();
   }, []);
 
   const spin = spinValue.interpolate({
@@ -55,9 +93,17 @@ export default function App() {
     outputRange: [0, -15]
   });
 
-  const handleLogin = () => {
-    // In production, this will trigger expo-auth-session
+  const handleLogin = async () => {
+    // Simulated Google Auth Success
+    // In production: Google Sign-in -> Get Google Token -> Send to your backend -> Receive chatezzy authToken -> Save it
+    const dummyToken = "dummy_token_123";
+    await AsyncStorage.setItem('authToken', dummyToken);
     setIsAuthenticated(true);
+  };
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('authToken');
+    setIsAuthenticated(false);
   };
 
   const generateImage = async () => {
@@ -65,9 +111,16 @@ export default function App() {
     setIsGenerating(true);
     
     try {
+      const token = await AsyncStorage.getItem('authToken');
+      if (!token) {
+        setIsAuthenticated(false);
+        return;
+      }
+
       const formData = new FormData();
       formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
       formData.append('message', prompt);
+      formData.append('authToken', token);
       formData.append('does_chat_have_name', 'false');
       formData.append('models', 'ChatGpt');
       formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
@@ -104,13 +157,28 @@ export default function App() {
   };
   const currentStyles = getThemeStyles();
 
+  // --- SPLASH SCREEN ---
+  if (!isAppReady) {
+    return (
+      <View style={[styles.splashContainer, currentStyles.bgMain]}>
+        <StatusBar style={isDarkMode ? "light" : "dark"} hidden />
+        <Animated.View style={{ opacity: splashFadeValue, transform: [{ scale: splashScaleValue }], alignItems: 'center' }}>
+          <View style={[styles.logoContainer, currentStyles.logoBox, { width: 150, height: 150, borderRadius: 50 }]}>
+            <Text style={{ fontSize: 80 }}>🍌</Text>
+          </View>
+          <Text style={[styles.splashTitle, currentStyles.textPrimary]}>Nano Banana</Text>
+          <Text style={[styles.splashSubtitle, currentStyles.textSecondary]}>By Google APIs</Text>
+        </Animated.View>
+      </View>
+    );
+  }
+
   // --- LOGIN SCREEN ---
   if (!isAuthenticated) {
     return (
       <View style={[styles.loginContainer, currentStyles.bgMain]}>
         <StatusBar style={isDarkMode ? "light" : "dark"} />
         
-        {/* Animated 3D Background Elements */}
         <Animated.View style={[styles.bgBlob, styles.blob1, { transform: [{ rotate: spin }] }]} />
         <Animated.View style={[styles.bgBlob, styles.blob2, { transform: [{ rotate: spin }] }]} />
         
@@ -142,8 +210,11 @@ export default function App() {
       <StatusBar style={isDarkMode ? "light" : "dark"} />
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.container, currentStyles.bgMain]}>
         <View style={[styles.header, currentStyles.headerBorder]}>
-          <Text style={[styles.headerTitle, currentStyles.textPrimary]}>Studio</Text>
-          <TouchableOpacity onPress={() => setIsAuthenticated(false)}>
+          <View>
+            <Text style={[styles.headerTitle, currentStyles.textPrimary]}>Studio</Text>
+            <Text style={[styles.creditText, currentStyles.textSecondary]}>⚡ Credits: {userCredits}</Text>
+          </View>
+          <TouchableOpacity onPress={handleLogout} style={styles.profileBtn}>
             <Image source={{ uri: 'https://ui-avatars.com/api/?name=User&background=f59e0b&color=000' }} style={styles.profilePic} />
           </TouchableOpacity>
         </View>
@@ -186,6 +257,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   // --- BASE STYLES ---
+  splashContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  splashTitle: { fontSize: 32, fontWeight: '900', marginTop: 20 },
+  splashSubtitle: { fontSize: 14, fontWeight: '600', marginTop: 5, letterSpacing: 2, textTransform: 'uppercase' },
+  
   loginContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' },
   bgBlob: { position: 'absolute', width: 600, height: 600, borderRadius: 300, opacity: 0.15 },
   blob1: { top: -200, left: -200, backgroundColor: '#f59e0b' },
@@ -196,7 +271,7 @@ const styles = StyleSheet.create({
   loginTitle: { fontSize: 36, fontWeight: '900', marginBottom: 10, letterSpacing: -1 },
   loginSubtitle: { fontSize: 16, marginBottom: 50, textAlign: 'center' },
   googleButton: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16, paddingHorizontal: 30, borderRadius: 100, width: '100%', justifyContent: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 5, elevation: 5 },
-  googleIcon: { width: 24, height: 24, marginRight: 12 }, // Google logo SVG will render here
+  googleIcon: { width: 24, height: 24, marginRight: 12 },
   googleButtonText: { fontSize: 18, fontWeight: '700' },
   loginTerms: { fontSize: 12, marginTop: 24 },
   
@@ -204,7 +279,9 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20, paddingTop: Platform.OS === 'android' ? 40 : 20, borderBottomWidth: 1 },
   headerTitle: { fontSize: 24, fontWeight: '900' },
-  profilePic: { width: 40, height: 40, borderRadius: 20, borderWidth: 2, borderColor: '#f59e0b' },
+  creditText: { fontSize: 12, fontWeight: '700', marginTop: 2 },
+  profileBtn: { shadowColor: '#f59e0b', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 5, elevation: 5 },
+  profilePic: { width: 44, height: 44, borderRadius: 22, borderWidth: 2, borderColor: '#f59e0b' },
   scrollContent: { flexGrow: 1, padding: 20 },
   canvasContainer: { width: '100%', aspectRatio: 1, borderRadius: 30, overflow: 'hidden', borderWidth: 1, elevation: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8 },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
