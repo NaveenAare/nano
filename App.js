@@ -2,7 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform, Animated, Easing, useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // You need to install this
+
+// Temporary fallback for Expo Go to avoid Native Module null crashes
+let storage = {};
+const DummyStorage = {
+  getItem: async (key) => storage[key] || null,
+  setItem: async (key, value) => { storage[key] = value; },
+  removeItem: async (key) => { delete storage[key]; }
+};
+
+let AsyncStorage = DummyStorage;
+try {
+  const RealAsyncStorage = require('@react-native-async-storage/async-storage').default;
+  if (RealAsyncStorage) AsyncStorage = RealAsyncStorage;
+} catch (e) {}
+
 
 export default function App() {
   const colorScheme = useColorScheme();
@@ -14,6 +28,7 @@ export default function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState(null);
   const [userCredits, setUserCredits] = useState('...');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   
   // Animation Values
   const spinValue = new Animated.Value(0);
@@ -23,7 +38,6 @@ export default function App() {
   const splashScaleValue = new Animated.Value(1);
 
   useEffect(() => {
-    // Background spin animation
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
@@ -33,7 +47,6 @@ export default function App() {
       })
     ).start();
 
-    // Floating logo animation
     Animated.loop(
       Animated.sequence([
         Animated.timing(floatValue, { toValue: 1, duration: 2000, useNativeDriver: true }),
@@ -41,20 +54,15 @@ export default function App() {
       ])
     ).start();
 
-    // Initial load check
     const prepareApp = async () => {
       try {
-        // Check for existing authToken in React Native's AsyncStorage (equivalent to web localStorage)
         const token = await AsyncStorage.getItem('authToken');
-        
         if (token) {
           setIsAuthenticated(true);
-          // Optional: Fetch user details/credits with token
         }
       } catch (e) {
         console.warn(e);
       } finally {
-        // Wait 2 seconds so they see the beautiful splash screen
         setTimeout(() => {
           Animated.parallel([
             Animated.timing(splashFadeValue, {
@@ -94,11 +102,15 @@ export default function App() {
   });
 
   const handleLogin = async () => {
-    // Simulated Google Auth Success
-    // In production: Google Sign-in -> Get Google Token -> Send to your backend -> Receive chatezzy authToken -> Save it
-    const dummyToken = "dummy_token_123";
-    await AsyncStorage.setItem('authToken', dummyToken);
-    setIsAuthenticated(true);
+    setIsLoggingIn(true);
+    
+    // Simulate real Google Auth delay for testing the UI
+    setTimeout(async () => {
+      const dummyToken = "dummy_token_123";
+      await AsyncStorage.setItem('authToken', dummyToken);
+      setIsAuthenticated(true);
+      setIsLoggingIn(false);
+    }, 1500);
   };
 
   const handleLogout = async () => {
@@ -167,7 +179,7 @@ export default function App() {
             <Text style={{ fontSize: 80 }}>🍌</Text>
           </View>
           <Text style={[styles.splashTitle, currentStyles.textPrimary]}>Nano Banana</Text>
-          <Text style={[styles.splashSubtitle, currentStyles.textSecondary]}>By Google APIs</Text>
+          <Text style={[styles.splashSubtitle, currentStyles.textSecondary]}>AI Image Generator</Text>
         </Animated.View>
       </View>
     );
@@ -190,12 +202,24 @@ export default function App() {
           <Animated.Text style={[styles.loginTitle, currentStyles.textPrimary, { opacity: fadeValue }]}>Nano Banana</Animated.Text>
           <Animated.Text style={[styles.loginSubtitle, currentStyles.textSecondary, { opacity: fadeValue }]}>Masterpiece Generation, Instantly.</Animated.Text>
           
-          <TouchableOpacity style={[styles.googleButton, currentStyles.googleBtnBg]} onPress={handleLogin} activeOpacity={0.8}>
-            <Image 
-              source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg' }} 
-              style={styles.googleIcon} 
-            />
-            <Text style={[styles.googleButtonText, currentStyles.googleBtnText]}>Continue with Google</Text>
+          <TouchableOpacity 
+            style={[styles.googleButton, currentStyles.googleBtnBg]} 
+            onPress={handleLogin} 
+            activeOpacity={0.8}
+            disabled={isLoggingIn}
+          >
+            {isLoggingIn ? (
+              <ActivityIndicator size="small" color={isDarkMode ? "#000" : "#fff"} />
+            ) : (
+              <>
+                {/* Fallback to local image or native rendering if SVG fails over Expo Go */}
+                <Image 
+                  source={{ uri: 'https://img.icons8.com/color/48/000000/google-logo.png' }} 
+                  style={styles.googleIcon} 
+                />
+                <Text style={[styles.googleButtonText, currentStyles.googleBtnText]}>Continue with Google</Text>
+              </>
+            )}
           </TouchableOpacity>
           
           <Text style={[styles.loginTerms, currentStyles.textSecondary]}>By continuing, you agree to our Terms of Service</Text>
