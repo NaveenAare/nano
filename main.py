@@ -280,7 +280,7 @@ def callback_v2(request: Request):
                 localStorage.setItem('user_id', '{user_id}');
                 
                 const userData = {{
-                    id: {user_id},
+                    id: '{user_id}',
                     name: '{escaped_name}',
                     email: '{email}',
                     profile_pic: '{profile_pic}',
