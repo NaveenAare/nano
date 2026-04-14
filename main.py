@@ -301,7 +301,7 @@ def callback_v2(request: Request):
         response = HTMLResponse(content=html_content)
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
-        return RedirectResponse(f"/oauth-success?token={auth_token}&name={name}&id={user_id}")
+        return response
         
     except Exception as e:
         # Handle errors appropriately
@@ -314,6 +314,16 @@ def callback_v2(request: Request):
 async def indexnow_key():
     from fastapi.responses import PlainTextResponse
     return PlainTextResponse("a2b4c6d8e0f123456789abcdef012345")
+
+
+@app.get("/ai-prompt-cheat-codes")
+async def ai_prompt_cheat_codes(request: Request):
+    return FileResponse("templates/ai_cheat_codes.html", headers={"Cache-Control": "no-cache"})
+
+@app.get("/prompt-cheat-sheet")
+async def redirect_cheat_sheet():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse("/ai-prompt-cheat-codes")
 
 @app.get("/llms.txt")
 async def get_llms_txt():
