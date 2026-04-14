@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, Dimensions, KeyboardAvoidingView, Platform } from 'react';
-import { StatusBar } from 'expo-status-bar';
 
-const { width } = Dimensions.get('window');
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [prompt, setPrompt] = useState('');
@@ -17,7 +16,6 @@ export default function App() {
     setError(null);
     
     try {
-      // Create FormData exactly like the web app
       const formData = new FormData();
       formData.append('chat_id', 'bXYwNi1zZGtkZ3Y');
       formData.append('message', prompt);
@@ -26,7 +24,6 @@ export default function App() {
       formData.append('versions_data', '[{"modelName":"ChatGpt","version":"gpt-3.5-turbo"}]');
       formData.append('requestId', `req_${Date.now()}`);
       
-      // Hit the central Azure API directly
       const response = await fetch('https://chatezzy.com/chat/v2/nanobanana-direct', {
         method: 'POST',
         headers: {
@@ -34,21 +31,19 @@ export default function App() {
           'Origin': 'https://chatezzy.com',
           'Referer': 'https://chatezzy.com/superai/bXYwNi1zZGtkZ3Y',
           'User-Agent': 'NanoBananaAndroid/1.0',
-          // Assuming anonymous for the demo, otherwise we pass authToken
         },
         body: formData
       });
       
       const data = await response.json();
       
-      // Parse the same way the web UI parses it
       if (data && typeof data === 'object') {
         const lastKey = Object.keys(data).pop();
         const finalChunk = data[lastKey];
         if (finalChunk && finalChunk.images && finalChunk.images.length > 0) {
           setGeneratedImage(finalChunk.images[0]);
         } else {
-          setError("Failed to generate image. Please try again.");
+          setError("Failed to generate image.");
         }
       }
     } catch (err) {
@@ -74,8 +69,6 @@ export default function App() {
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-          
-          {/* Main Canvas Area */}
           <View style={styles.canvasContainer}>
             {isGenerating ? (
               <View style={styles.loadingContainer}>
@@ -97,10 +90,8 @@ export default function App() {
           </View>
           
           {error && <Text style={styles.errorText}>{error}</Text>}
-
         </ScrollView>
 
-        {/* Floating Input Dock */}
         <View style={styles.inputDock}>
           <TextInput
             style={styles.input}
@@ -217,7 +208,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderTopColor: '#334155',
-    paddingBottom: Platform.OS === 'ios' ? 32 : 16,
   },
   input: {
     backgroundColor: '#0f172a',
