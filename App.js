@@ -111,7 +111,7 @@ export default function App() {
             <Text style={styles.logoEmoji}>🍌</Text>
           </Animated.View>
           
-          <Animated.Text style={[styles.loginTitle, { opacity: fadeValue }]}>Nano Banana</Text>
+          <Animated.Text style={[styles.loginTitle, { opacity: fadeValue }]}>Nano Banana</Animated.Text>
           <Animated.Text style={[styles.loginSubtitle, { opacity: fadeValue }]}>Masterpiece Generation, Instantly.</Animated.Text>
           
           <TouchableOpacity style={styles.googleButton} onPress={handleLogin} activeOpacity={0.8}>
