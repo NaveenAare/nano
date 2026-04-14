@@ -310,7 +310,10 @@ def callback_v2(request: Request):
         </html>
         """
 
-        return HTMLResponse(content=html_content)
+        response = HTMLResponse(content=html_content)
+        response.headers["Cross-Origin-Opener-Policy"] = "unsafe-none"
+        response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
+        return response
         
     except Exception as e:
         # Handle errors appropriately
