@@ -268,40 +268,35 @@ def callback_v2(request: Request):
         html_content = f"""
         <!DOCTYPE html>
         <html>
-        <head><title>Login Success</title></head>
-        <body>
-            <h2>Login Successful!</h2>
-            <p>Welcome, {name}!</p>
+        <head><title>Authenticating...</title></head>
+        <body style="background: #f7f9fb; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif;">
+            <div style="text-align: center;">
+                <h2 style="color: #191c1e;">Welcome back, {name}!</h2>
+                <p style="color: #51443b;">Preparing your studio...</p>
+            </div>
             <script>
-                const authData = {{
-                    type: 'OAUTH_SUCCESS',
-                    auth_token: '{auth_token}',
-                    id: {user_id},
-                    user: {{
-                        id: {user_id},
-                        name: '{escaped_name}',
-                        email: '{email}',
-                        profile_pic: '{profile_pic}',
-                        is_premium: {str(is_premium_user).lower()},
-                        subscription_end_date: '{subscription_end_date}'
-                    }}
-                }};
+                // Save auth token to localStorage
+                localStorage.setItem('authToken', '{auth_token}');
+                localStorage.setItem('user_id', '{user_id}');
                 
-                if (window.opener) {{
-                    window.opener.postMessage(authData, '*');
-                    window.close();
-                }} else {{
-                    console.log('Token:', '{auth_token}');
-                }}
+                const userData = {{
+                    id: {user_id},
+                    name: '{escaped_name}',
+                    email: '{email}',
+                    profile_pic: '{profile_pic}',
+                    is_premium: {str(is_premium_user).lower()},
+                    subscription_end_date: '{subscription_end_date}'
+                }};
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                // Immediately redirect back to the studio
+                window.location.href = '/studio';
             </script>
         </body>
         </html>
         """
 
-        response = HTMLResponse(content=html_content)
-        response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
-        response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
-        return response
+        return HTMLResponse(content=html_content)
         
     except Exception as e:
         # Handle errors appropriately

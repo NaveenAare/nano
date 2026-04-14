@@ -11288,52 +11288,9 @@ async function loginWithGoogle() {
         const data = await response.json();
         
         if (data.redirect_uri) {
-            const popup = window.open(data.redirect_uri, 'oauth_popup', 'width=500,height=600');
-
-            // Check if popup was blocked
-            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                // Store current page before redirecting
-                localStorage.setItem('pre_auth_url', window.location.href);
-                // Popup blocked - use full page redirect instead
-                window.location.href = data.redirect_uri;
-                return;
-            }
-
-            // Poll the popup URL instead of listening for messages
-            const checkPopup = setInterval(() => {
-                try {
-                    if (popup.closed) {
-                        clearInterval(checkPopup);
-                        console.log('Popup closed');
-                        return;
-                    }
-
-                    // Check if popup URL contains our success page
-                    const popupUrl = popup.location.href;
-                    if (popupUrl.includes('/oauth-success')) {
-                        const urlParams = new URLSearchParams(popup.location.search);
-                        const token = urlParams.get('token');
-                        const name = urlParams.get('name');
-                        const userId = urlParams.get('id');
-                        
-                        if (token) {
-                            // Save token
-                            localStorage.setItem('authToken', token);
-                            localStorage.setItem('user_id', userId);
-                            console.log('Auth token saved:', token);
-                            
-                            // Close popup and cleanup
-                            popup.close();
-                            clearInterval(checkPopup);
-                            
-                            location.reload();
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin error - popup is still on Google's domain
-                    // This is expected during the OAuth flow
-                }
-            }, 1000);
+            // Full page redirect to bypass all popup blockers and COOP restrictions
+            localStorage.setItem('pre_auth_url', window.location.href);
+            window.location.href = data.redirect_uri;
         }
     } catch (error) {
         location.reload();
