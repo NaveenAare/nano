@@ -289,8 +289,22 @@ def callback_v2(request: Request):
                 }};
                 localStorage.setItem('userData', JSON.stringify(userData));
                 
-                // Immediately redirect back to the studio
-                window.location.href = '/studio';
+                // Handle both cached popup flows and new full-page redirect flows securely
+                if (window.opener && !window.opener.closed) {
+                    try {
+                        const payload = {
+                            type: 'OAUTH_SUCCESS',
+                            auth_token: '{auth_token}',
+                            user: userData
+                        };
+                        window.opener.postMessage(payload, '*');
+                        window.close();
+                    } catch (e) {
+                        window.location.href = '/studio';
+                    }
+                } else {
+                    window.location.href = '/studio';
+                }
             </script>
         </body>
         </html>
@@ -505,7 +519,7 @@ async def landing_page():
 @app.get("/studio")
 @app.post("/studio")
 async def home_studio(device: str = None):
-    return FileResponse("templates/home.html")
+    return FileResponse("templates/home.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 @app.get("/redirecthandler")
 @app.post("/redirecthandler")
