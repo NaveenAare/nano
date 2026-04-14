@@ -1,19 +1,65 @@
 
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform, Animated, Easing } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+// Simulated Auth Session for now until we configure Google Cloud Console
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState(null);
-  const [error, setError] = useState(null);
+  
+  // Animation Values
+  const spinValue = new Animated.Value(0);
+  const floatValue = new Animated.Value(0);
+  const fadeValue = new Animated.Value(0);
+
+  useEffect(() => {
+    // Background spin animation
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 20000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+
+    // Floating logo animation
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatValue, { toValue: 1, duration: 2000, useNativeDriver: true }),
+        Animated.timing(floatValue, { toValue: 0, duration: 2000, useNativeDriver: true }),
+      ])
+    ).start();
+
+    // Fade in text
+    Animated.timing(fadeValue, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+  });
+
+  const translateY = floatValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -15]
+  });
+
+  const handleLogin = () => {
+    // In production, this will trigger expo-auth-session
+    setIsAuthenticated(true);
+  };
 
   const generateImage = async () => {
     if (!prompt.trim()) return;
-    
     setIsGenerating(true);
-    setError(null);
     
     try {
       const formData = new FormData();
@@ -36,36 +82,62 @@ export default function App() {
       });
       
       const data = await response.json();
-      
       if (data && typeof data === 'object') {
         const lastKey = Object.keys(data).pop();
         const finalChunk = data[lastKey];
         if (finalChunk && finalChunk.images && finalChunk.images.length > 0) {
           setGeneratedImage(finalChunk.images[0]);
-        } else {
-          setError("Failed to generate image.");
         }
       }
     } catch (err) {
       console.error(err);
-      setError("Network error. Please check your connection.");
     } finally {
       setIsGenerating(false);
     }
   };
 
+  // --- LOGIN SCREEN ---
+  if (!isAuthenticated) {
+    return (
+      <View style={styles.loginContainer}>
+        <StatusBar style="light" />
+        
+        {/* Animated 3D Background Elements */}
+        <Animated.View style={[styles.bgBlob, styles.blob1, { transform: [{ rotate: spin }] }]} />
+        <Animated.View style={[styles.bgBlob, styles.blob2, { transform: [{ rotate: spin }] }]} />
+        
+        <View style={styles.loginContent}>
+          <Animated.View style={[styles.logoContainer, { transform: [{ translateY }] }]}>
+            <Text style={styles.logoEmoji}>🍌</Text>
+          </Animated.View>
+          
+          <Animated.Text style={[styles.loginTitle, { opacity: fadeValue }]}>Nano Banana</Text>
+          <Animated.Text style={[styles.loginSubtitle, { opacity: fadeValue }]}>Masterpiece Generation, Instantly.</Animated.Text>
+          
+          <TouchableOpacity style={styles.googleButton} onPress={handleLogin} activeOpacity={0.8}>
+            <Image 
+              source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' }} 
+              style={styles.googleIcon} 
+            />
+            <Text style={styles.googleButtonText}>Continue with Google</Text>
+          </TouchableOpacity>
+          
+          <Text style={styles.loginTerms}>By continuing, you agree to our Terms of Service</Text>
+        </View>
+      </View>
+    );
+  }
+
+  // --- MAIN STUDIO SCREEN ---
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
-      <KeyboardAvoidingView 
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Nano Banana</Text>
-          <View style={styles.proBadge}>
-            <Text style={styles.proBadgeText}>PRO</Text>
-          </View>
+          <Text style={styles.headerTitle}>Studio</Text>
+          <TouchableOpacity onPress={() => setIsAuthenticated(false)}>
+            <Image source={{ uri: 'https://ui-avatars.com/api/?name=User&background=f59e0b&color=000' }} style={styles.profilePic} />
+          </TouchableOpacity>
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
@@ -73,40 +145,29 @@ export default function App() {
             {isGenerating ? (
               <View style={styles.loadingContainer}>
                 <ActivityIndicator size="large" color="#f59e0b" />
-                <Text style={styles.loadingText}>Rendering your masterpiece...</Text>
+                <Text style={styles.loadingText}>Rendering 4K Details...</Text>
               </View>
             ) : generatedImage ? (
-              <Image 
-                source={{ uri: generatedImage }} 
-                style={styles.generatedImage} 
-                resizeMode="cover"
-              />
+              <Image source={{ uri: generatedImage }} style={styles.generatedImage} resizeMode="cover" />
             ) : (
               <View style={styles.placeholderContainer}>
                 <Text style={styles.placeholderIcon}>✨</Text>
-                <Text style={styles.placeholderText}>What do you want to create?</Text>
+                <Text style={styles.placeholderText}>Describe your masterpiece...</Text>
               </View>
             )}
           </View>
-          
-          {error && <Text style={styles.errorText}>{error}</Text>}
         </ScrollView>
 
         <View style={styles.inputDock}>
           <TextInput
             style={styles.input}
-            placeholder="Describe your imagination..."
-            placeholderTextColor="#9ca3af"
+            placeholder="Type a prompt (e.g. Cyberpunk Neon City)..."
+            placeholderTextColor="#64748b"
             value={prompt}
             onChangeText={setPrompt}
             multiline
-            maxLength={500}
           />
-          <TouchableOpacity 
-            style={[styles.generateButton, (!prompt.trim() || isGenerating) && styles.generateButtonDisabled]}
-            onPress={generateImage}
-            disabled={!prompt.trim() || isGenerating}
-          >
+          <TouchableOpacity style={[styles.generateButton, (!prompt.trim() || isGenerating) && styles.generateButtonDisabled]} onPress={generateImage} disabled={!prompt.trim() || isGenerating}>
             <Text style={styles.generateButtonText}>Generate</Text>
           </TouchableOpacity>
         </View>
@@ -116,123 +177,117 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
+  // --- LOGIN STYLES ---
+  loginContainer: {
     flex: 1,
     backgroundColor: '#0f172a',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#0f172a',
+  bgBlob: {
+    position: 'absolute',
+    width: 600,
+    height: 600,
+    borderRadius: 300,
+    opacity: 0.15,
   },
-  header: {
+  blob1: {
+    top: -200,
+    left: -200,
+    backgroundColor: '#f59e0b',
+  },
+  blob2: {
+    bottom: -200,
+    right: -200,
+    backgroundColor: '#81542b',
+  },
+  loginContent: {
+    alignItems: 'center',
+    padding: 30,
+    width: '100%',
+    zIndex: 10,
+  },
+  logoContainer: {
+    width: 120,
+    height: 120,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    shadowColor: '#f59e0b',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+    elevation: 10,
+  },
+  logoEmoji: {
+    fontSize: 60,
+  },
+  loginTitle: {
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#ffffff',
+    marginBottom: 10,
+    letterSpacing: -1,
+  },
+  loginSubtitle: {
+    fontSize: 16,
+    color: '#94a3b8',
+    marginBottom: 50,
+    textAlign: 'center',
+  },
+  googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#ffffff',
     paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1e293b',
-  },
-  headerTitle: {
-    color: '#ffffff',
-    fontSize: 20,
-    fontWeight: '800',
-    marginRight: 8,
-  },
-  proBadge: {
-    backgroundColor: '#f59e0b',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-  },
-  proBadgeText: {
-    color: '#000',
-    fontSize: 10,
-    fontWeight: '900',
-  },
-  scrollContent: {
-    flexGrow: 1,
-    padding: 16,
-  },
-  canvasContainer: {
+    paddingHorizontal: 30,
+    borderRadius: 100,
     width: '100%',
-    aspectRatio: 1,
-    backgroundColor: '#1e293b',
-    borderRadius: 24,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#334155',
-    elevation: 10,
+    justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  googleIcon: {
+    width: 24,
+    height: 24,
+    marginRight: 12,
   },
-  loadingText: {
-    color: '#94a3b8',
-    marginTop: 16,
-    fontWeight: '600',
-  },
-  generatedImage: {
-    width: '100%',
-    height: '100%',
-  },
-  placeholderContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  placeholderIcon: {
-    fontSize: 48,
-    marginBottom: 16,
-  },
-  placeholderText: {
-    color: '#64748b',
-    fontSize: 16,
-    textAlign: 'center',
-    fontWeight: '500',
-  },
-  errorText: {
-    color: '#ef4444',
-    textAlign: 'center',
-    marginTop: 16,
-    fontWeight: '600',
-  },
-  inputDock: {
-    backgroundColor: '#1e293b',
-    padding: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#334155',
-  },
-  input: {
-    backgroundColor: '#0f172a',
-    color: '#ffffff',
-    borderRadius: 16,
-    padding: 16,
-    fontSize: 16,
-    minHeight: 100,
-    textAlignVertical: 'top',
-    borderWidth: 1,
-    borderColor: '#334155',
-    marginBottom: 16,
-  },
-  generateButton: {
-    backgroundColor: '#f59e0b',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  generateButtonDisabled: {
-    opacity: 0.5,
-  },
-  generateButtonText: {
-    color: '#000000',
+  googleButtonText: {
+    color: '#1e293b',
     fontSize: 18,
-    fontWeight: '800',
+    fontWeight: '700',
   },
+  loginTerms: {
+    color: '#475569',
+    fontSize: 12,
+    marginTop: 24,
+  },
+  
+  // --- STUDIO STYLES ---
+  safeArea: { flex: 1, backgroundColor: '#0f172a' },
+  container: { flex: 1, backgroundColor: '#0f172a' },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20, paddingTop: Platform.OS === 'android' ? 40 : 20 },
+  headerTitle: { color: '#ffffff', fontSize: 24, fontWeight: '900' },
+  profilePic: { width: 40, height: 40, borderRadius: 20, borderWidth: 2, borderColor: '#334155' },
+  scrollContent: { flexGrow: 1, padding: 20 },
+  canvasContainer: { width: '100%', aspectRatio: 1, backgroundColor: '#1e293b', borderRadius: 30, overflow: 'hidden', borderWidth: 1, borderColor: '#334155' },
+  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  loadingText: { color: '#94a3b8', marginTop: 16, fontWeight: '600' },
+  generatedImage: { width: '100%', height: '100%' },
+  placeholderContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  placeholderIcon: { fontSize: 40, marginBottom: 10, opacity: 0.5 },
+  placeholderText: { color: '#475569', fontSize: 16, fontWeight: '600' },
+  inputDock: { backgroundColor: '#1e293b', padding: 20, borderTopLeftRadius: 30, borderTopRightRadius: 30 },
+  input: { backgroundColor: '#0f172a', color: '#ffffff', borderRadius: 20, padding: 20, fontSize: 16, minHeight: 120, textAlignVertical: 'top', marginBottom: 15 },
+  generateButton: { backgroundColor: '#f59e0b', borderRadius: 20, paddingVertical: 18, alignItems: 'center' },
+  generateButtonDisabled: { opacity: 0.5, backgroundColor: '#334155' },
+  generateButtonText: { color: '#000000', fontSize: 18, fontWeight: '900' },
 });
