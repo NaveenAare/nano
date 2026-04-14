@@ -290,21 +290,21 @@ def callback_v2(request: Request):
                 localStorage.setItem('userData', JSON.stringify(userData));
                 
                 // Handle both cached popup flows and new full-page redirect flows securely
-                if (window.opener && !window.opener.closed) {
-                    try {
-                        const payload = {
+                if (window.opener && !window.opener.closed) {{
+                    try {{
+                        const payload = {{
                             type: 'OAUTH_SUCCESS',
                             auth_token: '{auth_token}',
                             user: userData
-                        };
+                        }};
                         window.opener.postMessage(payload, '*');
                         window.close();
-                    } catch (e) {
+                    }} catch (e) {{
                         window.location.href = '/studio';
-                    }
-                } else {
+                    }}
+                }} else {{
                     window.location.href = '/studio';
-                }
+                }}
             </script>
         </body>
         </html>
