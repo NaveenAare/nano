@@ -279,15 +279,8 @@ def callback_v2(request: Request):
                 localStorage.setItem('authToken', '{auth_token}');
                 localStorage.setItem('user_id', '{user_id}');
                 
-                const userData = {{
-                    id: '{user_id}',
-                    name: '{escaped_name}',
-                    email: '{email}',
-                    profile_pic: '{profile_pic}',
-                    is_premium: {str(is_premium_user).lower()},
-                    subscription_end_date: '{subscription_end_date}'
-                }};
-                localStorage.setItem('userData', JSON.stringify(userData));
+                const rawData = {json.dumps(params)};
+                localStorage.setItem('userData', JSON.stringify(rawData));
                 
                 // Handle both cached popup flows and new full-page redirect flows securely
                 if (window.opener && !window.opener.closed) {{
@@ -295,7 +288,7 @@ def callback_v2(request: Request):
                         const payload = {{
                             type: 'OAUTH_SUCCESS',
                             auth_token: '{auth_token}',
-                            user: userData
+                            user: rawData
                         }};
                         window.opener.postMessage(payload, '*');
                         window.close();
