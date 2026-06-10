@@ -509,6 +509,7 @@ async def create_razorpay_order_pro(request: dict):
 # Mount static folder
 
 @app.get("/")
+@app.post("/")
 async def landing_page():
     return FileResponse("templates/landing.html", headers={"Cache-Control": "no-cache"})
 
