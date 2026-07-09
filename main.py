@@ -663,6 +663,11 @@ async def rusblog4():
 async def rusblog4():
     return FileResponse("templates/blog6.html")
 
+@app.get("/blog7")
+async def blog7_route():
+    return FileResponse("templates/blog_ai_art.html")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
